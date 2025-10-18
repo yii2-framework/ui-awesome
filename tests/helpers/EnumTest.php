@@ -83,7 +83,7 @@ final class EnumTest extends \PHPUnit\Framework\TestCase
 
     public function testNormalizeValueReturnsScalarForBackedEnum(): void
     {
-        $this->assertSame(
+        self::assertSame(
             'active',
             Enum::normalizeValue(Status::ACTIVE),
             '`normalizeValue()` should return the scalar value for a backed enum.',
