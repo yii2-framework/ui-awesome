@@ -61,7 +61,7 @@ abstract class BaseEnum
      */
     public static function normalizeArray(array $values): array
     {
-        return array_map([self::class, 'normalizeValue'], $values);
+        return array_map(self::normalizeValue(...), $values);
     }
     /**
      * Normalizes a single enum value to its scalar value or name.
