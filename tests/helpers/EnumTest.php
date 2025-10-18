@@ -41,7 +41,7 @@ final class EnumTest extends \PHPUnit\Framework\TestCase
         self::assertSame(
             ['active', 'inactive'],
             Enum::normalizeArray([Status::ACTIVE, Status::INACTIVE]),
-            'Should return an array of scalar values for backed enums.',
+            'Should return an array of name values for backed enums.',
         );
     }
 
@@ -50,7 +50,7 @@ final class EnumTest extends \PHPUnit\Framework\TestCase
         self::assertSame(
             ['DARK', 'LIGHT'],
             Enum::normalizeArray([Theme::DARK, Theme::LIGHT]),
-            'Should return an array of scalar values for unit enums.',
+            'Should return an array of name values for unit enums.',
         );
     }
 
@@ -77,7 +77,7 @@ final class EnumTest extends \PHPUnit\Framework\TestCase
         self::assertSame(
             'DARK',
             Enum::normalizeValue(Theme::DARK),
-            'Should return the scalar value for a unit enum.',
+            'Should return the name value for a unit enum.',
         );
     }
 
@@ -86,7 +86,7 @@ final class EnumTest extends \PHPUnit\Framework\TestCase
         self::assertSame(
             'active',
             Enum::normalizeValue(Status::ACTIVE),
-            'Should return the scalar value for a backed enum.',
+            'Should return the name value for a backed enum.',
         );
     }
 
@@ -95,7 +95,7 @@ final class EnumTest extends \PHPUnit\Framework\TestCase
         self::assertSame(
             'LIGHT',
             Enum::normalizeValue(Theme::LIGHT),
-            'Should return the scalar value for a unit enum.',
+            'Should return the name value for a unit enum.',
         );
     }
 
@@ -104,7 +104,7 @@ final class EnumTest extends \PHPUnit\Framework\TestCase
         self::assertSame(
             'inactive',
             Enum::normalizeValue(Status::INACTIVE),
-            'Should return the scalar value for a backed enum.',
+            'Should return the name value for a backed enum.',
         );
     }
 }
