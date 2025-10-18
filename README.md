@@ -11,14 +11,14 @@
 <!-- markdownlint-enable MD041 -->
 
 <p align="center">
-    <a href="https://github.com/yii2-extensions/ui-awesome/actions/workflows/build.yml" target="_blank">
-        <img src="https://img.shields.io/github/actions/workflow/status/yii2-extensions/ui-awesome/build.yml?style=for-the-badge&label=PHPUnit&logo=github" alt="PHPUnit">
+    <a href="https://github.com/yii2-framework/ui-awesome/actions/workflows/build.yml" target="_blank">
+        <img src="https://img.shields.io/github/actions/workflow/status/yii2-framework/ui-awesome/build.yml?style=for-the-badge&label=PHPUnit&logo=github" alt="PHPUnit">
     </a>
-    <a href="https://dashboard.stryker-mutator.io/reports/github.com/yii2-extensions/ui-awesome/main" target="_blank">
-        <img src="https://img.shields.io/endpoint?style=for-the-badge&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fyii2-extensions%2Ftemplate%2Fmain" alt="Mutation Testing">
+    <a href="https://dashboard.stryker-mutator.io/reports/github.com/yii2-framework/ui-awesome/main" target="_blank">
+        <img src="https://img.shields.io/endpoint?style=for-the-badge&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fyii2-framework%2Fui%2Fmain" alt="Mutation Testing">
     </a>
-    <a href="https://github.com/yii2-extensions/ui-awesome/actions/workflows/static.yml" target="_blank">
-        <img src="https://img.shields.io/github/actions/workflow/status/yii2-extensions/ui-awesome/static.yml?style=for-the-badge&label=PHPStan&logo=github" alt="PHPStan">
+    <a href="https://github.com/yii2-framework/ui-awesome/actions/workflows/static.yml" target="_blank">
+        <img src="https://img.shields.io/github/actions/workflow/status/yii2-framework/ui-awesome/static.yml?style=for-the-badge&label=PHPStan&logo=github" alt="PHPStan">
     </a>
 </p>
 
@@ -59,14 +59,14 @@ For detailed configuration options and advanced usage.
 
 [![PHP](https://img.shields.io/badge/%3E%3D8.1-777BB4.svg?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/releases/8.1/en.php)
 [![Yii 22.0.x](https://img.shields.io/badge/22.0.x-0073AA.svg?style=for-the-badge&logo=yii&logoColor=white)](https://github.com/yiisoft/yii2/tree/22.0)
-[![Latest Stable Version](https://img.shields.io/packagist/v/yii2-extensions/ui-awesome.svg?style=for-the-badge&logo=packagist&logoColor=white&label=Stable)](https://packagist.org/packages/yii2-extensions/ui-awesome)
-[![Total Downloads](https://img.shields.io/packagist/dt/yii2-extensions/ui-awesome.svg?style=for-the-badge&logo=composer&logoColor=white&label=Downloads)](https://packagist.org/packages/yii2-extensions/ui-awesome)
+[![Latest Stable Version](https://img.shields.io/packagist/v/yii2-framework/ui-awesome.svg?style=for-the-badge&logo=packagist&logoColor=white&label=Stable)](https://packagist.org/packages/yii2-framework/ui-awesome)
+[![Total Downloads](https://img.shields.io/packagist/dt/yii2-framework/ui-awesome.svg?style=for-the-badge&logo=composer&logoColor=white&label=Downloads)](https://packagist.org/packages/yii2-framework/ui-awesome)
 
 ## Quality code
 
-[![Codecov](https://img.shields.io/codecov/c/github/yii2-extensions/ui-awesome.svg?style=for-the-badge&logo=codecov&logoColor=white&label=Coverage)](https://codecov.io/github/yii2-extensions/ui-awesome)
-[![PHPStan Level Max](https://img.shields.io/badge/PHPStan-Level%20Max-4F5D95.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yii2-extensions/ui-awesome/actions/workflows/static.yml)
-[![Super-Linter](https://img.shields.io/github/actions/workflow/status/yii2-extensions/ui-awesome/linter.yml?style=for-the-badge&label=Super-Linter&logo=github)](https://github.com/yii2-extensions/ui-awesome/actions/workflows/linter.yml)
+[![Codecov](https://img.shields.io/codecov/c/github/yii2-framework/ui-awesome.svg?style=for-the-badge&logo=codecov&logoColor=white&label=Coverage)](https://codecov.io/github/yii2-framework/ui-awesome)
+[![PHPStan Level Max](https://img.shields.io/badge/PHPStan-Level%20Max-4F5D95.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yii2-framework/ui-awesome/actions/workflows/static.yml)
+[![Super-Linter](https://img.shields.io/github/actions/workflow/status/yii2-framework/ui-awesome/linter.yml?style=for-the-badge&label=Super-Linter&logo=github)](https://github.com/yii2-framework/ui-awesome/actions/workflows/linter.yml)
 [![StyleCI](https://img.shields.io/badge/StyleCI-Passed-44CC11.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.styleci.io/repos/698621511?branch=main)
 
 ## Our social networks

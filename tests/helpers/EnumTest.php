@@ -38,55 +38,46 @@ final class EnumTest extends \PHPUnit\Framework\TestCase
 {
     public function testNormalizeArrayNormalizesArrayOfEnumsForBackedEnum(): void
     {
-        $this->assertSame(
+        self::assertSame(
             ['active', 'inactive'],
             Enum::normalizeArray([Status::ACTIVE, Status::INACTIVE]),
-            'Normalize array should return an array of scalar values for backed enums.',
+            '`normalizeArray()` should return an array of scalar values for backed enums.',
         );
     }
 
     public function testNormalizeArrayNormalizesArrayOfEnumsForUnitEnum(): void
     {
-        $this->assertSame(
+        self::assertSame(
             ['DARK', 'LIGHT'],
             Enum::normalizeArray([Theme::DARK, Theme::LIGHT]),
-            'Normalize array should return an array of scalar values for unit enums.',
+            '`normalizeArray()` should return an array of scalar values for unit enums.',
         );
     }
 
     public function testNormalizeArrayPassesThroughMixedArray(): void
     {
-        $this->assertSame(
+        self::assertSame(
             ['foo', 'active', 42],
             Enum::normalizeArray(['foo', Status::ACTIVE, 42]),
-            'Normalize array should normalize enums and pass through scalars.',
+            '`normalizeArray()` should normalize enums and pass through scalars.',
         );
     }
 
     public function testNormalizeValuePassesThroughScalar(): void
     {
-        $this->assertSame(
+        self::assertSame(
             42,
             Enum::normalizeValue(42),
-            'Normalize value should return the original scalar value if not an enum.',
-        );
-    }
-
-    public function testNormalizeValueReturnsNameForBackedEnum(): void
-    {
-        $this->assertSame(
-            'inactive',
-            Enum::normalizeValue(Status::INACTIVE),
-            'Normalize value should return the scalar value for a backed enum.',
+            '`normalizeValue()` should return the original scalar value if not an enum.',
         );
     }
 
     public function testNormalizeValueReturnsNameForUnitEnum(): void
     {
-        $this->assertSame(
+        self::assertSame(
             'DARK',
             Enum::normalizeValue(Theme::DARK),
-            'Normalize value should return the scalar value for a unit enum.',
+            '`normalizeValue()` should return the scalar value for a unit enum.',
         );
     }
 
@@ -95,16 +86,25 @@ final class EnumTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(
             'active',
             Enum::normalizeValue(Status::ACTIVE),
-            'Normalize value should return the scalar value for a backed enum.',
+            '`normalizeValue()` should return the scalar value for a backed enum.',
         );
     }
 
     public function testNormalizeValueReturnsScalarForUnitEnum(): void
     {
-        $this->assertSame(
-            'DARK',
-            Enum::normalizeValue(Theme::DARK),
-            'Normalize value should return the scalar value for a unit enum.',
+        self::assertSame(
+            'LIGHT',
+            Enum::normalizeValue(Theme::LIGHT),
+            '`normalizeValue()` should return the scalar value for a unit enum.',
+        );
+    }
+
+    public function testNormalizeValueReturnsValueForBackedEnum(): void
+    {
+        self::assertSame(
+            'inactive',
+            Enum::normalizeValue(Status::INACTIVE),
+            '`normalizeValue()` should return the scalar value for a backed enum.',
         );
     }
 }
