@@ -43,28 +43,28 @@
             </style>
             <div class="container">
                 <div class="alert-box">
-                    <p class="alert-title"><strong>Best Practices</strong></p>
-                    <p class="alert-content">PSR standards • Clean code • Documentation ready</p>
+                    <p class="alert-title"><strong>ActiveForm Integration</strong></p>
+                    <p class="alert-content">Model binding • Validation sync • Error handling</p>
                 </div>
                 <div class="alert-box">
-                    <p class="alert-title"><strong>Easy Setup</strong></p>
-                    <p class="alert-content">Quick start template • Configuration examples • Clear structure</p>
+                    <p class="alert-title"><strong>ARIA Accessibility Support</strong></p>
+                    <p class="alert-content">Built-in ARIA attributes • Screen reader friendly • WCAG compliant</p>
                 </div>
                 <div class="alert-box">
-                    <p class="alert-title"><strong>GitHub Actions</strong></p>
-                    <p class="alert-content">CI/CD workflows • Automated testing • Quality checks</p>
+                    <p class="alert-title"><strong>Component-Based Architecture</strong></p>
+                    <p class="alert-content">Reusable traits • Modular design • Easy customization</p>
                 </div>
                 <div class="alert-box">
-                    <p class="alert-title"><strong>Quality Tools</strong></p>
-                    <p class="alert-content">PHPStan Level Max • StyleCI • Super-Linter integration</p>
+                    <p class="alert-title"><strong>Framework Events &amp; Behaviors</strong></p>
+                    <p class="alert-content">Before/after render • Custom events • Behavior attachment</p>
                 </div>
                 <div class="alert-box">
-                    <p class="alert-title"><strong>PHP 8.1+</strong></p>
-                    <p class="alert-content">Modern PHP features • Type safety • Performance optimizations</p>
+                    <p class="alert-title"><strong>Fluent Interface Builder</strong></p>
+                    <p class="alert-content">Chainable methods • Intuitive API • Clean code</p>
                 </div>
                 <div class="alert-box">
-                    <p class="alert-title"><strong>Testing Ready</strong></p>
-                    <p class="alert-content">PHPUnit setup • Mutation testing • Codecov integration</p>
+                    <p class="alert-title"><strong>Type-Safe Components</strong></p>
+                    <p class="alert-content">Full PHP type hints • IDE autocomplete • Runtime validation</p>
                 </div>
             </div>
         </div>
