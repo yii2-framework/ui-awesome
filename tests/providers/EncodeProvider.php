@@ -62,6 +62,11 @@ final class EncodeProvider
                 'a&lt;&gt;&amp;"\'�',
                 false,
             ],
+            'quotes-not-encoded-in-content' => [
+                'He said "Hello" and she said \'Hi\'',
+                'He said "Hello" and she said \'Hi\'',
+                true,
+            ],
             'unicode-null-double' => [
                 '\u{0000}',
                 '\u{0000}',
@@ -89,6 +94,11 @@ final class EncodeProvider
     public static function value(): array
     {
         return [
+            'all-special-chars' => [
+                '<a href="test" data-name=\'value\'>A&B</a>',
+                '&lt;a href=&quot;test&quot; data-name=&apos;value&apos;&gt;A&amp;B&lt;/a&gt;',
+                true,
+            ],
             'ampersand-double' => [
                 'Sam &amp; Dark',
                 'Sam &amp;amp; Dark',
@@ -99,6 +109,11 @@ final class EncodeProvider
                 'Sam &amp; Dark',
                 false,
             ],
+            'double-quote-encoding' => [
+                'Say "Hello"',
+                'Say &quot;Hello&quot;',
+                true,
+            ],
             'float-value' => [
                 1.5,
                 '1.5',
@@ -108,6 +123,11 @@ final class EncodeProvider
                 42,
                 '42',
                 false,
+            ],
+            'mixed-quotes' => [
+                'It\'s a "test"',
+                'It&apos;s a &quot;test&quot;',
+                true,
             ],
             'null-byte-double' => [
                 "\0",
@@ -123,6 +143,11 @@ final class EncodeProvider
                 null,
                 '',
                 false,
+            ],
+            'single-quote-encoding' => [
+                "O'Reilly",
+                'O&apos;Reilly',
+                true,
             ],
             'unicode-null-double' => [
                 "\u{0000}",
