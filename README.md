@@ -15,7 +15,7 @@
         <img src="https://img.shields.io/github/actions/workflow/status/yii2-framework/ui-awesome/build.yml?style=for-the-badge&label=PHPUnit&logo=github" alt="PHPUnit">
     </a>
     <a href="https://dashboard.stryker-mutator.io/reports/github.com/yii2-framework/ui-awesome/main" target="_blank">
-        <img src="https://img.shields.io/endpoint?style=for-the-badge&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fyii2-framework%2Fui%2Fmain" alt="Mutation Testing">
+        <img src="https://img.shields.io/endpoint?style=for-the-badge&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fyii2-framework%2Fui-awesome%2Fmain" alt="Mutation Testing">
     </a>
     <a href="https://github.com/yii2-framework/ui-awesome/actions/workflows/static.yml" target="_blank">
         <img src="https://img.shields.io/github/actions/workflow/status/yii2-framework/ui-awesome/static.yml?style=for-the-badge&label=PHPStan&logo=github" alt="PHPStan">
