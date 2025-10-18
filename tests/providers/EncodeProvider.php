@@ -92,6 +92,11 @@ final class EncodeProvider
             'ampersand-double' => [
                 'Sam &amp; Dark',
                 'Sam &amp;amp; Dark',
+                true,
+            ],
+            'ampersand-no-double' => [
+                'Sam & Dark',
+                'Sam &amp; Dark',
                 false,
             ],
             'float-value' => [
@@ -104,19 +109,29 @@ final class EncodeProvider
                 '42',
                 false,
             ],
+            'null-byte-double' => [
+                "\0",
+                "\0",
+                true,
+            ],
+            'null-byte-no-double' => [
+                "\0",
+                "\0",
+                false,
+            ],
             'null-value' => [
                 null,
                 '',
                 false,
             ],
             'unicode-null-double' => [
-                '\u{0000}',
-                '\u{0000}',
+                "\u{0000}",
+                "\u{0000}",
                 true,
             ],
             'unicode-null-no-double' => [
-                '\u{0000}',
-                '\u{0000}',
+                "\u{0000}",
+                "\u{0000}",
                 false,
             ],
         ];
