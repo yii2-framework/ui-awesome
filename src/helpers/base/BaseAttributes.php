@@ -161,10 +161,6 @@ abstract class BaseAttributes
      */
     private static function isValidAttributeName(string $name): bool
     {
-        if ($name === '') {
-            return false;
-        }
-
         return isset(self::ORDER_MAP[$name]) || preg_match(self::VALID_ATTRIBUTE_NAME_PATTERN, $name) === 1;
     }
 
@@ -383,16 +379,13 @@ abstract class BaseAttributes
         $result = '';
 
         foreach ($values as $n => $v) {
-            $prop = Encode::value((string) $n);
+            if ($v !== null) {
+                $prop = Encode::value((string) $n);
+                $stringValue = is_string($v) || is_numeric($v) ? (string) $v : Json::encode($v, self::JSON_FLAGS);
 
-            $stringValue = match (gettype($v)) {
-                'array', 'boolean' => Json::encode($v, self::JSON_FLAGS),
-                'double', 'integer', 'string' => (string) $v,
-                default => '',
-            };
-
-            if ($stringValue !== '') {
-                $result .= "{$prop}: {$stringValue}; ";
+                if ($stringValue !== '') {
+                    $result .= "{$prop}: {$stringValue}; ";
+                }
             }
         }
 

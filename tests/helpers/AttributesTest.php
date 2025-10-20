@@ -47,7 +47,16 @@ final class AttributesTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    public function testRenderEmptyAttributeReturnsEmptyString(): void
+    public function testRenderEmptyAttributeNameIsSkipped(): void
+    {
+        self::assertSame(
+            '',
+            Attributes::render(['' => 'value']),
+            'Empty attribute names should be skipped',
+        );
+    }
+
+    public function testRenderEmptyAttributeValueIsSkipped(): void
     {
         self::assertEmpty(
             Attributes::render(['empty' => '']),
