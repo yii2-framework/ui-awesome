@@ -242,7 +242,7 @@ abstract class BaseAttributes
 
         return match (gettype($values)) {
             'array' => self::renderArrayAttributes($name, $values),
-            'integer', 'string' => self::renderAttribute($name, $values),
+            'string' => self::renderAttribute($name, $values),
             default => self::renderAttribute($name, Json::encode($values, self::JSON_FLAGS)),
         };
     }

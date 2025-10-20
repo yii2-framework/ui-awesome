@@ -242,6 +242,10 @@ final class AttributesProvider
                 ' width="99.99"',
                 ['width' => 99.99],
             ],
+            'integer attribute value' => [
+                ' height="100"',
+                ['height' => 100],
+            ],
             'mixed attributes with arrays' => [
                 ' class="a b" id="x" data-a="1" data-b="2" style="width: 100px;" any=\'[1,2]\'',
                 [
