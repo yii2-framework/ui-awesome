@@ -26,7 +26,7 @@ use yii\ui\tests\providers\AttributesProvider;
  * - Attribute ordering and skipping of invalid attribute names.
  * - Boolean attribute rendering and omission of false/null values.
  * - Data attribute expansion and nested array sanitization.
- * - Enum attribute support for PHP 8.4 enum values.
+ * - Enum attribute support for PHP 8.1 enum values.
  * - Special character encoding for HTML safety.
  * - Style attribute formatting and normalization.
  *

@@ -8,12 +8,15 @@ use yii\helpers\Json;
 use yii\ui\helpers\{Encode, Enum};
 
 use function array_map;
+use function gettype;
 use function implode;
 use function is_array;
 use function is_bool;
 use function is_string;
+use function is_int;
 use function preg_match;
 use function rtrim;
+use function strtolower;
 use function uksort;
 
 /**
@@ -320,22 +323,16 @@ abstract class BaseAttributes
         $result = '';
 
         foreach ($values as $n => $v) {
-            if (is_array($v)) {
-                $encodedValue = Json::encode($v, self::JSON_FLAGS);
+            $encodeValue = match (gettype($v)) {
+                'double', 'integer', 'NULL', 'string' => Encode::value($v),
+                default => Json::encode($v, self::JSON_FLAGS),
+            };
 
-                $quote = self::QUOTE_SINGLE;
-            } elseif (is_string($v) || is_int($v) || is_float($v) || $v === null) {
-                $encodedValue = Encode::value($v);
-
-                $quote = self::QUOTE_DOUBLE;
-            } else {
-                // for other types, convert to string via json_encode for safety
-                $encodedValue = Json::encode($v, self::JSON_FLAGS);
-
-                $quote = self::QUOTE_SINGLE;
-            }
-
-            $result .= self::renderAttribute("{$name}-{$n}", $encodedValue, $quote);
+            $result .= self::renderAttribute(
+                "{$name}-{$n}",
+                $encodeValue,
+                is_array($v) ? self::QUOTE_SINGLE : self::QUOTE_DOUBLE,
+            );
         }
 
         return $result;
@@ -391,9 +388,14 @@ abstract class BaseAttributes
         $result = '';
 
         foreach ($values as $n => $v) {
-            $stringValue = is_string($v) || is_int($v) || is_float($v) ? (string) $v : Json::encode($v);
+            $prop = Encode::value((string) $n);
 
-            $result .= "$n: $stringValue; ";
+            $stringValue = match (gettype($v)) {
+                'double', 'integer', 'string' => (string) $v,
+                default => Json::encode($v, self::JSON_FLAGS),
+            };
+
+            $result .= "{$prop}: {$stringValue}; ";
         }
 
         return $result === '' ? '' : self::renderAttribute('style', rtrim($result));

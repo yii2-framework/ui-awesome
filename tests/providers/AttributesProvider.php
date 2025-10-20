@@ -173,6 +173,12 @@ final class AttributesProvider
                     'value' => '',
                 ],
             ],
+            'float attribute value' => [
+                ' width="99.99"',
+                [
+                    'width' => 99.99,
+                ],
+            ],
             'mixed attributes with arrays' => [
                 ' class="a b" id="x" data-a="1" data-b="2" style="width: 100px;" any=\'[1,2]\'',
                 [
