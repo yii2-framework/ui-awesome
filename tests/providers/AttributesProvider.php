@@ -32,23 +32,13 @@ use yii\ui\tests\support\stub\enum\{ButtonSize, Columns, Theme};
 final class AttributesProvider
 {
     /**
-     * Data provider for enum attribute rendering scenarios.
+     * Provides test cases for enum attribute scenarios.
      *
-     * Tests attribute rendering with enum values in various contexts.
-     * - Enum in a class array.
-     * - Enum in data attribute.
-     * - Enum in style attribute.
-     * - Mixed enum and string values.
-     * - Nested enum usage.
-     * - Numeric enum values.
-     * - Single enum as attribute value.
+     * Supplies test data for validating HTML attribute rendering with PHP enum values, including integration in class,
+     * data, style, and numeric attributes. Each test case includes the expected HTML output and the input attribute
+     * array containing enum instances, ensuring comprehensive coverage of enum handling in attribute expansion.
      *
-     * Each test case provides the expected rendered attribute string and the input attribute array.
-     *
-     * {@see \PHPPress\Tests\Html\Helper\AttributesTest::testRenderEnumAttributesFromProvider()} for the test case using
-     * this data.
-     *
-     * @return array<string, array{string, array<string, mixed>}>
+     * @return array<string, array{string, array<string, mixed>}> Test data for enum attribute scenarios.
      *
      * @phpstan-return array<string, array{string, array<string, mixed>}>
      */
@@ -103,22 +93,13 @@ final class AttributesProvider
     }
 
     /**
-     * Data provider for general HTML attribute rendering scenarios.
+     * Provides test cases for HTML attribute rendering scenarios.
      *
-     * Tests attribute rendering with various value types and structures.
-     * - Array attributes (`class`, `style`, `data`, etc.).
-     * - Attribute prefix expansion (`data-`, `aria-`, `ng-`, etc.).
-     * - Boolean attributes.
-     * - Edge cases for `null`, empty, and invalid keys.
-     * - Numeric and string value handling.
-     * - Special character and empty value handling.
+     * Supplies comprehensive test data for validating HTML attribute expansion, boolean and enum handling, and edge
+     * case processing. Each test case includes the expected HTML output and the input attribute array, ensuring robust
+     * coverage of attribute rendering logic, including array, scalar, and special value scenarios.
      *
-     * Each test case provides the expected rendered attribute string and the input attribute array.
-     *
-     * {@see \PHPPress\Tests\Html\Helper\AttributesTest::testRenderVariousAttributesFromProvider()} for the test case
-     * using this data.
-     *
-     * @return array<string, array{string, array<string, mixed>}>
+     * @return array<string, array{string, array<string, mixed>}> Test data for attribute rendering scenarios.
      *
      * @phpstan-return array<string, array{string, array<string, mixed>}>
      */

@@ -388,7 +388,9 @@ abstract class BaseAttributes
         foreach ($values as $n => $v) {
             if ($v !== null) {
                 $prop = Encode::value((string) $n);
-                $stringValue = is_string($v) || is_numeric($v) ? $v : Json::encode($v, self::JSON_FLAGS);
+                $stringValue = is_string($v) || is_numeric($v)
+                    ?  Encode::value((string) $v)
+                    : Json::encode($v, self::JSON_FLAGS);
 
                 if ($stringValue !== '') {
                     $result .= "{$prop}: {$stringValue}; ";
