@@ -436,10 +436,13 @@ abstract class BaseAttributes
      * Sorts HTML attributes by predefined priority for consistent output order.
      *
      * Reorders the provided associative array of attribute names and values according to the {@see ORDER_MAP} priority
-     * mapping. Attributes with a defined priority are sorted before those without, ensuring that commonly used
-     * attributes (such as `class`, `id`, `name`, etc.) appear first in the rendered HTML output. Attributes not present
-     * in the priority map are ordered after the prioritized attributes, preserving their original order among
-     * themselves.
+     * mapping.
+     *
+     * Attributes with a defined priority are sorted before those without ensuring that commonly used attributes (such
+     * as `class`, `id`, `name`, etc.) appear first in the rendered HTML output.
+     *
+     * Attributes not present in the priority map are ordered after the prioritized attributes, preserving their
+     * original order among themselves.
      *
      * @param array $attributes Associative array of attribute names and values to sort.
      *

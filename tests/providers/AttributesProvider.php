@@ -22,7 +22,7 @@ use yii\ui\tests\support\stub\enum\{ButtonSize, Columns, Theme};
  * Key features.
  * - Attribute expansion for data, aria, and custom prefixes.
  * - Comprehensive test cases for array, boolean, enum, and special attribute handling.
- * - Edge case validation for empty, null, and special character values.
+ * - Edge case validation for empty, `null`, and special character values.
  * - Enum integration in class, data, and style attributes.
  * - Named test data sets for clear failure identification.
  *
@@ -32,11 +32,74 @@ use yii\ui\tests\support\stub\enum\{ButtonSize, Columns, Theme};
 final class AttributesProvider
 {
     /**
+     * Provides test cases for attribute ordering scenarios.
+     *
+     * Supplies test data for validating the consistent ordering of HTML attributes when rendered.
+     *
+     * @return array<string, array{string, array<string, mixed>}> Test data for attribute ordering scenarios.
+     *
+     * @phpstan-return array<string, array{string, array<string, mixed>}>
+     */
+    public static function attributeOrdering(): array
+    {
+        return [
+            'multiple attributes in order' => [
+                ' class="class" id="id" name="name" height="height" data-tests="data-tests"',
+                [
+                    'id' => 'id',
+                    'class' => 'class',
+                    'data-tests' => 'data-tests',
+                    'name' => 'name',
+                    'height' => 'height',
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * Provides test cases for empty and `null` value handling.
+     *
+     * Supplies test data for validating how the attribute renderer handles empty strings, `null` values, empty arrays,
+     * and invalid attribute names.
+     *
+     * @return array<string, array{string, array<string, mixed>}> Test data for empty/`null` scenarios.
+     *
+     * @phpstan-return array<string, array{string, array<string, mixed>}>
+     */
+    public static function emptyAndNullValues(): array
+    {
+        return [
+            'empty attribute name' => [
+                '',
+                ['' => 'value'],
+            ],
+            'empty attribute value' => [
+                '',
+                ['empty' => ''],
+            ],
+            'empty class array' => [
+                '',
+                ['class' => []],
+            ],
+            'invalid attribute name' => [
+                ' valid="ok"',
+                [
+                    'valid' => 'ok',
+                    '123-invalid' => 'bad',
+                ],
+            ],
+            'null attribute value' => [
+                '',
+                ['null' => null],
+            ],
+        ];
+    }
+
+    /**
      * Provides test cases for enum attribute scenarios.
      *
      * Supplies test data for validating HTML attribute rendering with PHP enum values, including integration in class,
-     * data, style, and numeric attributes. Each test case includes the expected HTML output and the input attribute
-     * array containing enum instances, ensuring comprehensive coverage of enum handling in attribute expansion.
+     * data, style, and numeric attributes.
      *
      * @return array<string, array{string, array<string, mixed>}> Test data for enum attribute scenarios.
      *
@@ -48,46 +111,80 @@ final class AttributesProvider
             'enum in class array' => [
                 ' class="btn md"',
                 [
-                    'class' => ['btn', ButtonSize::MEDIUM],
+                    'class' => [
+                        'btn',
+                        ButtonSize::MEDIUM,
+                    ],
                 ],
             ],
             'enum in data attribute' => [
                 ' data-theme="dark"',
-                [
-                    'data' => ['theme' => Theme::DARK],
-                ],
+                ['data' => ['theme' => Theme::DARK]],
             ],
             'enum in style' => [
                 ' style="width: lg;"',
-                [
-                    'style' => ['width' => ButtonSize::LARGE],
-                ],
+                ['style' => ['width' => ButtonSize::LARGE]],
             ],
             'mixed values' => [
                 ' class="sm primary" data-theme="light"',
                 [
-                    'class' => [ButtonSize::SMALL, 'primary'],
+                    'class' => [
+                        ButtonSize::SMALL,
+                        'primary',
+                    ],
                     'data' => ['theme' => Theme::LIGHT],
                 ],
             ],
             'nested enum' => [
                 ' class="sm primary" data-theme="light"',
                 [
-                    'class' => [ButtonSize::SMALL, 'primary'],
+                    'class' => [
+                        ButtonSize::SMALL,
+                        'primary',
+                    ],
                     'data' => ['theme' => Theme::LIGHT],
                 ],
             ],
             'numeric enum' => [
                 ' cols="2"',
-                [
-                    'cols' => Columns::TWO,
-                ],
+                ['cols' => Columns::TWO],
             ],
             'single enum' => [
                 ' type="sm"',
+                ['type' => ButtonSize::SMALL],
+            ],
+        ];
+    }
+
+    /**
+     * Provides test cases for malicious value handling and XSS prevention.
+     *
+     * Supplies test data for validating security measures in HTML attribute rendering including XSS attack prevention,
+     * script injection blocking, and special character encoding.
+     *
+     * @return array<string, array{string, array<string, mixed>}> Test data for security scenarios.
+     *
+     * @phpstan-return array<string, array{string, array<string, mixed>}>
+     */
+    public static function maliciousValues(): array
+    {
+        return [
+            'malicious class value with XSS' => [
+                ' class="safe &lt;svg/onload=alert()&gt;"',
                 [
-                    'type' => ButtonSize::SMALL,
+                    'class' => [
+                        'safe',
+                        '<svg/onload=alert()>',
+                    ],
                 ],
+            ],
+            'malicious data attribute key' => [
+                '',
+                ['data' => ['key" onclick="alert(1)"' => 'value']],
+            ],
+            'nested array with script tag' => [
+                ' data-key=\'{"sub":"\u0026lt;script\u0026gt;"}\'',
+                ['data' => ['key' => ['sub' => '<script>']]],
             ],
         ];
     }
@@ -96,8 +193,7 @@ final class AttributesProvider
      * Provides test cases for HTML attribute rendering scenarios.
      *
      * Supplies comprehensive test data for validating HTML attribute expansion, boolean and enum handling, and edge
-     * case processing. Each test case includes the expected HTML output and the input attribute array, ensuring robust
-     * coverage of attribute rendering logic, including array, scalar, and special value scenarios.
+     * case processing.
      *
      * @return array<string, array{string, array<string, mixed>}> Test data for attribute rendering scenarios.
      *
@@ -118,7 +214,10 @@ final class AttributesProvider
             'class array' => [
                 ' class="first second"',
                 [
-                    'class' => ['first', 'second'],
+                    'class' => [
+                        'first',
+                        'second',
+                    ],
                 ],
             ],
             'data attributes with array and scalar' => [
@@ -126,45 +225,22 @@ final class AttributesProvider
                 [
                     'class' => [],
                     'style' => [],
-                    'data' => ['a' => 0, 'b' => [1, 2], 'c' => null, 'd' => 99.99],
+                    'data' => [
+                        'a' => 0,
+                        'b' => [1, 2],
+                        'c' => null,
+                        'd' => 99.99,
+                    ],
                     'any' => 42,
                 ],
             ],
             'data attribute with empty array' => [
                 ' data-foo=\'[]\'',
-                [
-                    'data' => ['foo' => []],
-                ],
-            ],
-            'data attribute with malicious script' => [
-                '',
-                [
-                    'data' => ['key" onclick="alert(1)"' => 'value'],
-                ],
-            ],
-            'empty class array' => [
-                '',
-                [
-                    'class' => [],
-                ],
-            ],
-            'empty key' => [
-                '',
-                [
-                    '' => 'test-class',
-                ],
-            ],
-            'empty string value' => [
-                '',
-                [
-                    'value' => '',
-                ],
+                ['data' => ['foo' => []]],
             ],
             'float attribute value' => [
                 ' width="99.99"',
-                [
-                    'width' => 99.99,
-                ],
+                ['width' => 99.99],
             ],
             'mixed attributes with arrays' => [
                 ' class="a b" id="x" data-a="1" data-b="2" style="width: 100px;" any=\'[1,2]\'',
@@ -174,12 +250,6 @@ final class AttributesProvider
                     'data' => ['a' => 1, 'b' => 2],
                     'style' => ['width' => '100px'],
                     'any' => [1, 2],
-                ],
-            ],
-            'null attribute value' => [
-                '',
-                [
-                    'disabled' => null,
                 ],
             ],
             'numeric and string attributes' => [
@@ -217,11 +287,74 @@ final class AttributesProvider
                     'ng' => ['a' => 1, 'b' => 'c'],
                 ],
             ],
-            'style array' => [
+        ];
+    }
+
+    /**
+     * Provides test cases for style attribute rendering scenarios.
+     *
+     * Supplies test data for validating style attribute handling with various value types including arrays, booleans,
+     * nested structures, null values, and special characters.
+     *
+     * @return array<string, array{string, array<string, mixed>}> Test data for style attribute scenarios.
+     *
+     * @phpstan-return array<string, array{string, array<string, mixed>}>
+     */
+    public static function styleAttributes(): array
+    {
+        return [
+            'style array with scalar values' => [
                 ' style="width: 100px; height: 200px;"',
                 [
-                    'style' => ['width' => '100px', 'height' => '200px'],
+                    'style' => [
+                        'width' => '100px',
+                        'height' => '200px',
+                    ],
                 ],
+            ],
+            'style with array value' => [
+                ' style="complex-property: ["value1","value2"];"',
+                [
+                    'style' => [
+                        'complex-property' => [
+                            'value1',
+                            'value2',
+                        ],
+                    ],
+                ],
+            ],
+            'style with boolean value' => [
+                ' style="flag: true;"',
+                ['style' => ['flag' => true]],
+            ],
+            'style with float value' => [
+                ' style="opacity: 0.5; font-size: 1.5;"',
+                [
+                    'style' => [
+                        'opacity' => 0.5,
+                        'font-size' => 1.5,
+                    ],
+                ],
+            ],
+            'style with nested array value' => [
+                ' style="config: {"nested":{"key":"value"}};"',
+                [
+                    'style' => [
+                        'config' => [
+                            'nested' => [
+                                'key' => 'value',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'style with null value' => [
+                '',
+                ['style' => ['nullable' => null]],
+            ],
+            'style with special characters' => [
+                ' style="font-family: Times &amp; Serif;"',
+                ['style' => ['font-family' => 'Times & Serif']],
             ],
         ];
     }
