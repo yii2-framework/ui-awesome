@@ -49,8 +49,7 @@ final class AttributesTest extends \PHPUnit\Framework\TestCase
 
     public function testRenderEmptyAttributeReturnsEmptyString(): void
     {
-        self::assertSame(
-            '',
+        self::assertEmpty(
             Attributes::render(['empty' => '']),
             'Should return an empty string when attribute value is empty.',
         );
@@ -92,6 +91,41 @@ final class AttributesTest extends \PHPUnit\Framework\TestCase
             '',
             Attributes::render(['null' => null]),
             'Should return an empty string when attribute value is null.',
+        );
+    }
+
+    public function testRenderStyleWithArrayValue(): void
+    {
+        self::assertSame(
+            ' style="complex-property: ["value1","value2"];"',
+            Attributes::render(['style' => ['complex-property' => ['value1', 'value2']]]),
+            'Should JSON-encode array values in style attributes when not scalar types.',
+        );
+    }
+
+    public function testRenderStyleWithBooleanValue(): void
+    {
+        self::assertSame(
+            ' style="flag: true;"',
+            Attributes::render(['style' => ['flag' => true]]),
+            'Should JSON-encode boolean values in style attributes.',
+        );
+    }
+
+    public function testRenderStyleWithNestedArrayValue(): void
+    {
+        self::assertSame(
+            ' style="config: {"nested":{"key":"value"}};"',
+            Attributes::render(['style' => ['config' => ['nested' => ['key' => 'value']]]]),
+            'Should JSON-encode nested array structures in style attributes with proper encoding.',
+        );
+    }
+
+    public function testRenderStyleWithNullValue(): void
+    {
+        self::assertEmpty(
+            Attributes::render(['style' => ['nullable' => null]]),
+            'Should omit null values in style attributes.',
         );
     }
 

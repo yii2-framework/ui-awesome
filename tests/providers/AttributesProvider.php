@@ -7,7 +7,7 @@ namespace yii\ui\tests\providers;
 use yii\ui\tests\support\stub\enum\{ButtonSize, Columns, Theme};
 
 /**
- * Data provider for {@see \PHPPress\Tests\Html\Helper\AttributesTest} class.
+ * Data provider for {@see \yii\ui\tests\helpers\AttributesTest} class.
  *
  * Designed to ensure HTML attribute rendering logic correctly processes all supported attribute types and edge cases,
  * providing comprehensive test data for attribute expansion, enum handling, and special value scenarios.
@@ -141,11 +141,11 @@ final class AttributesProvider
                 ],
             ],
             'data attributes with array and scalar' => [
-                ' data-a="0" data-b=\'[1,2]\' any="42"',
+                ' data-a="0" data-b=\'[1,2]\' data-d="99.99" any="42"',
                 [
                     'class' => [],
                     'style' => [],
-                    'data' => ['a' => 0, 'b' => [1, 2]],
+                    'data' => ['a' => 0, 'b' => [1, 2], 'c' => null, 'd' => 99.99],
                     'any' => 42,
                 ],
             ],

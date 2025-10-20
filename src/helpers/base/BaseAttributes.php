@@ -13,7 +13,6 @@ use function implode;
 use function is_array;
 use function is_bool;
 use function is_string;
-use function is_int;
 use function preg_match;
 use function rtrim;
 use function strtolower;
@@ -240,17 +239,11 @@ abstract class BaseAttributes
 
         $values = self::sanitizeJsonValue($values);
 
-        if (is_array($values)) {
-            return self::renderArrayAttributes($name, $values);
-        }
-
-        // after sanitizeJsonValue, non-array values should be scalar types
-        if (is_int($values) || is_string($values)) {
-            return self::renderAttribute($name, $values);
-        }
-
-        // for any other types (float, null, objects), convert to string via json encoding
-        return self::renderAttribute($name, Json::encode($values, self::JSON_FLAGS));
+        return match (gettype($values)) {
+            'array' => self::renderArrayAttributes($name, $values),
+            'integer', 'string' => self::renderAttribute($name, $values),
+            default => self::renderAttribute($name, Json::encode($values, self::JSON_FLAGS)),
+        };
     }
 
     /**
@@ -323,16 +316,18 @@ abstract class BaseAttributes
         $result = '';
 
         foreach ($values as $n => $v) {
-            $encodeValue = match (gettype($v)) {
-                'double', 'integer', 'NULL', 'string' => Encode::value($v),
-                default => Json::encode($v, self::JSON_FLAGS),
+            $result .= match (gettype($v)) {
+                'array' => self::renderAttribute(
+                    "{$name}-{$n}",
+                    Json::encode($v, self::JSON_FLAGS),
+                    self::QUOTE_SINGLE,
+                ),
+                'double', 'integer', 'string' => self::renderAttribute(
+                    "{$name}-{$n}",
+                    Encode::value($v),
+                ),
+                default => '',
             };
-
-            $result .= self::renderAttribute(
-                "{$name}-{$n}",
-                $encodeValue,
-                is_array($v) ? self::QUOTE_SINGLE : self::QUOTE_DOUBLE,
-            );
         }
 
         return $result;
@@ -391,11 +386,14 @@ abstract class BaseAttributes
             $prop = Encode::value((string) $n);
 
             $stringValue = match (gettype($v)) {
+                'array', 'boolean' => Json::encode($v, self::JSON_FLAGS),
                 'double', 'integer', 'string' => (string) $v,
-                default => Json::encode($v, self::JSON_FLAGS),
+                default => '',
             };
 
-            $result .= "{$prop}: {$stringValue}; ";
+            if ($stringValue !== '') {
+                $result .= "{$prop}: {$stringValue}; ";
+            }
         }
 
         return $result === '' ? '' : self::renderAttribute('style', rtrim($result));
@@ -432,7 +430,7 @@ abstract class BaseAttributes
         $normalized = Enum::normalizeValue($value);
 
         if (is_string($normalized)) {
-            return strtolower($normalized);
+            return Encode::value(strtolower($normalized));
         }
 
         return $normalized;
