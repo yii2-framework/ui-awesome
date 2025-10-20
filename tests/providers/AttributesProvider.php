@@ -155,6 +155,12 @@ final class AttributesProvider
                     'data' => ['foo' => []],
                 ],
             ],
+            'data attribute with malicious script' => [
+                '',
+                [
+                    'data' => ['key" onclick="alert(1)"' => 'value'],
+                ],
+            ],
             'empty class array' => [
                 '',
                 [

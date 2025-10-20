@@ -317,18 +317,20 @@ abstract class BaseAttributes
         $result = '';
 
         foreach ($values as $n => $v) {
-            $result .= match (gettype($v)) {
-                'array' => self::renderAttribute(
-                    "{$name}-{$n}",
-                    Json::encode($v, self::JSON_FLAGS),
-                    self::QUOTE_SINGLE,
-                ),
-                'double', 'integer', 'string' => self::renderAttribute(
-                    "{$name}-{$n}",
-                    Encode::value($v),
-                ),
-                default => '',
-            };
+            if (is_string($n) && self::isValidAttributeName($n)) {
+                $result .= match (gettype($v)) {
+                    'array' => self::renderAttribute(
+                        "{$name}-{$n}",
+                        Json::encode($v, self::JSON_FLAGS),
+                        self::QUOTE_SINGLE,
+                    ),
+                    'double', 'integer', 'string' => self::renderAttribute(
+                        "{$name}-{$n}",
+                        Encode::value($v),
+                    ),
+                    default => '',
+                };
+            }
         }
 
         return $result;
