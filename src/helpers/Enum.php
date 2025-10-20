@@ -15,18 +15,6 @@ namespace yii\ui\helpers;
  *
  * {@see base\BaseEnum} for the base implementation.
  *
- * Usage example:
- * ```php
- * // Normalize a single enum value
- * Enum::normalizeValue(Status::ACTIVE); // $value === 'active' (for a backed enum)
- *
- * // Normalize an array of enums
- * Enum::normalizeArray([Status::ACTIVE, Status::INACTIVE]); // $values === ['active', 'inactive']
- *
- * // Pass-through for non-enum values
- * Enum::normalizeArray(['foo', Status::ACTIVE, 42]); // $mixed === ['foo', 'active', 42]
- * ```
- *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
