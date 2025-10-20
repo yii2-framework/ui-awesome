@@ -89,6 +89,11 @@ abstract class BaseAttributes
         'rel' => 28,
         'as' => 29,
         'media' => 30,
+        'data' => 31,
+        'style' => 32,
+        'aria' => 33,
+        'data-ng' => 34,
+        'ng' => 35,
     ];
 
     /**
@@ -381,7 +386,7 @@ abstract class BaseAttributes
         foreach ($values as $n => $v) {
             if ($v !== null) {
                 $prop = Encode::value((string) $n);
-                $stringValue = is_string($v) || is_numeric($v) ? (string) $v : Json::encode($v, self::JSON_FLAGS);
+                $stringValue = is_string($v) || is_numeric($v) ? $v : Json::encode($v, self::JSON_FLAGS);
 
                 if ($stringValue !== '') {
                     $result .= "{$prop}: {$stringValue}; ";
@@ -408,10 +413,6 @@ abstract class BaseAttributes
      */
     private static function sanitizeJsonValue(mixed $value): mixed
     {
-        if ($value === null || $value === []) {
-            return $value;
-        }
-
         if (is_array($value)) {
             return array_map(static fn(mixed $v): mixed => self::sanitizeJsonValue($v), $value);
         }
