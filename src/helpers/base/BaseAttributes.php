@@ -285,13 +285,7 @@ abstract class BaseAttributes
             return '';
         }
 
-        $encodedClasses = [];
-
-        foreach ($values as $value) {
-            $encodedClasses[] = $value;
-        }
-
-        return self::renderAttribute('class', implode(' ', $encodedClasses));
+        return self::renderAttribute('class', implode(' ', $values));
     }
 
     /**
