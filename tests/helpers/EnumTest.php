@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace yii\ui\tests\helpers;
 
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\TestCase;
 use yii\ui\helpers\Enum;
 use yii\ui\tests\support\stub\enum\Status;
 use yii\ui\tests\support\stub\enum\Theme;
@@ -34,7 +35,7 @@ use yii\ui\tests\support\stub\enum\Theme;
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
 #[Group('helpers')]
-final class EnumTest extends \PHPUnit\Framework\TestCase
+final class EnumTest extends TestCase
 {
     public function testNormalizeArrayNormalizesArrayOfEnumsForBackedEnum(): void
     {
