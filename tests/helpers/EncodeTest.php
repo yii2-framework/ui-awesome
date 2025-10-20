@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace yii\ui\tests\helpers;
 
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
+use PHPUnit\Framework\TestCase;
 use yii\ui\helpers\Encode;
 use yii\ui\tests\providers\EncodeProvider;
 
@@ -33,7 +34,7 @@ use yii\ui\tests\providers\EncodeProvider;
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
 #[Group('html')]
-final class EncodeTest extends \PHPUnit\Framework\TestCase
+final class EncodeTest extends TestCase
 {
     #[DataProviderExternal(EncodeProvider::class, 'content')]
     public function testEncodeContentHandlesEntitiesAndDoubleEncoding(
