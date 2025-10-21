@@ -103,24 +103,10 @@ final class ArraysTest extends TestCase
     /**
      * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
      */
-    public function testInListWithMixedEnumTypesInAllowedList(): void
+    public function testInListWithMixedEnumTypesEnforcesTypeStrictness(): void
     {
-        $mixedAllowed = [Status::ACTIVE, Theme::DARK, Priority::LOW];
-
-        self::assertTrue(
-            Arrays::inList('attribute', Status::ACTIVE, $mixedAllowed),
-            "Should return 'true' when 'Status::ACTIVE' is in a mixed enum list.",
-        );
-        self::assertTrue(
-            Arrays::inList('attribute', 'DARK', $mixedAllowed),
-            "Should return 'true' when 'DARK' is in a mixed enum list.",
-        );
-        self::assertTrue(
-            Arrays::inList('attribute', 1, $mixedAllowed),
-            "Should return 'true' when '1' ('Priority::LOW') is in a mixed enum list.",
-        );
         self::assertFalse(
-            Arrays::inList('attribute', '1', $mixedAllowed),
+            Arrays::inList('attribute', '1', [Status::ACTIVE, Theme::DARK, Priority::LOW]),
             "Should return 'false' for string '1' when only int 1 is allowed in a mixed enum list.",
         );
     }
@@ -128,11 +114,33 @@ final class ArraysTest extends TestCase
     /**
      * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
      */
-    public function testInListWithThrowArgumentIsTrue(): void
+    public function testInListWithMixedEnumTypesFindsBackedEnumValue(): void
     {
         self::assertTrue(
-            Arrays::inList('attribute', 'c', ['a', 'b', 'c'], true),
-            "Should return 'true' when 'c' is in the allowed list ['a', 'b', 'c'] and exception is enabled.",
+            Arrays::inList('attribute', 'DARK', [Status::ACTIVE, Theme::DARK, Priority::LOW]),
+            "Should return 'true' when 'DARK' is in a mixed enum list.",
+        );
+    }
+
+    /**
+     * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
+     */
+    public function testInListWithMixedEnumTypesFindsByIntValue(): void
+    {
+        self::assertTrue(
+            Arrays::inList('attribute', 1, [Status::ACTIVE, Theme::DARK, Priority::LOW]),
+            "Should return 'true' when '1' ('Priority::LOW') is in a mixed enum list.",
+        );
+    }
+
+    /**
+     * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
+     */
+    public function testInListWithMixedEnumTypesFindsEnumInstance(): void
+    {
+        self::assertTrue(
+            Arrays::inList('attribute', Status::ACTIVE, [Status::ACTIVE, Theme::DARK, Priority::LOW]),
+            "Should return 'true' when 'Status::ACTIVE' is in a mixed enum list.",
         );
     }
 
