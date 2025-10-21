@@ -71,6 +71,14 @@ final class ArraysTest extends TestCase
     /**
      * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
      */
+    public function testInListWithEmptyAllowedList(): void
+    {
+        self::assertFalse(Arrays::inList('attribute', 'a', []));
+    }
+
+    /**
+     * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
+     */
     public function testInListWithEmptyValue(): void
     {
         self::assertFalse(
@@ -108,6 +116,10 @@ final class ArraysTest extends TestCase
         self::assertTrue(
             Arrays::inList('attribute', 1, $mixedAllowed),
             "Should return 'true' when '1' ('Priority::LOW') is in a mixed enum list.",
+        );
+        self::assertFalse(
+            Arrays::inList('attribute', '1', $mixedAllowed),
+            "Should return 'false' for string '1' when only int 1 is allowed in a mixed enum list.",
         );
     }
 
