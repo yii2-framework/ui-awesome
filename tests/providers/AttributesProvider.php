@@ -34,7 +34,8 @@ final class AttributesProvider
     /**
      * Provides test cases for attribute ordering scenarios.
      *
-     * Supplies test data for validating the consistent ordering of HTML attributes when rendered.
+     * Supplies test data for validating the consistent ordering of HTML attributes when rendered. Each test case
+     * includes the input attributes and the expected rendered output.
      *
      * @return array<string, array{string, array<string, mixed>}> Test data for attribute ordering scenarios.
      *
@@ -61,6 +62,8 @@ final class AttributesProvider
      *
      * Supplies test data for validating how the attribute renderer handles empty strings, `null` values, empty arrays,
      * and invalid attribute names.
+     *
+     * Each test case includes the input attributes and the expected rendered output.
      *
      * @return array<string, array{string, array<string, mixed>}> Test data for empty/`null` scenarios.
      *
@@ -100,6 +103,8 @@ final class AttributesProvider
      *
      * Supplies test data for validating HTML attribute rendering with PHP enum values, including integration in class,
      * data, style, and numeric attributes.
+     *
+     * Each test case includes the input attributes and the expected rendered output.
      *
      * @return array<string, array{string, array<string, mixed>}> Test data for enum attribute scenarios.
      *
@@ -162,6 +167,8 @@ final class AttributesProvider
      * Supplies test data for validating security measures in HTML attribute rendering including XSS attack prevention,
      * script injection blocking, and special character encoding.
      *
+     * Each test case includes the input attributes and the expected rendered output.
+     *
      * @return array<string, array{string, array<string, mixed>}> Test data for security scenarios.
      *
      * @phpstan-return array<string, array{string, array<string, mixed>}>
@@ -194,6 +201,8 @@ final class AttributesProvider
      *
      * Supplies comprehensive test data for validating HTML attribute expansion, boolean and enum handling, and edge
      * case processing.
+     *
+     * Each test case includes the input attributes and the expected rendered output.
      *
      * @return array<string, array{string, array<string, mixed>}> Test data for attribute rendering scenarios.
      *
@@ -299,6 +308,8 @@ final class AttributesProvider
      *
      * Supplies test data for validating style attribute handling with various value types including arrays, booleans,
      * nested structures, null values, and special characters.
+     *
+     * Each test case includes the input attributes and the expected rendered output.
      *
      * @return array<string, array{string, array<string, mixed>}> Test data for style attribute scenarios.
      *
