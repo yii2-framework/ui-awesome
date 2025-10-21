@@ -13,6 +13,7 @@ use yii\ui\tests\providers\ArraysProvider;
 use yii\ui\tests\support\stub\enum\{Priority, Status, Theme};
 
 use function implode;
+use function json_encode;
 
 /**
  * Test suite for {@see Arrays} utility class functionality and behavior.
@@ -52,7 +53,7 @@ final class ArraysTest extends TestCase
             $expected,
             Arrays::isAssociative($array),
             'Should return ' . ($expected ? '\'true\'' : '\'false\'') . ' for input array ' .
-            json_encode($array, JSON_THROW_ON_ERROR) . '.',
+            json_encode($array) . '.',
         );
     }
 
@@ -73,7 +74,10 @@ final class ArraysTest extends TestCase
      */
     public function testInListWithEmptyAllowedList(): void
     {
-        self::assertFalse(Arrays::inList('attribute', 'a', []));
+        self::assertFalse(
+            Arrays::inList('attribute', 'a', []),
+            "Should return 'false' when the allowed list is empty.",
+        );
     }
 
     /**
@@ -155,7 +159,7 @@ final class ArraysTest extends TestCase
             $expected,
             Arrays::isList($array),
             'Should return ' . ($expected ? '\'true\'' : '\'false\'') . ' for input array ' .
-            json_encode($array, JSON_THROW_ON_ERROR) . '.',
+            json_encode($array) . '.',
         );
     }
 

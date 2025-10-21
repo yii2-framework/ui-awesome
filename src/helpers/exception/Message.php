@@ -56,7 +56,7 @@ enum Message: string
      *
      * Usage example:
      * ```php
-     * throw new InvalidArgumentException(Message::INVALID_PATH_ALIAS->getMessage('alias'));
+     * throw new InvalidArgumentException(Message::VALUE_CANNOT_BE_EMPTY->getMessage('status', 'active, inactive'));
      * ```
      */
     public function getMessage(int|string ...$argument): string
