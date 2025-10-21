@@ -34,8 +34,9 @@ final class AttributesProvider
     /**
      * Provides test cases for attribute ordering scenarios.
      *
-     * Supplies test data for validating the consistent ordering of HTML attributes when rendered. Each test case
-     * includes the input attributes and the expected rendered output.
+     * Supplies test data for validating the consistent ordering of HTML attributes when rendered.
+     *
+     * Each test case includes the input attributes and the expected rendered output.
      *
      * @return array<string, array{string, array<string, mixed>}> Test data for attribute ordering scenarios.
      *
