@@ -9,3 +9,4 @@
 - Enh #5: Introduce `Attributes` helper class with tests (@terabytesoftw)
 - Bug #6: Remove usage example from `Enum` class docblock (@terabytesoftw)
 - Bug #7: Import PHPUnit `TestCase` and replace FQCN extends in `EncodeTest` and `EnumTest` class (@terabytesoftw)
+- Enh #8: Introduce `Arrays` helper class with tests (@terabytesoftw)
