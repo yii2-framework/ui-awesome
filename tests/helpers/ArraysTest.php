@@ -6,11 +6,12 @@ namespace yii\ui\tests\helpers;
 
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
+use UnitEnum;
 use yii\base\InvalidArgumentException;
 use yii\ui\helpers\Arrays;
 use yii\ui\helpers\exception\Message;
 use yii\ui\tests\providers\ArraysProvider;
-use yii\ui\tests\support\stub\enum\{Priority, Status, Theme};
+use yii\ui\tests\support\stub\enum\{Status, Theme};
 
 use function implode;
 use function json_encode;
@@ -44,10 +45,12 @@ use function json_encode;
 final class ArraysTest extends TestCase
 {
     /**
+     * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
+     *
      * @phpstan-param array<array-key, int|string> $array
      */
     #[DataProviderExternal(ArraysProvider::class, 'isAssociative')]
-    public function testDetectAssociativeArrayWithProvider(array $array, bool $expected): void
+    public function testDetectArrayIsAssociative(array $array, bool $expected): void
     {
         self::assertSame(
             $expected,
@@ -58,104 +61,23 @@ final class ArraysTest extends TestCase
 
     /**
      * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
+     *
+     * @phpstan-param list<mixed> $allowed
      */
-    public function testInListWithCaseSensitiveEnumValue(): void
-    {
-        self::assertFalse(
-            Arrays::inList('attribute', 'ACTIVE', [Status::ACTIVE, Status::INACTIVE]),
-            "Should return 'false' when string 'ACTIVE' (uppercase) is compared against backed enum values.",
-        );
+    #[DataProviderExternal(ArraysProvider::class, 'inList')]
+    public function testDetectArrayValueInList(
+        string $attribute,
+        UnitEnum|int|string $value,
+        array $allowed,
+        bool $expected,
+        string $message,
+    ): void {
+        self::assertSame($expected, Arrays::inList($attribute, $value, $allowed), $message);
     }
 
     /**
      * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
-     */
-    public function testInListWithEmptyAllowedList(): void
-    {
-        self::assertFalse(
-            Arrays::inList('attribute', 'a', []),
-            "Should return 'false' when the allowed list is empty.",
-        );
-    }
-
-    /**
-     * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
-     */
-    public function testInListWithEmptyValue(): void
-    {
-        self::assertFalse(
-            Arrays::inList('attribute', '', ['a', 'b', 'c']),
-            "Should return 'false' when the value is empty and not in the allowed list ['a', 'b', 'c'].",
-        );
-    }
-
-    /**
-     * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
-     */
-    public function testInListWithInvalidEnumComparisonAndThrowArgumentIsFalse(): void
-    {
-        self::assertFalse(
-            Arrays::inList('attribute', Status::ACTIVE, Theme::cases()),
-            "Should return 'false' when 'Status::ACTIVE' is compared against 'Theme::cases()'.",
-        );
-    }
-
-    /**
-     * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
-     */
-    public function testInListWithMixedEnumTypesEnforcesTypeStrictness(): void
-    {
-        self::assertFalse(
-            Arrays::inList('attribute', '1', [Status::ACTIVE, Theme::DARK, Priority::LOW]),
-            "Should return 'false' for string '1' when only int 1 is allowed in a mixed enum list.",
-        );
-    }
-
-    /**
-     * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
-     */
-    public function testInListWithMixedEnumTypesFindsBackedEnumValue(): void
-    {
-        self::assertTrue(
-            Arrays::inList('attribute', 'DARK', [Status::ACTIVE, Theme::DARK, Priority::LOW]),
-            "Should return 'true' when 'DARK' is in a mixed enum list.",
-        );
-    }
-
-    /**
-     * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
-     */
-    public function testInListWithMixedEnumTypesFindsByIntValue(): void
-    {
-        self::assertTrue(
-            Arrays::inList('attribute', 1, [Status::ACTIVE, Theme::DARK, Priority::LOW]),
-            "Should return 'true' when integer '1' ('Priority::LOW') is in a mixed enum list.",
-        );
-    }
-
-    /**
-     * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
-     */
-    public function testInListWithMixedEnumTypesFindsEnumInstance(): void
-    {
-        self::assertTrue(
-            Arrays::inList('attribute', Status::ACTIVE, [Status::ACTIVE, Theme::DARK, Priority::LOW]),
-            "Should return 'true' when 'Status::ACTIVE' is in a mixed enum list.",
-        );
-    }
-
-    /**
-     * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
-     */
-    public function testReturnFalseWhenValueNotInList(): void
-    {
-        self::assertFalse(
-            Arrays::inList('attribute', '1', ['a', 'b', 'c']),
-            "Should return 'false' when '1' is not in the allowed list ['a', 'b', 'c'].",
-        );
-    }
-
-    /**
+     *
      * @phpstan-param array<array-key, int|string> $array
      */
     #[DataProviderExternal(ArraysProvider::class, 'isList')]
@@ -171,36 +93,6 @@ final class ArraysTest extends TestCase
     /**
      * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
      */
-    public function testReturnTrueWhenBackedEnumValueIsInList(): void
-    {
-        self::assertTrue(
-            Arrays::inList('attribute', Status::ACTIVE, Status::cases()),
-            "Should return 'true' when 'active' is in the allowed list ['active', 'inactive'].",
-        );
-    }
-
-    /**
-     * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
-     */
-    public function testReturnTrueWhenUnitEnumValueIsInList(): void
-    {
-        self::assertTrue(
-            Arrays::inList('attribute', Theme::DARK, Theme::cases()),
-            "Should return 'true' when 'DARK' is in the allowed list ['DARK', 'LIGHT'].",
-        );
-    }
-
-    /**
-     * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
-     */
-    public function testReturnTrueWhenValueIsInList(): void
-    {
-        self::assertTrue(
-            Arrays::inList('attribute', 'a', ['a', 'b', 'c']),
-            "Should return 'true' when 'a' is in the allowed list ['a', 'b', 'c'].",
-        );
-    }
-
     public function testThrowExceptionWhenInListForEmptyValue(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -214,6 +106,9 @@ final class ArraysTest extends TestCase
         Arrays::inList('attribute', '', ['a', 'b', 'c'], true);
     }
 
+    /**
+     * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
+     */
     public function testThrowExceptionWhenInListForInvalidEnumComparison(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -228,6 +123,9 @@ final class ArraysTest extends TestCase
         Arrays::inList('attribute', Status::ACTIVE, Theme::cases(), true);
     }
 
+    /**
+     * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
+     */
     public function testThrowExceptionWhenInListForValueNotInList(): void
     {
         $this->expectException(InvalidArgumentException::class);
