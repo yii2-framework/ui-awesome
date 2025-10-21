@@ -54,14 +54,14 @@ abstract class BaseArrays extends BaseArrayHelper
      * attributes or option lists).
      *
      * This method ensures that only valid values are accepted for the specified attribute, throwing a detailed
-     * exception if the value is empty or not present in the allowed list when `$exception` is `true`.
+     * exception if the value is empty or not present in the allowed list when `$throw` is `true`.
      *
      * @param string $attribute Attribute name being validated (for error reporting).
      * @param UnitEnum|int|string $value Value to check against the allowed list.
      * @param array $allowed List of allowed values (must be non-empty).
      * @param bool $throw Whether to throw an exception on failure (default: `false`).
      *
-     * @throws InvalidArgumentException if the value is empty or not in the allowed list and `$exception` is `true`.
+     * @throws InvalidArgumentException if the value is empty or not in the allowed list and `$throw` is `true`.
      *
      * @return bool `true` if the value is valid, `false` otherwise (unless exception is thrown).
      *
