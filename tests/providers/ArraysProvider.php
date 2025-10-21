@@ -137,8 +137,10 @@ final class ArraysProvider
      * Provides test cases for associative array detection scenarios.
      *
      * Supplies test data for validating the detection of associative arrays, including empty arrays, numeric keys, and
-     * mixed key/value structures. Each test case includes the input array and the expected boolean result indicating
-     * whether the array is associative.
+     * mixed key/value structures.
+     *
+     * Each test case includes the input array and the expected boolean result indicating whether the array is
+     * associative.
      *
      * @return array<array{array<array-key, int|string>, bool}> Test data for associative array scenarios.
      *
@@ -185,8 +187,9 @@ final class ArraysProvider
      * Provides test cases for list array detection scenarios.
      *
      * Supplies test data for validating the detection of list arrays, including empty arrays, numeric keys, and mixed
-     * key/value structures. Each test case includes the input array and the expected boolean result indicating whether
-     * the array is a list.
+     * key/value structures.
+     *
+     * Each test case includes the input array and the expected boolean result indicating whether the array is a list.
      *
      * @return array<array{array<array-key, int|string>, bool}> Test data for list array scenarios.
      *

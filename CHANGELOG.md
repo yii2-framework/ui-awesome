@@ -12,3 +12,4 @@
 - Enh #8: Introduce `Arrays` helper class with tests (@terabytesoftw)
 - Bug #9: Update `Group` attribute from `html` to `helpers` in `EncodeTest` and `AttributesTest` class (@terabytesoftw)
 - Bug #10: Clarify test-case format in `AttributesProvider` class docblocks (@terabytesoftw)
+- Bug #11: Reflow docblocks and add paragraph breaks in `ArraysProvider`, `AttributesProvider`, and `EncodeProvider` class (@terabytesoftw)

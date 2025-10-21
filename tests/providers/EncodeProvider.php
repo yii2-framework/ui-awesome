@@ -32,8 +32,10 @@ final class EncodeProvider
      * Provides test cases for HTML encoding scenarios.
      *
      * Supplies test data for validating HTML entity encoding, double encoding behavior, and Unicode/binary sequence
-     * handling. Each test case includes the input string, the expected encoded output, and a flag indicating whether
-     * double encoding is enabled.
+     * handling.
+     *
+     * Each test case includes the input string, the expected encoded output, and a flag indicating whether double
+     * encoding is enabled.
      *
      * @return array Test data for encoding scenarios.
      *
@@ -84,8 +86,10 @@ final class EncodeProvider
      * Provides test cases for encode value scenarios.
      *
      * Supplies test data for validating mixed type encoding, double encoding behavior, and Unicode/binary sequence
-     * handling. Each test case includes the input value, the expected encoded output, and a flag indicating whether
-     * double encoding is enabled.
+     * handling.
+     *
+     * Each test case includes the input value, the expected encoded output, and a flag indicating whether double
+     * encoding is enabled.
      *
      * @return array Test data for encode value scenarios.
      *
