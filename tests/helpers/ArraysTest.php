@@ -52,8 +52,7 @@ final class ArraysTest extends TestCase
         self::assertSame(
             $expected,
             Arrays::isAssociative($array),
-            'Should return ' . ($expected ? '\'true\'' : '\'false\'') . ' for input array ' .
-            json_encode($array) . '.',
+            'Should return ' . ($expected ? '\'true\'' : '\'false\'') . ' for input array ' . json_encode($array) . '.',
         );
     }
 
@@ -64,8 +63,7 @@ final class ArraysTest extends TestCase
     {
         self::assertFalse(
             Arrays::inList('attribute', 'ACTIVE', [Status::ACTIVE, Status::INACTIVE]),
-            "Should return 'false' when 'ACTIVE' (uppercase) is compared against 'Status::cases()' with 'active' " .
-            '(lowercase).',
+            "Should return 'false' when string 'ACTIVE' (uppercase) is compared against backed enum values.",
         );
     }
 
@@ -158,8 +156,7 @@ final class ArraysTest extends TestCase
         self::assertSame(
             $expected,
             Arrays::isList($array),
-            'Should return ' . ($expected ? '\'true\'' : '\'false\'') . ' for input array ' .
-            json_encode($array) . '.',
+            'Should return ' . ($expected ? '\'true\'' : '\'false\'') . ' for input array ' . json_encode($array) . '.',
         );
     }
 
