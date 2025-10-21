@@ -10,3 +10,4 @@
 - Bug #6: Remove usage example from `Enum` class docblock (@terabytesoftw)
 - Bug #7: Import PHPUnit `TestCase` and replace FQCN extends in `EncodeTest` and `EnumTest` class (@terabytesoftw)
 - Enh #8: Introduce `Arrays` helper class with tests (@terabytesoftw)
+- Bug #9: Update `Group` attribute from `html` to `helpers` in `EncodeTest` and `AttributesTest` class (@terabytesoftw)
