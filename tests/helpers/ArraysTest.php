@@ -129,7 +129,7 @@ final class ArraysTest extends TestCase
     {
         self::assertTrue(
             Arrays::inList('attribute', 1, [Status::ACTIVE, Theme::DARK, Priority::LOW]),
-            "Should return 'true' when '1' ('Priority::LOW') is in a mixed enum list.",
+            "Should return 'true' when integer '1' ('Priority::LOW') is in a mixed enum list.",
         );
     }
 
