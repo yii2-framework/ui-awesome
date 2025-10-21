@@ -99,8 +99,6 @@ abstract class BaseArrays extends BaseArrayHelper
                     ),
                 );
             }
-
-            return false;
         }
 
         $normalizedValue = Enum::normalizeValue($value);

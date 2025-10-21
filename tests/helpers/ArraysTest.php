@@ -51,8 +51,8 @@ final class ArraysTest extends TestCase
         self::assertSame(
             $expected,
             Arrays::isAssociative($array),
-            'Should return ' . ($expected ? '\'true\'' : '\'false\'') . ' for input array [' .
-            implode(', ', $array) . '].',
+            'Should return ' . ($expected ? '\'true\'' : '\'false\'') . ' for input array ' .
+            json_encode($array, JSON_THROW_ON_ERROR) . '.',
         );
     }
 
@@ -142,8 +142,8 @@ final class ArraysTest extends TestCase
         self::assertSame(
             $expected,
             Arrays::isList($array),
-            'Should return ' . ($expected ? '\'true\'' : '\'false\'') . ' for input array [' .
-            implode(', ', $array) . '].',
+            'Should return ' . ($expected ? '\'true\'' : '\'false\'') . ' for input array ' .
+            json_encode($array, JSON_THROW_ON_ERROR) . '.',
         );
     }
 
