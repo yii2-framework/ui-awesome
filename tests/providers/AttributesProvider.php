@@ -34,7 +34,8 @@ final class AttributesProvider
     /**
      * Provides test cases for attribute ordering scenarios.
      *
-     * Supplies test data for validating the consistent ordering of HTML attributes when rendered.
+     * Supplies test data for validating the consistent ordering of HTML attributes when rendered. Each test case
+     * includes the input attributes and the expected rendered output.
      *
      * @return array<string, array{string, array<string, mixed>}> Test data for attribute ordering scenarios.
      *
@@ -60,7 +61,7 @@ final class AttributesProvider
      * Provides test cases for empty and `null` value handling.
      *
      * Supplies test data for validating how the attribute renderer handles empty strings, `null` values, empty arrays,
-     * and invalid attribute names.
+     * and invalid attribute names. Each test case includes the input attributes and the expected rendered output.
      *
      * @return array<string, array{string, array<string, mixed>}> Test data for empty/`null` scenarios.
      *
