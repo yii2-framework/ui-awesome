@@ -62,7 +62,7 @@ final class ArraysTest extends TestCase
     /**
      * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
      *
-     * @phpstan-param list<mixed> $allowed
+     * @phpstan-param list<UnitEnum|scalar|null> $allowed
      */
     #[DataProviderExternal(ArraysProvider::class, 'inList')]
     public function testDetectArrayValueInList(
