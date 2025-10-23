@@ -90,15 +90,13 @@ abstract class BaseArrays extends BaseArrayHelper
     ): bool {
         $normalizedAllowedValues = Enum::normalizeArray($allowed);
 
-        if ($value === '') {
-            if ($throw) {
-                throw new InvalidArgumentException(
-                    Message::VALUE_CANNOT_BE_EMPTY->getMessage(
-                        $attribute,
-                        implode('\', \'', $normalizedAllowedValues),
-                    ),
-                );
-            }
+        if ($value === '' && $throw) {
+            throw new InvalidArgumentException(
+                Message::VALUE_CANNOT_BE_EMPTY->getMessage(
+                    $attribute,
+                    implode('\', \'', $normalizedAllowedValues),
+                ),
+            );
         }
 
         $normalizedValue = Enum::normalizeValue($value);
