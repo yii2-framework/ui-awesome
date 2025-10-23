@@ -56,13 +56,14 @@ abstract class BaseEnum
      *
      * {@see normalizeValue()} for single value normalization.
      *
-     * @phpstan-param list<UnitEnum|mixed> $values
+     * @phpstan-param list<UnitEnum|scalar|null> $values
      * @phpstan-return list<mixed>
      */
     public static function normalizeArray(array $values): array
     {
         return array_map(self::normalizeValue(...), $values);
     }
+
     /**
      * Normalizes a single enum value to its scalar value or name.
      *
@@ -72,9 +73,10 @@ abstract class BaseEnum
      * This method is essential for extracting comparable or serializable values from enums in configuration, storage,
      * or API output.
      *
-     * @param mixed $value Enum instance or any value to normalize.
+     * @param UnitEnum|array|bool|float|int|string|null $value Enum instance or any value to normalize.
      *
-     * @return mixed Scalar value for backed enums, name for pure enums, or the original value for non-enums.
+     * @return array|float|int|string|null Scalar value for backed enums, name for pure enums, or the original value for
+     * non-enums.
      *
      * Usage example:
      * ```php
@@ -83,9 +85,13 @@ abstract class BaseEnum
      * ```
      *
      * {@see normalizeArray()} for batch normalization.
+     *
+     * @phpstan-param UnitEnum|array<mixed>|scalar|null $value
+     * @phpstan-return ($value is UnitEnum ? int|string : ($value is string ? string : array<mixed>|bool|float|int|null))
      */
-    public static function normalizeValue(mixed $value): mixed
-    {
+    public static function normalizeValue(
+        UnitEnum|array|bool|float|int|string|null $value,
+    ): array|bool|float|int|string|null {
         if ($value instanceof UnitEnum) {
             return $value instanceof BackedEnum ? $value->value : $value->name;
         }

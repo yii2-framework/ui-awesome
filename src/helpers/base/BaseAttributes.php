@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\helpers\base;
 
+use UnitEnum;
 use yii\helpers\Json;
 use yii\ui\helpers\{Encode, Enum};
 
@@ -415,6 +416,10 @@ abstract class BaseAttributes
 
         if (is_string($value)) {
             return Encode::value($value);
+        }
+
+        if ($value instanceof UnitEnum === false) {
+            return $value;
         }
 
         $normalized = Enum::normalizeValue($value);
