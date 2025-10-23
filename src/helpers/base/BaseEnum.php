@@ -75,8 +75,8 @@ abstract class BaseEnum
      *
      * @param UnitEnum|array|bool|float|int|string|null $value Enum instance or any value to normalize.
      *
-     * @return array|float|int|string|null Scalar value for backed enums, name for pure enums, or the original value for
-     * non-enums.
+     * @return array|bool|float|int|string|null Scalar value for backed enums, name for pure enums, or the original
+     * value for non-enums.
      *
      * Usage example:
      * ```php
