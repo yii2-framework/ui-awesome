@@ -66,17 +66,25 @@ abstract class BaseCSSClass
      * - Semicolon (;) - could break CSS syntax.
      * - Angle brackets (<, >) - XSS prevention.
      * - Quotes (", `) - potential injection vectors (single quote ' is allowed for content).
+     * - Curly braces ({}) - breaks CSS syntax.
+     * - Pipe (|) - reserved for attribute selectors.
+     * - Backslash (\) - escape character conflicts.
+     * - Caret (^) - reserved for attribute selectors.
+     * - Ampersand (&) - reserved for SCSS nesting.
+     * - Dollar sign ($) - reserved for attribute selectors.
+     * - Asterisk (*) - reserved for universal selector.
      *
      * This pattern supports modern CSS frameworks such as Tailwind CSS, Bootstrap 5+, and custom utility systems, while
      * maintaining compatibility with traditional CSS naming conventions and internationalization requirements.
      *
      * Note: Empty strings are rejected during validation. The pattern requires at least one character and does not
      * validate CSS selector syntax rules. The pattern uses Unicode mode (u flag) for proper international character
-     * support.
+     * support. This pattern uses a negative character class approach to explicitly exclude dangerous characters while
+     * supporting Unicode symbols needed for internationalization.
      *
      * @see https://www.w3.org/TR/CSS21/syndata.html#characters CSS 2.1 Characters and case specification.
      */
-    private const VALID_CSS_CLASS_PATTERN = '/^[a-zA-Z0-9:_.\-\[\]#%()\/+\',=\p{L}\p{M}\p{S}]+$/u';
+    private const VALID_CSS_CLASS_PATTERN = '/^[a-zA-Z0-9:_.\-\[\]#%()\/+\',=\p{L}\p{M}★→]+$/u';
 
     /**
      * Adds one or more CSS classes to an attribute array with validation and merging logic.

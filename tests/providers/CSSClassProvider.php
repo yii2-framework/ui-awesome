@@ -538,11 +538,11 @@ final class CSSClassProvider
     public static function regexEdgeCases(): array
     {
         return [
-            'string with only whitespace characters' => [
+            'extremely long string with unique classes' => [
                 [],
-                "   \t\n\r   ",
-                [],
-                'Should return empty array for string with only whitespace characters.',
+                implode(' ', array_map(static fn($i): string => "class-{$i}", range(1, 100))),
+                ['class' => implode(' ', array_map(static fn($i): string => "class-{$i}", range(1, 100)))],
+                'Should handle extremely long strings with many unique classes.',
             ],
             'extremely long whitespace sequence' => [
                 [],
@@ -562,11 +562,29 @@ final class CSSClassProvider
                 ['class' => 'class-one class-two class-three'],
                 'Should normalize multiple consecutive spaces between classes.',
             ],
-            'extremely long string with unique classes' => [
+            'string with only whitespace characters' => [
                 [],
-                implode(' ', array_map(static fn($i): string => "class-{$i}", range(1, 100))),
-                ['class' => implode(' ', array_map(static fn($i): string => "class-{$i}", range(1, 100)))],
-                'Should handle extremely long strings with many unique classes.',
+                "   \t\n\r   ",
+                [],
+                'Should return empty array for string with only whitespace characters.',
+            ],
+            'token containing angle brackets' => [
+                [],
+                'bad<class>',
+                [],
+                'Should drop tokens containing < or >.',
+            ],
+            'token containing at-sign' => [
+                [],
+                'bad@class',
+                [],
+                'Should drop tokens containing @.',
+            ],
+            'token containing exclamation' => [
+                [],
+                'bad!class',
+                [],
+                'Should drop tokens containing !.',
             ],
         ];
     }
