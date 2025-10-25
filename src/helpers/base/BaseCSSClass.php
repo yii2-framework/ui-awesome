@@ -124,8 +124,6 @@ abstract class BaseCSSClass
 
         if ($override) {
             $attributes['class'] = implode(' ', $normalizedClasses);
-
-            return;
         }
 
         $existingClasses = [];
@@ -231,10 +229,6 @@ abstract class BaseCSSClass
      */
     private static function isValidClassName(string $class): bool
     {
-        if ($class === '') {
-            return false;
-        }
-
         return preg_match(self::VALID_CSS_CLASS_PATTERN, $class) === 1;
     }
 
