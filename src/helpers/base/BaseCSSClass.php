@@ -19,17 +19,17 @@ use function sprintf;
 /**
  * Base class for safe and flexible CSS class manipulation.
  *
- * Provides a fluent, immutable API for handling CSS class attributes, supporting BackedEnum integration, base class
- * formatting, class list merging, and robust validation for safe HTML output. Designed for use in HTML helpers, widget
- * systems, and view renderers, this class ensures that CSS class attributes are constructed, merged, and validated
- * according to modern standards and security best practices.
+ * Provides a static API for processing, validating, and rendering CSS class attributes, supporting formatting, class
+ * list merging, and robust validation for safe HTML output. Designed for use in HTML helpers, widget systems, and view
+ * renderers, this class ensures that CSS class attributes are constructed, merged, and validated according to modern
+ * standards and security best practices.
  *
  * Key features.
  * - Attribute array manipulation for class merging and overrides.
  * - BackedEnum and UnitEnum support for type-safe class definitions.
  * - Base class formatting and normalization.
- * - Immutable, static API for safe reuse.
  * - Integration-ready for asset, widget, and view systems.
+ * - Stateless helpers suitable for reuse.
  * - Strict CSS class name validation using regex.
  *
  * {@see InvalidArgumentException} for invalid value errors.
