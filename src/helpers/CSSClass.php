@@ -7,8 +7,8 @@ namespace yii\ui\helpers;
 /**
  * CSS class manipulation helper for attribute normalization and merging.
  *
- * Provides a fluent, immutable API for processing, validating, and rendering CSS class attributes, supporting
- * string/array conversion, safe class merging, and normalization for HTML output.
+ * Provides a static API for processing, validating, and rendering CSS class attributes, supporting string/array
+ * conversion, safe class merging, and normalization for HTML output.
  *
  * Designed for integration in HTML helpers, view renderers, and widget systems ensuring consistent and secure handling
  * of CSS class attributes across all supported use cases.
@@ -16,8 +16,8 @@ namespace yii\ui\helpers;
  * Key features.
  * - Attribute manipulation and normalization for HTML output.
  * - CSS class name validation and sanitization.
- * - Immutable, widget-based configuration for safe reuse.
  * - Safe merging and overriding of class lists.
+ * - Stateless helpers suitable for reuse.
  * - String and array conversion utilities.
  *
  * {@see base\BaseCSSClass} for the base implementation.
