@@ -7,7 +7,7 @@ namespace yii\ui\tests\providers;
 use yii\ui\tests\support\stub\enum\{Priority, Status, Theme};
 
 /**
- * Data provider for array structure validation in tests.
+ * Data provider for {@see \yii\ui\tests\helpers\ArraysTest} class.
  *
  * Designed to ensure array utility logic correctly processes all supported scenarios, including list and associative
  * array detection, providing comprehensive test data for validation and edge case coverage.

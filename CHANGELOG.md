@@ -17,3 +17,4 @@
 - Bug #13: Simplify empty-value guard in `Arrays::inList` method (@terabytesoftw)
 - Enh #14: Introduce `CSSClass` helper class with tests (@terabytesoftw)
 - Bug #15: Add `HasClass` trait with `class()` method and tests (@terabytesoftw)
+- Bug #15: Add reference `ArraysTest` in `ArraysProvider` docblock (@terabytesoftw)
