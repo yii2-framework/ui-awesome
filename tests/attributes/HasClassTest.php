@@ -61,7 +61,7 @@ final class HasClassTest extends TestCase
             'Should return the attribute value after setting it.',
         );
 
-        $instance = $instance->class('class-one class-two');
+        $instance = $instance->class('class-two');
 
         self::assertSame(
             'class-one class-two',

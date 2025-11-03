@@ -16,5 +16,5 @@
 - Bug #12: Tighten `PHPStan` types and guard enum handling in base helpers (@terabytesoftw)
 - Bug #13: Simplify empty-value guard in `Arrays::inList` method (@terabytesoftw)
 - Enh #14: Introduce `CSSClass` helper class with tests (@terabytesoftw)
-- Bug #15: Add `HasClass` trait with `class()` method and tests (@terabytesoftw)
 - Bug #15: Add reference `ArraysTest` in `ArraysProvider` docblock (@terabytesoftw)
+- Bug #16: Add `HasClass` trait with `class()` method and tests (@terabytesoftw)
