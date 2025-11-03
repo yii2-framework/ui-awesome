@@ -11,7 +11,7 @@ use yii\base\InvalidArgumentException;
 use yii\ui\helpers\CSSClass;
 use yii\ui\helpers\exception\Message;
 use yii\ui\tests\providers\CSSClassProvider;
-use yii\ui\tests\support\stub\enum\{AlertType};
+use yii\ui\tests\support\stub\enum\AlertType;
 
 /**
  * Test suite for {@see CSSClass} class functionality and behavior.
