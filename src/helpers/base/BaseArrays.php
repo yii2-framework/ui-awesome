@@ -7,8 +7,8 @@ namespace yii\ui\helpers\base;
 use UnitEnum;
 use yii\base\InvalidArgumentException;
 use yii\helpers\BaseArrayHelper;
+use yii\ui\exception\Message;
 use yii\ui\helpers\Enum;
-use yii\ui\helpers\exception\Message;
 
 use function array_is_list;
 use function implode;
