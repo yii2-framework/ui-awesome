@@ -7,17 +7,17 @@ namespace yii\ui\attributes;
 use yii\ui\helpers\CSSClass;
 
 /**
- * Trait for managing the global HTML class attribute in widget and tag rendering.
+ * Trait for managing the global HTML `class` attribute in widget and tag rendering.
  *
- * Provides a standards-compliant, immutable API for setting the class attribute on HTML elements, following the HTML
+ * Provides a standards-compliant, immutable API for setting the `class` attribute on HTML elements, following the HTML
  * specification for global attributes. This trait is intended for use in widgets and components that require dynamic or
  * programmatic manipulation of CSS classes, ensuring correct attribute handling and value merging.
  *
  * Key features:
  * - Designed for use in widget and tag rendering systems.
- * - Immutable method for setting or overriding the class attribute.
+ * - Immutable method for setting or overriding the `class` attribute.
  * - Integration with CSS class management utilities for safe and predictable value updates.
- * - Standards-compliant handling of the HTML class global attribute.
+ * - Standards-compliant handling of the HTML `class` global attribute.
  *
  * @property array $attributes HTML attributes array used by the implementing class.
  * @phpstan-property mixed[] $attributes
@@ -30,17 +30,17 @@ use yii\ui\helpers\CSSClass;
 trait HasClass
 {
     /**
-     * Sets the HTML class attribute for the element.
+     * Sets the HTML `class` attribute for the element.
      *
      * Creates a new instance with the specified CSS class value, optionally overriding any existing value.
      *
-     * This method ensures standards-compliant handling of the class global attribute, supporting both additive and
+     * This method ensures standards-compliant handling of the `class` global attribute, supporting both additive and
      * override semantics as required by the HTML specification.
      *
      * @param string $value CSS class value to set for the element.
      * @param bool $override Whether to override the existing class value (`true`) or merge (`false`).
      *
-     * @return static New instance with the updated class attribute.
+     * @return static New instance with the updated `class` attribute.
      *
      * @link https://html.spec.whatwg.org/#classes
      */
