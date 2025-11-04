@@ -20,3 +20,4 @@
 - Enh #16: Add `HasClass` trait with `class()` method and tests (@terabytesoftw)
 - Bug #17: Update PHPDoc type annotations in `HasClass` trait and refactor `HasClassTest` class (@terabytesoftw)
 - Bug #18: Move `Message` class to `src` directory (@terabytesoftw)
+- Bug #19: Update PHPDoc type annotations in `helpers\base*` classes (@terabytesoftw)

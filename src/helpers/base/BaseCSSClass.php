@@ -149,7 +149,7 @@ abstract class BaseCSSClass
      * rendered.
      *
      * @param string|UnitEnum $class Class value to validate and render.
-     * @param string $baseClass Base class format string (for example, 'btn-%s').
+     * @param string $baseClass Base class format string (for example, `btn-%s`).
      * @param array $allowed List of allowed class values for validation.
      *
      * @throws InvalidArgumentException if the class value is not in the allowed list.
