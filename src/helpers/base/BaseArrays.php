@@ -30,7 +30,7 @@ use function is_string;
  *
  * Key features:
  * - Consistent handling of empty arrays for both list and associative checks.
- * - Detection of list arrays (integer keys) and associative arrays (string keys).
+ * - Detection of list arrays (`integer` keys) and associative arrays (`string` keys).
  * - Exception-driven error handling for invalid or empty values.
  * - Optimized for performance and strict type safety.
  * - Type-safe value validation against allowed lists with exception support.
@@ -73,7 +73,7 @@ abstract class BaseArrays extends BaseArrayHelper
      * // Validate a numeric option
      * Arrays::inList('priority', $priority, [1, 2, 3], true);
      *
-     * // Use without exception (returns bool)
+     * // Use without exception (returns `bool`)
      * $isValid = Arrays::inList('type', $type, ['a', 'b', 'c']);
      *
      * // Use with enum
@@ -132,15 +132,15 @@ abstract class BaseArrays extends BaseArrayHelper
      *
      * @param array $array Array to check for list structure.
      *
-     * @return bool `true` if the array is a list (sequential integer keys), `false` otherwise.
+     * @return bool `true` if the array is a list (sequential `integer` keys), `false` otherwise.
      *
      * {@see isAssociative()} for associative array detection.
      *
      * Usage example:
      * ```php
-     * Arrays::isList([1, 2, 3]); // return true
-     * Arrays::isList(['a' => 1, 'b' => 2]); // return false
-     * Arrays::isList([]); // return true
+     * Arrays::isList([1, 2, 3]); // return `true`
+     * Arrays::isList(['a' => 1, 'b' => 2]); // return `false`
+     * Arrays::isList([]); // return `true`
      * ```
      *
      * @phpstan-param mixed[] $array

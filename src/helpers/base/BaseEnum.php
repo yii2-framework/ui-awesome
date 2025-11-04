@@ -16,8 +16,8 @@ use function array_map;
  * and predictable manner. This class abstracts the complexity of extracting scalar values from enums, enabling seamless
  * integration with serialization, comparison, and data transformation logic across the framework.
  *
- * It supports normalization of single enum instances or arrays of enums, returning their scalar value (for backed
- * enums) or name (for pure enums), and passes through non-enum values unchanged.
+ * It supports normalization of single enum instances or arrays of enums, returning their scalar value (for BackedEnum)
+ * or name (for pure enums), and passes through non-enum values unchanged.
  *
  * This is essential for consistent handling of enums in configuration, storage, and API layers.
  *
@@ -28,8 +28,8 @@ use function array_map;
  * - Unified API for enum value extraction in serialization and comparison logic.
  * - Utility methods for simplifying enum handling in data processing and configuration workflows.
  *
- * @see BackedEnum for enums with scalar values.
- * @see UnitEnum for all enum types.
+ * {@see BackedEnum} for enums with scalar values.
+ * {@see UnitEnum} for all enum types.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -75,8 +75,8 @@ abstract class BaseEnum
      *
      * @param UnitEnum|array|bool|float|int|string|null $value Enum instance or any value to normalize.
      *
-     * @return array|bool|float|int|string|null Scalar value for backed enums, name for pure enums, or the original
-     * value for non-enums.
+     * @return array|bool|float|int|string|null Scalar value for BackedEnum, name for pure enums, or the original value
+     * for non-enums.
      *
      * Usage example:
      * ```php
