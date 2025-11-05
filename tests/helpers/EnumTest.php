@@ -13,8 +13,8 @@ use yii\ui\tests\support\stub\enum\Theme;
 /**
  * Test suite for {@see Enum} utility class functionality and behavior.
  *
- * Verifies the enum utility component's ability to normalize enum values and arrays, supporting both backed and unit
- * enums, and ensuring the correct scalar conversion and pass-through for mixed input types.
+ * Verifies the enum utility component's ability to normalize enum values and arrays, supporting both BackedEnum and
+ * UnitEnum, and ensuring the correct scalar conversion and pass-through for mixed input types.
  *
  * These tests ensure enum normalization features work correctly under different conditions and maintain consistent
  * behavior after code changes.
