@@ -22,3 +22,4 @@
 - Bug #18: Move `Message` class to `src` directory (@terabytesoftw)
 - Bug #19: Update PHPDoc type annotations in `helpers\base*` classes (@terabytesoftw)
 - Bug #20: Use `BackedEnum` and `UnitEnum` in `EnumTest` docblock (@terabytesoftw)
+- Enh #21: Add `HasData` trait with `dataAttributes()` method and tests (@terabytesoftw)
