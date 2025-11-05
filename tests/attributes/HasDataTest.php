@@ -46,7 +46,7 @@ final class HasDataTest extends TestCase
         );
     }
 
-    public function testSetDataAttributeWithValue(): void
+    public function testSetDataAttributeWithClosureValue(): void
     {
         $instance = new class {
             use HasData;
@@ -63,6 +63,26 @@ final class HasDataTest extends TestCase
 
         self::assertSame(
             ['data-action' => $closure],
+            $instance->attributes,
+            'Should return the attribute value after setting it.',
+        );
+    }
+
+    public function testSetDataAttributeWithStringValue(): void
+    {
+        $instance = new class {
+            use HasData;
+
+            /**
+             * @phpstan-var mixed[]
+             */
+            public array $attributes = [];
+        };
+
+        $instance = $instance->dataAttributes(['action' => 'test-action']);
+
+        self::assertSame(
+            ['data-action' => 'test-action'],
             $instance->attributes,
             'Should return the attribute value after setting it.',
         );
