@@ -24,7 +24,7 @@ use function is_string;
  * - Immutable method for setting or overriding `data-*` attributes.
  * - Supports `string` and `Closure` values for advanced dynamic data scenarios.
  *
- * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*
+ * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*
  *
  * @property array $attributes HTML attributes array used by the implementing class.
  * @phpstan-property mixed[] $attributes
