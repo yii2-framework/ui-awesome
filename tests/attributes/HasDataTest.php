@@ -68,6 +68,25 @@ final class HasDataTest extends TestCase
         );
     }
 
+    public function testThrowInvalidArgumentExceptionWhenKeyIsEmpty(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            Message::DATA_ATTRIBUTE_KEY_NOT_EMPTY->getMessage(),
+        );
+
+        $instance = new class {
+            use HasData;
+
+            /**
+             * @phpstan-var mixed[]
+             */
+            public array $attributes = [];
+        };
+
+        $instance->dataAttributes(['' => 'value']);
+    }
+
     public function testThrowInvalidArgumentExceptionWhenKeyIsInvalid(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -103,6 +122,6 @@ final class HasDataTest extends TestCase
             public array $attributes = [];
         };
 
-        $instance->dataAttributes(['' => 1]);
+        $instance->dataAttributes(['key' => 1]);
     }
 }

@@ -57,6 +57,12 @@ trait HasData
         $new = clone $this;
 
         foreach ($values as $key => $value) {
+            if ($key === '') {
+                throw new InvalidArgumentException(
+                    Message::DATA_ATTRIBUTE_KEY_NOT_EMPTY->getMessage(),
+                );
+            }
+
             if (is_string($key) === false) {
                 throw new InvalidArgumentException(
                     Message::DATA_ATTRIBUTE_KEY_MUST_BE_STRING->getMessage(gettype($key)),
