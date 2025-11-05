@@ -19,8 +19,8 @@ use yii\ui\tests\support\stub\enum\Theme;
  * These tests ensure enum normalization features work correctly under different conditions and maintain consistent
  * behavior after code changes.
  *
- * The tests validate normalization of arrays and single values, handling of backed and unit enums, and pass-through of
- * scalars, which are essential for robust enum processing and type safety in the framework.
+ * The tests validate normalization of arrays and single values, handling of BackedEnum and UnitEnum, and pass-through
+ * of scalars, which are essential for robust enum processing and type safety in the framework.
  *
  * Test coverage.
  * - Consistent conversion of enum values to their scalar representation.
