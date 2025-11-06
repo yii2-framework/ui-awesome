@@ -25,3 +25,4 @@
 - Enh #21: Add `HasData` trait with `dataAttributes()` method and tests (@terabytesoftw)
 - Bug #22: Replace `@see` with `@link` in `HasClass` and `HasData` docblocks traits (@terabytesoftw)
 - Enh #23: Add `HasId` trait with `id()` method and tests (@terabytesoftw)
+- Bug #24: Support `null` in `class()` method of `HasClass` trait; add `ClassProvider` and update tests (@terabytesoftw)

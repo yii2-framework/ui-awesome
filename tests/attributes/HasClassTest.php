@@ -4,22 +4,24 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\attributes;
 
+use PHPUnit\Framework\Attributes\DataProviderExternal;
 use PHPUnit\Framework\TestCase;
 use yii\ui\attributes\HasClass;
+use yii\ui\tests\providers\attributes\ClassProvider;
 
 /**
  * Test suite for {@see HasClass} trait functionality and behavior.
  *
- * Verifies the management of the global HTML `class` attribute in widget and tag rendering, ensuring
- * standards-compliant, immutable API for setting and overriding CSS class values.
+ * Validates the management of the global HTML `class` attribute according to the HTML Living Standard specification.
  *
- * These tests validate correct attribute handling, value merging, and immutability guarantees for dynamic or
- * programmatic manipulation of CSS classes in components.
+ * Ensures correct handling, immutability, and validation of the `class` attribute in widget and tag rendering,
+ * supporting both `string` and `null` values for dynamic CSS class assignment.
  *
  * Test coverage.
  * - Accurate retrieval of the current `class` attribute value.
- * - Correct merging and overriding of class values.
+ * - Data provider-driven validation for edge cases and expected behaviors.
  * - Immutability of the trait's API when setting or overriding the `class` attribute.
+ * - Proper assignment and overriding of `class` values.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -61,9 +63,13 @@ final class HasClassTest extends TestCase
         );
     }
 
-    public function testSetClassAttributeValue(): void
+    /**
+     * @phpstan-param array<array{value: string, override?: bool}> $operations
+     */
+    #[DataProviderExternal(ClassProvider::class, 'values')]
+    public function testSetClassAttributeValue(array $operations, string|null $expected, string $message): void
     {
-        $instance =  new class {
+        $instance = new class {
             use HasClass;
 
             /**
@@ -72,48 +78,14 @@ final class HasClassTest extends TestCase
             public array $attributes = [];
         };
 
-        $instance = $instance->class('class-one');
+        foreach ($operations as $operation) {
+            $instance = $instance->class($operation['value'], $operation['override'] ?? false);
+        }
 
         self::assertSame(
-            'class-one',
+            $expected,
             $instance->attributes['class'] ?? '',
-            'Should return the attribute value after setting it.',
-        );
-
-        $instance = $instance->class('class-two');
-
-        self::assertSame(
-            'class-one class-two',
-            $instance->attributes['class'] ?? '',
-            'Should append new attribute value to existing attribute value.',
-        );
-    }
-
-    public function testSetClassAttributeValueWithOverride(): void
-    {
-        $instance =  new class {
-            use HasClass;
-
-            /**
-             * @phpstan-var mixed[]
-             */
-            public array $attributes = [];
-        };
-
-        $instance = $instance->class('class-one');
-
-        self::assertSame(
-            'class-one',
-            $instance->attributes['class'] ?? '',
-            'Should return the attribute value after setting it.',
-        );
-
-        $instance = $instance->class('class-override', true);
-
-        self::assertSame(
-            'class-override',
-            $instance->attributes['class'] ?? '',
-            'Should return new attribute value after overriding the existing attribute value.',
+            $message,
         );
     }
 }
