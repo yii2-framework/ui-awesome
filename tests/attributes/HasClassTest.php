@@ -79,7 +79,12 @@ final class HasClassTest extends TestCase
         };
 
         foreach ($operations as $operation) {
-            $instance = $instance->class($operation['value'], $operation['override'] ?? false);
+            $override = $operation['override'] ?? null;
+
+            $instance = match ($override) {
+                true => $instance->class($operation['value'], true),
+                default => $instance->class($operation['value']),
+            };
         }
 
         self::assertSame(
