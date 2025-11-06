@@ -38,7 +38,7 @@ final class IdProvider
      *
      * @return array Test data for `id` attribute scenarios.
      *
-     * @phpstan-return array<string, array{string|null, string, string}>
+     * @phpstan-return array<string, array{string|null, string|null, string}>
      */
     public static function values(): array
     {
@@ -50,7 +50,7 @@ final class IdProvider
             ],
             'null' => [
                 null,
-                '',
+                null,
                 "Should return 'null' when the attribute is set to 'null'.",
             ],
             'string' => [

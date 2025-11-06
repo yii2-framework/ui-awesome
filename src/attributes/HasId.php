@@ -44,6 +44,10 @@ trait HasId
         $new = clone $this;
         $new->attributes['id'] = $value;
 
+        if ($value === null) {
+            unset($new->attributes['id']);
+        }
+
         return $new;
     }
 }

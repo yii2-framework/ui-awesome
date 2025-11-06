@@ -24,3 +24,4 @@
 - Bug #20: Use `BackedEnum` and `UnitEnum` in `EnumTest` docblock (@terabytesoftw)
 - Enh #21: Add `HasData` trait with `dataAttributes()` method and tests (@terabytesoftw)
 - Bug #22: Replace `@see` with `@link` in `HasClass` and `HasData` docblocks traits (@terabytesoftw)
+- Enh #23: Add `HasId` trait with `id()` method and tests (@terabytesoftw)

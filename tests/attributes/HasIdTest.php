@@ -64,7 +64,7 @@ final class HasIdTest extends TestCase
     }
 
     #[DataProviderExternal(IdProvider::class, 'values')]
-    public function testSetIdAttributeValue(string|null $id, string $expected, string $message): void
+    public function testSetIdAttributeValue(string|null $id, string|null $expected, string $message): void
     {
         $instance = new class {
             use HasId;
@@ -79,7 +79,7 @@ final class HasIdTest extends TestCase
 
         self::assertSame(
             $expected,
-            $instance->attributes['id'] ?? '',
+            $instance->attributes['id'] ?? null,
             $message,
         );
     }
