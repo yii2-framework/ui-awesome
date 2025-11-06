@@ -90,6 +90,14 @@ final class ClassProvider
                 'class-one',
                 'Should return the attribute value after setting it.',
             ],
+            'unset with null' => [
+                [
+                    ['value' => 'class-one'],
+                    ['value' => null],
+                ],
+                '',
+                'Should unset the class attribute when null is provided after a value.',
+            ],
         ];
     }
 }
