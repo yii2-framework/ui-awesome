@@ -22,7 +22,7 @@ use yii\ui\helpers\CSSClass;
  * @property array $attributes HTML attributes array used by the implementing class.
  * @phpstan-property mixed[] $attributes
  *
- * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class for HTML specification details.
+ * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -37,17 +37,22 @@ trait HasClass
      * This method ensures standards-compliant handling of the `class` global attribute, supporting both additive and
      * override semantics as required by the HTML specification.
      *
-     * @param string $value CSS class value to set for the element.
+     * @param string|null $value CSS class value to set for the element. Can be `null` to unset the attribute.
      * @param bool $override Whether to override the existing class value (`true`) or merge (`false`).
      *
      * @return static New instance with the updated `class` attribute.
      *
      * @link https://html.spec.whatwg.org/#classes
      */
-    public function class(string $value, bool $override = false): static
+    public function class(string|null $value, bool $override = false): static
     {
         $new = clone $this;
-        CSSClass::add($new->attributes, $value, $override);
+
+        if ($value === null) {
+            unset($new->attributes['class']);
+        } else {
+            CSSClass::add($new->attributes, $value, $override);
+        }
 
         return $new;
     }
