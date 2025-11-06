@@ -67,7 +67,7 @@ final class HasClassTest extends TestCase
      * @phpstan-param array<array{value: string|null, override?: bool}> $operations
      */
     #[DataProviderExternal(ClassProvider::class, 'values')]
-    public function testSetClassAttributeValue(array $operations, string|null $expected, string $message): void
+    public function testSetClassAttributeValue(array $operations, string $expected, string $message): void
     {
         $instance = new class {
             use HasClass;
