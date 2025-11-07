@@ -13,7 +13,7 @@ use yii\ui\helpers\CSSClass;
  * specification for global attributes. This trait is intended for use in widgets and components that require dynamic or
  * programmatic manipulation of CSS classes, ensuring correct attribute handling and value merging.
  *
- * Key features:
+ * Key features.
  * - Designed for use in widget and tag rendering systems.
  * - Immutable method for setting or overriding the `class` attribute.
  * - Integration with CSS class management utilities for safe and predictable value updates.

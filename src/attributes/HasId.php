@@ -11,7 +11,7 @@ namespace yii\ui\attributes;
  * specification for global attributes. Intended for use in widgets and components that require dynamic or programmatic
  * manipulation of element identifiers, ensuring correct attribute handling, type safety, and value validation.
  *
- * Key features:
+ * Key features.
  * - Designed for use in widget and tag rendering systems.
  * - Enforces standards-compliant handling of the HTML `id` global attribute.
  * - Immutable method for setting or overriding the `id` attribute.

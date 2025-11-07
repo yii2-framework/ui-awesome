@@ -17,11 +17,13 @@ use yii\ui\tests\providers\attributes\IdProvider;
  * Ensures correct handling, immutability, and validation of the `id` attribute in widget and tag rendering, supporting
  * both `string` and `null` values for dynamic identifier assignment.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate retrieval of the current `id` attribute value.
  * - Data provider-driven validation for edge cases and expected behaviors.
  * - Immutability of the trait's API when setting or overriding the `id` attribute.
  * - Proper assignment and overriding of `id` values.
+ *
+ * {@see IdProvider} for test case data providers.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.

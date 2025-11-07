@@ -4,24 +4,29 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\attributes;
 
+use PHPUnit\Framework\Attributes\DataProviderExternal;
 use PHPUnit\Framework\TestCase;
 use yii\base\InvalidArgumentException;
 use yii\ui\attributes\HasData;
 use yii\ui\exception\Message;
+use yii\ui\tests\providers\attributes\DataProvider;
 
 /**
  * Test suite for {@see HasData} trait functionality and behavior.
  *
- * Validates the management of the global HTML `data-*` attributes according to the HTML Living Standard specification.
+ * Validates the management of the global HTML `data-*` attribute according to the HTML Living Standard specification.
  *
- * Ensures correct handling, immutability, and validation of data attributes in widget and tag rendering, supporting
- * both `string` and `Closure` values for dynamic attribute assignment.
+ * Ensures correct handling, immutability, and validation of the `data-*` attribute in widget and tag rendering,
+ * supporting both `string` and `Closure(): string` values for dynamic data attribute assignment.
  *
- * The tests cover:
- * - Compliance with HTML specification for custom data attributes.
- * - Exception handling for invalid attribute keys and values.
- * - Immutability of the API when setting or overriding data attributes.
- * - Proper assignment and retrieval of `data-*` attributes with `string` and `Closure` values.
+ * Test coverage.
+ * - Accurate retrieval and assignment of `data-*` attributes.
+ * - Data provider-driven validation for edge cases and expected behaviors.
+ * - Exception handling for invalid keys and values.
+ * - Immutability of the trait's API when setting or overriding data attributes.
+ * - Proper assignment and overriding of data attribute values.
+ *
+ * {@see DataProvider} for test case data providers.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -46,7 +51,12 @@ final class HasDataTest extends TestCase
         );
     }
 
-    public function testSetDataAttributeWithClosureValue(): void
+    /**
+     * @param array<string, string|\Closure(): string> $input
+     * @param array<string, string|\Closure(): string> $expected
+     */
+    #[DataProviderExternal(DataProvider::class, 'values')]
+    public function testSetDataAttributeValue(array $input, array $expected, string $assertion): void
     {
         $instance = new class {
             use HasData;
@@ -57,34 +67,12 @@ final class HasDataTest extends TestCase
             public array $attributes = [];
         };
 
-        $closure = static fn(): string => 'test-action';
-
-        $instance = $instance->dataAttributes(['action' => $closure]);
+        $instance = $instance->dataAttributes($input);
 
         self::assertSame(
-            ['data-action' => $closure],
+            $expected,
             $instance->attributes,
-            'Should return the attribute value after setting it.',
-        );
-    }
-
-    public function testSetDataAttributeWithStringValue(): void
-    {
-        $instance = new class {
-            use HasData;
-
-            /**
-             * @phpstan-var mixed[]
-             */
-            public array $attributes = [];
-        };
-
-        $instance = $instance->dataAttributes(['action' => 'test-action']);
-
-        self::assertSame(
-            ['data-action' => 'test-action'],
-            $instance->attributes,
-            'Should return the attribute value after setting it.',
+            $assertion,
         );
     }
 

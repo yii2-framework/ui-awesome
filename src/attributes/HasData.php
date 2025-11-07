@@ -18,7 +18,7 @@ use function is_string;
  * specification for global attributes. Intended for use in widgets and components that require dynamic or programmatic
  * manipulation of `data-*` attributes, ensuring correct attribute handling, type safety, and value validation.
  *
- * Key features:
+ * Key features.
  * - Designed for use in widget and tag rendering systems.
  * - Enforces standards-compliant handling of the HTML `data-*` global attribute.
  * - Immutable method for setting or overriding `data-*` attributes.
