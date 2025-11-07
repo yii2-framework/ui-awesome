@@ -26,3 +26,4 @@
 - Bug #22: Replace `@see` with `@link` in `HasClass` and `HasData` docblocks traits (@terabytesoftw)
 - Enh #23: Add `HasId` trait with `id()` method and tests (@terabytesoftw)
 - Bug #24: Support `null` in `class()` method of `HasClass` trait; add `ClassProvider` and update tests (@terabytesoftw)
+- Bug #26: Update documentation for traits and tests; improve clarity and consistency in comments (@terabytesoftw)

@@ -23,6 +23,8 @@ use yii\ui\tests\providers\attributes\ClassProvider;
  * - Immutability of the trait's API when setting or overriding the `class` attribute.
  * - Proper assignment and overriding of `class` values.
  *
+ * {@see ClassProvider} for test case data providers.
+ *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
