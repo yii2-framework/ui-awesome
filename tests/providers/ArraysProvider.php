@@ -9,20 +9,19 @@ use yii\ui\tests\support\stub\enum\{Priority, Status, Theme};
 /**
  * Data provider for {@see \yii\ui\tests\helpers\ArraysTest} class.
  *
- * Designed to ensure array utility logic correctly processes all supported scenarios, including list and associative
- * array detection, providing comprehensive test data for validation and edge case coverage.
+ * Supplies comprehensive test data for validating array handling in widget and tag rendering, ensuring
+ * standards-compliant processing, type safety, and value propagation according to the PHP specification.
  *
- * The test data covers real-world array usage scenarios and edge cases to maintain consistent output across different
- * array configurations, ensuring array handling is robust and predictable throughout the application.
+ * The test data covers real-world scenarios for associative and list array detection, value membership validation, and
+ * mixed type handling, supporting both explicit `string` values and PHP enums for robust validation.
  *
- * The provider organizes test cases with descriptive names for quick identification of failure cases during test
+ * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
  * Key features:
- * - Comprehensive coverage for array structure validation.
- * - Edge case validation for empty, numeric, and mixed key arrays.
- * - List and associative array detection scenarios.
- * - Named test data sets for clear failure identification.
+ * - Ensures correct detection of associative and list arrays.
+ * - Named test data sets for precise failure identification.
+ * - Validation of empty arrays, mixed types, and enum values in array processing.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -32,14 +31,14 @@ final class ArraysProvider
     /**
      * Provides test cases for value membership validation in allowed lists.
      *
-     * Supplies comprehensive test data for validating the inList method, including basic string values, enum instances,
+     * Supplies comprehensive test data for validating the `inList` method, including basic string values, enum instances,
      * empty values, empty allowed lists, case sensitivity checks, type strictness validation, and mixed enum type
      * scenarios.
      *
      * Each test case includes the attribute name, value to check, allowed list, expected boolean result, and an
      * assertion message for clear failure identification.
      *
-     * @return array<array{string, mixed, array<mixed>, bool, string}> Test data for inList validation scenarios.
+     * @return array Test data for `inList` validation scenarios.
      *
      * @phpstan-return array<array{string, mixed, list<mixed>, bool, string}>
      */
@@ -63,7 +62,11 @@ final class ArraysProvider
             'empty-value-not-in-list' => [
                 'attribute',
                 '',
-                ['a', 'b', 'c'],
+                [
+                    'a',
+                    'b',
+                    'c',
+                ],
                 false,
                 "Should return 'false' when the value is empty and not in the allowed list ['a', 'b', 'c'].",
             ],
@@ -77,49 +80,76 @@ final class ArraysProvider
             'mixed-enum-types-backed-enum-value-found' => [
                 'attribute',
                 'DARK',
-                [Status::ACTIVE, Theme::DARK, Priority::LOW],
+                [
+                    Status::ACTIVE,
+                    Theme::DARK,
+                    Priority::LOW,
+                ],
                 true,
                 "Should return 'true' when 'DARK' is in a mixed enum list.",
             ],
             'mixed-enum-types-enum-instance-found' => [
                 'attribute',
                 Status::ACTIVE,
-                [Status::ACTIVE, Theme::DARK, Priority::LOW],
+                [
+                    Status::ACTIVE,
+                    Theme::DARK,
+                    Priority::LOW,
+                ],
                 true,
                 "Should return 'true' when 'Status::ACTIVE' is in a mixed enum list.",
             ],
             'mixed-enum-types-int-value-found' => [
                 'attribute',
                 1,
-                [Status::ACTIVE, Theme::DARK, Priority::LOW],
+                [
+                    Status::ACTIVE,
+                    Theme::DARK,
+                    Priority::LOW,
+                ],
                 true,
                 "Should return 'true' when integer '1' ('Priority::LOW') is in a mixed enum list.",
             ],
             'mixed-enum-types-string-not-found-type-strictness' => [
                 'attribute',
                 '1',
-                [Status::ACTIVE, Theme::DARK, Priority::LOW],
+                [
+                    Status::ACTIVE,
+                    Theme::DARK,
+                    Priority::LOW,
+                ],
                 false,
                 "Should return 'false' for string '1' when only int 1 is allowed in a mixed enum list.",
             ],
             'string-case-sensitive-enum-value' => [
                 'attribute',
                 'ACTIVE',
-                [Status::ACTIVE, Status::INACTIVE],
+                [
+                    Status::ACTIVE,
+                    Status::INACTIVE,
+                ],
                 false,
                 "Should return 'false' when string 'ACTIVE' (uppercase) is compared against backed enum values.",
             ],
             'string-value-in-list' => [
                 'attribute',
                 'a',
-                ['a', 'b', 'c'],
+                [
+                    'a',
+                    'b',
+                    'c',
+                ],
                 true,
                 "Should return 'true' when 'a' is in the allowed list ['a', 'b', 'c'].",
             ],
             'string-value-not-in-list' => [
                 'attribute',
                 '1',
-                ['a', 'b', 'c'],
+                [
+                    'a',
+                    'b',
+                    'c',
+                ],
                 false,
                 "Should return 'false' when '1' is not in the allowed list ['a', 'b', 'c'].",
             ],
@@ -142,7 +172,7 @@ final class ArraysProvider
      * Each test case includes the input array and the expected boolean result indicating whether the array is
      * associative.
      *
-     * @return array<array{array<array-key, int|string>, bool}> Test data for associative array scenarios.
+     * @return array Test data for associative array scenarios.
      *
      * @phpstan-return array<array{array<array-key, int|string>, bool}>
      */
@@ -191,7 +221,7 @@ final class ArraysProvider
      *
      * Each test case includes the input array and the expected boolean result indicating whether the array is a list.
      *
-     * @return array<array{array<array-key, int|string>, bool}> Test data for list array scenarios.
+     * @return array Test data for list array scenarios.
      *
      * @phpstan-return array<array{array<array-key, int|string>, bool}>
      */
