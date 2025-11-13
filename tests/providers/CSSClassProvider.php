@@ -49,7 +49,7 @@ final class CSSClassProvider
      *   string,
      *   array{
      *     0: mixed[],
-     *     1: list<array{classes: mixed[]|string|null|UnitEnum, override?: bool}>,
+     *     1: list<array{classes: mixed[]|string|null|\UnitEnum, override?: bool}>,
      *     2: mixed[],
      *     3: string
      *   }
