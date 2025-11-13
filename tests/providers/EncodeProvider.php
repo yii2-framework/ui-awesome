@@ -84,8 +84,8 @@ final class EncodeProvider
     /**
      * Provides test cases for encode value scenarios.
      *
-     * Supplies test data for validating mixed type encoding, double encoding behavior, and Unicode/binary sequence
-     * handling.
+     * Supplies test data for validating mixed type encoding (`int`, `float`, `null`, `string`), double encoding
+     * behavior, and Unicode/binary sequence handling.
      *
      * Each test case includes the input value, the expected encoded output, and a flag indicating whether
      * double encoding is enabled.
