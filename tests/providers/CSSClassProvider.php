@@ -341,8 +341,7 @@ final class CSSClassProvider
                 ],
                 [['classes' => ButtonSize::LARGE]],
                 [
-                    'id' =>
-                    'button-id',
+                    'id' => 'button-id',
                     'type' => 'button',
                     'class' => 'lg',
                 ],
