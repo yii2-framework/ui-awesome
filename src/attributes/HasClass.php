@@ -19,10 +19,9 @@ use yii\ui\helpers\CSSClass;
  * - Integration with CSS class management utilities for safe and predictable value updates.
  * - Standards-compliant handling of the HTML `class` global attribute.
  *
+ * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
  * @property array $attributes HTML attributes array used by the implementing class.
  * @phpstan-property mixed[] $attributes
- *
- * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.

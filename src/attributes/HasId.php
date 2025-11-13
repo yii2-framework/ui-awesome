@@ -17,10 +17,9 @@ namespace yii\ui\attributes;
  * - Immutable method for setting or overriding the `id` attribute.
  * - Supports `string` and `null` values for flexible identifier assignment.
  *
+ * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id
  * @property array $attributes HTML attributes array used by the implementing class.
  * @phpstan-property mixed[] $attributes
- *
- * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
