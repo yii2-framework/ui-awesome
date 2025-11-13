@@ -17,24 +17,19 @@ use function implode;
 use function json_encode;
 
 /**
- * Test suite for {@see Arrays} utility class functionality and behavior.
+ * Test suite for {@see Arrays} helper functionality and behavior.
  *
- * Verifies the array utility component's ability to validate list membership, detect associative and list arrays,
- * handle enum values, and manage invalid arguments with exception-driven error handling.
+ * Validates the manipulation and validation of array structures according to the PHP language specification.
  *
- * These tests ensure array validation features work correctly under different conditions and maintain consistent
- * behavior after code changes.
+ * Ensures correct handling, immutability, and validation of array operations, supporting both associative and
+ * sequential arrays, as well as enum-based comparisons.
  *
- * The tests validate strict value checking, exception propagation, correct detection of array types, and support for
- * both BackedEnum and UnitEnum values in list membership checks, which are essential for robust array processing and
- * defensive programming in the framework.
- *
- * Test coverage.
- * - BackedEnum and UnitEnum value support in inList checks.
- * - Detection of associative and list arrays using data providers.
- * - Exception handling for empty or invalid values.
- * - Type safety and strict comparison.
- * - Value membership validation with and without exceptions.
+ * Test coverage:
+ * - Accurate detection of associative arrays.
+ * - Compatibility with PHP enums and scalar types.
+ * - Detection of sequential arrays.
+ * - Exception handling for invalid values and comparisons.
+ * - Validation of values within a predefined list.
  *
  * {@see ArraysProvider} for test case data providers.
  *
