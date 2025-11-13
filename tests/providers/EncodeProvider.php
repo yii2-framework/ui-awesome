@@ -5,23 +5,22 @@ declare(strict_types=1);
 namespace yii\ui\tests\providers;
 
 /**
- * Data provider for {@see \yii\ui\tests\helpers\EncodeTest} class.
+ * Data provider for HTML encoding scenarios.
  *
- * Designed to ensure the HTML encoding logic correctly processes all supported scenarios, including double encoding,
- * special character handling, and Unicode sequence processing, providing comprehensive test data for encoding
- * validation and edge case coverage.
+ * Supplies comprehensive test data for validating HTML entity encoding, double encoding behavior, and Unicode/binary
+ * sequence handling, ensuring standards-compliant output and security against XSS vulnerabilities.
  *
- * The test data covers real-world HTML encoding scenarios and edge cases to maintain consistent output across different
- * encoding configurations, ensuring HTML content is rendered securely and predictably throughout the application.
+ * The test data covers real-world scenarios for encoding HTML content and attribute values, supporting various input
+ * types such as strings, integers, floats, and `null`. It ensures consistent behavior for double encoding and special
+ * character handling across different rendering configurations.
  *
- * The provider organizes test cases with descriptive names for quick identification of failure cases during test
+ * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
- * Key features.
- * - Double encoding and entity handling scenarios.
- * - Edge case validation for null, empty, and non-string values.
- * - Named test data sets for clear failure identification.
- * - Special character and Unicode sequence encoding.
+ * Key features:
+ * - Ensures correct encoding of HTML entities, including special characters and Unicode sequences.
+ * - Named test data sets for precise failure identification.
+ * - Validation of double encoding behavior and handling of mixed input types.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -88,8 +87,8 @@ final class EncodeProvider
      * Supplies test data for validating mixed type encoding, double encoding behavior, and Unicode/binary sequence
      * handling.
      *
-     * Each test case includes the input value, the expected encoded output, and a flag indicating whether double
-     * encoding is enabled.
+     * Each test case includes the input value, the expected encoded output, and a flag indicating whether
+     * double encoding is enabled.
      *
      * @return array Test data for encode value scenarios.
      *

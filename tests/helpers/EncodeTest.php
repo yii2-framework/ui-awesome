@@ -10,23 +10,18 @@ use yii\ui\helpers\Encode;
 use yii\ui\tests\providers\EncodeProvider;
 
 /**
- * Test suite for {@see Encode} class functionality and behavior.
+ * Test suite for {@see Encode} helper functionality and behavior.
  *
- * Verifies HTML encoding capabilities including double encoding, entity handling, special character encoding, and
- * Unicode sequence processing to ensure correct and secure HTML output generation.
+ * Validates the encoding of content and values according to the HTML Living Standard specification.
  *
- * These tests ensure that encoding features work correctly under various scenarios and maintain consistent behavior
- * after code changes.
+ * Ensures correct handling, immutability, and validation of encoding operations, supporting both scalar and mixed
+ * types, as well as double encoding scenarios.
  *
- * The tests validate scenarios such as basic HTML entity encoding, double encoding, mixed content, Unicode handling,
- * and error cases, which are essential for generating valid and secure HTML output in the framework.
- *
- * Test coverage.
- * - Basic HTML entities encoding (`<`, `>`, `&`, `\"`, `\'`).
- * - Entity double encoding and prevention.
- * - Error and edge cases for invalid input.
- * - Mixed content and special character handling.
- * - Unicode sequence encoding and preservation.
+ * Test coverage:
+ * - Accurate encoding of content and values.
+ * - Compatibility with scalar and mixed types.
+ * - Data provider-driven validation for edge cases and expected behaviors.
+ * - Proper handling of double encoding scenarios.
  *
  * {@see EncodeProvider} for test case data providers.
  *
