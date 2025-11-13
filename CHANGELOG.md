@@ -28,3 +28,4 @@
 - Bug #24: Support `null` in `class()` method of `HasClass` trait; add `ClassProvider` and update tests (@terabytesoftw)
 - Bug #25: Update `symplify/easy-coding-standard` requirement from `^12.5` to `^13.0` in `composer.json` (@dependabot)
 - Bug #26: Update documentation for traits and tests; improve clarity and consistency in comments (@terabytesoftw)
+- Bug #27: Refactor `CSSClassProvider` test cases for improved clarity and coverage (@terabytesoftw)
