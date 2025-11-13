@@ -10,27 +10,20 @@ use yii\ui\helpers\Attributes;
 use yii\ui\tests\providers\AttributesProvider;
 
 /**
- * Test suite for {@see Attributes} class functionality and behavior.
+ * Test suite for {@see Attributes} helper functionality and behavior.
  *
- * Verifies HTML attribute rendering capabilities including array, boolean, enum, and data attribute handling, as well
- * as special character escaping and attribute ordering.
+ * Validates the rendering and manipulation of HTML attributes according to the HTML Living Standard specification.
  *
- * These tests ensure that attribute rendering features work correctly under various scenarios and maintain consistent
- * behavior after code changes.
- *
- * The tests validate scenarios such as array-to-string conversion, boolean attribute handling, data attribute
- * expansion, enum attribute support, and special character encoding, which are essential for generating valid and
- * secure HTML output in the framework.
+ * Ensures correct handling, ordering, encoding, and validation of HTML attributes in widget and tag rendering,
+ * supporting array values, boolean attributes, data/ARIA expansion, and XSS prevention for secure attribute output.
  *
  * Test coverage.
- * - Array to string conversion for class, style, and data attributes.
- * - Attribute ordering and skipping of invalid attribute names.
- * - Boolean attribute rendering and omission of `false`/`null` values.
- * - Data attribute expansion and nested array sanitization.
- * - Enum attribute support for PHP 8.1 enum values.
- * - Malicious value handling and XSS prevention.
- * - Special character encoding for HTML safety.
- * - Style attribute formatting and normalization.
+ * - Accurate rendering of HTML attributes with proper ordering.
+ * - Correct handling of empty and null values.
+ * - Data provider-driven validation for edge cases and expected behaviors.
+ * - Enum attribute rendering and type conversion.
+ * - Sanitization of malicious values to prevent XSS vulnerabilities.
+ * - Style attribute formatting and rendering.
  *
  * {@see AttributesProvider} for test case data providers.
  *
@@ -41,7 +34,7 @@ use yii\ui\tests\providers\AttributesProvider;
 final class AttributesTest extends TestCase
 {
     /**
-     * @param array<string, mixed> $attributes
+     * @phpstan-param mixed[] $attributes
      */
     #[DataProviderExternal(AttributesProvider::class, 'attributeOrdering')]
     public function testRenderAttributeOrdering(string $expected, array $attributes): void
@@ -54,7 +47,7 @@ final class AttributesTest extends TestCase
     }
 
     /**
-     * @param array<string, mixed> $attributes
+     * @phpstan-param mixed[] $attributes
      */
     #[DataProviderExternal(AttributesProvider::class, 'emptyAndNullValues')]
     public function testRenderEmptyAndNullValues(string $expected, array $attributes): void
@@ -62,12 +55,12 @@ final class AttributesTest extends TestCase
         self::assertSame(
             $expected,
             Attributes::render($attributes),
-            'Should handle empty and null values as expected for each data set.',
+            "Should handle empty and 'null' values as expected for each data set.",
         );
     }
 
     /**
-     * @param array<string, mixed> $attributes
+     * @phpstan-param mixed[] $attributes
      */
     #[DataProviderExternal(AttributesProvider::class, 'enumAttribute')]
     public function testRenderEnumAttributes(string $expected, array $attributes): void
@@ -80,7 +73,7 @@ final class AttributesTest extends TestCase
     }
 
     /**
-     * @param array<string, mixed> $attributes
+     * @phpstan-param mixed[] $attributes
      */
     #[DataProviderExternal(AttributesProvider::class, 'maliciousValues')]
     public function testRenderMaliciousValues(string $expected, array $attributes): void
@@ -93,7 +86,7 @@ final class AttributesTest extends TestCase
     }
 
     /**
-     * @param array<string, mixed> $attributes
+     * @phpstan-param mixed[] $attributes
      */
     #[DataProviderExternal(AttributesProvider::class, 'styleAttributes')]
     public function testRenderStyleAttributes(string $expected, array $attributes): void
@@ -106,7 +99,7 @@ final class AttributesTest extends TestCase
     }
 
     /**
-     * @param array<string, mixed> $attributes
+     * @phpstan-param mixed[] $attributes
      */
     #[DataProviderExternal(AttributesProvider::class, 'renderTagAttributes')]
     public function testRenderTagAttributes(string $expected, array $attributes): void

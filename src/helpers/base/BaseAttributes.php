@@ -13,6 +13,7 @@ use function gettype;
 use function implode;
 use function is_array;
 use function is_bool;
+use function is_numeric;
 use function is_string;
 use function preg_match;
 use function rtrim;
@@ -142,7 +143,7 @@ abstract class BaseAttributes
      * // return class="form-control" name="username" type="text" required data-info='{"role":"user","id":42}'
      * ```
      *
-     * @phpstan-param array<string, mixed> $attributes
+     * @phpstan-param mixed[] $attributes
      */
     public static function render(array $attributes): string
     {
@@ -343,7 +344,7 @@ abstract class BaseAttributes
      *
      * @return string Complete HTML attributes string, ready for tag output.
      *
-     * @phpstan-param array<string, mixed> $attributes
+     * @phpstan-param mixed[] $attributes
      */
     private static function renderInternal(array $attributes): string
     {
@@ -352,7 +353,7 @@ abstract class BaseAttributes
         $sorted = self::sortAttributes($attributes);
 
         foreach ($sorted as $name => $values) {
-            if ($values !== '' && $values !== null && self::isValidAttributeName($name)) {
+            if (is_string($name) && $values !== '' && $values !== null && self::isValidAttributeName($name)) {
                 $html .= self::renderAttributes($name, $values);
             }
         }
@@ -447,8 +448,8 @@ abstract class BaseAttributes
      *
      * @return array Sorted an associative array of attributes, ready for rendering.
      *
-     * @phpstan-param array<string, mixed> $attributes
-     * @phpstan-return array<string, mixed>
+     * @phpstan-param mixed[] $attributes
+     * @phpstan-return mixed[]
      */
     private static function sortAttributes(array $attributes): array
     {
