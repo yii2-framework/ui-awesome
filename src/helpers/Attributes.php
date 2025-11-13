@@ -24,9 +24,8 @@ namespace yii\ui\helpers;
  * The API is intended for use in advanced HTML generation workflows, including asset managers, tag widgets, and
  * server-side rendering engines, where attribute correctness and security are critical.
  *
- * {@see base\BaseAttributes} for the base implementation.
- *
  * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
+ * {@see base\BaseAttributes} for the base implementation.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.

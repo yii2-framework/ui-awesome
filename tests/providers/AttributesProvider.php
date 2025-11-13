@@ -7,24 +7,22 @@ namespace yii\ui\tests\providers;
 use yii\ui\tests\support\stub\enum\{ButtonSize, Columns, Theme};
 
 /**
- * Data provider for {@see \yii\ui\tests\helpers\AttributesTest} class.
+ * Data provider for various attribute rendering scenarios.
  *
- * Designed to ensure HTML attribute rendering logic correctly processes all supported attribute types and edge cases,
- * providing comprehensive test data for attribute expansion, enum handling, and special value scenarios.
+ * Supplies comprehensive test data for validating the handling of HTML attributes in widget and tag rendering,
+ * ensuring standards-compliant assignment, propagation, and override behavior according to the HTML specification.
  *
- * The test data covers real-world HTML attribute rendering scenarios and edge cases to maintain consistent output
- * across different attribute configurations, ensuring HTML tags are rendered securely and predictably throughout the
- * application.
+ * The test data covers real-world scenarios for appending, overriding, and removing attributes, supporting both
+ * explicit `string` values and `null` for attribute removal, to maintain consistent output across different rendering
+ * configurations.
  *
- * The provider organizes test cases with descriptive names for quick identification of failure cases during test
+ * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
- * Key features.
- * - Attribute expansion for data, aria, and custom prefixes.
- * - Comprehensive test cases for array, boolean, enum, and special attribute handling.
- * - Edge case validation for empty, `null`, and special character values.
- * - Enum integration in class, data, and style attributes.
- * - Named test data sets for clear failure identification.
+ * Key features:
+ * - Ensures correct propagation, appending, and override of HTML attributes in element rendering.
+ * - Named test data sets for precise failure identification.
+ * - Validation of empty `string`, `null`, and standard string values for attributes.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -38,9 +36,9 @@ final class AttributesProvider
      *
      * Each test case includes the input attributes and the expected rendered output.
      *
-     * @return array<string, array{string, array<string, mixed>}> Test data for attribute ordering scenarios.
+     * @return array Test data for attribute ordering scenarios.
      *
-     * @phpstan-return array<string, array{string, array<string, mixed>}>
+     * @phpstan-return array<string, array{string, mixed[]}>
      */
     public static function attributeOrdering(): array
     {
@@ -66,9 +64,9 @@ final class AttributesProvider
      *
      * Each test case includes the input attributes and the expected rendered output.
      *
-     * @return array<string, array{string, array<string, mixed>}> Test data for empty/`null` scenarios.
+     * @return array Test data for empty/`null` scenarios.
      *
-     * @phpstan-return array<string, array{string, array<string, mixed>}>
+     * @phpstan-return array<string, array{string, mixed[]}>
      */
     public static function emptyAndNullValues(): array
     {
@@ -107,9 +105,9 @@ final class AttributesProvider
      *
      * Each test case includes the input attributes and the expected rendered output.
      *
-     * @return array<string, array{string, array<string, mixed>}> Test data for enum attribute scenarios.
+     * @return array Test data for enum attribute scenarios.
      *
-     * @phpstan-return array<string, array{string, array<string, mixed>}>
+     * @phpstan-return array<string, array{string, mixed[]}>
      */
     public static function enumAttribute(): array
     {
@@ -125,11 +123,15 @@ final class AttributesProvider
             ],
             'enum in data attribute' => [
                 ' data-theme="dark"',
-                ['data' => ['theme' => Theme::DARK]],
+                [
+                    'data' => ['theme' => Theme::DARK],
+                ],
             ],
             'enum in style' => [
                 ' style="width: lg;"',
-                ['style' => ['width' => ButtonSize::LARGE]],
+                [
+                    'style' => ['width' => ButtonSize::LARGE],
+                ],
             ],
             'mixed values' => [
                 ' class="sm primary" data-theme="light"',
@@ -170,9 +172,9 @@ final class AttributesProvider
      *
      * Each test case includes the input attributes and the expected rendered output.
      *
-     * @return array<string, array{string, array<string, mixed>}> Test data for security scenarios.
+     * @return array Test data for security scenarios.
      *
-     * @phpstan-return array<string, array{string, array<string, mixed>}>
+     * @phpstan-return array<string, array{string, mixed[]}>
      */
     public static function maliciousValues(): array
     {
@@ -188,11 +190,17 @@ final class AttributesProvider
             ],
             'malicious data attribute key' => [
                 '',
-                ['data' => ['key" onclick="alert(1)"' => 'value']],
+                [
+                    'data' => ['key" onclick="alert(1)"' => 'value'],
+                ],
             ],
             'nested array with script tag' => [
                 ' data-key=\'{"sub":"\u0026lt;script\u0026gt;"}\'',
-                ['data' => ['key' => ['sub' => '<script>']]],
+                [
+                    'data' => [
+                        'key' => ['sub' => '<script>'],
+                    ],
+                ],
             ],
         ];
     }
@@ -205,9 +213,9 @@ final class AttributesProvider
      *
      * Each test case includes the input attributes and the expected rendered output.
      *
-     * @return array<string, array{string, array<string, mixed>}> Test data for attribute rendering scenarios.
+     * @return array Test data for attribute rendering scenarios.
      *
-     * @phpstan-return array<string, array{string, array<string, mixed>}>
+     * @phpstan-return array<string, array{string, mixed[]}>
      */
     public static function renderTagAttributes(): array
     {
@@ -237,7 +245,10 @@ final class AttributesProvider
                     'style' => [],
                     'data' => [
                         'a' => 0,
-                        'b' => [1, 2],
+                        'b' => [
+                            1,
+                            2,
+                        ],
                         'c' => null,
                         'd' => 99.99,
                     ],
@@ -260,10 +271,19 @@ final class AttributesProvider
                 ' class="a b" id="x" data-a="1" data-b="2" style="width: 100px;" any=\'[1,2]\'',
                 [
                     'id' => 'x',
-                    'class' => ['a', 'b'],
-                    'data' => ['a' => 1, 'b' => 2],
+                    'class' => [
+                        'a',
+                        'b',
+                    ],
+                    'data' => [
+                        'a' => 1,
+                        'b' => 2,
+                    ],
                     'style' => ['width' => '100px'],
-                    'any' => [1, 2],
+                    'any' => [
+                        1,
+                        2,
+                    ],
                 ],
             ],
             'numeric and string attributes' => [
@@ -277,28 +297,40 @@ final class AttributesProvider
                 ' src="xyz" aria-a="1" aria-b="c"',
                 [
                     'src' => 'xyz',
-                    'aria' => ['a' => 1, 'b' => 'c'],
+                    'aria' => [
+                        'a' => 1,
+                        'b' => 'c',
+                    ],
                 ],
             ],
             'src and data attributes' => [
                 ' src="xyz" data-a="1" data-b="c"',
                 [
                     'src' => 'xyz',
-                    'data' => ['a' => 1, 'b' => 'c'],
+                    'data' => [
+                        'a' => 1,
+                        'b' => 'c',
+                    ],
                 ],
             ],
             'src and data-ng attributes' => [
                 ' src="xyz" data-ng-a="1" data-ng-b="c"',
                 [
                     'src' => 'xyz',
-                    'data-ng' => ['a' => 1, 'b' => 'c'],
+                    'data-ng' => [
+                        'a' => 1,
+                        'b' => 'c',
+                    ],
                 ],
             ],
             'src and ng attributes' => [
                 ' src="xyz" ng-a="1" ng-b="c"',
                 [
                     'src' => 'xyz',
-                    'ng' => ['a' => 1, 'b' => 'c'],
+                    'ng' => [
+                        'a' => 1,
+                        'b' => 'c',
+                    ],
                 ],
             ],
         ];
@@ -308,13 +340,13 @@ final class AttributesProvider
      * Provides test cases for style attribute rendering scenarios.
      *
      * Supplies test data for validating style attribute handling with various value types including arrays, booleans,
-     * nested structures, null values, and special characters.
+     * nested structures, `null` values, and special characters.
      *
      * Each test case includes the input attributes and the expected rendered output.
      *
-     * @return array<string, array{string, array<string, mixed>}> Test data for style attribute scenarios.
+     * @return array Test data for style attribute scenarios.
      *
-     * @phpstan-return array<string, array{string, array<string, mixed>}>
+     * @phpstan-return array<string, array{string, mixed[]}>
      */
     public static function styleAttributes(): array
     {
@@ -341,7 +373,9 @@ final class AttributesProvider
             ],
             'style with boolean value' => [
                 ' style="flag: true;"',
-                ['style' => ['flag' => true]],
+                [
+                    'style' => ['flag' => true],
+                ],
             ],
             'style with float value' => [
                 ' style="opacity: 0.5; font-size: 1.5;"',
@@ -357,20 +391,22 @@ final class AttributesProvider
                 [
                     'style' => [
                         'config' => [
-                            'nested' => [
-                                'key' => 'value',
-                            ],
+                            'nested' => ['key' => 'value'],
                         ],
                     ],
                 ],
             ],
             'style with null value' => [
                 '',
-                ['style' => ['nullable' => null]],
+                [
+                    'style' => ['nullable' => null],
+                ],
             ],
             'style with special characters' => [
                 ' style="font-family: Times &amp; Serif;"',
-                ['style' => ['font-family' => 'Times & Serif']],
+                [
+                    'style' => ['font-family' => 'Times & Serif'],
+                ],
             ],
         ];
     }
