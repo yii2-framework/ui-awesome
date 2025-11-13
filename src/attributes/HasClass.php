@@ -20,7 +20,7 @@ use yii\ui\helpers\CSSClass;
  * - Standards-compliant handling of the HTML `class` global attribute.
  *
  * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
- * @property array $attributes HTML attributes array used by the implementing class.*
+ * @property array $attributes HTML attributes array used by the implementing class.
  * @phpstan-property mixed[] $attributes
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
