@@ -12,13 +12,13 @@ namespace yii\ui\tests\providers;
  *
  * The test data covers real-world scenarios for encoding HTML content and attribute values, supporting various input
  * types such as strings, integers, floats, and `null`. It ensures consistent behavior for double encoding and special
- * character handling across different rendering configurations.
+ * character handling across different encoding modes.
  *
  * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
  * Key features:
- * - Ensures correct encoding of HTML entities, including special characters and Unicode sequences.
+ * - Covers HTML entity encoding, including special characters and Unicode sequences.
  * - Named test data sets for precise failure identification.
  * - Validation of double encoding behavior and handling of mixed input types.
  *
