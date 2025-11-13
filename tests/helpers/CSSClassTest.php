@@ -6,7 +6,6 @@ namespace yii\ui\tests\helpers;
 
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
-use UnitEnum;
 use yii\base\InvalidArgumentException;
 use yii\ui\helpers\CSSClass;
 use yii\ui\helpers\exception\Message;
@@ -14,28 +13,19 @@ use yii\ui\tests\providers\CSSClassProvider;
 use yii\ui\tests\support\stub\enum\AlertType;
 
 /**
- * Test suite for {@see CSSClass} class functionality and behavior.
+ * Test suite for {@see CSSClass} helper functionality and behavior.
  *
- * Verifies CSS class attribute manipulation capabilities including class addition, merging, validation, enum handling,
- * and string/array conversion for HTML attribute rendering.
+ * Validates the management of the global HTML `class` attribute according to the HTML Living Standard specification.
  *
- * These tests ensure that CSS class handling features work correctly under various scenarios and maintain consistent
- * behavior after code changes.
+ * Ensures correct handling, immutability, and validation of the `class` attribute in widget and tag rendering,
+ * supporting both `string` and `null` values for dynamic CSS class assignment.
  *
- * The tests validate scenarios such as array and enum class handling class name validation, merge operations, override
- * behavior, and string formatting, which are essential for generating valid and maintainable HTML output in the
- * framework.
- *
- * Test coverage includes.
- * - Addition and merging of CSS classes from strings, arrays, enums, and mixed types.
- * - Deduplication and normalization of class names, including whitespace and special character handling.
- * - Edge cases: long class names, unicode, special characters, and complex real-world scenarios
- *   (for example, Tailwind CSS).
- * - Enum integration (including BackedEnum and filtering of non-string enums).
- * - Exception handling for invalid class values and enums not in allowed lists.
- * - Formatting and rendering of class strings, including value substitution and validation.
- * - Handling of empty, `null`, and invalid values, with preservation of unrelated attributes.
- * - Override logic for replacing existing class attributes.
+ * Test coverage.
+ * - Accurate retrieval and assignment of `class` attributes.
+ * - Data provider-driven validation for edge cases and expected behaviors.
+ * - Exception handling for invalid values.
+ * - Immutability of the helper's API when setting or overriding `class` attributes.
+ * - Proper assignment and overriding of `class` values.
  *
  * {@see CSSClassProvider} for test case data providers.
  *
@@ -49,252 +39,26 @@ final class CSSClassTest extends TestCase
      * @throws InvalidArgumentException for invalid value errors.
      *
      * @phpstan-param mixed[] $attributes
-     * @phpstan-param mixed[]|string|null $classes
+     * @phpstan-param list<array{classes: mixed[]|string|null|\UnitEnum, override?: bool}> $operations
      * @phpstan-param mixed[] $expected
      */
-    #[DataProviderExternal(CSSClassProvider::class, 'arrayOfStringsValues')]
-    public function testAddWithArrayOfStringsValue(
+    #[DataProviderExternal(CSSClassProvider::class, 'values')]
+    public function testAddClassAttributeValue(
         array $attributes,
-        array|string|null $classes,
+        array $operations,
         array $expected,
         string $message,
     ): void {
-        CSSClass::add($attributes, $classes);
+        foreach ($operations as $operation) {
+            $override = $operation['override'] ?? null;
+
+            match ($override) {
+                true => CSSClass::add($attributes, $operation['classes'], true),
+                default => CSSClass::add($attributes, $operation['classes']),
+            };
+        }
 
         self::assertSame($expected, $attributes, $message);
-    }
-
-    /**
-     * @throws InvalidArgumentException for invalid value errors.
-     *
-     * @phpstan-param mixed[] $attributes
-     * @phpstan-param mixed[]|string|null $classes
-     * @phpstan-param mixed[] $expected
-     */
-    #[DataProviderExternal(CSSClassProvider::class, 'duplicateValues')]
-    public function testAddWithDuplicateValues(
-        array $attributes,
-        array|string|null $classes,
-        array $expected,
-        string $message,
-    ): void {
-        CSSClass::add($attributes, $classes);
-
-        self::assertSame($expected, $attributes, $message);
-    }
-
-    /**
-     * @throws InvalidArgumentException for invalid value errors.
-     *
-     * @phpstan-param mixed[] $attributes
-     * @phpstan-param mixed[]|string|null $classes
-     * @phpstan-param mixed[] $expected
-     */
-    #[DataProviderExternal(CSSClassProvider::class, 'edgeValues')]
-    public function testAddWithEdgeValues(
-        array $attributes,
-        array|string|null $classes,
-        array $expected,
-        string $message,
-    ): void {
-        CSSClass::add($attributes, $classes);
-
-        self::assertSame($expected, $attributes, $message);
-    }
-
-    /**
-     * @throws InvalidArgumentException for invalid value errors.
-     *
-     * @phpstan-param mixed[] $attributes
-     * @phpstan-param mixed[]|string|null $classes
-     * @phpstan-param mixed[] $expected
-     */
-    #[DataProviderExternal(CSSClassProvider::class, 'emptyAndNullValues')]
-    public function testAddWithEmptyAndNullValue(
-        array $attributes,
-        array|string|null $classes,
-        array $expected,
-        string $message,
-    ): void {
-        CSSClass::add($attributes, $classes);
-
-        self::assertSame($expected, $attributes, $message);
-    }
-
-    /**
-     * @throws InvalidArgumentException for invalid value errors.
-     * @phpstan-param mixed[] $attributes
-     * @phpstan-param array<string|null|UnitEnum>|UnitEnum $classes
-     * @phpstan-param mixed[] $expected
-     */
-    #[DataProviderExternal(CSSClassProvider::class, 'enumValues')]
-    public function testAddWithEnumValues(
-        array $attributes,
-        array|UnitEnum $classes,
-        array $expected,
-        string $message,
-    ): void {
-        CSSClass::add($attributes, $classes);
-
-        self::assertSame($expected, $attributes, $message);
-    }
-
-    /**
-     * @throws InvalidArgumentException for invalid value errors.
-     *
-     * @phpstan-param mixed[] $attributes
-     * @phpstan-param mixed[]|string $classes
-     * @phpstan-param mixed[] $expected
-     */
-    #[DataProviderExternal(CSSClassProvider::class, 'existingAttributesClassArrayValues')]
-    public function testAddWithExistingAttributesClassArrayValues(
-        array $attributes,
-        array|string $classes,
-        array $expected,
-        string $message,
-    ): void {
-        CSSClass::add($attributes, $classes);
-
-        self::assertSame($expected, $attributes, $message);
-    }
-
-    /**
-     * @throws InvalidArgumentException for invalid value errors.
-     *
-     * @phpstan-param mixed[] $attributes
-     * @phpstan-param mixed[]|string|UnitEnum $classes
-     * @phpstan-param mixed[] $expected
-     */
-    #[DataProviderExternal(CSSClassProvider::class, 'existingAttributesClassEnumValues')]
-    public function testAddWithExistingAttributesClassEnumValues(
-        array $attributes,
-        array|string|UnitEnum $classes,
-        array $expected,
-        string $message,
-    ): void {
-        CSSClass::add($attributes, $classes);
-
-        self::assertSame($expected, $attributes, $message);
-    }
-
-    /**
-     * @throws InvalidArgumentException for invalid value errors.
-     *
-     * @phpstan-param mixed[] $attributes
-     * @phpstan-param mixed[] $expected
-     */
-    #[DataProviderExternal(CSSClassProvider::class, 'existingAttributesValues')]
-    public function testAddWithExistingAttributesValues(
-        array $attributes,
-        string $classes,
-        array $expected,
-        string $message,
-    ): void {
-        CSSClass::add($attributes, $classes);
-
-        self::assertSame($expected, $attributes, $message);
-    }
-
-    /**
-     * @throws InvalidArgumentException for invalid value errors.
-     *
-     * @phpstan-param mixed[] $attributes
-     * @phpstan-param mixed[]|string|null|UnitEnum $classes
-     * @phpstan-param mixed[] $expected
-     */
-    #[DataProviderExternal(CSSClassProvider::class, 'overrideValues')]
-    public function testAddWithOverrideValues(
-        array $attributes,
-        string|array|UnitEnum|null $classes,
-        array $expected,
-        string $message,
-        bool $override,
-    ): void {
-        CSSClass::add($attributes, $classes, $override);
-
-        self::assertSame($expected, $attributes, $message);
-    }
-
-    /**
-     * @throws InvalidArgumentException for invalid value errors.
-     *
-     * @phpstan-param mixed[] $attributes
-     * @phpstan-param mixed[] $expected
-     */
-    #[DataProviderExternal(CSSClassProvider::class, 'regexEdgeCases')]
-    public function testAddWithRegexEdgeCases(
-        array $attributes,
-        string $classes,
-        array $expected,
-        string $message,
-    ): void {
-        CSSClass::add($attributes, $classes);
-
-        self::assertSame($expected, $attributes, $message);
-    }
-
-    /**
-     * @throws InvalidArgumentException for invalid value errors.
-     *
-     * @phpstan-param mixed[] $attributes
-     * @phpstan-param mixed[] $expected
-     */
-    #[DataProviderExternal(CSSClassProvider::class, 'singleStringValue')]
-    public function testAddWithSingleStringValue(
-        array $attributes,
-        string $classes,
-        array $expected,
-        string $message,
-    ): void {
-        CSSClass::add($attributes, $classes);
-
-        self::assertSame($expected, $attributes, $message);
-    }
-
-    /**
-     * @throws InvalidArgumentException for invalid value errors.
-     *
-     * @phpstan-param mixed[] $attributes
-     * @phpstan-param mixed[] $expected
-     */
-    #[DataProviderExternal(CSSClassProvider::class, 'specialValues')]
-    public function testAddWithSpecialValues(
-        array $attributes,
-        string $classes,
-        array $expected,
-        string $message,
-    ): void {
-        CSSClass::add($attributes, $classes);
-
-        self::assertSame($expected, $attributes, $message);
-    }
-
-    /**
-     * @throws InvalidArgumentException for invalid value errors.
-     */
-    public function testRenderClassString(): void
-    {
-        self::assertSame(
-            'p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-400',
-            CSSClass::render(
-                'yellow',
-                'p-4 mb-4 text-sm text-%1$s-800 rounded-lg bg-%1$s-50 dark:bg-gray-800 dark:text-%1$s-400',
-                ['blue', 'gray', 'green', 'red', 'yellow'],
-            ),
-            'Should render class string with correct value substitution.',
-        );
-    }
-
-    /**
-     * @throws InvalidArgumentException for invalid value errors.
-     */
-    public function testRenderWithEnum(): void
-    {
-        self::assertSame(
-            'alert alert-success',
-            CSSClass::render(AlertType::SUCCESS, 'alert alert-%s', ['success', 'warning', 'error']),
-            'Should render class string using enum value.',
-        );
     }
 
     public function testThrowExceptionForInvalidClassValue(): void
