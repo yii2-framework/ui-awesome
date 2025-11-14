@@ -52,7 +52,7 @@ return ECSConfig::configure()
     ->withConfiguredRule(
         PhpdocTypesOrderFixer::class,
         [
-            'sort_algorithm' => 'alpha',
+            'sort_algorithm' => 'none',
             'null_adjustment' => 'always_last',
         ],
     )
