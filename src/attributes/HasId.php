@@ -37,6 +37,11 @@ trait HasId
      * @return static New instance with the updated `id` attribute.
      *
      * @link https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute
+     *
+     * Usage example:
+     * ```php
+     * $element->id('unique-element-id'); // sets the id attribute to 'unique-element-id'
+     * $element->id(null); // unsets the id attribute
      */
     public function id(string|null $value): static
     {
