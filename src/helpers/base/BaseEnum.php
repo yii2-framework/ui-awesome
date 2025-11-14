@@ -104,7 +104,7 @@ abstract class BaseEnum
             return $value instanceof BackedEnum ? $value->value : $value->name;
         }
 
-        if (is_array($value) === false && is_scalar( $value) === false && $value !== null) {
+        if (is_array($value) === false && is_scalar($value) === false && $value !== null) {
             throw new InvalidArgumentException(
                 Message::VALUE_SHOULD_BE_ARRAY_SCALAR_NULL_ENUM->getMessage(gettype($value)),
             );

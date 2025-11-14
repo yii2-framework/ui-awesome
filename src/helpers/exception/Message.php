@@ -51,7 +51,7 @@ enum Message: string
      * Format: "Value should be an 'array', 'scalar', 'null', or 'enum' types, '%s' given."
      */
     case VALUE_SHOULD_BE_ARRAY_SCALAR_NULL_ENUM = "Value should be an 'array', 'scalar', 'null', or 'enum' types, '%s' " .
-        'given.';
+    'given.';
 
     /**
      * Returns the formatted message string for the error case.
