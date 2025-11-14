@@ -51,6 +51,8 @@ abstract class BaseEnum
      *
      * @param array $values Array of enum instances or mixed values to normalize.
      *
+     * @throws InvalidArgumentException if any value is not an enum, scalar, array, or `null`.
+     *
      * @return array Array of normalized scalar values, names, or original values for non-enums.
      *
      * Usage example:
