@@ -7,7 +7,7 @@ namespace yii\ui\helpers\base;
 use BackedEnum;
 use UnitEnum;
 use yii\base\InvalidArgumentException;
-use yii\ui\helpers\exception\Message;
+use yii\ui\exception\Message;
 
 use function array_map;
 use function gettype;
@@ -108,7 +108,7 @@ abstract class BaseEnum
 
         if (is_array($value) === false && is_scalar($value) === false && $value !== null) {
             throw new InvalidArgumentException(
-                Message::VALUE_SHOULD_BE_ARRAY_SCALAR_NULL_ENUM->getMessage(gettype($value)),
+                Message::HELPER_VALUE_SHOULD_BE_ARRAY_SCALAR_NULL_ENUM->getMessage(gettype($value)),
             );
         }
 

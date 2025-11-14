@@ -92,7 +92,7 @@ abstract class BaseArrays extends BaseArrayHelper
 
         if ($value === '' && $throw) {
             throw new InvalidArgumentException(
-                Message::VALUE_CANNOT_BE_EMPTY->getMessage(
+                Message::HELPER_VALUE_CANNOT_BE_EMPTY->getMessage(
                     $attribute,
                     implode('\', \'', $normalizedAllowedValues),
                 ),
@@ -107,7 +107,7 @@ abstract class BaseArrays extends BaseArrayHelper
 
         if ($throw && (is_string($normalizedValue) || is_int($normalizedValue))) {
             throw new InvalidArgumentException(
-                Message::VALUE_NOT_IN_LIST->getMessage(
+                Message::HELPER_VALUE_NOT_IN_LIST->getMessage(
                     $normalizedValue,
                     $attribute,
                     implode('\', \'', $normalizedAllowedValues),

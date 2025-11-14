@@ -8,8 +8,8 @@ use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
 use UnitEnum;
 use yii\base\InvalidArgumentException;
+use yii\ui\exception\Message;
 use yii\ui\helpers\Arrays;
-use yii\ui\helpers\exception\Message;
 use yii\ui\tests\providers\ArraysProvider;
 use yii\ui\tests\support\stub\enum\{Status, Theme};
 
@@ -92,7 +92,7 @@ final class ArraysTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            Message::VALUE_CANNOT_BE_EMPTY->getMessage(
+            Message::HELPER_VALUE_CANNOT_BE_EMPTY->getMessage(
                 'attribute',
                 implode('\', \'', ['a', 'b', 'c']),
             ),
@@ -108,7 +108,7 @@ final class ArraysTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            Message::VALUE_NOT_IN_LIST->getMessage(
+            Message::HELPER_VALUE_NOT_IN_LIST->getMessage(
                 'active',
                 'attribute',
                 implode('\', \'', ['DARK', 'LIGHT']),
@@ -125,7 +125,7 @@ final class ArraysTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            Message::VALUE_NOT_IN_LIST->getMessage(
+            Message::HELPER_VALUE_NOT_IN_LIST->getMessage(
                 '1',
                 'attribute',
                 implode('\', \'', ['a', 'b', 'c']),
