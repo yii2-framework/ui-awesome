@@ -112,7 +112,7 @@ abstract class BaseCSSClass
      * ```
      *
      * @phpstan-param mixed[] $attributes
-     * @phpstan-param mixed[]|string|null|UnitEnum $classes
+     * @phpstan-param mixed[]|string|UnitEnum|null $classes
      */
     public static function add(array &$attributes, array|string|null|UnitEnum $classes, bool $override = false): void
     {
@@ -277,7 +277,7 @@ abstract class BaseCSSClass
      *
      * @return array Normalized and validated array of CSS class names, ready for use in HTML attributes.
      *
-     * @phpstan-param mixed[]|string|null|UnitEnum $classes
+     * @phpstan-param mixed[]|string|UnitEnum|null $classes
      * @phpstan-return list<string>
      */
     private static function normalizeClasses(array|string|null|UnitEnum $classes): array
