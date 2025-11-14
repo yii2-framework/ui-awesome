@@ -8,8 +8,8 @@ use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use yii\base\InvalidArgumentException;
+use yii\ui\exception\Message;
 use yii\ui\helpers\Enum;
-use yii\ui\helpers\exception\Message;
 use yii\ui\tests\providers\EnumProvider;
 
 /**
@@ -56,7 +56,9 @@ final class EnumTest extends TestCase
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            Message::VALUE_SHOULD_BE_ARRAY_SCALAR_NULL_ENUM->getMessage(gettype($value)),
+            Message::VALUE_SHOULD_BE_ARRAY_SCALAR_NULL_ENUM->getMessage(
+                gettype($value),
+            ),
         );
 
         Enum::normalizeValue($value);

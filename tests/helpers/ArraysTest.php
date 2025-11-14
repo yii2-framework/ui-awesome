@@ -8,8 +8,8 @@ use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
 use UnitEnum;
 use yii\base\InvalidArgumentException;
+use yii\ui\exception\Message;
 use yii\ui\helpers\Arrays;
-use yii\ui\helpers\exception\Message;
 use yii\ui\tests\providers\ArraysProvider;
 use yii\ui\tests\support\stub\enum\{Status, Theme};
 

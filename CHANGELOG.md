@@ -35,3 +35,4 @@
 - Bug #31: Improve documentation in `EncodeTest` and `EncodeProvider` class for clarity and consistency (@terabytesoftw)
 - Bug #32: Improve `BaseEnum` class with improved normalization and validation methods (@terabytesoftw)
 - Bug #33: Update phpstan parameter type for `inList` in `BaseArrays` class method to improve type safety (@terabytesoftw)
+- Bug #34: Rename message cases for clarity and add new error case for invalid types in `Message` enum class (@terabytesoftw)

@@ -7,8 +7,8 @@ namespace yii\ui\tests\helpers;
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
 use yii\base\InvalidArgumentException;
+use yii\ui\exception\Message;
 use yii\ui\helpers\CSSClass;
-use yii\ui\helpers\exception\Message;
 use yii\ui\tests\providers\CSSClassProvider;
 use yii\ui\tests\support\stub\enum\AlertType;
 
@@ -83,7 +83,11 @@ final class CSSClassTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            Message::VALUE_NOT_IN_LIST->getMessage('info', 'class', implode('\', \'', ['success', 'warning', 'error'])),
+            Message::VALUE_NOT_IN_LIST->getMessage(
+                'info',
+                'class',
+                implode('\', \'', ['success', 'warning', 'error']),
+            ),
         );
 
         CSSClass::render(AlertType::INFO, 'alert alert-%s', ['success', 'warning', 'error']);

@@ -7,7 +7,7 @@ namespace yii\ui\helpers\base;
 use BackedEnum;
 use UnitEnum;
 use yii\base\InvalidArgumentException;
-use yii\ui\helpers\exception\Message;
+use yii\ui\exception\Message;
 
 use function array_map;
 use function gettype;
