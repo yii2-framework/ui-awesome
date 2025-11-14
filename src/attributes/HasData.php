@@ -49,6 +49,16 @@ trait HasData
      *
      * @link https://html.spec.whatwg.org/multipage/dom.html#attr-data-*
      *
+     * Usage example:
+     * ```php
+     * $element->dataAttributes(
+     *     [
+     *         'role' => 'admin',
+     *         'id' => static fn(): string => uniqid(),
+     *     ],
+     * ); // sets data-role and data-id attributes
+     * ```
+     *
      * @phpstan-param mixed[] $values
      */
     public function dataAttributes(array $values): static

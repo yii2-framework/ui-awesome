@@ -38,3 +38,4 @@
 - Bug #34: Rename message cases for clarity and add new error case for invalid types in `Message` enum class (@terabytesoftw)
 - Bug #35: Add `PhpdocTypesOrderFixer` class configuration to `ECS` for improved PHPDoc type ordering (@terabytesoftw)
 - Bug #36: Update `class` method in `HasClass` trait to accept `UnitEnum` and enhance documentation with usage examples (@terabytesoftw)
+- Bug #37: Improve documentation for `dataAttributes` method in `HasData` trait with usage example (@terabytesoftw)
