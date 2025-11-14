@@ -34,3 +34,4 @@
 - Bug #30: Improve documentation in `ArraysTest` and `ArraysProvider` class for clarity and consistency (@terabytesoftw)
 - Bug #31: Improve documentation in `EncodeTest` and `EncodeProvider` class for clarity and consistency (@terabytesoftw)
 - Bug #32: Improve `BaseEnum` class with improved normalization and validation methods (@terabytesoftw)
+- Bug #33: Update phpstan parameter type for `inList` in `BaseArrays` class method to improve type safety (@terabytesoftw)

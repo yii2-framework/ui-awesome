@@ -80,7 +80,7 @@ abstract class BaseArrays extends BaseArrayHelper
      * Arrays::inList('status', Status::ACTIVE, Status::cases(), true);
      * ```
      *
-     * @phpstan-param list<UnitEnum|scalar|null> $allowed
+     * @phpstan-param mixed[] $allowed
      */
     public static function inList(
         string $attribute,
