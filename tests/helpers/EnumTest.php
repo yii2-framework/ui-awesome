@@ -4,32 +4,30 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\helpers;
 
-use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
+use stdClass;
+use yii\base\InvalidArgumentException;
 use yii\ui\helpers\Enum;
-use yii\ui\tests\support\stub\enum\Status;
-use yii\ui\tests\support\stub\enum\Theme;
+use yii\ui\helpers\exception\Message;
+use yii\ui\tests\providers\EnumProvider;
+
 
 /**
- * Test suite for {@see Enum} utility class functionality and behavior.
+ * Test suite for {@see Enum} helper functionality and behavior.
  *
- * Verifies the enum utility component's ability to normalize enum values and arrays, supporting both BackedEnum and
- * UnitEnum, and ensuring the correct scalar conversion and pass-through for mixed input types.
+ * Validates the normalization and validation of enum values and arrays according to the PHP language specification.
  *
- * These tests ensure enum normalization features work correctly under different conditions and maintain consistent
- * behavior after code changes.
+ * Ensures correct handling, immutability, and validation of enum operations, supporting both scalar and array types,
+ * as well as exception handling for invalid value types.
  *
- * The tests validate normalization of arrays and single values, handling of BackedEnum and UnitEnum, and pass-through
- * of scalars, which are essential for robust enum processing and type safety in the framework.
+ * Test coverage:
+ * - Accurate normalization of arrays containing enums and scalars.
+ * - Compatibility with PHP enums and scalar types.
+ * - Exception handling for invalid value types.
+ * - Validation of values within a predefined list.
  *
- * Test coverage.
- * - Consistent conversion of enum values to their scalar representation.
- * - Normalization of arrays containing backed enums, unit enums, and mixed values.
- * - Scalar value pass-through for non-enum types.
- * - Support for both backed and unit enum normalization.
- *
- * {@see BackedEnum} for enums with scalar values.
- * {@see UnitEnum} for all enum types.
+ * {@see EnumProvider} for test case data providers.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -37,75 +35,31 @@ use yii\ui\tests\support\stub\enum\Theme;
 #[Group('helpers')]
 final class EnumTest extends TestCase
 {
-    public function testNormalizeArrayNormalizesArrayOfEnumsForBackedEnum(): void
+    /**
+     * @phpstan-param mixed[] $input
+     * @phpstan-param mixed[] $expected
+     */
+    #[DataProviderExternal(EnumProvider::class, 'normalizeArray')]
+    public function testNormalizeArrayWithEnums(array $input, array $expected, string $message): void
     {
-        self::assertSame(
-            ['active', 'inactive'],
-            Enum::normalizeArray([Status::ACTIVE, Status::INACTIVE]),
-            'Should return an array of name values for backed enums.',
-        );
+        self::assertSame($expected, Enum::normalizeArray($input), $message);
     }
 
-    public function testNormalizeArrayNormalizesArrayOfEnumsForUnitEnum(): void
+    #[DataProviderExternal(EnumProvider::class, 'normalizeValue')]
+    public function testNormalizeValueWithEnums(mixed $input, mixed $expected, string $message): void
     {
-        self::assertSame(
-            ['DARK', 'LIGHT'],
-            Enum::normalizeArray([Theme::DARK, Theme::LIGHT]),
-            'Should return an array of name values for unit enums.',
-        );
+        self::assertSame($expected, Enum::normalizeValue($input), $message);
     }
 
-    public function testNormalizeArrayPassesThroughMixedArray(): void
+    public function testThrowInvalidArgumentExceptionOnInvalidValueType(): void
     {
-        self::assertSame(
-            ['foo', 'active', 42],
-            Enum::normalizeArray(['foo', Status::ACTIVE, 42]),
-            'Should normalize enums and pass through scalars.',
-        );
-    }
+        $value = new stdClass();
 
-    public function testNormalizeValuePassesThroughScalar(): void
-    {
-        self::assertSame(
-            42,
-            Enum::normalizeValue(42),
-            'Should return the original scalar value if not an enum.',
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            Message::VALUE_SHOULD_BE_ARRAY_SCALAR_NULL_ENUM->getMessage(gettype($value))
         );
-    }
 
-    public function testNormalizeValueReturnsNameForUnitEnum(): void
-    {
-        self::assertSame(
-            'DARK',
-            Enum::normalizeValue(Theme::DARK),
-            'Should return the name value for a unit enum.',
-        );
-    }
-
-    public function testNormalizeValueReturnsScalarForBackedEnum(): void
-    {
-        self::assertSame(
-            'active',
-            Enum::normalizeValue(Status::ACTIVE),
-            'Should return the name value for a backed enum.',
-        );
-    }
-
-    public function testNormalizeValueReturnsScalarForUnitEnum(): void
-    {
-        self::assertSame(
-            'LIGHT',
-            Enum::normalizeValue(Theme::LIGHT),
-            'Should return the name value for a unit enum.',
-        );
-    }
-
-    public function testNormalizeValueReturnsValueForBackedEnum(): void
-    {
-        self::assertSame(
-            'inactive',
-            Enum::normalizeValue(Status::INACTIVE),
-            'Should return the name value for a backed enum.',
-        );
+        Enum::normalizeValue($value);
     }
 }

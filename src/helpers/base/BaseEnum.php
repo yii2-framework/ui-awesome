@@ -6,8 +6,12 @@ namespace yii\ui\helpers\base;
 
 use BackedEnum;
 use UnitEnum;
+use yii\base\InvalidArgumentException;
+use yii\ui\helpers\exception\Message;
 
 use function array_map;
+use function gettype;
+use function is_scalar;
 
 /**
  * Base class for advanced enum normalization and value extraction utilities.
@@ -29,6 +33,7 @@ use function array_map;
  * - Utility methods for simplifying enum handling in data processing and configuration workflows.
  *
  * {@see BackedEnum} for enums with scalar values.
+ * {@see InvalidArgumentException} for invalid value errors.
  * {@see UnitEnum} for all enum types.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
@@ -56,12 +61,15 @@ abstract class BaseEnum
      *
      * {@see normalizeValue()} for single value normalization.
      *
-     * @phpstan-param list<UnitEnum|scalar|null> $values
-     * @phpstan-return list<mixed>
+     * @phpstan-param mixed[] $values
+     * @phpstan-return mixed[]
      */
     public static function normalizeArray(array $values): array
     {
-        return array_map(self::normalizeValue(...), $values);
+        return array_map(
+            static fn(mixed $value): mixed => self::normalizeValue($value),
+            $values,
+        );
     }
 
     /**
@@ -73,7 +81,9 @@ abstract class BaseEnum
      * This method is essential for extracting comparable or serializable values from enums in configuration, storage,
      * or API output.
      *
-     * @param UnitEnum|array|bool|float|int|string|null $value Enum instance or any value to normalize.
+     * @param mixed $value Value to normalize.
+     *
+     * @throws InvalidArgumentException if the value is not an enum, scalar, array, or `null`.
      *
      * @return array|bool|float|int|string|null Scalar value for BackedEnum, name for pure enums, or the original value
      * for non-enums.
@@ -86,14 +96,18 @@ abstract class BaseEnum
      *
      * {@see normalizeArray()} for batch normalization.
      *
-     * @phpstan-param UnitEnum|array<mixed>|scalar|null $value
-     * @phpstan-return ($value is UnitEnum ? int|string : ($value is string ? string : array<mixed>|bool|float|int|null))
+     * @phpstan-return ($value is UnitEnum ? int|string : ($value is string ? string : mixed[]|bool|float|int|null))
      */
-    public static function normalizeValue(
-        UnitEnum|array|bool|float|int|string|null $value,
-    ): array|bool|float|int|string|null {
+    public static function normalizeValue(mixed $value): array|bool|float|int|string|null
+    {
         if ($value instanceof UnitEnum) {
             return $value instanceof BackedEnum ? $value->value : $value->name;
+        }
+
+        if (is_array($value) === false && is_scalar( $value) === false && $value !== null) {
+            throw new InvalidArgumentException(
+                Message::VALUE_SHOULD_BE_ARRAY_SCALAR_NULL_ENUM->getMessage(gettype($value)),
+            );
         }
 
         return $value;
