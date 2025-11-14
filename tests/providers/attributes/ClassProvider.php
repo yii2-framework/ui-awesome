@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\providers\attributes;
 
+use UnitEnum;
+use yii\ui\tests\support\stub\enum\AlertType;
+
 /**
  * Data provider for {@see \yii\ui\tests\attributes\HasClassTest} class.
  *
@@ -23,6 +26,8 @@ namespace yii\ui\tests\providers\attributes;
  * - Named test data sets for precise failure identification.
  * - Validation of empty `string`, `null`, and standard string values for the `class` attribute.
  *
+ * {@see AlertType} for enum test case usage.
+ *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
@@ -39,7 +44,10 @@ final class ClassProvider
      *
      * @return array Test data for `class` attribute scenarios.
      *
-     * @phpstan-return array<string, array{0: array<array{value: string|null, override?: bool}>, 1: string, 2: string}>
+     * @phpstan-return array<
+     *   string,
+     *   array{0: array<array{value: string|UnitEnum|null, override?: bool}>, 1: string, 2: string}
+     * >
      */
     public static function values(): array
     {
@@ -56,6 +64,11 @@ final class ClassProvider
                 [['value' => '']],
                 '',
                 'Should return an empty string when setting an empty string.',
+            ],
+            'enum class value' => [
+                [['value' => AlertType::WARNING]],
+                'warning',
+                'Should return the attribute value after setting it.',
             ],
             'multiple appends then override' => [
                 [

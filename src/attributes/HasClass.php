@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\attributes;
 
+use UnitEnum;
 use yii\ui\helpers\CSSClass;
 
 /**
@@ -36,14 +37,22 @@ trait HasClass
      * This method ensures standards-compliant handling of the `class` global attribute, supporting both additive and
      * override semantics as required by the HTML specification.
      *
-     * @param string|null $value CSS class value to set for the element. Can be `null` to unset the attribute.
+     * @param string|UnitEnum|null $value CSS class value to set for the element. Can be `null` to unset the attribute.
      * @param bool $override Whether to override the existing class value (`true`) or merge (`false`).
      *
      * @return static New instance with the updated `class` attribute.
      *
      * @link https://html.spec.whatwg.org/#classes
+     *
+     * Usage example:
+     * ```php
+     * $element->class('my-class'); // sets the class attribute to 'my-class'
+     * $element->class(Theme::PRIMARY); // sets the class attribute to 'primary' if Theme::PRIMARY is a UnitEnum.
+     * $element->class('another-class', true); // overrides the class attribute with 'another-class'
+     * $element->class(null); // unsets the class attribute
+     * ```
      */
-    public function class(string|null $value, bool $override = false): static
+    public function class(string|UnitEnum|null $value, bool $override = false): static
     {
         $new = clone $this;
 
