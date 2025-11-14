@@ -33,3 +33,4 @@
 - Bug #29: Update documentation and type hints in `Attributes`, `BaseAttributes`, and `AttributesProvider` class for improved clarity and consistency (@terabytesoftw)
 - Bug #30: Improve documentation in `ArraysTest` and `ArraysProvider` class for clarity and consistency (@terabytesoftw)
 - Bug #31: Improve documentation in `EncodeTest` and `EncodeProvider` class for clarity and consistency (@terabytesoftw)
+- Bug #32: Improve `BaseEnum` class with improved normalization and validation methods (@terabytesoftw)
