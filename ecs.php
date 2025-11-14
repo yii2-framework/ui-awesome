@@ -8,6 +8,7 @@ use PhpCsFixer\Fixer\ClassNotation\OrderedTraitsFixer;
 use PhpCsFixer\Fixer\ClassNotation\VisibilityRequiredFixer;
 use PhpCsFixer\Fixer\Import\NoUnusedImportsFixer;
 use PhpCsFixer\Fixer\Import\OrderedImportsFixer;
+use PhpCsFixer\Fixer\Phpdoc\PhpdocTypesOrderFixer;
 use PhpCsFixer\Fixer\StringNotation\SingleQuoteFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 
@@ -46,6 +47,13 @@ return ECSConfig::configure()
         [
             'imports_order' => ['class', 'function', 'const'],
             'sort_algorithm' => 'alpha',
+        ],
+    )
+    ->withConfiguredRule(
+        PhpdocTypesOrderFixer::class,
+        [
+            'sort_algorithm' => 'alpha',
+            'null_adjustment' => 'always_last',
         ],
     )
     ->withConfiguredRule(

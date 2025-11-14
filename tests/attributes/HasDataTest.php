@@ -52,8 +52,8 @@ final class HasDataTest extends TestCase
     }
 
     /**
-     * @param array<string, string|\Closure(): string> $input
-     * @param array<string, string|\Closure(): string> $expected
+     * @param array<string, \Closure(): string|string> $input
+     * @param array<string, \Closure(): string|string> $expected
      */
     #[DataProviderExternal(DataProvider::class, 'values')]
     public function testSetDataAttributeValue(array $input, array $expected, string $assertion): void

@@ -57,7 +57,7 @@ abstract class BaseArrays extends BaseArrayHelper
      * exception if the value is empty or not present in the allowed list when `$throw` is `true`.
      *
      * @param string $attribute Attribute name being validated (for error reporting).
-     * @param UnitEnum|int|string $value Value to check against the allowed list.
+     * @param int|string|UnitEnum $value Value to check against the allowed list.
      * @param array $allowed List of allowed values (must be non-empty).
      * @param bool $throw Whether to throw an exception on failure (default: `false`).
      *

@@ -96,7 +96,7 @@ abstract class BaseCSSClass
      * existing ones, preserving uniqueness and order.
      *
      * @param array $attributes Attribute array to modify. Passed by reference and updated in place.
-     * @param array|string|null|UnitEnum $classes Classes to add.
+     * @param array|string|UnitEnum|null $classes Classes to add.
      * @param bool $override Whether to override (`true`) or merge (`false`, default) with existing classes.
      *
      * Usage example:
@@ -273,7 +273,7 @@ abstract class BaseCSSClass
      * Note: While BackedEnum can have int values, CSS class names are always strings. Any int values from enums are
      * excluded during normalization.
      *
-     * @param array|string|null|UnitEnum $classes Single or multiple CSS classes to normalize and validate.
+     * @param array|string|UnitEnum|null $classes Single or multiple CSS classes to normalize and validate.
      *
      * @return array Normalized and validated array of CSS class names, ready for use in HTML attributes.
      *
