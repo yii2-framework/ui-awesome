@@ -58,22 +58,22 @@ enum Message: string
      *
      * Format: "The '%s' must not be empty, valid values are: '%s'."
      */
-    case HELPER_VALUE_CANNOT_BE_EMPTY = "The '%s' must not be empty, valid values are: '%s'.";
+    case VALUE_CANNOT_BE_EMPTY = "The '%s' must not be empty, valid values are: '%s'.";
 
     /**
      * Error when a value is not in the list of valid values.
      *
      * Format: "Value '%s' is not in the list of valid values for '%s': '%s'."
      */
-    case HELPER_VALUE_NOT_IN_LIST = "Value '%s' is not in the list of valid values for '%s': '%s'.";
+    case VALUE_NOT_IN_LIST = "Value '%s' is not in the list of valid values for '%s': '%s'.";
 
     /**
      * Error when a value is of an invalid type.
      *
      * Format: "Value should be of type 'array', 'scalar', 'null', or 'enum'; '%s' given."
      */
-    case HELPER_VALUE_SHOULD_BE_ARRAY_SCALAR_NULL_ENUM = "Value should be of type 'array', 'scalar', 'null', or " .
-    "'enum'; '%s' given.";
+    case VALUE_SHOULD_BE_ARRAY_SCALAR_NULL_ENUM = "Value should be of type 'array', 'scalar', 'null', or 'enum'; " .
+    "'%s' given.";
 
     /**
      * Returns the formatted message string for the error case.

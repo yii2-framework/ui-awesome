@@ -56,7 +56,7 @@ final class EnumTest extends TestCase
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            Message::HELPER_VALUE_SHOULD_BE_ARRAY_SCALAR_NULL_ENUM->getMessage(
+            Message::VALUE_SHOULD_BE_ARRAY_SCALAR_NULL_ENUM->getMessage(
                 gettype($value),
             ),
         );

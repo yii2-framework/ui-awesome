@@ -92,7 +92,7 @@ final class ArraysTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            Message::HELPER_VALUE_CANNOT_BE_EMPTY->getMessage(
+            Message::VALUE_CANNOT_BE_EMPTY->getMessage(
                 'attribute',
                 implode('\', \'', ['a', 'b', 'c']),
             ),
@@ -108,7 +108,7 @@ final class ArraysTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            Message::HELPER_VALUE_NOT_IN_LIST->getMessage(
+            Message::VALUE_NOT_IN_LIST->getMessage(
                 'active',
                 'attribute',
                 implode('\', \'', ['DARK', 'LIGHT']),
@@ -125,7 +125,7 @@ final class ArraysTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            Message::HELPER_VALUE_NOT_IN_LIST->getMessage(
+            Message::VALUE_NOT_IN_LIST->getMessage(
                 '1',
                 'attribute',
                 implode('\', \'', ['a', 'b', 'c']),

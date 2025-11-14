@@ -65,7 +65,7 @@ final class CSSClassTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            Message::HELPER_VALUE_NOT_IN_LIST->getMessage(
+            Message::VALUE_NOT_IN_LIST->getMessage(
                 'indigo',
                 'class',
                 implode('\', \'', ['blue', 'gray', 'green', 'red', 'yellow']),
@@ -83,7 +83,7 @@ final class CSSClassTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            Message::HELPER_VALUE_NOT_IN_LIST->getMessage(
+            Message::VALUE_NOT_IN_LIST->getMessage(
                 'info',
                 'class',
                 implode('\', \'', ['success', 'warning', 'error']),

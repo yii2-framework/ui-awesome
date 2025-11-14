@@ -108,7 +108,7 @@ abstract class BaseEnum
 
         if (is_array($value) === false && is_scalar($value) === false && $value !== null) {
             throw new InvalidArgumentException(
-                Message::HELPER_VALUE_SHOULD_BE_ARRAY_SCALAR_NULL_ENUM->getMessage(gettype($value)),
+                Message::VALUE_SHOULD_BE_ARRAY_SCALAR_NULL_ENUM->getMessage(gettype($value)),
             );
         }
 
