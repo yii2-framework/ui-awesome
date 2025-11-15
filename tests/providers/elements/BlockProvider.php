@@ -7,6 +7,7 @@ namespace yii\ui\tests\providers\elements;
 use yii\ui\tag\BlockTag;
 
 use function sprintf;
+use function strtoupper;
 
 /**
  * Data provider for {@see \yii\ui\tests\elements\BlockTest} class.
@@ -49,7 +50,7 @@ final class BlockProvider
         $data = [];
 
         foreach (BlockTag::cases() as $case) {
-            $data[sprintf('%s tag', $case->value)] = [$case->value];
+            $data[sprintf('%s tag', $case->value)] = [strtoupper($case->value)];
         }
 
         return $data;
