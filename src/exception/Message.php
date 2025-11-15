@@ -54,6 +54,20 @@ enum Message: string
     "'%s' given.";
 
     /**
+     * Error when a tag name is an empty string.
+     *
+     * Format: "Tag name must not be an empty string."
+     */
+    case EMPTY_TAG_NAME = 'Tag name must not be an empty string.';
+
+    /**
+     * Error when an inline element is used with block syntax.
+     *
+     * Format: "Tag '%s' is not a valid block-level HTML element."
+     */
+    case INVALID_BLOCK_ELEMENT = "Tag '%s' is not a valid block-level HTML element.";
+
+    /**
      * Error when a value can't be empty.
      *
      * Format: "The '%s' must not be empty, valid values are: '%s'."
