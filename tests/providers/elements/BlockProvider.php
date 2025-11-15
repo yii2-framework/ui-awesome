@@ -88,8 +88,13 @@ final class BlockProvider
      */
     public static function inlineTagOperations(): array
     {
-        $inlineTags = ['a', 'abbr', 'span', 'strong'];
         $data = [];
+        $inlineTags = [
+            'a',
+            'abbr',
+            'span',
+            'STRONG',
+        ];
 
         foreach ($inlineTags as $tag) {
             $data[sprintf('%s tag begin operation', $tag)] = [$tag, 'begin'];
