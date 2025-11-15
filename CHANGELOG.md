@@ -40,3 +40,4 @@
 - Bug #36: Update `class` method in `HasClass` trait to accept `UnitEnum` and enhance documentation with usage examples (@terabytesoftw)
 - Bug #37: Improve documentation for `dataAttributes` method in `HasData` trait with usage example (@terabytesoftw)
 - Bug #38: Improve documentation for `id` method in `HasId` trait with additional usage examples (@terabytesoftw)
+- Enh #39: Introduce `Block` and `BaseBlockElement` classes for block-level HTML rendering with validation and error handling (@terabytesoftw)
