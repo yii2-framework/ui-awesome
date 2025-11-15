@@ -56,6 +56,25 @@ final class BlockProvider
     }
 
     /**
+     * Provides test cases for empty tag operations.
+     *
+     * Supplies test data for validating handling of empty tag operations, including `begin` and `end` types.
+     *
+     * Each test case includes the operation type and a descriptive name.
+     *
+     * @return array Test data for empty tag operation scenarios.
+     *
+     * @phpstan-return array<string, array{'begin'|'end'}>
+     */
+    public static function emptyTagOperations(): array
+    {
+        return [
+            'empty tag begin operation' => ['begin'],
+            'empty tag end operation' => ['end'],
+        ];
+    }
+
+    /**
      * Provides test cases for inline HTML tag operations.
      *
      * Supplies test data for validating assignment and propagation of inline HTML tag operations, including `begin` and
@@ -78,24 +97,5 @@ final class BlockProvider
         }
 
         return $data;
-    }
-
-    /**
-     * Provides test cases for empty tag operations.
-     *
-     * Supplies test data for validating handling of empty tag operations, including `begin` and `end` types.
-     *
-     * Each test case includes the operation type and a descriptive name.
-     *
-     * @return array Test data for empty tag operation scenarios.
-     *
-     * @phpstan-return array<string, array{'begin'|'end'}>
-     */
-    public static function emptyTagOperations(): array
-    {
-        return [
-            'empty tag begin operation' => ['begin'],
-            'empty tag end operation' => ['end'],
-        ];
     }
 }

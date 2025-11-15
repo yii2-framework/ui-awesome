@@ -88,7 +88,7 @@ abstract class BaseBlockElement
      */
     public static function end(string $tag): string
     {
-        $tag= self::assertBlock($tag);
+        $tag = self::assertBlock($tag);
 
         return "</{$tag}>";
     }
@@ -106,7 +106,7 @@ abstract class BaseBlockElement
     {
         if (BlockTag::isBlock($tag) === false) {
             throw new InvalidArgumentException(
-                Message::INVALID_BLOCK_ELEMENT->getMessage($tag)
+                Message::INVALID_BLOCK_ELEMENT->getMessage($tag),
             );
         }
 

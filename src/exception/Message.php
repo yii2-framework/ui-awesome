@@ -58,7 +58,7 @@ enum Message: string
      *
      * Format: "Tag name must not be an empty string."
      */
-    case EMPTY_TAG_NAME = "Tag name must not be an empty string.";
+    case EMPTY_TAG_NAME = 'Tag name must not be an empty string.';
 
     /**
      * Error when an inline element is used with block syntax.
