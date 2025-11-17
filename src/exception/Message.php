@@ -104,13 +104,6 @@ enum Message: string
     "'%s' given.";
 
     /**
-     * Error when a void element is given content.
-     *
-     * Format: "Void element '%s' cannot have content."
-     */
-    case VOID_ELEMENT_CANNOT_HAVE_CONTENT = "Void element '%s' cannot have content.";
-
-    /**
      * Returns the formatted message string for the error case.
      *
      * Retrieves and formats the error message string by interpolating the provided arguments.
