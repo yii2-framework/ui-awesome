@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\providers\elements;
 
-use yii\ui\tag\{BlockTag, InlineTag, VoidTag};
+use yii\ui\element\tag\BlockTag;
+use yii\ui\tag\{InlineTag, VoidTag};
 
 use function array_map;
 use function in_array;
