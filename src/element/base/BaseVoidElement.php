@@ -44,7 +44,7 @@ abstract class BaseVoidElement
      * @param string|UnitEnum $tag Void HTML tag name to render.
      * @param array $attributes Associative array of HTML attributes to include.
      *
-     * @throws InvalidArgumentException if the tag is not a void element.
+     * @throws InvalidArgumentException if the tag is not a void element or tag name is empty.
      *
      * @return string Rendered void HTML tag with attributes.
      *
