@@ -68,6 +68,20 @@ enum Message: string
     case INVALID_BLOCK_ELEMENT = "Tag '%s' is not a valid block-level HTML element.";
 
     /**
+     * Error when an inline element is used with inline syntax.
+     *
+     * Format: "Tag '%s' is not a valid inline HTML element."
+     */
+    case INVALID_INLINE_ELEMENT = "Tag '%s' is not a valid inline HTML element.";
+
+    /**
+     * Error when an inline element is used with inline syntax.
+     *
+     * Format: "Tag '%s' is not a valid inline HTML element."
+     */
+    case INVALID_VOID_ELEMENT = "Tag '%s' is not a valid void HTML element.";
+
+    /**
      * Error when a value can't be empty.
      *
      * Format: "The '%s' must not be empty, valid values are: '%s'."
@@ -88,6 +102,13 @@ enum Message: string
      */
     case VALUE_SHOULD_BE_ARRAY_SCALAR_NULL_ENUM = "Value should be of type 'array', 'scalar', 'null', or 'enum'; " .
     "'%s' given.";
+
+    /**
+     * Error when a void element is given content.
+     *
+     * Format: "Void element '%s' cannot have content."
+     */
+    case VOID_ELEMENT_CANNOT_HAVE_CONTENT = "Void element '%s' cannot have content.";
 
     /**
      * Returns the formatted message string for the error case.
