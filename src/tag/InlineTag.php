@@ -175,11 +175,6 @@ enum InlineTag: string
     case OUTPUT = 'output';
 
     /**
-     * Case for the `<picture>` HTML tag.
-     */
-    case PICTURE = 'picture';
-
-    /**
      * Case for the `<progress>` HTML tag.
      */
     case PROGRESS = 'progress';
@@ -195,19 +190,9 @@ enum InlineTag: string
     case RUBY = 'ruby';
 
     /**
-     * Case for the `<s>` HTML tag.
-     */
-    case S = 's';
-
-    /**
      * Case for the `<samp>` HTML tag.
      */
     case SAMP = 'samp';
-
-    /**
-     * Case for the `<slot>` HTML tag.
-     */
-    case SLOT = 'slot';
 
     /**
      * Case for the `<small>` HTML tag.
@@ -240,19 +225,9 @@ enum InlineTag: string
     case SVG = 'svg';
 
     /**
-     * Case for the `<template>` HTML tag.
-     */
-    case TEMPLATE = 'template';
-
-    /**
      * Case for the `<time>` HTML tag.
      */
     case TIME = 'time';
-
-    /**
-     * Case for the `<u>` HTML tag.
-     */
-    case U = 'u';
 
     /**
      * Case for the `<var>` HTML tag.
