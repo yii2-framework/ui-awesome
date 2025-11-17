@@ -46,7 +46,7 @@ abstract class BaseBlockElement
      * @param string|UnitEnum $tag Block-level HTML tag name to render.
      * @param array $attributes Associative array of HTML attributes to include.
      *
-     * @throws InvalidArgumentException if the tag is not a block-level element.
+     * @throws InvalidArgumentException if the tag is not a block-level element or tag name is empty.
      *
      * @return string Rendered opening block-level HTML tag with attributes.
      *
@@ -75,7 +75,7 @@ abstract class BaseBlockElement
      *
      * @param string|UnitEnum $tag Block-level HTML tag name to close.
      *
-     * @throws InvalidArgumentException if the tag is not a block-level element.
+     * @throws InvalidArgumentException if the tag is not a block-level element or tag name is empty.
      *
      * @return string Rendered closing block-level HTML tag.
      *

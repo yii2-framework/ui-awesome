@@ -46,7 +46,7 @@ abstract class BaseInlineElement
      * @param array $attributes Associative array of HTML attributes to include.
      * @param bool $encode Whether to encode the content for safe HTML output (default: `false`).
      *
-     * @throws InvalidArgumentException if the tag is not an inline-level element.
+     * @throws InvalidArgumentException if the tag is not an inline-level element or tag name is empty.
      *
      * @return string Rendered inline-level HTML element with attributes and content.
      *
