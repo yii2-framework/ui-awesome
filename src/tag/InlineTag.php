@@ -255,7 +255,7 @@ enum InlineTag: string
     case SUB = 'sub';
 
     /**
-     * Case for the `<sup` HTML tag.
+     * Case for the `<sup>` HTML tag.
      */
     case SUP = 'sup';
 

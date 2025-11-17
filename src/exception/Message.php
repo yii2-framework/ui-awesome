@@ -68,16 +68,16 @@ enum Message: string
     case INVALID_BLOCK_ELEMENT = "Tag '%s' is not a valid block-level HTML element.";
 
     /**
-     * Error when an inline element is used with inline syntax.
+     * Error when a non‑inline element is used with the inline‑element renderer.
      *
      * Format: "Tag '%s' is not a valid inline HTML element."
      */
     case INVALID_INLINE_ELEMENT = "Tag '%s' is not a valid inline HTML element.";
 
     /**
-     * Error when an inline element is used with inline syntax.
+     * Error when a non‑void element is used with the void‑element renderer.
      *
-     * Format: "Tag '%s' is not a valid inline HTML element."
+     * Format: "Tag '%s' is not a valid void HTML element."
      */
     case INVALID_VOID_ELEMENT = "Tag '%s' is not a valid void HTML element.";
 
