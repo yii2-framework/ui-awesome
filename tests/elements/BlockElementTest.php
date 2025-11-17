@@ -7,14 +7,14 @@ namespace yii\ui\tests\elements;
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
 use yii\base\InvalidArgumentException;
-use yii\ui\element\Block;
+use yii\ui\element\BlockElement;
+use yii\ui\element\tag\BlockTag;
 use yii\ui\exception\Message;
-use yii\ui\tag\BlockTag;
-use yii\ui\tests\providers\elements\BlockProvider;
+use yii\ui\tests\providers\elements\BlockElementProvider;
 use yii\ui\tests\support\TestSupport;
 
 /**
- * Test suite for {@see Block} element functionality and behavior.
+ * Test suite for {@see BlockElement} element functionality and behavior.
  *
  * Validates the rendering and management of block-level HTML tags according to the HTML Living Standard specification.
  *
@@ -27,17 +27,17 @@ use yii\ui\tests\support\TestSupport;
  * - Exception handling for empty or invalid tag names and inline tag misuse.
  * - Immutability of the API when invoking block operations.
  *
- * {@see BlockProvider} for test case data providers.
+ * {@see BlockElementProvider} for test case data providers.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
 #[Group('elements')]
-final class BlockTest extends TestCase
+final class BlockElementTest extends TestCase
 {
     use TestSupport;
 
-    #[DataProviderExternal(BlockProvider::class, 'blockTags')]
+    #[DataProviderExternal(BlockElementProvider::class, 'blockTags')]
     public function testRendersBeginWithOpeningBlockTag(string|BlockTag $tag): void
     {
         if ($tag instanceof BlockTag) {
@@ -46,12 +46,12 @@ final class BlockTest extends TestCase
 
         self::equalsWithoutLE(
             "<{$tag}>",
-            Block::begin($tag),
+            BlockElement::begin($tag),
             "Rendered opening '<{$tag}>' block tag should match expected output.",
         );
     }
 
-    #[DataProviderExternal(BlockProvider::class, 'blockTags')]
+    #[DataProviderExternal(BlockElementProvider::class, 'blockTags')]
     public function testRendersEndWithClosingBlockTag(string|BlockTag $tag): void
     {
         if ($tag instanceof BlockTag) {
@@ -60,38 +60,38 @@ final class BlockTest extends TestCase
 
         self::equalsWithoutLE(
             "</{$tag}>",
-            Block::end($tag),
+            BlockElement::end($tag),
             "Rendered closing '</{$tag}>' block tag should match expected output.",
         );
     }
 
     /**
-     * @phpstan-param 'begin'|'end' $operation Block helper operation to invoke.
+     * @phpstan-param 'begin'|'end' $operation BlockElement helper operation to invoke.
      */
-    #[DataProviderExternal(BlockProvider::class, 'emptyTagOperations')]
+    #[DataProviderExternal(BlockElementProvider::class, 'emptyTagOperations')]
     public function testThrowInvalidArgumentExceptionWithEmptyTagName(string $operation): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(Message::EMPTY_TAG_NAME->getMessage());
 
         match ($operation) {
-            'begin' => Block::begin(''),
-            default => Block::end(''),
+            'begin' => BlockElement::begin(''),
+            default => BlockElement::end(''),
         };
     }
 
     /**
-     * @phpstan-param 'begin'|'end' $operation Block helper operation to invoke.
+     * @phpstan-param 'begin'|'end' $operation BlockElement helper operation to invoke.
      */
-    #[DataProviderExternal(BlockProvider::class, 'inlineTagOperations')]
+    #[DataProviderExternal(BlockElementProvider::class, 'inlineTagOperations')]
     public function testThrowInvalidArgumentExceptionWithInlineTag(string $tag, string $operation): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(Message::INVALID_BLOCK_ELEMENT->getMessage($tag));
 
         match ($operation) {
-            'begin' => Block::begin($tag),
-            default => Block::end($tag),
+            'begin' => BlockElement::begin($tag),
+            default => BlockElement::end($tag),
         };
     }
 }

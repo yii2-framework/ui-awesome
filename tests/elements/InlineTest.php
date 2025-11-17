@@ -8,8 +8,9 @@ use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
 use yii\base\InvalidArgumentException;
 use yii\ui\element\Inline;
+use yii\ui\element\tag\BlockTag;
 use yii\ui\exception\Message;
-use yii\ui\tag\{BlockTag, InlineTag, VoidTag};
+use yii\ui\tag\{InlineTag, VoidTag};
 use yii\ui\tests\providers\elements\InlineProvider;
 use yii\ui\tests\support\TestSupport;
 

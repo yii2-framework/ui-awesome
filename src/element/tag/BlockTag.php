@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace yii\ui\tag;
+namespace yii\ui\element\tag;
 
 use yii\base\InvalidArgumentException;
 use yii\ui\exception\Message;

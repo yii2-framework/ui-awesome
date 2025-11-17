@@ -6,9 +6,9 @@ namespace yii\ui\element\base;
 
 use UnitEnum;
 use yii\base\InvalidArgumentException;
+use yii\ui\element\tag\BlockTag;
 use yii\ui\exception\Message;
 use yii\ui\helpers\{Attributes, Enum};
-use yii\ui\tag\BlockTag;
 
 /**
  * Base class for standardized rendering of HTML block-level elements.
@@ -21,9 +21,6 @@ use yii\ui\tag\BlockTag;
  *
  * Block-level elements always start on a new line and occupy the full horizontal space of their parent container,
  * participating in vertical block layout as defined by CSS.
- *
- * This class abstracts the complexity of block-level tag generation, supporting robust, maintainable HTML output in UI
- * frameworks.
  *
  * Key features:
  * - Exception-driven error handling for invalid tag usage.
@@ -55,7 +52,7 @@ abstract class BaseBlockElement
      *
      * Usage example:
      * ```php
-     * Block::begin('div', ['class' => 'container']);
+     * BlockElement::begin('div', ['class' => 'container']);
      * ```
      *
      * @phpstan-param mixed[] $attributes
@@ -84,7 +81,7 @@ abstract class BaseBlockElement
      *
      * Usage example:
      * ```php
-     * Block::end('div');
+     * BlockElement::end('div');
      * ```
      */
     public static function end(string|UnitEnum $tag): string

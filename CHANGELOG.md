@@ -45,3 +45,4 @@
 - Bug #41: Update test classes to use consistent `Group` attributes for better organization (@terabytesoftw)
 - Enh #42: Introduce `Inline` and `BaseInlineElement` classes for inline-level HTML rendering with validation and error handling (@terabytesoftw)
 - Bug #43: Simplify tag validation by using `tryFrom` for `BlockTag` and `VoidTag` enums (@terabytesoftw)
+- Bug #44: Better naming for `BlockElement`, `BaseBlockElement`, and `BlockTag` for block-level HTML rendering with validation and testing support (@terabytesoftw)
