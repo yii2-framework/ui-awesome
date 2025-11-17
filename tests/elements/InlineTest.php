@@ -76,6 +76,22 @@ final class InlineTest extends TestCase
         );
     }
 
+    public function testThrowInvalidArgumentExceptionRenderInlineTagWithEmptyTagName(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(Message::EMPTY_TAG_NAME->getMessage());
+
+        Inline::tag('', 'content');
+    }
+
+    public function testThrowInvalidArgumentExceptionRenderVoidTagWithEmptyTagName(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(Message::EMPTY_TAG_NAME->getMessage());
+
+        Inline::void('');
+    }
+
     #[DataProviderExternal(InlineProvider::class, 'voidInlineTags')]
     public function testThrowInvalidArgumentExceptionWhenInlineTagIsVoid(string|InlineTag $tag): void
     {
