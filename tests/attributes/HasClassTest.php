@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\attributes;
 
-use PHPUnit\Framework\Attributes\DataProviderExternal;
+use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
 use yii\ui\attributes\HasClass;
 use yii\ui\tests\providers\attributes\ClassProvider;
@@ -28,6 +28,7 @@ use yii\ui\tests\providers\attributes\ClassProvider;
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
+#[Group('attributes')]
 final class HasClassTest extends TestCase
 {
     public function testReturnEmptyStringWhenClassAttributeNotSet(): void

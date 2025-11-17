@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\attributes;
 
-use PHPUnit\Framework\Attributes\DataProviderExternal;
+use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
 use yii\base\InvalidArgumentException;
 use yii\ui\attributes\HasData;
@@ -31,6 +31,7 @@ use yii\ui\tests\providers\attributes\DataProvider;
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
+#[Group('attributes')]
 final class HasDataTest extends TestCase
 {
     public function testReturnNewInstanceWhenSettingDataAttribute(): void
