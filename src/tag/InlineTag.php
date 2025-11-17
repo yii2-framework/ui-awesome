@@ -40,16 +40,6 @@ enum InlineTag: string
     case ABBR = 'abbr';
 
     /**
-     * Case for the `<acronym>` HTML tag.
-     */
-    case ACRONYM = 'acronym';
-
-    /**
-     * Case for the `<audio>` HTML tag.
-     */
-    case AUDIO = 'audio';
-
-    /**
      * Case for the `<b>` HTML tag.
      */
     case B = 'b';
@@ -78,11 +68,6 @@ enum InlineTag: string
      * Case for the `<button>` HTML tag.
      */
     case BUTTON = 'button';
-
-    /**
-     * Case for the `<canvas>` HTML tag.
-     */
-    case CANVAS = 'canvas';
 
     /**
      * Case for the `<cite>` HTML tag.
@@ -225,11 +210,6 @@ enum InlineTag: string
     case SAMP = 'samp';
 
     /**
-     * Case for the `<select>` HTML tag.
-     */
-    case SELECT = 'select';
-
-    /**
      * Case for the `<slot>` HTML tag.
      */
     case SLOT = 'slot';
@@ -265,24 +245,9 @@ enum InlineTag: string
     case SVG = 'svg';
 
     /**
-     * Case for the `<td>` HTML tag.
-     */
-    case TD = 'td';
-
-    /**
      * Case for the `<template>` HTML tag.
      */
     case TEMPLATE = 'template';
-
-    /**
-     * Case for the `<textarea>` HTML tag.
-     */
-    case TEXTAREA = 'textarea';
-
-    /**
-     * Case for the `<th>` HTML tag.
-     */
-    case TH = 'th';
 
     /**
      * Case for the `<time>` HTML tag.
@@ -303,11 +268,6 @@ enum InlineTag: string
      * Case for the `<var>` HTML tag.
      */
     case VAR_ = 'var';
-
-    /**
-     * Case for the `<video>` HTML tag.
-     */
-    case VIDEO = 'video';
 
     /**
      * Case for the `<wbr>` HTML tag.
