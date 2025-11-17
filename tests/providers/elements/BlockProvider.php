@@ -43,7 +43,7 @@ final class BlockProvider
      *
      * @return array Test data for block tag scenarios.
      *
-     * @phpstan-return array<string, array{string}>
+     * @phpstan-return array<string, array{string|BlockTag}>
      */
     public static function blockTags(): array
     {
@@ -51,6 +51,7 @@ final class BlockProvider
 
         foreach (BlockTag::cases() as $case) {
             $data[sprintf('%s tag', $case->value)] = [strtoupper($case->value)];
+            $data[sprintf('%s tag with enum', $case->value)] = [$case];
         }
 
         return $data;

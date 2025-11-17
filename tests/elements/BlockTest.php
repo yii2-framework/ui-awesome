@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 use yii\base\InvalidArgumentException;
 use yii\ui\element\Block;
 use yii\ui\exception\Message;
+use yii\ui\tag\BlockTag;
 use yii\ui\tests\providers\elements\BlockProvider;
 use yii\ui\tests\support\TestSupport;
 
@@ -37,8 +38,12 @@ final class BlockTest extends TestCase
     use TestSupport;
 
     #[DataProviderExternal(BlockProvider::class, 'blockTags')]
-    public function testRendersBeginWithOpeningBlockTag(string $tag): void
+    public function testRendersBeginWithOpeningBlockTag(string|BlockTag $tag): void
     {
+        if ($tag instanceof BlockTag) {
+            $tag = $tag->value;
+        }
+
         self::equalsWithoutLE(
             "<{$tag}>",
             Block::begin($tag),
@@ -47,8 +52,12 @@ final class BlockTest extends TestCase
     }
 
     #[DataProviderExternal(BlockProvider::class, 'blockTags')]
-    public function testRendersEndWithClosingBlockTag(string $tag): void
+    public function testRendersEndWithClosingBlockTag(string|BlockTag $tag): void
     {
+        if ($tag instanceof BlockTag) {
+            $tag = $tag->value;
+        }
+
         self::equalsWithoutLE(
             "</{$tag}>",
             Block::end($tag),
