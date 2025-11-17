@@ -69,9 +69,11 @@ final class InlineElementTest extends TestCase
 
     public function testThrowInvalidArgumentExceptionWithNonInlineTag(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(Message::INVALID_INLINE_ELEMENT->getMessage('div'));
+        $tagName = 'div';
 
-        InlineElement::render('div', 'content');
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(Message::INVALID_INLINE_ELEMENT->getMessage($tagName));
+
+        InlineElement::render($tagName, 'content');
     }
 }

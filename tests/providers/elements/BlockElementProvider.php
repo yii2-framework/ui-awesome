@@ -39,7 +39,7 @@ final class BlockElementProvider
      * Supplies test data for validating assignment and propagation of block HTML tags, including all cases defined in
      * {@see BlockTag}.
      *
-     * Each test case includes the tag value for clear identification.
+     * Each test case includes the tag value as a `string` or enum instance for clear identification.
      *
      * @return array Test data for block tag scenarios.
      *
