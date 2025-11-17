@@ -55,11 +55,6 @@ enum InlineTag: string
     case BDO = 'bdo';
 
     /**
-     * Case for the `<big>` HTML tag.
-     */
-    case BIG = 'big';
-
-    /**
      * Case for the `<br>` HTML tag.
      */
     case BR = 'br';
@@ -255,11 +250,6 @@ enum InlineTag: string
     case TIME = 'time';
 
     /**
-     * Case for the `<tt>` HTML tag.
-     */
-    case TT = 'tt';
-
-    /**
      * Case for the `<u>` HTML tag.
      */
     case U = 'u';
@@ -299,14 +289,6 @@ enum InlineTag: string
             throw new InvalidArgumentException(Message::EMPTY_TAG_NAME->getMessage());
         }
 
-        $tag = strtolower($tag);
-
-        foreach (self::cases() as $case) {
-            if ($case->value === $tag) {
-                return true;
-            }
-        }
-
-        return false;
+        return self::tryFrom(strtolower($tag)) !== null;
     }
 }
