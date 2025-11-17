@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace yii\ui\element\base;
 
+use UnitEnum;
 use yii\base\InvalidArgumentException;
 use yii\ui\exception\Message;
-use yii\ui\helpers\Attributes;
+use yii\ui\helpers\{Attributes, Enum};
 use yii\ui\tag\BlockTag;
 
 /**
@@ -45,7 +46,7 @@ abstract class BaseBlockElement
      *
      * Renders the opening tag with all attributes in standards-compliant order and encoding.
      *
-     * @param string $tag Block-level HTML tag name to render.
+     * @param string|UnitEnum $tag Block-level HTML tag name to render.
      * @param array $attributes Associative array of HTML attributes to include.
      *
      * @throws InvalidArgumentException if the tag is not a block-level element.
@@ -59,7 +60,7 @@ abstract class BaseBlockElement
      *
      * @phpstan-param mixed[] $attributes
      */
-    public static function begin(string $tag, array $attributes = []): string
+    public static function begin(string|UnitEnum $tag, array $attributes = []): string
     {
         $tag = self::assertBlock($tag);
 
@@ -96,14 +97,16 @@ abstract class BaseBlockElement
     /**
      * Asserts that the provided tag is a valid block-level HTML element.
      *
-     * @param string $tag HTML tag name to validate.
+     * @param string|UnitEnum $tag HTML tag name to validate.
      *
      * @throws InvalidArgumentException if the tag is not a block-level element.
      *
      * @return string Validated block-level HTML tag name.
      */
-    private static function assertBlock(string $tag): string
+    private static function assertBlock(string|UnitEnum $tag): string
     {
+        $tag = (string) Enum::normalizeValue($tag);
+
         if (BlockTag::isBlock($tag) === false) {
             throw new InvalidArgumentException(
                 Message::INVALID_BLOCK_ELEMENT->getMessage($tag),
