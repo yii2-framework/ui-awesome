@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\providers\elements;
 
-use yii\ui\tag\BlockTag;
+use yii\ui\element\tag\BlockTag;
 
 use function sprintf;
 use function strtoupper;
 
 /**
- * Data provider for {@see \yii\ui\tests\elements\BlockTest} class.
+ * Data provider for {@see \yii\ui\tests\elements\BlockElementTest} class.
  *
  * Supplies comprehensive test data for validating the handling of block and inline HTML tag operations in widget and
  * tag rendering, ensuring standards-compliant assignment, propagation, and value mapping according to the HTML
@@ -31,7 +31,7 @@ use function strtoupper;
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
-final class BlockProvider
+final class BlockElementProvider
 {
     /**
      * Provides test cases for block HTML tag scenarios.
