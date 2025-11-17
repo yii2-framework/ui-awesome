@@ -44,3 +44,4 @@
 - Bug #40: Update `BaseBlockElement` to accept `UnitEnum` for block-level tag names and enhance tests for compatibility with `BlockTag` enum (@terabytesoftw)
 - Bug #41: Update test classes to use consistent `Group` attributes for better organization (@terabytesoftw)
 - Enh #42: Introduce `Inline` and `BaseInlineElement` classes for inline-level HTML rendering with validation and error handling (@terabytesoftw)
+- Bug #43: Simplify tag validation by using `tryFrom` for `BlockTag` and `VoidTag` enums (@terabytesoftw)

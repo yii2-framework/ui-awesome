@@ -117,14 +117,6 @@ enum VoidTag: string
             throw new InvalidArgumentException(Message::EMPTY_TAG_NAME->getMessage());
         }
 
-        $tag = strtolower($tag);
-
-        foreach (self::cases() as $case) {
-            if ($case->value === $tag) {
-                return true;
-            }
-        }
-
-        return false;
+        return self::tryFrom(strtolower($tag)) !== null;
     }
 }

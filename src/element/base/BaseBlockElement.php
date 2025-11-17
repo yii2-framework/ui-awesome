@@ -108,9 +108,7 @@ abstract class BaseBlockElement
         $tag = (string) Enum::normalizeValue($tag);
 
         if (BlockTag::isBlock($tag) === false) {
-            throw new InvalidArgumentException(
-                Message::INVALID_BLOCK_ELEMENT->getMessage($tag),
-            );
+            throw new InvalidArgumentException(Message::INVALID_BLOCK_ELEMENT->getMessage($tag));
         }
 
         return $tag;
