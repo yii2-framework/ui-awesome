@@ -48,3 +48,4 @@
 - Bug #44: Better naming for `BlockElement`, `BaseBlockElement`, and `BlockTag` for block-level HTML rendering with validation and testing support (@terabytesoftw)
 - Bug #45: Better naming for `InlineElement`, `BaseInlineElement`, `InlineTag` for inline-level HTML rendering with validation and testing support (@terabytesoftw)
 - Bug #46: Update documentation for `InlineElement` class with detailed descriptions and key features (@terabytesoftw)
+- Enh #47: Introduce `VoidElement` and `BaseVoidElement` classes for void HTML elements with validation and error handling (@terabytesoftw)
