@@ -76,7 +76,7 @@ abstract class BaseBlockElement
      *
      * Renders the closing tag for the block-level element.
      *
-     * @param string $tag Block-level HTML tag name to close.
+     * @param string|UnitEnum $tag Block-level HTML tag name to close.
      *
      * @throws InvalidArgumentException if the tag is not a block-level element.
      *
@@ -87,7 +87,7 @@ abstract class BaseBlockElement
      * Block::end('div');
      * ```
      */
-    public static function end(string $tag): string
+    public static function end(string|UnitEnum $tag): string
     {
         $tag = self::assertBlock($tag);
 
