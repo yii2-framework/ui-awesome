@@ -55,11 +55,6 @@ enum InlineTag: string
     case BDO = 'bdo';
 
     /**
-     * Case for the `<br>` HTML tag.
-     */
-    case BR = 'br';
-
-    /**
      * Case for the `<button>` HTML tag.
      */
     case BUTTON = 'button';
@@ -100,11 +95,6 @@ enum InlineTag: string
     case EM = 'em';
 
     /**
-     * Case for the `<embed>` HTML tag.
-     */
-    case EMBED = 'embed';
-
-    /**
      * Case for the `<i>` HTML tag.
      */
     case I = 'i';
@@ -113,16 +103,6 @@ enum InlineTag: string
      * Case for the `<iframe>` HTML tag.
      */
     case IFRAME = 'iframe';
-
-    /**
-     * Case for the `<img>` HTML tag.
-     */
-    case IMG = 'img';
-
-    /**
-     * Case for the `<input>` HTML tag.
-     */
-    case INPUT = 'input';
 
     /**
      * Case for the `<ins>` HTML tag.
@@ -233,11 +213,6 @@ enum InlineTag: string
      * Case for the `<var>` HTML tag.
      */
     case VAR_ = 'var';
-
-    /**
-     * Case for the `<wbr>` HTML tag.
-     */
-    case WBR = 'wbr';
 
     /**
      * Determines whether a given tag name is a supported inline HTML tag.
