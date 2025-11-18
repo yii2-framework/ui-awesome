@@ -65,6 +65,7 @@ abstract class BaseInlineElement
         bool $encode = false,
     ): string {
         $tag = (string) Enum::normalizeValue($tag);
+        $tag = strtolower($tag);
 
         if (InlineContent::isInline($tag) === false) {
             throw new InvalidArgumentException(Message::INVALID_INLINE_ELEMENT->getMessage($tag));
