@@ -53,7 +53,7 @@ abstract class BaseInlineElement
      * Usage example:
      * ```php
      * InlineElement::render('span', 'Hello, World!', ['class' => 'highlight']);
-     * InlineElement::render(InlineTag::SPAN, 'Hello, World!', ['class' => 'highlight'], true);
+     * InlineElement::render(InlineContent::SPAN, 'Hello, World!', ['class' => 'highlight'], true);
      * ```
      *
      * @phpstan-param mixed[] $attributes

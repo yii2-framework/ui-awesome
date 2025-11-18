@@ -48,6 +48,12 @@ abstract class BaseVoidElement
      *
      * @return string Rendered void HTML tag with attributes.
      *
+     * Usage example:
+     * ```php
+     * VoidElement::render('br', ['class' => 'separator']);
+     * VoidElement::render(VoidContent::BR, ['class' => 'separator']);
+     * ```
+     *
      * @phpstan-param mixed[] $attributes
      */
     public static function render(string|UnitEnum $tag, array $attributes = []): string

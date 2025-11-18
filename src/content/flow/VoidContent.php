@@ -112,6 +112,13 @@ enum VoidContent: string
      * @throws InvalidArgumentException if the tag name is empty.
      *
      * @return bool `true` if the tag is a supported void tag, `false` otherwise.
+     *
+     * Usage example:
+     * ```php
+     * if (VoidContent::isVoid('br')) {
+     *     // valid void tag
+     * }
+     * ```
      */
     public static function isVoid(string $tag): bool
     {

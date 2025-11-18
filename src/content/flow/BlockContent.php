@@ -212,6 +212,13 @@ enum BlockContent: string
      * @throws InvalidArgumentException if the tag name is empty.
      *
      * @return bool `true` if the tag is a supported block-level tag, `false` otherwise.
+     *
+     * Usage example:
+     * ```php
+     * if (BlockContent::isBlock('div')) {
+     *     // valid block tag
+     * }
+     * ```
      */
     public static function isBlock(string $tag): bool
     {
