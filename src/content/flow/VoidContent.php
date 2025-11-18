@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace yii\ui\element\tag;
+namespace yii\ui\content\flow;
 
 use yii\base\InvalidArgumentException;
 use yii\ui\exception\Message;
@@ -12,22 +12,24 @@ use function strtolower;
 /**
  * Enum representing all supported HTML void (self-closing) tags for rendering and validation.
  *
- * Provides a type-safe, standards-compliant set of void HTML tag names for use in tag rendering systems, attribute
- * validation, and widget construction. Ensures consistent handling of void elements in HTML5 contexts, supporting
- * strict type safety and predictable output for tag-based operations.
+ * Defines a comprehensive set of void HTML elements as specified by the HTML standard and MDN documentation,
+ * supporting validation and rendering logic for standards-compliant document generation.
+ *
+ * This enum is designed for use in view renderers, widget systems, and asset managers that require precise handling of
+ * void elements within flow content categories.
  *
  * Key features:
- * - Comprehensive coverage of HTML void tags as defined by the HTML5 specification.
- * - Designed for integration with advanced attribute and element rendering systems.
- * - Type-safe enumeration for tag validation and rendering.
- * - Utility method for void tag detection supporting case-insensitive matching.
+ * - Enumerates all void (self-closing) tags recognized in flow content per HTML specification.
+ * - Integrates with validation and normalization routines for predictable layout behavior.
+ * - Provides immutable, type-safe API for robust HTML generation workflows.
+ * - Strict adherence to void element semantics for technical consistency.
  *
- * {@see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/void_elements} HTML Void Elements.
+ * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Content_categories#flow_content
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
-enum VoidTag: string
+enum VoidContent: string
 {
     /**
      * Case for the `<area>` HTML tag.

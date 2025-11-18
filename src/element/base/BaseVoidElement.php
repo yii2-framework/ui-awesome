@@ -6,7 +6,7 @@ namespace yii\ui\element\base;
 
 use UnitEnum;
 use yii\base\InvalidArgumentException;
-use yii\ui\element\tag\VoidTag;
+use yii\ui\content\flow\VoidContent;
 use yii\ui\exception\Message;
 use yii\ui\helpers\{Attributes, Enum};
 
@@ -54,7 +54,7 @@ abstract class BaseVoidElement
     {
         $tag = (string) Enum::normalizeValue($tag);
 
-        if (VoidTag::isVoid($tag) === false) {
+        if (VoidContent::isVoid($tag) === false) {
             throw new InvalidArgumentException(Message::INVALID_VOID_ELEMENT->getMessage($tag));
         }
 

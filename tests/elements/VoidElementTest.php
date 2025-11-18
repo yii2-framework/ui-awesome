@@ -7,29 +7,31 @@ namespace yii\ui\tests\elements;
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
 use yii\base\InvalidArgumentException;
-use yii\ui\element\tag\VoidTag;
+use yii\ui\content\flow\VoidContent;
 use yii\ui\element\VoidElement;
 use yii\ui\exception\Message;
-use yii\ui\tests\providers\elements\VoidElementProvider;
+use yii\ui\tests\providers\content\VoidContentProvider;
 use yii\ui\tests\support\TestSupport;
 
 use function is_string;
 
 /**
- * Test suite for {@see VoidElement} element functionality and behavior.
+ * Test suite for {@see VoidElement} functionality and behavior.
  *
- * Validates the rendering and management of void-level HTML tags according to the HTML Living Standard specification.
+ * Validates the manipulation and rendering of global HTML void elements according to the HTML Living Standard
+ * specification.
  *
- * Ensures correct handling, immutability, and validation of void element operations, supporting accurate tag
- * generation, as well as exception handling for invalid or empty tag names.
+ * Ensures correct handling, immutability, and validation of void element operations, supporting both `string` and
+ * enum types for tag assignment and rendering.
  *
  * Test coverage:
- * - Accurate rendering of void tags with attributes.
+ * - Accurate rendering of void tags with attribute assignment.
  * - Data provider-driven validation for edge cases and expected behaviors.
- * - Exception handling for empty or invalid tag names and non-void tag misuse.
- * - Immutability of the API when invoking void operations.
+ * - Exception handling for invalid or empty tag names and non-void content.
+ * - Immutability of the API when setting or overriding void tags.
+ * - Proper assignment and overriding of void tag values.
  *
- * {@see VoidElementProvider} for test case data providers.
+ * {@see VoidContentProvider} for test case data providers.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -39,8 +41,8 @@ final class VoidElementTest extends TestCase
 {
     use TestSupport;
 
-    #[DataProviderExternal(VoidElementProvider::class, 'voidTags')]
-    public function testRenderVoidTag(string|VoidTag $tag): void
+    #[DataProviderExternal(VoidContentProvider::class, 'voidContent')]
+    public function testRenderVoid(string|VoidContent $tag): void
     {
         $attributes = [
             'class' => ['void-element'],
@@ -56,7 +58,7 @@ final class VoidElementTest extends TestCase
         );
     }
 
-    public function testThrowInvalidArgumentExceptionRenderVoidTagWithEmptyTagName(): void
+    public function testThrowInvalidArgumentExceptionWithEmptyTagName(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(Message::EMPTY_TAG_NAME->getMessage());
@@ -64,10 +66,9 @@ final class VoidElementTest extends TestCase
         VoidElement::render('');
     }
 
-    public function testThrowInvalidArgumentExceptionWithNonVoidTag(): void
+    #[DataProviderExternal(VoidContentProvider::class, 'nonVoidContent')]
+    public function testThrowInvalidArgumentExceptionWithNonVoidTag(string $tagName): void
     {
-        $tagName = 'span';
-
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(Message::INVALID_VOID_ELEMENT->getMessage($tagName));
 

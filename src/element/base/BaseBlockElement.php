@@ -6,7 +6,7 @@ namespace yii\ui\element\base;
 
 use UnitEnum;
 use yii\base\InvalidArgumentException;
-use yii\ui\element\tag\BlockTag;
+use yii\ui\content\flow\BlockContent;
 use yii\ui\exception\Message;
 use yii\ui\helpers\{Attributes, Enum};
 
@@ -104,7 +104,7 @@ abstract class BaseBlockElement
     {
         $tag = (string) Enum::normalizeValue($tag);
 
-        if (BlockTag::isBlock($tag) === false) {
+        if (BlockContent::isBlock($tag) === false) {
             throw new InvalidArgumentException(Message::INVALID_BLOCK_ELEMENT->getMessage($tag));
         }
 
