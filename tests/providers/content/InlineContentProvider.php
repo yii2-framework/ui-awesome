@@ -39,19 +39,20 @@ final class InlineContentProvider
      * Supplies test data for validating inline-level HTML content handling, including enum integration and uppercase
      * conversion.
      *
-     * Each test case includes the input value (`string` or `InlineContent` enum) for inline content scenarios.
+     * Each test case includes the input value (`string` or `InlineContent` enum) and the expected normalized string for
+     * inline content scenarios.
      *
      * @return array Test data for inline content scenarios.
      *
-     * @phpstan-return array<string, array{string|InlineContent}>
+     * @phpstan-return array<string, array{string|InlineContent, string}>
      */
     public static function inlineContent(): array
     {
         $data = [];
 
         foreach (InlineContent::cases() as $case) {
-            $data[sprintf('%s inline tag as string', $case->value)] = [strtoupper($case->value)];
-            $data[sprintf('%s inline tag as enum', $case->value)] = [$case];
+            $data[sprintf('%s inline tag as string', $case->value)] = [strtoupper($case->value), $case->value];
+            $data[sprintf('%s inline tag as enum', $case->value)] = [$case, $case->value];
         }
 
         return $data;

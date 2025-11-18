@@ -10,6 +10,8 @@ use yii\ui\content\flow\BlockContent;
 use yii\ui\exception\Message;
 use yii\ui\helpers\{Attributes, Enum};
 
+use function strtolower;
+
 /**
  * Base class for standardized rendering of HTML block-level elements.
  *
@@ -103,6 +105,7 @@ abstract class BaseBlockElement
     private static function assertBlock(string|UnitEnum $tag): string
     {
         $tag = (string) Enum::normalizeValue($tag);
+        $tag = strtolower($tag);
 
         if (BlockContent::isBlock($tag) === false) {
             throw new InvalidArgumentException(Message::INVALID_BLOCK_ELEMENT->getMessage($tag));

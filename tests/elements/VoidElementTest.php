@@ -13,8 +13,6 @@ use yii\ui\exception\Message;
 use yii\ui\tests\providers\content\VoidContentProvider;
 use yii\ui\tests\support\TestSupport;
 
-use function is_string;
-
 /**
  * Test suite for {@see VoidElement} functionality and behavior.
  *
@@ -42,19 +40,17 @@ final class VoidElementTest extends TestCase
     use TestSupport;
 
     #[DataProviderExternal(VoidContentProvider::class, 'voidContent')]
-    public function testRenderVoid(string|VoidContent $tag): void
+    public function testRenderVoid(string|VoidContent $tagName, string $expectedTagName): void
     {
         $attributes = [
             'class' => ['void-element'],
             'data' => ['role' => 'presentation'],
         ];
 
-        $tagValue = is_string($tag) ? $tag : $tag->value;
-
         self::equalsWithoutLE(
-            "<{$tagValue} class=\"void-element\" data-role=\"presentation\">",
-            VoidElement::render($tag, $attributes),
-            "Rendered void '<{$tagValue}>' tag should match expected output.",
+            "<{$expectedTagName} class=\"void-element\" data-role=\"presentation\">",
+            VoidElement::render($tagName, $attributes),
+            "Rendered void '<{$expectedTagName}>' tag should match expected output.",
         );
     }
 

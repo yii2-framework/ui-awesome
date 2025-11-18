@@ -13,7 +13,7 @@ use yii\ui\exception\Message;
 use yii\ui\tests\providers\content\InlineContentProvider;
 use yii\ui\tests\support\TestSupport;
 
-use function is_string;
+use function strtolower;
 
 /**
  * Test suite for {@see InlineElement} functionality and behavior.
@@ -42,22 +42,20 @@ final class InlineElementTest extends TestCase
     use TestSupport;
 
     #[DataProviderExternal(InlineContentProvider::class, 'inlineContent')]
-    public function testRenderInline(string|InlineContent $tag): void
+    public function testRenderInline(string|InlineContent $tagName, string $expectedTagName): void
     {
         $content = '<mark>inline</mark>';
         $attributes = ['id' => 'inline-element'];
 
-        $tagValue = is_string($tag) ? $tag : $tag->value;
-
         self::equalsWithoutLE(
-            "<{$tagValue} id=\"inline-element\">{$content}</{$tagValue}>",
-            InlineElement::render($tag, $content, $attributes),
-            "Rendered inline '<{$tagValue}>' tag without encoding should match expected output.",
+            "<{$expectedTagName} id=\"inline-element\">{$content}</{$expectedTagName}>",
+            InlineElement::render($tagName, $content, $attributes),
+            "Rendered inline '<{$expectedTagName}>' tag without encoding should match expected output.",
         );
         self::equalsWithoutLE(
-            "<{$tagValue} id=\"inline-element\">&lt;mark&gt;inline&lt;/mark&gt;</{$tagValue}>",
-            InlineElement::render($tag, $content, $attributes, true),
-            "Rendered inline '<{$tagValue}>' tag with encoding should match expected output.",
+            "<{$expectedTagName} id=\"inline-element\">&lt;mark&gt;inline&lt;/mark&gt;</{$expectedTagName}>",
+            InlineElement::render($tagName, $content, $attributes, true),
+            "Rendered inline '<{$expectedTagName}>' tag with encoding should match expected output.",
         );
     }
 
@@ -73,7 +71,7 @@ final class InlineElementTest extends TestCase
     public function testThrowInvalidArgumentExceptionWithNonInlineContent(string $tagName): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(Message::INVALID_INLINE_ELEMENT->getMessage($tagName));
+        $this->expectExceptionMessage(Message::INVALID_INLINE_ELEMENT->getMessage(strtolower($tagName)));
 
         InlineElement::render($tagName, 'content');
     }

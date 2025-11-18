@@ -13,6 +13,8 @@ use yii\ui\exception\Message;
 use yii\ui\tests\providers\content\BlockContentProvider;
 use yii\ui\tests\support\TestSupport;
 
+use function strtolower;
+
 /**
  * Test suite for {@see BlockElement} helper functionality and behavior.
  *
@@ -41,30 +43,22 @@ final class BlockElementTest extends TestCase
     use TestSupport;
 
     #[DataProviderExternal(BlockContentProvider::class, 'blockContent')]
-    public function testRenderBegin(string|BlockContent $tag): void
+    public function testRenderBegin(string|BlockContent $tagName, string $expectedTagName): void
     {
-        if ($tag instanceof BlockContent) {
-            $tag = $tag->value;
-        }
-
         self::equalsWithoutLE(
-            "<{$tag}>",
-            BlockElement::begin($tag),
-            "Rendered opening '<{$tag}>' block tag should match expected output.",
+            "<{$expectedTagName}>",
+            BlockElement::begin($tagName),
+            "Rendered opening '<{$expectedTagName}>' block tag should match expected output.",
         );
     }
 
     #[DataProviderExternal(BlockContentProvider::class, 'blockContent')]
-    public function testRenderEnd(string|BlockContent $tag): void
+    public function testRenderEnd(string|BlockContent $tagName, string $expectedTagName): void
     {
-        if ($tag instanceof BlockContent) {
-            $tag = $tag->value;
-        }
-
         self::equalsWithoutLE(
-            "</{$tag}>",
-            BlockElement::end($tag),
-            "Rendered closing '</{$tag}>' block tag should match expected output.",
+            "</{$expectedTagName}>",
+            BlockElement::end($tagName),
+            "Rendered closing '</{$expectedTagName}>' block tag should match expected output.",
         );
     }
 
@@ -72,14 +66,14 @@ final class BlockElementTest extends TestCase
      * @phpstan-param 'begin'|'end' $operation BlockElement helper operation to invoke.
      */
     #[DataProviderExternal(BlockContentProvider::class, 'nonBlockContent')]
-    public function testThrowInvalidArgumentExceptionNonBlockContent(string $tag, string $operation): void
+    public function testThrowInvalidArgumentExceptionNonBlockContent(string $tagName, string $operation): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(Message::INVALID_BLOCK_ELEMENT->getMessage($tag));
+        $this->expectExceptionMessage(Message::INVALID_BLOCK_ELEMENT->getMessage(strtolower($tagName)));
 
         match ($operation) {
-            'begin' => BlockElement::begin($tag),
-            default => BlockElement::end($tag),
+            'begin' => BlockElement::begin($tagName),
+            default => BlockElement::end($tagName),
         };
     }
 

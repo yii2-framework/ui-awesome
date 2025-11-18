@@ -10,6 +10,8 @@ use yii\ui\content\flow\VoidContent;
 use yii\ui\exception\Message;
 use yii\ui\helpers\{Attributes, Enum};
 
+use function strtolower;
+
 /**
  * Base class for standardized rendering of HTML void elements.
  *
@@ -59,6 +61,7 @@ abstract class BaseVoidElement
     public static function render(string|UnitEnum $tag, array $attributes = []): string
     {
         $tag = (string) Enum::normalizeValue($tag);
+        $tag = strtolower($tag);
 
         if (VoidContent::isVoid($tag) === false) {
             throw new InvalidArgumentException(Message::INVALID_VOID_ELEMENT->getMessage($tag));

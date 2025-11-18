@@ -38,19 +38,20 @@ final class BlockContentProvider
      * Supplies test data for validating block-level HTML content handling, including enum integration and uppercase
      * conversion.
      *
-     * Each test case includes the input value (`string` or `BlockContent` enum) for block content scenarios.
+     * Each test case includes the input value (`string` or `BlockContent` enum) and the expected normalized string for
+     * block content scenarios.
      *
      * @return array Test data for block content scenarios.
      *
-     * @phpstan-return array<string, array{string|BlockContent}>
+     * @phpstan-return array<string, array{string|BlockContent, string}>
      */
     public static function blockContent(): array
     {
         $data = [];
 
         foreach (BlockContent::cases() as $case) {
-            $data[sprintf('%s tag', $case->value)] = [strtoupper($case->value)];
-            $data[sprintf('%s tag with enum', $case->value)] = [$case];
+            $data[sprintf('%s tag', $case->value)] = [strtoupper($case->value), $case->value];
+            $data[sprintf('%s tag with enum', $case->value)] = [$case, $case->value];
         }
 
         return $data;

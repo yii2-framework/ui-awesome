@@ -69,19 +69,20 @@ final class VoidContentProvider
      * Supplies test data for validating void-level HTML content handling, including enum integration and uppercase
      * conversion.
      *
-     * Each test case includes the input value (`string` or `VoidContent` enum) for void content scenarios.
+     * Each test case includes the input value (`string` or `VoidContent` enum) and the expected normalized string for
+     * void content scenarios.
      *
      * @return array Test data for void content scenarios.
      *
-     * @phpstan-return array<string, array{string|VoidContent}>
+     * @phpstan-return array<string, array{string|VoidContent, string}>
      */
     public static function voidContent(): array
     {
         $data = [];
 
         foreach (VoidContent::cases() as $case) {
-            $data[sprintf('%s void tag as string', $case->value)] = [strtoupper($case->value)];
-            $data[sprintf('%s void tag as enum', $case->value)] = [$case];
+            $data[sprintf('%s void tag as string', $case->value)] = [strtoupper($case->value), $case->value];
+            $data[sprintf('%s void tag as enum', $case->value)] = [$case, $case->value];
         }
 
         return $data;
