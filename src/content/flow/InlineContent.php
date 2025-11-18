@@ -231,7 +231,7 @@ enum InlineContent: string
      * Usage example:
      * ```php
      * if (InlineContent::isInline('span')) {
-     *     // valid inline tag
+     *     // valid inline content
      * }
      * ```
      */

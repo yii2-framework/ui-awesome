@@ -216,7 +216,7 @@ enum BlockContent: string
      * Usage example:
      * ```php
      * if (BlockContent::isBlock('div')) {
-     *     // valid block tag
+     *     // valid block content
      * }
      * ```
      */

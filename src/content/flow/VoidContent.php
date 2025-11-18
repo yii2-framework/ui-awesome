@@ -116,7 +116,7 @@ enum VoidContent: string
      * Usage example:
      * ```php
      * if (VoidContent::isVoid('br')) {
-     *     // valid void tag
+     *     // valid void content
      * }
      * ```
      */
