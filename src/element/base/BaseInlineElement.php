@@ -6,7 +6,7 @@ namespace yii\ui\element\base;
 
 use UnitEnum;
 use yii\base\InvalidArgumentException;
-use yii\ui\element\tag\InlineTag;
+use yii\ui\content\flow\InlineContent;
 use yii\ui\exception\Message;
 use yii\ui\helpers\{Attributes, Encode, Enum};
 
@@ -53,7 +53,7 @@ abstract class BaseInlineElement
      * Usage example:
      * ```php
      * InlineElement::render('span', 'Hello, World!', ['class' => 'highlight']);
-     * InlineElement::render(InlineTag::SPAN, 'Hello, World!', ['class' => 'highlight'], true);
+     * InlineElement::render(InlineContent::SPAN, 'Hello, World!', ['class' => 'highlight'], true);
      * ```
      *
      * @phpstan-param mixed[] $attributes
@@ -66,7 +66,7 @@ abstract class BaseInlineElement
     ): string {
         $tag = (string) Enum::normalizeValue($tag);
 
-        if (InlineTag::isInline($tag) === false) {
+        if (InlineContent::isInline($tag) === false) {
             throw new InvalidArgumentException(Message::INVALID_INLINE_ELEMENT->getMessage($tag));
         }
 

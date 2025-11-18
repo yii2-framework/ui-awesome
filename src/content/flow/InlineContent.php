@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace yii\ui\element\tag;
+namespace yii\ui\content\flow;
 
 use yii\base\InvalidArgumentException;
 use yii\ui\exception\Message;
@@ -10,24 +10,26 @@ use yii\ui\exception\Message;
 use function strtolower;
 
 /**
- * Enum representing all supported HTML inline tags for rendering and validation.
+ * Enum representing all supported HTML inline-level tags for rendering and validation.
  *
- * Provides a type-safe, standards-compliant set of inline HTML tag names for use in tag rendering systems, attribute
- * validation, and widget construction. Ensures consistent handling of inline elements in HTML5 contexts, supporting
- * strict type safety and predictable output for tag-based operations.
+ * Defines a comprehensive set of inline-level HTML elements as specified by the HTML standard and MDN documentation,
+ * supporting validation and rendering logic for standards-compliant document generation.
+ *
+ * This enum is designed for use in view renderers, widget systems, and asset managers that require precise handling of
+ * inline elements within flow content categories.
  *
  * Key features:
- * - Comprehensive coverage of HTML inline tags as defined by HTML5 specification.
- * - Designed for integration with advanced attribute and element rendering systems.
- * - Type-safe enumeration for tag validation and rendering.
- * - Utility method for inline tag detection supporting case-insensitive matching.
+ * - Enumerates all inline-level tags recognized in flow content per HTML specification.
+ * - Integrates with validation and normalization routines for predictable layout behavior.
+ * - Provides immutable, type-safe API for robust HTML generation workflows.
+ * - Strict adherence to inline element semantics for technical consistency.
  *
- * {@see https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements} HTML Inline Elements.
+ * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Content_categories#flow_content
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
-enum InlineTag: string
+enum InlineContent: string
 {
     /**
      * Case for the `<a>` HTML tag.
@@ -228,8 +230,8 @@ enum InlineTag: string
      *
      * Usage example:
      * ```php
-     * if (InlineTag::isInline('span')) {
-     *     // Valid inline tag
+     * if (InlineContent::isInline('span')) {
+     *     // valid inline content
      * }
      * ```
      */

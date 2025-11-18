@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace yii\ui\element\tag;
+namespace yii\ui\content\flow;
 
 use yii\base\InvalidArgumentException;
 use yii\ui\exception\Message;
@@ -12,22 +12,24 @@ use function strtolower;
 /**
  * Enum representing all supported HTML block-level tags for rendering and validation.
  *
- * Provides a type-safe, standards-compliant set of block-level HTML tag names for use in tag rendering systems,
- * attribute validation, and widget construction. Ensures consistent handling of block-level elements in HTML5 contexts,
- * supporting strict type safety and predictable output for tag-based operations.
+ * Defines a comprehensive set of block-level HTML elements as specified by the HTML standard and MDN documentation,
+ * supporting validation and rendering logic for standards-compliant document generation.
+ *
+ * This enum is designed for use in view renderers, widget systems, and asset managers that require precise handling of
+ * block elements within flow content categories.
  *
  * Key features:
- * - Comprehensive coverage of HTML block-level tags as defined by the HTML5 specification.
- * - Designed for integration with advanced attribute and element rendering systems.
- * - Type-safe enumeration for tag validation and rendering.
- * - Utility method for block-level tag detection supporting case-insensitive matching.
+ * - Enumerates all block-level tags recognized in flow content per HTML specification.
+ * - Integrates with validation and normalization routines for predictable layout behavior.
+ * - Provides immutable, type-safe API for robust HTML generation workflows.
+ * - Strict adherence to block element semantics for technical consistency.
  *
- * {@see https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements} HTML Block-level Elements.
+ * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Content_categories#flow_content
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
-enum BlockTag: string
+enum BlockContent: string
 {
     /**
      * Case for the `<address>` HTML tag.
@@ -210,6 +212,13 @@ enum BlockTag: string
      * @throws InvalidArgumentException if the tag name is empty.
      *
      * @return bool `true` if the tag is a supported block-level tag, `false` otherwise.
+     *
+     * Usage example:
+     * ```php
+     * if (BlockContent::isBlock('div')) {
+     *     // valid block content
+     * }
+     * ```
      */
     public static function isBlock(string $tag): bool
     {
