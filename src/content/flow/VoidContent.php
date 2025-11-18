@@ -7,8 +7,6 @@ namespace yii\ui\content\flow;
 use yii\base\InvalidArgumentException;
 use yii\ui\exception\Message;
 
-use function strtolower;
-
 /**
  * Enum representing all supported HTML void (self-closing) tags for rendering and validation.
  *
@@ -126,6 +124,6 @@ enum VoidContent: string
             throw new InvalidArgumentException(Message::EMPTY_TAG_NAME->getMessage());
         }
 
-        return self::tryFrom(strtolower($tag)) !== null;
+        return self::tryFrom($tag) !== null;
     }
 }
