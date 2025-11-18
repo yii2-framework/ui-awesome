@@ -58,7 +58,7 @@ final class VoidContentProvider
         ];
 
         foreach ($tags as $tag) {
-            $data[sprintf('%s non-inline tag', $tag)] = [$tag];
+            $data[sprintf('%s non-void tag', $tag)] = [$tag];
         }
 
         return $data;
