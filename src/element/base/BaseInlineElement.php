@@ -7,8 +7,6 @@ namespace yii\ui\element\base;
 use UnitEnum;
 use yii\base\InvalidArgumentException;
 use yii\ui\content\flow\InlineContent;
-use yii\ui\content\flow\VoidContent;
-use yii\ui\element\VoidElement;
 use yii\ui\exception\Message;
 use yii\ui\helpers\{Attributes, Encode, Enum};
 
@@ -68,10 +66,6 @@ abstract class BaseInlineElement
     ): string {
         $tag = (string) Enum::normalizeValue($tag);
         $tag = strtolower($tag);
-
-        if (VoidContent::isVoid($tag)) {
-            return VoidElement::render($tag, $attributes);
-        }
 
         if (InlineContent::isInline($tag) === false) {
             throw new InvalidArgumentException(Message::INVALID_INLINE_ELEMENT->getMessage($tag));
