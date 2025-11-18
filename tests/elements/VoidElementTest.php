@@ -13,6 +13,8 @@ use yii\ui\exception\Message;
 use yii\ui\tests\providers\content\VoidContentProvider;
 use yii\ui\tests\support\TestSupport;
 
+use function strtolower;
+
 /**
  * Test suite for {@see VoidElement} functionality and behavior.
  *
@@ -66,7 +68,7 @@ final class VoidElementTest extends TestCase
     public function testThrowInvalidArgumentExceptionWithNonVoidTag(string $tagName): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(Message::INVALID_VOID_ELEMENT->getMessage($tagName));
+        $this->expectExceptionMessage(Message::INVALID_VOID_ELEMENT->getMessage(strtolower($tagName)));
 
         VoidElement::render($tagName);
     }
