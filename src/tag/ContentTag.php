@@ -235,8 +235,6 @@ final class ContentTag
      *
      * @return array Array of listing Tag enum instances.
      *
-     * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Content_categories#listing_content
-     *
      * @phpstan-return list<Tag>
      */
     public static function listing(): array

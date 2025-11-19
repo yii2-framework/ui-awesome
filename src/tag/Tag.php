@@ -393,7 +393,6 @@ enum Tag: string
      */
     case H2 = 'h2';
 
-
     /**
      * Case for the `<h3>` HTML tag.
      *
@@ -1057,18 +1056,6 @@ enum Tag: string
      * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/wbr
      */
     case WBR = 'wbr';
-
-    /**
-     * Determines whether the given tag name is a valid HTML tag.
-     *
-     * @param string $tag Tag name to validate.
-     *
-     * @return bool `true` if the tag name is valid, `false` otherwise.
-     */
-    public static function isValid(string $tag): bool
-    {
-        return Tag::tryFrom($tag) !== null;
-    }
 
     /**
      * Determines whether the given tag is classified as a void element.
