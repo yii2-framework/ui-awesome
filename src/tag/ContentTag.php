@@ -229,6 +229,30 @@ final class ContentTag
     }
 
     /**
+     * Returns the list of listing content HTML tags.
+     *
+     * Listing content includes elements used for lists and list-like structures.
+     *
+     * @return array Array of listing Tag enum instances.
+     *
+     * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Content_categories#listing_content
+     *
+     * @phpstan-return list<Tag>
+     */
+    public static function listing(): array
+    {
+        return [
+            Tag::DD,
+            Tag::DL,
+            Tag::DT,
+            Tag::LI,
+            Tag::MENU,
+            Tag::OL,
+            Tag::UL,
+        ];
+    }
+
+    /**
      * Returns the list of metadata content HTML tags.
      *
      * Metadata content includes elements that provide document metadata and resources.
@@ -250,30 +274,6 @@ final class ContentTag
             Tag::STYLE,
             Tag::TEMPLATE,
             Tag::TITLE,
-        ];
-    }
-
-    /**
-     * Returns the list of listing content HTML tags.
-     *
-     * Listing content includes elements used for lists and list-like structures.
-     *
-     * @return array Array of listing Tag enum instances.
-     *
-     * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Content_categories#listing_content
-     *
-     * @phpstan-return list<Tag>
-     */
-    public static function listing(): array
-    {
-        return [
-            Tag::DD,
-            Tag::DL,
-            Tag::DT,
-            Tag::LI,
-            Tag::MENU,
-            Tag::OL,
-            Tag::UL,
         ];
     }
 
@@ -431,6 +431,24 @@ final class ContentTag
     }
 
     /**
+     * Returns the list of root HTML tags.
+     *
+     * Root tags include the fundamental structural elements of an HTML document.
+     *
+     * @return array Array of root Tag enum instances.
+     *
+     * @phpstan-return list<Tag>
+     */
+    public static function root(): array
+    {
+        return [
+            Tag::BODY,
+            Tag::HEAD,
+            Tag::HTML,
+        ];
+    }
+
+    /**
      * Returns the list of script-supporting content HTML tags.
      *
      * Script-supporting content includes elements that enable scripting and template functionality.
@@ -468,24 +486,6 @@ final class ContentTag
             Tag::ASIDE,
             Tag::NAV,
             Tag::SECTION,
-        ];
-    }
-
-    /**
-     * Returns the list of root HTML tags.
-     *
-     * Root tags include the fundamental structural elements of an HTML document.
-     *
-     * @return array Array of root Tag enum instances.
-     *
-     * @phpstan-return list<Tag>
-     */
-    public static function root(): array
-    {
-        return [
-            Tag::BODY,
-            Tag::HEAD,
-            Tag::HTML,
         ];
     }
 
