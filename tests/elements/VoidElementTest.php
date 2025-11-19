@@ -6,8 +6,8 @@ namespace yii\ui\tests\elements;
 
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
+use UnitEnum;
 use yii\base\InvalidArgumentException;
-use yii\ui\content\flow\VoidContent;
 use yii\ui\element\VoidElement;
 use yii\ui\exception\Message;
 use yii\ui\tests\providers\content\VoidContentProvider;
@@ -42,7 +42,7 @@ final class VoidElementTest extends TestCase
     use TestSupport;
 
     #[DataProviderExternal(VoidContentProvider::class, 'voidContent')]
-    public function testRenderVoid(string|VoidContent $tagName, string $expectedTagName): void
+    public function testRenderVoid(string|UnitEnum $tagName, string $expectedTagName): void
     {
         $attributes = [
             'class' => ['void-element'],

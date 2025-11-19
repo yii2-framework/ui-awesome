@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\providers\content;
 
-use yii\ui\content\flow\VoidContent;
+use UnitEnum;
+use yii\ui\tag\Tag;
 
 use function sprintf;
 use function strtoupper;
@@ -63,24 +64,25 @@ final class VoidContentProvider
 
         return $data;
     }
+
     /**
      * Provides test cases for void content scenarios.
      *
      * Supplies test data for validating void-level HTML content handling, including enum integration and uppercase
      * conversion.
      *
-     * Each test case includes the input value (`string` or `VoidContent` enum) and the expected normalized string for
-     * void content scenarios.
+     * Each test case includes the input value (`string` or enum value) and the expected normalized string for void
+     * content scenarios.
      *
      * @return array Test data for void content scenarios.
      *
-     * @phpstan-return array<string, array{string|VoidContent, string}>
+     * @phpstan-return array<string, array{string|UnitEnum, string}>
      */
     public static function voidContent(): array
     {
         $data = [];
 
-        foreach (VoidContent::cases() as $case) {
+        foreach (Tag::void() as $case) {
             $data[sprintf('%s void tag as string', $case->value)] = [strtoupper($case->value), $case->value];
             $data[sprintf('%s void tag as enum', $case->value)] = [$case, $case->value];
         }

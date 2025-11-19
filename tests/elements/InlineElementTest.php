@@ -6,8 +6,8 @@ namespace yii\ui\tests\elements;
 
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
+use UnitEnum;
 use yii\base\InvalidArgumentException;
-use yii\ui\content\flow\InlineContent;
 use yii\ui\element\InlineElement;
 use yii\ui\exception\Message;
 use yii\ui\tests\providers\content\InlineContentProvider;
@@ -42,7 +42,7 @@ final class InlineElementTest extends TestCase
     use TestSupport;
 
     #[DataProviderExternal(InlineContentProvider::class, 'inlineContent')]
-    public function testRenderInline(string|InlineContent $tagName, string $expectedTagName): void
+    public function testRenderInline(string|UnitEnum $tagName, string $expectedTagName): void
     {
         $content = '<mark>inline</mark>';
         $attributes = ['id' => 'inline-element'];

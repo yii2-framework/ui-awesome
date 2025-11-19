@@ -6,9 +6,9 @@ namespace yii\ui\element\base;
 
 use UnitEnum;
 use yii\base\InvalidArgumentException;
-use yii\ui\content\flow\BlockContent;
 use yii\ui\exception\Message;
 use yii\ui\helpers\{Attributes, Enum};
+use yii\ui\tag\ClassifierTag;
 
 use function strtolower;
 
@@ -107,7 +107,7 @@ abstract class BaseBlockElement
         $tag = (string) Enum::normalizeValue($tag);
         $tag = strtolower($tag);
 
-        if (BlockContent::isBlock($tag) === false) {
+        if (ClassifierTag::isBlock($tag) === false) {
             throw new InvalidArgumentException(Message::INVALID_BLOCK_ELEMENT->getMessage($tag));
         }
 

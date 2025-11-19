@@ -6,9 +6,9 @@ namespace yii\ui\element\base;
 
 use UnitEnum;
 use yii\base\InvalidArgumentException;
-use yii\ui\content\flow\InlineContent;
 use yii\ui\exception\Message;
 use yii\ui\helpers\{Attributes, Encode, Enum};
+use yii\ui\tag\ClassifierTag;
 
 /**
  * Base class for standardized rendering of HTML inline-level elements.
@@ -67,7 +67,7 @@ abstract class BaseInlineElement
         $tag = (string) Enum::normalizeValue($tag);
         $tag = strtolower($tag);
 
-        if (InlineContent::isInline($tag) === false) {
+        if (ClassifierTag::isInline($tag) === false) {
             throw new InvalidArgumentException(Message::INVALID_INLINE_ELEMENT->getMessage($tag));
         }
 

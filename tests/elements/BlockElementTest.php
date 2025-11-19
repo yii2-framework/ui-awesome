@@ -6,8 +6,8 @@ namespace yii\ui\tests\elements;
 
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
+use UnitEnum;
 use yii\base\InvalidArgumentException;
-use yii\ui\content\flow\BlockContent;
 use yii\ui\element\BlockElement;
 use yii\ui\exception\Message;
 use yii\ui\tests\providers\content\BlockContentProvider;
@@ -43,7 +43,7 @@ final class BlockElementTest extends TestCase
     use TestSupport;
 
     #[DataProviderExternal(BlockContentProvider::class, 'blockContent')]
-    public function testRenderBegin(string|BlockContent $tagName, string $expectedTagName): void
+    public function testRenderBegin(string|UnitEnum $tagName, string $expectedTagName): void
     {
         self::equalsWithoutLE(
             "<{$expectedTagName}>",
@@ -53,7 +53,7 @@ final class BlockElementTest extends TestCase
     }
 
     #[DataProviderExternal(BlockContentProvider::class, 'blockContent')]
-    public function testRenderEnd(string|BlockContent $tagName, string $expectedTagName): void
+    public function testRenderEnd(string|UnitEnum $tagName, string $expectedTagName): void
     {
         self::equalsWithoutLE(
             "</{$expectedTagName}>",
