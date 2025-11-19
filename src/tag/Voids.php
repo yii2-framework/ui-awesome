@@ -1,0 +1,149 @@
+<?php
+
+declare(strict_types=1);
+
+namespace yii\ui\tag;
+
+/**
+ * Represents void (self-closing) HTML elements according to the HTML standard specification.
+ *
+ * Provides a type-safe, standards-compliant set of void element tag names for use in element rendering, widget systems,
+ * and view helpers.
+ *
+ * Each case corresponds to a valid void HTML tag as defined by the W3C and MDN documentation.
+ *
+ * Key features:
+ * - Designed for use in widget, view, and tag rendering systems requiring void element structure.
+ * - Ensures technical consistency with the HTML specification and modern web standards.
+ * - Integration-ready for tag rendering, validation, and normalization in HTML helpers and components.
+ * - Strict mapping of void HTML tags for semantic markup generation.
+ *
+ * @link https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+ * @copyright Copyright (C) 2025 Terabytesoftw.
+ * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
+ */
+enum Voids: string
+{
+    /**
+     * Case for the `<area>` HTML tag.
+     *
+     * Categorized as flow, phrasing content.
+     *
+     * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/area
+     */
+    case AREA = 'area';
+
+    /**
+     * Case for the `<base>` HTML tag.
+     *
+     * Categorized as metadata content.
+     *
+     * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/base
+     */
+    case BASE = 'base';
+
+    /**
+     * Case for the `<br>` HTML tag.
+     *
+     * Categorized as flow, palpable, phrasing content.
+     *
+     * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/br
+     */
+    case BR = 'br';
+
+    /**
+     * Case for the `<col>` HTML tag.
+     *
+     * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/col
+     */
+    case COL = 'col';
+
+    /**
+     * Case for the `<embed>` HTML tag.
+     *
+     * Categorized as flow, embedded, interactive, palpable, and phrasing content.
+     *
+     * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/embed
+     */
+    case EMBED = 'embed';
+
+    /**
+     * Case for the `<hr>` HTML tag.
+     *
+     * Categorized as flow content.
+     *
+     * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/hr
+     */
+    case HR = 'hr';
+
+    /**
+     * Case for the `<img>` HTML tag.
+     *
+     * Categorized as flow, embedded, palpable, and phrasing content.
+     *
+     * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img
+     */
+    case IMG = 'img';
+
+    /**
+     * Case for the `<input>` HTML tag.
+     *
+     * Categorized as flow, form-associated, interactive, palpable, and phrasing content.
+     *
+     * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input
+     */
+    case INPUT = 'input';
+
+    /**
+     * Case for the `<link>` HTML tag.
+     *
+     * Categorized as metadata content.
+     *
+     * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/link
+     */
+    case LINK = 'link';
+
+    /**
+     * Case for the `<meta>` HTML tag.
+     *
+     * Categorized as metadata content.
+     *
+     * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta
+     */
+    case META = 'meta';
+
+    /**
+     * Case for the `<source>` HTML tag.
+     *
+     * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/source
+     */
+    case SOURCE = 'source';
+
+    /**
+     * Case for the `<track>` HTML tag.
+     *
+     * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/track
+     */
+    case TRACK = 'track';
+
+    /**
+     * Case for the `<wbr>` HTML tag.
+     *
+     * Categorized as flow, phrasing content.
+     *
+     * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/wbr
+     */
+    case WBR = 'wbr';
+
+    /**
+     * Determines whether the provided tag name is a valid void element.
+     *
+     * @param string $void Tag name to validate.
+     *
+     * @return bool `true` if the tag is a valid void element, `false` otherwise.
+     */
+    public static function isVoid(string $void): bool
+    {
+        return self::tryFrom($void) !== null;
+    }
+}
