@@ -477,7 +477,7 @@ enum Tag: string
     /**
      * Case for the `<iframe>` HTML tag.
      *
-     * Categorized as {@see ContentTag::embedded()}, {@see ContentTag::flow()}, {@seeContentTag::interactive()},
+     * Categorized as {@see ContentTag::embedded()}, {@see ContentTag::flow()}, {@see ContentTag::interactive()},
      * {@see ContentTag::palpable()} and {@see ContentTag::phrasing()}.
      *
      * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe
@@ -633,7 +633,7 @@ enum Tag: string
     /**
      * Case for the `<noscript>` HTML tag.
      *
-     * Categorized as {@see ContentTag::flow()}, {@see ContentTag::metadata()}, {@seeContentTag::phrasing()}, and
+     * Categorized as {@see ContentTag::flow()}, {@see ContentTag::metadata()}, {@see ContentTag::phrasing()}, and
      * {@see ContentTag::scriptSupporting()}.
      *
      * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/noscript
@@ -643,7 +643,7 @@ enum Tag: string
     /**
      * Case for the `<object>` HTML tag.
      *
-     * Categorized as {@see ContentTag::embedded()}, {@see ContentTag::flow()}, {@seeContentTag::formAssociated()},
+     * Categorized as {@see ContentTag::embedded()}, {@see ContentTag::flow()}, {@see ContentTag::formAssociated()},
      * {@see ContentTag::palpable()}, and {@see ContentTag::phrasing()}.
      *
      * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/object
@@ -777,7 +777,7 @@ enum Tag: string
     /**
      * Case for the `<script>` HTML tag.
      *
-     * Categorized as {@see ContentTag::flow()}, {@see ContentTag::metadata()}, {@seeContentTag::phrasing()}, and
+     * Categorized as {@see ContentTag::flow()}, {@see ContentTag::metadata()}, {@see ContentTag::phrasing()}, and
      * {@see ContentTag::scriptSupporting()}.
      *
      * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script
@@ -894,7 +894,7 @@ enum Tag: string
     /**
      * Case for the `<svg>` SVG tag.
      *
-     * Categorized as {@see ContentTag::embedded()}, {@see ContentTag::flow()}, {@seeContentTag::palpable()}, and
+     * Categorized as {@see ContentTag::embedded()}, {@see ContentTag::flow()}, {@see ContentTag::palpable()}, and
      * {@see ContentTag::phrasing()}.
      *
      * @link https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg

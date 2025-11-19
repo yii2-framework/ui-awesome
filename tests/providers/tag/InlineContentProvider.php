@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace yii\ui\tests\providers\content;
+namespace yii\ui\tests\providers\tag;
 
 use UnitEnum;
-use yii\ui\tag\ClassifierTag;
+use yii\ui\helpers\Enum;
+use yii\ui\tag\{ClassifierTag, ContentTag, Tag};
 
 use function sprintf;
 use function strtoupper;
@@ -69,7 +70,7 @@ final class InlineContentProvider
      *
      * @return array Test data for non-inline content scenarios.
      *
-     * @phpstan-return array<string, list{string}>
+     * @phpstan-return array<string, list{string|UnitEnum}>
      */
     public static function nonInlineContent(): array
     {
@@ -77,14 +78,17 @@ final class InlineContentProvider
         $tags = [
             'div ',
             ' div',
-            'div',
-            'false',
-            'NAV',
-            'true',
+            ...ContentTag::embedded(),
+            ...ContentTag::listing(),
+            ...ContentTag::scriptSupporting(),
+            ...ContentTag::table(),
+            ...Tag::void(),
         ];
 
         foreach ($tags as $tag) {
-            $data[sprintf('%s non-inline tag', $tag)] = [$tag];
+            $tagName = (string) Enum::normalizeValue($tag);
+
+            $data[sprintf('%s non-inline tag', $tagName)] = [$tag];
         }
 
         return $data;

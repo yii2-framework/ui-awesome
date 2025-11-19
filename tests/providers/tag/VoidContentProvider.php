@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace yii\ui\tests\providers\content;
+namespace yii\ui\tests\providers\tag;
 
 use UnitEnum;
 use yii\ui\tag\Tag;

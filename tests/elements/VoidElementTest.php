@@ -10,7 +10,7 @@ use UnitEnum;
 use yii\base\InvalidArgumentException;
 use yii\ui\element\VoidElement;
 use yii\ui\exception\Message;
-use yii\ui\tests\providers\content\VoidContentProvider;
+use yii\ui\tests\providers\tag\VoidContentProvider;
 use yii\ui\tests\support\TestSupport;
 
 use function strtolower;

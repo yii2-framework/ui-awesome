@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace yii\ui\tests\providers\content;
+namespace yii\ui\tests\providers\tag;
 
 use UnitEnum;
-use yii\ui\tag\ClassifierTag;
+use yii\ui\helpers\Enum;
+use yii\ui\tag\{ClassifierTag, ContentTag, Tag};
 
 use function sprintf;
 use function strtoupper;
@@ -88,23 +89,27 @@ final class BlockContentProvider
      *
      * @return array Test data for non-block content scenarios.
      *
-     * @phpstan-return array<string, array{string, 'begin'|'end'}>
+     * @phpstan-return array<string, array{string|UnitEnum, 'begin'|'end'}>
      */
     public static function nonBlockContent(): array
     {
-        $data = [];
         $tags = [
-            'false',
-            'span ',
             ' span',
-            'span',
-            'STRONG',
-            'true',
+            'span ',
+            ...ClassifierTag::inlineTags(),
+            ...ContentTag::listing(),
+            ...ContentTag::scriptSupporting(),
+            ...ContentTag::table(),
+            ...Tag::void(),
         ];
 
+        $data = [];
+
         foreach ($tags as $tag) {
-            $data[sprintf('%s tag begin operation', $tag)] = [$tag, 'begin'];
-            $data[sprintf('%s tag end operation', $tag)] = [$tag, 'end'];
+            $tagName = (string) Enum::normalizeValue($tag);
+
+            $data[sprintf('%s tag begin operation', $tagName)] = [$tag, 'begin'];
+            $data[sprintf('%s tag end operation', $tagName)] = [$tag, 'end'];
         }
 
         return $data;

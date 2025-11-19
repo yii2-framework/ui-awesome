@@ -10,7 +10,8 @@ use UnitEnum;
 use yii\base\InvalidArgumentException;
 use yii\ui\element\InlineElement;
 use yii\ui\exception\Message;
-use yii\ui\tests\providers\content\InlineContentProvider;
+use yii\ui\helpers\Enum;
+use yii\ui\tests\providers\tag\InlineContentProvider;
 use yii\ui\tests\support\TestSupport;
 
 use function strtolower;
@@ -68,8 +69,10 @@ final class InlineElementTest extends TestCase
     }
 
     #[DataProviderExternal(InlineContentProvider::class, 'nonInlineContent')]
-    public function testThrowInvalidArgumentExceptionWithNonInlineContent(string $tagName): void
+    public function testThrowInvalidArgumentExceptionWithNonInlineContent(string|UnitEnum $tagName): void
     {
+        $tagName = (string) Enum::normalizeValue($tagName);
+
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(Message::INVALID_INLINE_ELEMENT->getMessage(strtolower($tagName)));
 

@@ -10,7 +10,8 @@ use UnitEnum;
 use yii\base\InvalidArgumentException;
 use yii\ui\element\BlockElement;
 use yii\ui\exception\Message;
-use yii\ui\tests\providers\content\BlockContentProvider;
+use yii\ui\helpers\Enum;
+use yii\ui\tests\providers\tag\BlockContentProvider;
 use yii\ui\tests\support\TestSupport;
 
 use function strtolower;
@@ -66,8 +67,10 @@ final class BlockElementTest extends TestCase
      * @phpstan-param 'begin'|'end' $operation BlockElement helper operation to invoke.
      */
     #[DataProviderExternal(BlockContentProvider::class, 'nonBlockContent')]
-    public function testThrowInvalidArgumentExceptionNonBlockContent(string $tagName, string $operation): void
+    public function testThrowInvalidArgumentExceptionNonBlockContent(string|UnitEnum $tagName, string $operation): void
     {
+        $tagName = (string) Enum::normalizeValue($tagName);
+
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(Message::INVALID_BLOCK_ELEMENT->getMessage(strtolower($tagName)));
 
