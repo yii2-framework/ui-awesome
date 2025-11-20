@@ -55,3 +55,4 @@
 - Bug #51: Normalize tag names to lowercase in `BaseBlockElement`, `BaseInlineElement`, and `BaseVoidElement` classes; update related tests and data providers (@terabytesoftw)
 - Bug #52: Improve elements classes for use enum tags and update related tests and data providers (@terabytesoftw)
 - Enh #53: Introduce `Root` class for `root-level` HTML rendering and related tests (@terabytesoftw)
+- Bug #54: Update PHPDoc for `Voids` class for standard docs compliance (@terabytesoftw)
