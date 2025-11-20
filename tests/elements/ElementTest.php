@@ -7,8 +7,8 @@ namespace yii\ui\tests\elements;
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
 use yii\ui\element\Element;
-use yii\ui\tag\{Block, Inline, Voids};
-use yii\ui\tests\providers\tag\{BlockProvider, InlineProvider, VoidProvider};
+use yii\ui\tag\{Block, Inline, Root, Voids};
+use yii\ui\tests\providers\tag\{BlockProvider, InlineProvider, RootProvider, VoidProvider};
 use yii\ui\tests\support\TestSupport;
 
 /**
@@ -16,17 +16,17 @@ use yii\ui\tests\support\TestSupport;
  *
  * Validates the correct handling and output of HTML element tags according to the HTML Living Standard specification.
  *
- * Ensures proper rendering, immutability, and validation of block, inline, and void elements, supporting both `string`
- * and `UnitEnum` tag names.
+ * Ensures proper rendering, immutability, and validation of block, inline, root and void elements, supporting both
+ * `string` and `UnitEnum` tag names.
  *
  * Test coverage:
- * - Accurate rendering of block, inline, and void HTML tags.
+ * - Accurate rendering of block, inline, root and void HTML tags.
  * - Data provider-driven validation for edge cases and expected behaviors.
  * - Exception handling for invalid tag names and element types.
  * - Immutability of the API when rendering or validating tags.
  * - Proper assignment and normalization of tag names.
  *
- * {@see BlockProvider}, {@see InlineProvider}, {@see VoidProvider} for test case data providers.
+ * {@see BlockProvider}, {@see InlineProvider}, {@see RootProvider}, {@see VoidProvider} for test case data providers.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -37,7 +37,7 @@ final class ElementTest extends TestCase
     use TestSupport;
 
     #[DataProviderExternal(BlockProvider::class, 'blockTags')]
-    public function testRenderBegin(Block $tag, string $expectedTagName): void
+    public function testRenderBeginWithBlockTag(Block $tag, string $expectedTagName): void
     {
         self::equalsWithoutLE(
             "<{$expectedTagName}>",
@@ -46,8 +46,18 @@ final class ElementTest extends TestCase
         );
     }
 
+    #[DataProviderExternal(RootProvider::class, 'rootTags')]
+    public function testRenderBeginWithRootTag(Root $tag, string $expectedTagName): void
+    {
+        self::equalsWithoutLE(
+            "<{$expectedTagName}>",
+            Element::begin($tag),
+            "Element begin '<{$expectedTagName}>' root tag should match expected output.",
+        );
+    }
+
     #[DataProviderExternal(BlockProvider::class, 'blockTags')]
-    public function testRenderEnd(Block $tag, string $expectedTagName): void
+    public function testRenderEndWithBlockTag(Block $tag, string $expectedTagName): void
     {
         self::equalsWithoutLE(
             "</{$expectedTagName}>",
@@ -55,6 +65,17 @@ final class ElementTest extends TestCase
             "Element end '</{$expectedTagName}>' block tag should match expected output.",
         );
     }
+
+    #[DataProviderExternal(RootProvider::class, 'rootTags')]
+    public function testRenderEndWithRootTag(Root $tag, string $expectedTagName): void
+    {
+        self::equalsWithoutLE(
+            "</{$expectedTagName}>",
+            Element::end($tag),
+            "Element end '</{$expectedTagName}>' root tag should match expected output.",
+        );
+    }
+
 
     #[DataProviderExternal(InlineProvider::class, 'inlineTags')]
     public function testRenderInline(Inline $tag, string $expectedTagName): void

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace yii\ui\element\base;
 
 use yii\ui\helpers\{Attributes, Encode};
-use yii\ui\tag\{Block, Inline, Voids};
+use yii\ui\tag\{Block, Inline, Root, Voids};
 
 /**
  * Base class for standards-compliant HTML element rendering.
@@ -19,13 +19,14 @@ use yii\ui\tag\{Block, Inline, Voids};
  * Key features:
  * - Exception-driven error handling for invalid tag usage.
  * - Integration with attribute and encoding helpers for safe output.
- * - Standards-compliant rendering of block, inline, and void elements.
+ * - Standards-compliant rendering of block, inline, root and void elements.
  * - Support `UnitEnum` tag types for flexible API design.
  * - Tag normalization and validation against HTML specifications.
  *
  * @link https://developer.mozilla.org/en-US/docs/Glossary/Block-level_content
  * @link https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content
  * @link https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+ * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements#main_root
  * {@see InvalidArgumentException} for invalid value errors.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
@@ -34,23 +35,27 @@ use yii\ui\tag\{Block, Inline, Voids};
 abstract class BaseElement
 {
     /**
-     * Renders the opening tag for a block-level HTML element.
+     * Renders the opening tag for a block-level or root-level HTML element.
      *
-     * Validates the tag as block-level and generates the opening tag with encoded attributes.
+     * Validates the tag as block-level or root-level and generates the opening tag with encoded attributes.
      *
-     * @param Block $tag Enum representing the block element.
+     * @param Block|Root $tag Enum representing the (block or root) element.
      * @param array $attributes Associative array of HTML attributes.
      *
-     * @return string Rendered opening tag for the block element.
+     * @return string Rendered opening tag for the block or root element.
+     *
+     * {@see Block} for valid block-level tags.
+     * {@see Root} for valid root-level tags.
      *
      * Usage example:
      * ```php
      * Element::begin(Block::DIV, ['class' => 'container']);
+     * Element::begin(Root::HTML, ['lang' => 'en']);
      * ```
      *
      * @phpstan-param mixed[] $attributes
      */
-    public static function begin(Block $tag, array $attributes = []): string
+    public static function begin(Block|Root $tag, array $attributes = []): string
     {
         $renderAttributes = Attributes::render($attributes);
 
@@ -58,20 +63,24 @@ abstract class BaseElement
     }
 
     /**
-     * Renders the closing tag for a block-level HTML element.
+     * Renders the closing tag for a block-level or root-level HTML element.
      *
-     * Validates the tag as block-level and generates the closing tag.
+     * Validates the tag as block-level or root-level and generates the closing tag.
      *
-     * @param Block $tag Enum representing the block element.
+     * @param Block|Root $tag Enum representing the (block or root) element.
      *
-     * @return string Rendered closing tag for the block element.
+     * @return string Rendered closing tag for the block or root element.
+     *
+     * {@see Block} for valid block-level tags.
+     * {@see Root} for valid root-level tags.
      *
      * Usage example:
      * ```php
      * Element::end(Block::DIV);
+     * Element::end(Root::HTML);
      * ```
      */
-    public static function end(Block $tag): string
+    public static function end(Block|Root $tag): string
     {
         return "</{$tag->value}>";
     }
@@ -88,6 +97,8 @@ abstract class BaseElement
      * @param bool $encode Whether to encode the content for safe HTML output.
      *
      * @return string Rendered inline element with content.
+     *
+     * {@see Inline} for valid inline-level tags.
      *
      * Usage example:
      * ```php
@@ -116,6 +127,8 @@ abstract class BaseElement
      * @param array $attributes Associative array of HTML attributes.
      *
      * @return string Rendered void element.
+     *
+     * {@see Voids} for valid void-level tags.
      *
      * Usage example:
      * ```php
