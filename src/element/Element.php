@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace yii\ui\element;
 
 /**
- * Standards-compliant HTML element renderer for block, inline, and void tags.
+ * Standards-compliant HTML element renderer for block, inline, list and void tags.
  *
  * Provides a unified, immutable API for generating HTML elements according to the HTML specification, supporting
- * block-level, inline-level, root-level and void elements.
+ * block-level, inline-level, list-level, root-level and void elements.
  *
  * Designed for use in widget, view, and tag rendering systems, this class ensures correct tag normalization, attribute
  * encoding, and type-safe handling of element categories.
@@ -16,9 +16,8 @@ namespace yii\ui\element;
  * Key features:
  * - Exception-driven error handling for invalid tag usage.
  * - Integration with attribute and encoding helpers for safe output.
- * - Standards-compliant rendering of block, inline, root and void elements.
+ * - Standards-compliant rendering of block, inline, list, root and void elements.
  * - Support `UnitEnum` tag types for flexible API design.
- * - Tag normalization and validation against HTML specifications.
  *
  * @link https://developer.mozilla.org/en-US/docs/Glossary/Block-level_content
  * @link https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content
