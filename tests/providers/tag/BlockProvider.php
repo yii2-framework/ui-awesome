@@ -52,23 +52,4 @@ final class BlockProvider
 
         return $data;
     }
-
-    /**
-     * Provides test cases for empty tag operation scenarios.
-     *
-     * Supplies test data for validating empty tag operations, including 'begin' and 'end' operation types.
-     *
-     * Each test case includes the operation type for clear identification.
-     *
-     * @return array Test data for empty tag operation scenarios.
-     *
-     * @phpstan-return array<string, array{'begin'|'end'}>
-     */
-    public static function emptyTags(): array
-    {
-        return [
-            'empty tag begin operation' => ['begin'],
-            'empty tag end operation' => ['end'],
-        ];
-    }
 }
