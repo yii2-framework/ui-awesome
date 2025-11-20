@@ -19,6 +19,7 @@ namespace yii\ui\tag;
  * - Strict mapping of void HTML tags for semantic markup generation.
  *
  * @link https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+ *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
