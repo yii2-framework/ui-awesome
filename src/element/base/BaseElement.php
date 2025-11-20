@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace yii\ui\element\base;
 
 use yii\ui\helpers\{Attributes, Encode};
-use yii\ui\tag\{Block, Inline, Lists, Root, Voids};
+use yii\ui\tag\{Block, Inline, Lists, Root, Table, Voids};
 
 /**
  * Base class for standards-compliant HTML element rendering.
  *
- * Provides a unified, immutable API for generating block-level, inline-level, list-level, root-level, and void HTML
- * elements according to the HTML specification.
+ * Provides a unified, immutable API for generating block-level, inline-level, list-level, root-level, table-level, and
+ * void HTML elements according to the HTML specification.
  *
  * Designed for use in widget, view, and tag rendering systems, this class ensures correct tag normalization, attribute
  * encoding, and type-safe handling of element categories.
@@ -19,13 +19,14 @@ use yii\ui\tag\{Block, Inline, Lists, Root, Voids};
  * Key features:
  * - Exception-driven error handling for invalid tag usage.
  * - Integration with attribute and encoding helpers for safe output.
- * - Standards-compliant rendering of block, inline, list, root and void elements.
+ * - Standards-compliant rendering of block, inline, list, root, table and void elements.
  * - Support `UnitEnum` tag types for flexible API design.
  *
  * @link https://developer.mozilla.org/en-US/docs/Glossary/Block-level_content
  * @link https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content
  * @link https://developer.mozilla.org/en-US/docs/Glossary/Void_element
  * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements#main_root
+ * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements#table_content
  * {@see InvalidArgumentException} for invalid value errors.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
@@ -34,30 +35,31 @@ use yii\ui\tag\{Block, Inline, Lists, Root, Voids};
 abstract class BaseElement
 {
     /**
-     * Renders the opening tag for a block-level, list-level, or root-level HTML element.
+     * Renders the opening tag for a block-level, list-level, root-level, or table-level HTML element.
      *
-     * Validates the tag as block-level, list-level, or root-level and generates the opening tag with encoded
-     * attributes.
+     * Validates the tag as block-level, list-level, root-level, or table-level and generates the opening tag with
+     * encoded attributes.
      *
-     * @param Block|Lists|Root $tag Enum representing the block, list, or root element.
+     * @param Block|Lists|Root|Table $tag Enum representing the block, list, root or table element.
      * @param array $attributes Associative array of HTML attributes.
      *
-     * @return string Rendered opening tag for the block, list, or root element.
-     *
+     * @return string Rendered opening tag for the block, list, root or table element.
      * {@see Block} for valid block-level tags.
      * {@see Lists} for valid list-level tags.
      * {@see Root} for valid root-level tags.
+     * {@see Table} for valid table-level tags.
      *
      * Usage example:
      * ```php
      * Element::begin(Block::DIV, ['class' => 'container']);
      * Element::begin(Lists::UL, ['class' => 'list']);
      * Element::begin(Root::HTML, ['lang' => 'en']);
+     * Element::begin(Table::TABLE, ['class' => 'table']);
      * ```
      *
      * @phpstan-param mixed[] $attributes
      */
-    public static function begin(Block|Lists|Root $tag, array $attributes = []): string
+    public static function begin(Block|Lists|Root|Table $tag, array $attributes = []): string
     {
         $renderAttributes = Attributes::render($attributes);
 
@@ -65,26 +67,28 @@ abstract class BaseElement
     }
 
     /**
-     * Renders the closing tag for a block-level, list-level, or root-level HTML element.
+     * Renders the closing tag for a block-level, list-level, root-level, or table-level HTML element.
      *
-     * Validates the tag as block-level, list-level, or root-level and generates the closing tag.
+     * Validates the tag as block-level, list-level, root-level, or table-level and generates the closing tag.
      *
-     * @param Block|Lists|Root $tag Enum representing the block, list, or root element.
+     * @param Block|Lists|Root|Table $tag Enum representing the block, list, root, or table element.
      *
-     * @return string Rendered closing tag for the block, list, or root element.
+     * @return string Rendered closing tag for the block, list, root, or table element.
      *
      * {@see Block} for valid block-level tags.
      * {@see Lists} for valid list-level tags.
      * {@see Root} for valid root-level tags.
+     * {@see Table} for valid table-level tags.
      *
      * Usage example:
      * ```php
      * Element::end(Block::DIV);
      * Element::end(Lists::UL);
      * Element::end(Root::HTML);
+     * Element::end(Table::TABLE);
      * ```
      */
-    public static function end(Block|Lists|Root $tag): string
+    public static function end(Block|Lists|Root|Table $tag): string
     {
         return "</{$tag->value}>";
     }
