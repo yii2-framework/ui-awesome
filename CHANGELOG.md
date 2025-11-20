@@ -53,3 +53,4 @@
 - Bug #49: Update exception message handling in `InlineElementTest` and clarify test case descriptions in `BlockElementProvider` class (@terabytesoftw)
 - Bug #50: Better naming for `BlockContent`, `InlineContent`, and `VoidContent` classes and update related tests (@terabytesoftw)
 - Bug #51: Normalize tag names to lowercase in `BaseBlockElement`, `BaseInlineElement`, and `BaseVoidElement` classes; update related tests and data providers (@terabytesoftw)
+- Bug #52: Improve elements classes for use enum tags and update related tests and data providers (@terabytesoftw)
