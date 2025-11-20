@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\providers\tag;
 
-use UnitEnum;
-use yii\ui\helpers\Enum;
-use yii\ui\tag\{Block, Inline, Voids};
+use yii\ui\tag\Block;
 
 use function sprintf;
-use function strtoupper;
 
 /**
  * Data provider for {@see \yii\ui\tests\elements\ElementTest} class.
@@ -39,19 +36,18 @@ final class BlockProvider
      *
      * Supplies test data for validating block-level HTML tag normalization and enum integration.
      *
-     * Each test case includes the input tag (as `string` or `UnitEnum`) and the expected normalized value.
+     * Each test case includes the input tag (`UnitEnum`) and the expected `string` value.
      *
      * @return array Test data for block tag scenarios.
      *
-     * @phpstan-return array<string, array{string|UnitEnum, string}>
+     * @phpstan-return array<string, array{Block, string}>
      */
     public static function blockTags(): array
     {
         $data = [];
 
         foreach (Block::cases() as $case) {
-            $data[sprintf('%s tag', $case->value)] = [strtoupper($case->value), $case->value];
-            $data[sprintf('%s tag with enum', $case->value)] = [$case, $case->value];
+            $data[sprintf('%s block tag', $case->value)] = [$case, $case->value];
         }
 
         return $data;
@@ -74,38 +70,5 @@ final class BlockProvider
             'empty tag begin operation' => ['begin'],
             'empty tag end operation' => ['end'],
         ];
-    }
-
-    /**
-     * Provides test cases for non-block tag operation scenarios.
-     *
-     * Supplies test data for validating non-block tag operations, including inline and void tags, with normalization
-     * and operation type propagation.
-     *
-     * Each test case includes the input tag (as `string` or `UnitEnum`) and the operation type.
-     *
-     * @return array Test data for non-block tag operation scenarios.
-     *
-     * @phpstan-return array<string, array{string|UnitEnum, 'begin'|'end'}>
-     */
-    public static function nonBlockTags(): array
-    {
-        $tags = [
-            ' a',
-            'a ',
-            ...Inline::cases(),
-            ...Voids::cases(),
-        ];
-
-        $data = [];
-
-        foreach ($tags as $tag) {
-            $tagName = (string) Enum::normalizeValue($tag);
-
-            $data[sprintf('%s tag begin operation', $tagName)] = [$tag, 'begin'];
-            $data[sprintf('%s tag end operation', $tagName)] = [$tag, 'end'];
-        }
-
-        return $data;
     }
 }

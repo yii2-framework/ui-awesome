@@ -15,7 +15,7 @@ namespace yii\ui\tag;
  * Key features:
  * - Designed for use in widget, view, and tag rendering systems requiring block-level content structure.
  * - Ensures technical consistency with the HTML specification and modern web standards.
- * - Integration-ready for tag rendering, validation, and normalization in HTML helpers and components.
+ * - Integration-ready for tag rendering and element generation APIs.
  * - Strict mapping of block-level HTML tags for semantic markup generation.
  *
  * @link https://developer.mozilla.org/en-US/docs/Glossary/Block-level_content
@@ -315,16 +315,4 @@ enum Block: string
      * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/video
      */
     case VIDEO = 'video';
-
-    /**
-     * Determines whether the provided tag name is a valid block-level element.
-     *
-     * @param string $block Tag name to validate.
-     *
-     * @return bool `true` if the tag is a valid block-level element, `false` otherwise.
-     */
-    public static function isBlock(string $block): bool
-    {
-        return self::tryFrom($block) !== null;
-    }
 }

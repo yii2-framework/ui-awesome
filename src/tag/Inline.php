@@ -15,7 +15,7 @@ namespace yii\ui\tag;
  * Key features:
  * - Designed for use in widget, view, and tag rendering systems requiring inline-level content structure.
  * - Ensures technical consistency with the HTML specification and modern web standards.
- * - Integration-ready for tag rendering, validation, and normalization in HTML helpers and components.
+ * - Integration-ready for tag rendering and element generation APIs.
  * - Strict mapping of inline-level HTML tags for semantic markup generation.
  *
  * @link https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content
@@ -330,16 +330,4 @@ enum Inline: string
      * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/var
      */
     case VAR = 'var';
-
-    /**
-     * Determines whether the provided tag name is a valid inline element.
-     *
-     * @param string $inline Tag name to validate.
-     *
-     * @return bool `true` if the tag is a valid inline element, `false` otherwise.
-     */
-    public static function isInline(string $inline): bool
-    {
-        return self::tryFrom($inline) !== null;
-    }
 }

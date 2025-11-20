@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\providers\tag;
 
-use UnitEnum;
-use yii\ui\helpers\Enum;
-use yii\ui\tag\{Block, Inline, Voids};
+use yii\ui\tag\Voids;
 
 use function sprintf;
-use function strtoupper;
 
 /**
  * Data provider for {@see \yii\ui\tests\elements\ElementTest} class.
@@ -35,55 +32,22 @@ use function strtoupper;
 final class VoidProvider
 {
     /**
-     * Provides test cases for non-void tag scenarios.
-     *
-     * Supplies test data for validating non-void tag operations, including block and inline tags, with normalization
-     * and operation type propagation.
-     *
-     * Each test case includes the input tag (as `string` or `UnitEnum`).
-     *
-     * @return array Test data for non-void tag scenarios.
-     *
-     * @phpstan-return array<string, list{string|UnitEnum}>
-     */
-    public static function nonVoidTags(): array
-    {
-        $tags = [
-            'div ',
-            ' div',
-            ...Block::cases(),
-            ...Inline::cases(),
-        ];
-
-        $data = [];
-
-        foreach ($tags as $tag) {
-            $tagName = (string) Enum::normalizeValue($tag);
-
-            $data[sprintf('%s non-void tag', $tagName)] = [$tag];
-        }
-
-        return $data;
-    }
-
-    /**
      * Provides test cases for void tag scenarios.
      *
      * Supplies test data for validating void-level HTML tag normalization and enum integration.
      *
-     * Each test case includes the input tag (as `string` or `UnitEnum`) and the expected normalized value.
+     * Each test case includes the input tag (`UnitEnum`) and the expected `string` value.
      *
      * @return array Test data for void tag scenarios.
      *
-     * @phpstan-return array<string, array{string|UnitEnum, string}>
+     * @phpstan-return array<string, array{Voids, string}>
      */
     public static function voidTags(): array
     {
         $data = [];
 
         foreach (Voids::cases() as $case) {
-            $data[sprintf('%s void tag as string', $case->value)] = [strtoupper($case->value), $case->value];
-            $data[sprintf('%s void tag as enum', $case->value)] = [$case, $case->value];
+            $data[sprintf('%s void tag', $case->value)] = [$case, $case->value];
         }
 
         return $data;

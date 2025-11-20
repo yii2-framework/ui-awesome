@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\providers\tag;
 
-use UnitEnum;
-use yii\ui\helpers\Enum;
-use yii\ui\tag\{Block, Inline, Voids};
+use yii\ui\tag\Inline;
 
 use function sprintf;
-use function strtoupper;
 
 /**
  * Data provider for {@see \yii\ui\tests\elements\ElementTest} class.
@@ -39,51 +36,18 @@ final class InlineProvider
      *
      * Supplies test data for validating inline-level HTML tag normalization and enum integration.
      *
-     * Each test case includes the input tag (as `string` or `UnitEnum`) and the expected normalized value.
+     * Each test case includes the input tag (`UnitEnum`) and the expected `string` value.
      *
      * @return array Test data for inline tag scenarios.
      *
-     * @phpstan-return array<string, array{string|UnitEnum, string}>
+     * @phpstan-return array<string, array{Inline, string}>
      */
     public static function inlineTags(): array
     {
         $data = [];
 
         foreach (Inline::cases() as $case) {
-            $data[sprintf('%s inline tag as string', $case->value)] = [strtoupper($case->value), $case->value];
-            $data[sprintf('%s inline tag as enum', $case->value)] = [$case, $case->value];
-        }
-
-        return $data;
-    }
-
-    /**
-     * Provides test cases for non-inline tag scenarios.
-     *
-     * Supplies test data for validating non-inline tag operations, including block and void tags, with normalization
-     * and operation type propagation.
-     *
-     * Each test case includes the input tag (as `string` or `UnitEnum`).
-     *
-     * @return array Test data for non-inline tag scenarios.
-     *
-     * @phpstan-return array<string, list{string|UnitEnum}>
-     */
-    public static function nonInlineTags(): array
-    {
-        $tags = [
-            ' div',
-            'div ',
-            ...Block::cases(),
-            ...Voids::cases(),
-        ];
-
-        $data = [];
-
-        foreach ($tags as $tag) {
-            $tagName = (string) Enum::normalizeValue($tag);
-
-            $data[sprintf('%s non-inline tag', $tagName)] = [$tag];
+            $data[sprintf('%s inline tag', $case->value)] = [$case, $case->value];
         }
 
         return $data;

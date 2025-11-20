@@ -15,7 +15,7 @@ namespace yii\ui\tag;
  * Key features:
  * - Designed for use in widget, view, and tag rendering systems requiring void element structure.
  * - Ensures technical consistency with the HTML specification and modern web standards.
- * - Integration-ready for tag rendering, validation, and normalization in HTML helpers and components.
+ * - Integration-ready for tag rendering and element generation APIs.
  * - Strict mapping of void HTML tags for semantic markup generation.
  *
  * @link https://developer.mozilla.org/en-US/docs/Glossary/Void_element
@@ -134,16 +134,4 @@ enum Voids: string
      * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/wbr
      */
     case WBR = 'wbr';
-
-    /**
-     * Determines whether the provided tag name is a valid void element.
-     *
-     * @param string $void Tag name to validate.
-     *
-     * @return bool `true` if the tag is a valid void element, `false` otherwise.
-     */
-    public static function isVoid(string $void): bool
-    {
-        return self::tryFrom($void) !== null;
-    }
 }
