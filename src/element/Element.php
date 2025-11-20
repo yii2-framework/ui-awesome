@@ -17,7 +17,7 @@ namespace yii\ui\element;
  * - Exception-driven error handling for invalid tag usage.
  * - Integration with attribute and encoding helpers for safe output.
  * - Standards-compliant rendering of block, inline, and void elements.
- * - Supports both `string` and `UnitEnum` tag types for flexible API design.
+ * - Support `UnitEnum` tag types for flexible API design.
  * - Tag normalization and validation against HTML specifications.
  *
  * @link https://developer.mozilla.org/en-US/docs/Glossary/Block-level_content
