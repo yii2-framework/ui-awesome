@@ -19,7 +19,7 @@ use yii\ui\tag\{Block, Inline, Root, Voids};
  * Key features:
  * - Exception-driven error handling for invalid tag usage.
  * - Integration with attribute and encoding helpers for safe output.
- * - Standards-compliant rendering of block, inline, and void elements.
+ * - Standards-compliant rendering of block, inline, root and void elements.
  * - Support `UnitEnum` tag types for flexible API design.
  * - Tag normalization and validation against HTML specifications.
  *
