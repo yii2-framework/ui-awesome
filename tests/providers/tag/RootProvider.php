@@ -46,7 +46,7 @@ final class RootProvider
         $data = [];
 
         foreach (Root::cases() as $case) {
-            $data[sprintf('%s void tag', $case->value)] = [$case, $case->value];
+            $data[sprintf('%s root tag', $case->value)] = [$case, $case->value];
         }
 
         return $data;
