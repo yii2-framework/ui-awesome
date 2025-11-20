@@ -11,20 +11,19 @@ use function sprintf;
 /**
  * Data provider for {@see \yii\ui\tests\elements\ElementTest} class.
  *
- * Supplies comprehensive test data for validating void-level HTML tag handling, including normalization, enum
- * integration, and operation type propagation, ensuring standards-compliant output and robust value processing in
- * widget and tag rendering.
+ * Supplies comprehensive test data for validating void-level HTML tag normalization and enum integration, ensuring
+ * standards-compliant output and robust type safety for tag rendering in widget and element contexts.
  *
- * The test data covers real-world scenarios for void and non-void tag operations, supporting both explicit `string`
- * values and `UnitEnum` for consistent behavior across different rendering configurations.
+ * The test data covers real-world scenarios for void tag value propagation, supporting all enum cases and ensuring
+ * consistent behavior across different rendering configurations.
  *
  * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
  * Key features:
- * - Ensures correct normalization and propagation of void and non-void HTML tags.
+ * - Ensures correct normalization and propagation of void-level HTML tags.
  * - Named test data sets for precise failure identification.
- * - Validation of enum integration and operation type handling in tag rendering.
+ * - Validation of all enum cases for void tag rendering.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
