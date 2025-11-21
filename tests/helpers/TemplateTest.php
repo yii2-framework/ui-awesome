@@ -29,6 +29,25 @@ final class TemplateTest extends TestCase
 {
     use TestSupport;
 
+    public function testRenderTemplateWithActualNewlines(): void
+    {
+        $template = "{{prefix}}\n{{tag}}\n{{suffix}}";
+        $tokenValues = [
+            '{{prefix}}' => 'prefix',
+            '{{tag}}' => '<div>content</div>',
+            '{{suffix}}' => '',
+        ];
+
+        self::equalsWithoutLE(
+            <<<HTML
+            prefix
+            <div>content</div>
+            HTML,
+            Template::render($template, $tokenValues),
+            'Should render template with actual newline characters.',
+        );
+    }
+
     public function testRenderTemplateWithAllTokens(): void
     {
         $template = '{{prefix}}\n{{tag}}\n{{suffix}}';

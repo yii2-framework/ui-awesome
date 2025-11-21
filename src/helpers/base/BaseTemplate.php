@@ -43,7 +43,8 @@ abstract class BaseTemplate
      */
     public static function render(string $template, array $tokenValues): string
     {
-        $tokens = explode('\n', $template);
+        $template = str_replace('\n', "\n", $template);
+        $tokens = explode("\n", $template);
 
         $lines = [];
 
