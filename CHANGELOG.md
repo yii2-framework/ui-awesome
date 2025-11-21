@@ -58,3 +58,4 @@
 - Bug #54: Update PHPDoc for `Voids` class for standard docs compliance (@terabytesoftw)
 - Enh #55: Introduce `Lists` class for `list-level` HTML rendering and related tests (@terabytesoftw)
 - Enh #56: Introduce `Table` class for `table-level` HTML rendering and related tests (@terabytesoftw)
+- Enh #57: Introduce `Template` helper class with tests (@terabytesoftw)
