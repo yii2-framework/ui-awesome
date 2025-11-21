@@ -8,17 +8,19 @@ namespace yii\ui\helpers;
  * HTML template utility for advanced, type-safe template rendering and manipulation.
  *
  * Provides a concrete implementation for processing, validating, and rendering HTML templates, supporting dynamic
- * content injection, safe encoding, and flexible template composition for secure output.
+ * content injection and flexible template composition.
  *
  * Designed for integration in view renderers, widget systems, and asset managers, ensuring consistent and secure
  * handling of template fragments, placeholders, and variable substitution across all supported use cases.
  *
  * Key features.
  * - Dynamic content injection and placeholder replacement for HTML templates.
- * - HTML-safe encoding and sanitization to prevent XSS and markup errors.
  * - Immutable, stateless helpers suitable for reuse in rendering engines.
- * - Standardized output for predictable and secure HTML generation.
+ * - Standardized output for predictable HTML generation.
  * - Type-safe methods for template composition and fragment management.
+ *
+ * Note: This helper does NOT perform HTML encoding or XSS sanitization. Ensure all token values are properly encoded
+ * before passing them to {@see base\BaseTemplate::render()}.
  *
  * {@see base\BaseTemplate} for the base implementation.
  *

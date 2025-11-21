@@ -11,7 +11,7 @@ use yii\ui\tests\support\TestSupport;
 /**
  * Test suite for {@see Template} helper functionality and behavior.
  *
- * Validates the rendering and substitution of template tokens according to the HTML Living Standard specification.
+ * Validates the rendering and substitution of template tokens with proper string handling.
  *
  * Ensures correct handling, normalization, and validation of template operations, supporting both scalar and array
  * types, as well as empty and missing token values for predictable output.
