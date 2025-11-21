@@ -1,0 +1,28 @@
+<?php
+
+declare(strict_types=1);
+
+namespace yii\ui\helpers;
+
+/**
+ * HTML template utility for advanced, type-safe template rendering and manipulation.
+ *
+ * Provides a concrete implementation for processing, validating, and rendering HTML templates, supporting dynamic
+ * content injection, safe encoding, and flexible template composition for secure output.
+ *
+ * Designed for integration in view renderers, widget systems, and asset managers, ensuring consistent and secure
+ * handling of template fragments, placeholders, and variable substitution across all supported use cases.
+ *
+ * Key features.
+ * - Dynamic content injection and placeholder replacement for HTML templates.
+ * - HTML-safe encoding and sanitization to prevent XSS and markup errors.
+ * - Immutable, stateless helpers suitable for reuse in rendering engines.
+ * - Standardized output for predictable and secure HTML generation.
+ * - Type-safe methods for template composition and fragment management.
+ *
+ * {@see base\BaseTemplate} for the base implementation.
+ *
+ * @copyright Copyright (C) 2025 Terabytesoftw.
+ * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
+ */
+final class Template extends base\BaseTemplate {}
