@@ -35,11 +35,11 @@ abstract class BaseTemplate
      * the rendered result as a string with lines joined by the system line ending.
      *
      * @param string $template Template string containing tokens to be replaced.
-     * @param array<string, string> $tokenValues Associative array of token replacements.
+     * @param array $tokenValues Associative array of token replacements.
      *
      * @return string Rendered template string with substituted values.
      *
-     * @phpstan-param string[] $tokenValues
+     * @phpstan-param array<string, string> $tokenValues
      */
     public static function render(string $template, array $tokenValues): string
     {
