@@ -28,15 +28,16 @@ use yii\ui\mixin\HasAttributes;
 #[Group('mixin')]
 final class HasAttributesTest extends TestCase
 {
-    public function testReturnEmptyStringWhenAttributesNotSet(): void
+    public function testReturnEmptyArrayWhenAttributesNotSet(): void
     {
-        $instance =  new class {
+        $instance = new class {
             use HasAttributes;
         };
 
-        self::assertEmpty(
+        self::assertSame(
+            [],
             $instance->getAttributes(),
-            'Should return an empty array when no attribute is set.',
+            'Should return an empty array when no attributes are set.',
         );
     }
 
