@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace yii\ui\element\base;
+namespace yii\ui\html\base;
 
 use yii\ui\helpers\{Attributes, Encode};
 use yii\ui\tag\{Block, Inline, Lists, Root, Table, Voids};
 
 /**
- * Base class for standards-compliant HTML element rendering.
+ * Base class for standards-compliant HTML rendering.
  *
  * Provides a unified, immutable API for generating block-level, inline-level, list-level, root-level, table-level, and
  * void HTML elements according to the HTML specification.
@@ -32,18 +32,19 @@ use yii\ui\tag\{Block, Inline, Lists, Root, Table, Voids};
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
-abstract class BaseElement
+abstract class BaseHtml
 {
     /**
-     * Renders the opening tag for a block-level, list-level, root-level, or table-level HTML element.
+     * Renders the opening tag for a block-level, list-level, root-level, or table-level.
      *
      * Validates the tag as block-level, list-level, root-level, or table-level and generates the opening tag with
      * encoded attributes.
      *
-     * @param Block|Lists|Root|Table $tag Enum representing the block, list, root or table element.
+     * @param Block|Lists|Root|Table $tag Enum representing the block, list, root or table tag.
      * @param array $attributes Associative array of HTML attributes.
      *
-     * @return string Rendered opening tag for the block, list, root or table element.
+     * @return string Rendered opening tag for the block, list, root or table tag.
+     *
      * {@see Block} for valid block-level tags.
      * {@see Lists} for valid list-level tags.
      * {@see Root} for valid root-level tags.
@@ -51,10 +52,10 @@ abstract class BaseElement
      *
      * Usage example:
      * ```php
-     * Element::begin(Block::DIV, ['class' => 'container']);
-     * Element::begin(Lists::UL, ['class' => 'list']);
-     * Element::begin(Root::HTML, ['lang' => 'en']);
-     * Element::begin(Table::TABLE, ['class' => 'table']);
+     * Html::begin(Block::DIV, ['class' => 'container']);
+     * Html::begin(Lists::UL, ['class' => 'list']);
+     * Html::begin(Root::HTML, ['lang' => 'en']);
+     * Html::begin(Table::TABLE, ['class' => 'table']);
      * ```
      *
      * @phpstan-param mixed[] $attributes
@@ -67,13 +68,13 @@ abstract class BaseElement
     }
 
     /**
-     * Renders the closing tag for a block-level, list-level, root-level, or table-level HTML element.
+     * Renders the closing tag for a block-level, list-level, root-level, or table-level.
      *
      * Validates the tag as block-level, list-level, root-level, or table-level and generates the closing tag.
      *
-     * @param Block|Lists|Root|Table $tag Enum representing the block, list, root, or table element.
+     * @param Block|Lists|Root|Table $tag Enum representing the block, list, root, or table tag.
      *
-     * @return string Rendered closing tag for the block, list, root, or table element.
+     * @return string Rendered closing tag for the block, list, root, or table tag.
      *
      * {@see Block} for valid block-level tags.
      * {@see Lists} for valid list-level tags.
@@ -82,10 +83,10 @@ abstract class BaseElement
      *
      * Usage example:
      * ```php
-     * Element::end(Block::DIV);
-     * Element::end(Lists::UL);
-     * Element::end(Root::HTML);
-     * Element::end(Table::TABLE);
+     * Html::end(Block::DIV);
+     * Html::end(Lists::UL);
+     * Html::end(Root::HTML);
+     * Html::end(Table::TABLE);
      * ```
      */
     public static function end(Block|Lists|Root|Table $tag): string
@@ -94,23 +95,22 @@ abstract class BaseElement
     }
 
     /**
-     * Renders an inline-level HTML element with content.
+     * Renders an inline-level HTML tag with content.
      *
-     * Validates the tag as inline-level and generates the element with encoded attributes and optional content
-     * encoding.
+     * Validates the tag as inline-level and generates the tag with encoded attributes and optional content encoding.
      *
-     * @param Inline $tag Enum representing the inline element.
-     * @param string $content Content to render inside the element.
+     * @param Inline $tag Enum representing the inline tag.
+     * @param string $content Content to render inside the tag.
      * @param array $attributes Associative array of HTML attributes.
      * @param bool $encode Whether to encode the content for safe HTML output.
      *
-     * @return string Rendered inline element with content.
+     * @return string Rendered inline tag with content.
      *
      * {@see Inline} for valid inline-level tags.
      *
      * Usage example:
      * ```php
-     * Element::inline(Inline::SPAN, 'Hello, World!', ['class' => 'highlight']);
+     * Html::inline(Inline::SPAN, 'Hello, World!', ['class' => 'highlight']);
      * ```
      *
      * @phpstan-param mixed[] $attributes
@@ -127,20 +127,20 @@ abstract class BaseElement
     }
 
     /**
-     * Renders a void (self-closing) HTML element.
+     * Renders a void tag.
      *
-     * Validates the tag as a void element and generates the self-closing tag with encoded attributes.
+     * Validates the tag as a void tag and generates the self-closing tag with encoded attributes.
      *
-     * @param Voids $tag Enum representing the void element.
+     * @param Voids $tag Enum representing the void tag.
      * @param array $attributes Associative array of HTML attributes.
      *
-     * @return string Rendered void element.
+     * @return string Rendered void tag.
      *
      * {@see Voids} for valid void-level tags.
      *
      * Usage example:
      * ```php
-     * Element::void(Voids::IMG, ['src' => 'image.png', 'alt' => 'An image']);
+     * Html::void(Voids::IMG, ['src' => 'image.png', 'alt' => 'An image']);
      * ```
      *
      * @phpstan-param mixed[] $attributes

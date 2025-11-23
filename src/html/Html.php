@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace yii\ui\element;
+namespace yii\ui\html;
 
 /**
  * Standards-compliant HTML element renderer for block, inline, list, table and void tags.
@@ -28,4 +28,4 @@ namespace yii\ui\element;
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
-final class Element extends base\BaseElement {}
+final class Html extends base\BaseHtml {}

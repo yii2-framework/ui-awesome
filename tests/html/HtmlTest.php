@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace yii\ui\tests\elements;
+namespace yii\ui\tests\html;
 
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
-use yii\ui\element\Element;
+use yii\ui\html\Html;
 use yii\ui\tag\{Block, Inline, Lists, Root, Table, Voids};
 use yii\ui\tests\providers\tag\{
     BlockProvider,
@@ -19,9 +19,9 @@ use yii\ui\tests\providers\tag\{
 use yii\ui\tests\support\TestSupport;
 
 /**
- * Test suite for {@see Element} rendering logic and tag validation.
+ * Test suite for {@see Html} rendering logic and tag validation.
  *
- * Validates the correct handling and output of HTML element tags according to the HTML Living Standard specification.
+ * Validates the correct handling and output of HTML tags according to the HTML Living Standard specification.
  *
  * Ensures proper rendering, immutability, and validation of block, inline, list, root, table and void elements,
  * supporting `UnitEnum` tag names.
@@ -39,8 +39,8 @@ use yii\ui\tests\support\TestSupport;
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
-#[Group('elements')]
-final class ElementTest extends TestCase
+#[Group('html')]
+final class HtmlTest extends TestCase
 {
     use TestSupport;
 
@@ -49,8 +49,8 @@ final class ElementTest extends TestCase
     {
         self::equalsWithoutLE(
             "<{$expectedTagName}>",
-            Element::begin($tag),
-            "Element begin '<{$expectedTagName}>' block tag should match expected output.",
+            Html::begin($tag),
+            "Html begin '<{$expectedTagName}>' block tag should match expected output.",
         );
     }
 
@@ -59,8 +59,8 @@ final class ElementTest extends TestCase
     {
         self::equalsWithoutLE(
             "<{$expectedTagName}>",
-            Element::begin($tag),
-            "Element begin '<{$expectedTagName}>' list tag should match expected output.",
+            Html::begin($tag),
+            "Html begin '<{$expectedTagName}>' list tag should match expected output.",
         );
     }
 
@@ -69,8 +69,8 @@ final class ElementTest extends TestCase
     {
         self::equalsWithoutLE(
             "<{$expectedTagName}>",
-            Element::begin($tag),
-            "Element begin '<{$expectedTagName}>' root tag should match expected output.",
+            Html::begin($tag),
+            "Html begin '<{$expectedTagName}>' root tag should match expected output.",
         );
     }
 
@@ -79,8 +79,8 @@ final class ElementTest extends TestCase
     {
         self::equalsWithoutLE(
             "<{$expectedTagName}>",
-            Element::begin($tag),
-            "Element begin '<{$expectedTagName}>' table tag should match expected output.",
+            Html::begin($tag),
+            "Html begin '<{$expectedTagName}>' table tag should match expected output.",
         );
     }
 
@@ -89,8 +89,8 @@ final class ElementTest extends TestCase
     {
         self::equalsWithoutLE(
             "</{$expectedTagName}>",
-            Element::end($tag),
-            "Element end '</{$expectedTagName}>' block tag should match expected output.",
+            Html::end($tag),
+            "Html end '</{$expectedTagName}>' block tag should match expected output.",
         );
     }
 
@@ -99,8 +99,8 @@ final class ElementTest extends TestCase
     {
         self::equalsWithoutLE(
             "</{$expectedTagName}>",
-            Element::end($tag),
-            "Element end '</{$expectedTagName}>' list tag should match expected output.",
+            Html::end($tag),
+            "Html end '</{$expectedTagName}>' list tag should match expected output.",
         );
     }
 
@@ -109,8 +109,8 @@ final class ElementTest extends TestCase
     {
         self::equalsWithoutLE(
             "</{$expectedTagName}>",
-            Element::end($tag),
-            "Element end '</{$expectedTagName}>' root tag should match expected output.",
+            Html::end($tag),
+            "Html end '</{$expectedTagName}>' root tag should match expected output.",
         );
     }
 
@@ -119,8 +119,8 @@ final class ElementTest extends TestCase
     {
         self::equalsWithoutLE(
             "</{$expectedTagName}>",
-            Element::end($tag),
-            "Element end '</{$expectedTagName}>' table tag should match expected output.",
+            Html::end($tag),
+            "Html end '</{$expectedTagName}>' table tag should match expected output.",
         );
     }
 
@@ -128,17 +128,17 @@ final class ElementTest extends TestCase
     public function testRenderInline(Inline $tag, string $expectedTagName): void
     {
         $content = '<mark>inline</mark>';
-        $attributes = ['id' => 'inline-element'];
+        $attributes = ['id' => 'inline'];
 
         self::equalsWithoutLE(
-            "<{$expectedTagName} id=\"inline-element\">{$content}</{$expectedTagName}>",
-            Element::inline($tag, $content, $attributes),
-            "Element inline '<{$expectedTagName}>' tag without encoding should match expected output.",
+            "<{$expectedTagName} id=\"inline\">{$content}</{$expectedTagName}>",
+            Html::inline($tag, $content, $attributes),
+            "Html inline '<{$expectedTagName}>' tag without encoding should match expected output.",
         );
         self::equalsWithoutLE(
-            "<{$expectedTagName} id=\"inline-element\">&lt;mark&gt;inline&lt;/mark&gt;</{$expectedTagName}>",
-            Element::inline($tag, $content, $attributes, true),
-            "Element inline '<{$expectedTagName}>' tag with encoding should match expected output.",
+            "<{$expectedTagName} id=\"inline\">&lt;mark&gt;inline&lt;/mark&gt;</{$expectedTagName}>",
+            Html::inline($tag, $content, $attributes, true),
+            "Html inline '<{$expectedTagName}>' tag with encoding should match expected output.",
         );
     }
 
@@ -146,14 +146,14 @@ final class ElementTest extends TestCase
     public function testRenderVoid(Voids $tag, string $expectedTagName): void
     {
         $attributes = [
-            'class' => ['void-element'],
+            'class' => ['void'],
             'data' => ['role' => 'presentation'],
         ];
 
         self::equalsWithoutLE(
-            "<{$expectedTagName} class=\"void-element\" data-role=\"presentation\">",
-            Element::void($tag, $attributes),
-            "Element void '<{$expectedTagName}>' tag should match expected output.",
+            "<{$expectedTagName} class=\"void\" data-role=\"presentation\">",
+            Html::void($tag, $attributes),
+            "Html void '<{$expectedTagName}>' tag should match expected output.",
         );
     }
 }

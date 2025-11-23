@@ -9,7 +9,7 @@ use yii\ui\tag\Root;
 use function sprintf;
 
 /**
- * Data provider for {@see \yii\ui\tests\elements\ElementTest} class.
+ * Data provider for {@see \yii\ui\tests\html\HtmlTest} class.
  *
  * Supplies comprehensive test data for validating root-level HTML tag normalization and enum integration, ensuring
  * standards-compliant output and robust type safety for tag rendering in widget and element contexts.
