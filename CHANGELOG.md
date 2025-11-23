@@ -61,3 +61,4 @@
 - Enh #57: Introduce `Template` helper class with tests (@terabytesoftw)
 - Bug #58: Rename `Element` and `BaseElement` to `Html` and `BaseHtml` for standards-compliant HTML rendering with tests (@terabytesoftw)
 - Enh #59: Introduce `HasAttributes` trait with `attributes()` method and tests (@terabytesoftw)
+- Enh #60: Introduce `HasContent` trait with `content()` method and tests (@terabytesoftw)
