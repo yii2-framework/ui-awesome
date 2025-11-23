@@ -20,10 +20,6 @@ use yii\ui\helpers\Encode;
  * - Immutable methods for setting encoded (safe) or raw (HTML) content.
  * - Supports `string` and `Stringable` values for flexible content assignment.
  *
- * @link https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
- * @link https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML
- * @link https://developer.mozilla.org/en-US/docs/Glossary/Cross-site_scripting
- *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
@@ -35,17 +31,15 @@ trait HasContent
     protected string $content = '';
 
     /**
-     * Sets the encoded (safe) content for the element.
+     * Appends encoded (safe) content to the current content string.
      *
-     * Creates a new instance with the specified content, encoding each value to prevent XSS and ensure
-     * standards-compliant handling of textual content according to the HTML specification.
+     * This method uses {@see Encode::content()} to prevent XSS vulnerabilities.
      *
-     * @param string|Stringable ...$values Content values to set for the element. Each value is encoded for safety.
+     * The values are appended to the existing content (Builder pattern).
      *
-     * @return static New instance with the updated encoded content.
+     * @param string|Stringable ...$values Content to be encoded and appended.
      *
-     * @link https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
-     * @link https://developer.mozilla.org/en-US/docs/Glossary/Cross-site_scripting
+     * @return static A new instance with the appended content.
      */
     public function content(string|Stringable ...$values): static
     {
@@ -69,17 +63,14 @@ trait HasContent
     }
 
     /**
-     * Sets the raw HTML content for the element.
+     * Appends raw (unsafe) HTML to the current content string.
      *
-     * Creates a new instance with the specified content, assigning each value as raw HTML without encoding. Use with
-     * caution to avoid XSS vulnerabilities. Intended for scenarios where trusted HTML is required.
+     * Use this method to insert HTML tags deliberately. The developer is responsible for the security of this content.
      *
-     * @param string|Stringable ...$values Content values to set for the element as raw HTML.
+     * The values are appended to the existing content.
      *
-     * @return static New instance with the updated raw HTML content.
-     *
-     * @link https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML
-     * @link https://developer.mozilla.org/en-US/docs/Glossary/Cross-site_scripting
+     * @param string|Stringable ...$values Raw HTML content to be appended.
+     * @return static A new instance with the appended content.
      */
     public function html(string|Stringable ...$values): static
     {

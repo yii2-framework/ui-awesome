@@ -73,6 +73,13 @@ final class HasContentTest extends TestCase
             $instance->content('test'),
             'Should return a new instance when setting content, ensuring immutability.',
         );
+    }
+
+    public function testReturnNewInstanceWhenSettingHtml(): void
+    {
+        $instance = new class {
+            use HasContent;
+        };
 
         self::assertNotSame(
             $instance,
