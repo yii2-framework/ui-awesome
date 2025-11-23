@@ -127,7 +127,7 @@ abstract class BaseHtml
     }
 
     /**
-     * Renders a void (self-closing) tag.
+     * Renders a void tag.
      *
      * Validates the tag as a void tag and generates the self-closing tag with encoded attributes.
      *

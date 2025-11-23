@@ -39,7 +39,7 @@ use yii\ui\tests\support\TestSupport;
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
-#[Group('elements')]
+#[Group('html')]
 final class HtmlTest extends TestCase
 {
     use TestSupport;
