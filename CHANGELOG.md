@@ -66,3 +66,4 @@
 - Bug #62: Update assertion message in `ClassProvider` for clarity on `null` class attribute handling (@terabytesoftw)
 - Bug #63: Ensure `id` attribute is set correctly in `HasId` trait for nullable values (@terabytesoftw)
 - Enh #64: Add `HasLang` trait with `lang()` method and tests (@terabytesoftw)
+- Bug #65: Update documentation in `HasId` and `IdProvider` for clarity and consistency (@terabytesoftw)
