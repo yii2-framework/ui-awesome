@@ -65,13 +65,19 @@ final class LangProvider
                 null,
                 [],
                 '',
-                "Should return 'null' when the attribute is set to 'null'.",
+                "Should return empty string when the attribute is set to 'null'.",
             ],
             'string value' => [
                 'en',
                 [],
                 ' lang="en"',
                 'Should return the attribute value after setting it.',
+            ],
+            'override lang value' => [
+                Languages::GERMAN,
+                ['lang' => 'it'],
+                ' lang="de"',
+                "Should override the existing 'lang' attribute with the new value.",
             ],
             'unset with null' => [
                 null,
@@ -114,13 +120,19 @@ final class LangProvider
                 null,
                 [],
                 '',
-                "Should return 'null' when the attribute is set to 'null'.",
+                "Should return empty string when the attribute is set to 'null'.",
             ],
             'string value' => [
                 'en',
                 [],
                 'en',
                 'Should return the attribute value after setting it.',
+            ],
+            'override lang value' => [
+                Languages::GERMAN,
+                ['lang' => 'it'],
+                Languages::GERMAN,
+                "Should override the existing 'lang' attribute with the new value.",
             ],
             'unset with null' => [
                 null,
