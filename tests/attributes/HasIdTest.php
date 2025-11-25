@@ -57,7 +57,7 @@ final class HasIdTest extends TestCase
         );
     }
 
-    public function testReturnEmptyStringWhenIdAttributeNotSet(): void
+    public function testReturnEmptyWhenIdAttributeNotSet(): void
     {
         $instance =  new class {
             use HasAttributes;
@@ -66,7 +66,7 @@ final class HasIdTest extends TestCase
 
         self::assertEmpty(
             $instance->getAttributes(),
-            'Should return an empty string when no attribute is set.',
+            'Should have no attributes set when no attribute is provided.',
         );
     }
 
