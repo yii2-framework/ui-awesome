@@ -72,3 +72,4 @@
 - Bug #68: Update class reference in docblock for `EncodeProvider` to improve clarity and accuracy (@terabytesoftw)
 - Bug #69: Add test case for closure returning `float` value in `AttributesProvider` class (@terabytesoftw)
 - Bug #70: Update documentation and improve clarity in `HasData` and `DataProvider` classes (@terabytesoftw)
+- Bug #71: Add test cases for closures returning boolean values (`false`, `true`) in `AttributesProvider` class (@terabytesoftw)
