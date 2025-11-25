@@ -46,10 +46,11 @@ trait HasId
     public function id(string|null $value): static
     {
         $new = clone $this;
-        $new->attributes['id'] = $value;
 
         if ($value === null) {
             unset($new->attributes['id']);
+        } else {
+            $new->attributes['id'] = $value;
         }
 
         return $new;
