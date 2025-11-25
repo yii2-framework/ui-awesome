@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\helpers\base;
 
+use Closure;
 use yii\helpers\Json;
 use yii\ui\helpers\{Encode, Enum};
 
@@ -12,7 +13,6 @@ use function gettype;
 use function implode;
 use function is_array;
 use function is_bool;
-use function is_callable;
 use function is_numeric;
 use function is_string;
 use function preg_match;
@@ -405,20 +405,19 @@ abstract class BaseAttributes
      *
      * Recursively prepares values for JSON encoding to ensure safe and standards-compliant HTML attribute output.
      *
-     * This method processes arrays, strings, callables, and BackedEnum values to guarantee that all data embedded in
-     * HTML attributes is encoded and normalized. Arrays are traversed recursively, strings are HTML-encoded, BackedEnum
-     * values are converted to their backing value, and callables are executed and their result is used.
+     * This method processes arrays, strings, Closure and BackedEnum values to guarantee that all data embedded in HTML
+     * attributes is encoded and normalized.
      *
-     * If a callable is provided, it will be executed and its return value will be sanitized recursively. This allows
-     * for dynamic attribute values that are resolved at render time.
+     * Arrays are traversed recursively, strings are HTML-encoded, BackedEnum values are converted to their backing
+     * value, and Closures are executed and their result is used.
      *
      * This prevents XSS vulnerabilities and ensures that complex attribute values are represented safely in the
      * rendered HTML.
      *
-     * @param mixed $value Value to sanitize for JSON encoding. Accepts arrays, strings, callables, enums, or scalars.
+     * @param mixed $value Value to sanitize for JSON encoding. Accepts arrays, strings, enums, scalars or Closure.
      *
-     * @return mixed Sanitized value, ready for safe HTML attribute embedding. May be a scalar, array, or the result of
-     * a callable.
+     * @return mixed Sanitized value, ready for safe HTML attribute embedding. Maybe a scalar, array, or the result of
+     * a Closure.
      */
     private static function sanitizeJsonValue(mixed $value): mixed
     {
@@ -430,7 +429,7 @@ abstract class BaseAttributes
             return Encode::value($value);
         }
 
-        if (is_callable($value)) {
+        if ($value instanceof Closure) {
             return self::sanitizeJsonValue($value());
         }
 

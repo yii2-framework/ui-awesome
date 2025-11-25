@@ -240,6 +240,12 @@ final class AttributesProvider
                     ],
                 ],
             ],
+            'closure with array' => [
+                ' class="dynamic-class"',
+                [
+                    'class' => static fn(): array => ['dynamic-class'],
+                ],
+            ],
             'closure with boolean' => [
                 ' disabled',
                 [
@@ -250,6 +256,12 @@ final class AttributesProvider
                 '',
                 [
                     'title' => static fn(): string => '',
+                ],
+            ],
+            'closure with enum' => [
+                ' type="sm"',
+                [
+                    'type' => static fn(): ButtonSize => ButtonSize::SMALL,
                 ],
             ],
             'closure with integer' => [
