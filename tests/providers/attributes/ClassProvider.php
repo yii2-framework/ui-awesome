@@ -109,7 +109,7 @@ final class ClassProvider
                     ['value' => null],
                 ],
                 '',
-                'Should unset the class attribute when null is provided after a value.',
+                "Should unset the 'class' attribute when 'null' is provided after a value.",
             ],
         ];
     }
