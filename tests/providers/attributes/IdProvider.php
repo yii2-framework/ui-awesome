@@ -11,7 +11,7 @@ namespace yii\ui\tests\providers\attributes;
  * rendering, ensuring standards-compliant assignment, override behavior, and value propagation according to the HTML
  * specification.
  *
- * The test data covers real-world scenarios for setting, overriding, and removing the `id` attribute, supporting both
+ * The test data covers real-world scenarios for setting, overriding, and unsetting the `id` attribute, supporting both
  * explicit `string` values and `null` for attribute removal, to maintain consistent output across different rendering
  * configurations.
  *
@@ -29,22 +29,22 @@ namespace yii\ui\tests\providers\attributes;
 final class IdProvider
 {
     /**
-     * Provides test cases for HTML `id` attribute scenarios.
+     * Provides test cases for HTML `id` attribute rendering scenarios.
      *
      * Supplies test data for validating assignment, override, and removal of the global HTML `id` attribute, including
      * empty `string`, `null`, and standard string values.
      *
-     * Each test case includes the input value, the initial attributes, the expected output, and an assertion message
-     * for clear identification.
+     * Each test case includes the input value, the initial attributes, the expected rendered output, and an assertion
+     * message for clear identification.
      *
-     * @return array Test data for `id` attribute scenarios.
+     * @return array Test data for `id` attribute rendering scenarios.
      *
-     * @phpstan-return array<string, array{string|null, mixed[], string|null, string}>
+     * @phpstan-return array<string, array{string|null, mixed[], string, string}>
      */
-    public static function values(): array
+    public static function renderAttribute(): array
     {
         return [
-            'empty string' => [
+            'empty' => [
                 '',
                 [],
                 '',
@@ -56,11 +56,60 @@ final class IdProvider
                 '',
                 "Should return an empty string when the attribute is set to 'null'.",
             ],
-            'override existing id' => [
+            'override' => [
+                'new-id',
+                ['id' => 'old-id'],
+                ' id="new-id"',
+                "Should override the existing 'id' attribute with the new value.",
+            ],
+            'string' => [
+                'id-one',
+                [],
+                ' id="id-one"',
+                'Should return the attribute value after setting it.',
+            ],
+            'unset with null' => [
+                null,
+                ['id' => 'id-two'],
+                '',
+                "Should unset the 'id' attribute when 'null' is provided after a value.",
+            ],
+        ];
+    }
+
+    /**
+     * Provides test cases for HTML `id` attribute value scenarios.
+     *
+     * Supplies test data for validating assignment, override, and removal of the global HTML `id` attribute value,
+     * including empty `string`, `null`, and standard string values.
+     *
+     * Each test case includes the input value, the initial attributes, the expected value, and an assertion message for
+     * clear identification.
+     *
+     * @return array Test data for `id` attribute value scenarios.
+     *
+     * @phpstan-return array<string, array{string|null, mixed[], string|null, string}>
+     */
+    public static function values(): array
+    {
+        return [
+            'empty' => [
+                '',
+                [],
+                '',
+                'Should return an empty string when setting an empty string.',
+            ],
+            'null' => [
+                null,
+                [],
+                '',
+                "Should return an empty string when the attribute is set to 'null'.",
+            ],
+            'override' => [
                 'new-id',
                 ['id' => 'old-id'],
                 'new-id',
-                'Should override the existing id attribute with the new value.',
+                "Should override the existing 'id' attribute with the new value.",
             ],
             'string' => [
                 'id-one',
