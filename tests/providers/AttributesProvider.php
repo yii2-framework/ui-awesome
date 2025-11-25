@@ -264,6 +264,12 @@ final class AttributesProvider
                     'type' => static fn(): ButtonSize => ButtonSize::SMALL,
                 ],
             ],
+            'closure with float' => [
+                ' data-value="0.42"',
+                [
+                    'data-value' => static fn(): float => 0.42,
+                ],
+            ],
             'closure with integer' => [
                 ' tabindex="5"',
                 [
