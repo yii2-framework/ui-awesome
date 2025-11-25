@@ -238,6 +238,12 @@ final class AttributesProvider
                     ],
                 ],
             ],
+            'closure attribute' => [
+                ' data-value="dynamic"',
+                [
+                    'data-value' => static fn(): string => 'dynamic',
+                ],
+            ],
             'data attributes with array and scalar' => [
                 ' data-a="0" data-b=\'[1,2]\' data-d="99.99" any="42"',
                 [

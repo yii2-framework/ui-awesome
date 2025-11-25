@@ -12,6 +12,7 @@ use function gettype;
 use function implode;
 use function is_array;
 use function is_bool;
+use function is_callable;
 use function is_numeric;
 use function is_string;
 use function preg_match;
@@ -399,14 +400,20 @@ abstract class BaseAttributes
      *
      * Recursively prepares values for JSON encoding to ensure safe and standards-compliant HTML attribute output.
      *
-     * This method processes arrays, strings, and BackedEnum values to guarantee that all data embedded in HTML
-     * attributes is encoded and normalized. Arrays are traversed recursively, strings are HTML-encoded, and BackedEnum
-     * are converted to their backing value. This prevents XSS vulnerabilities and ensures that complex attribute values
-     * are represented in the rendered HTML.
+     * This method processes arrays, strings, callables, and BackedEnum values to guarantee that all data embedded in
+     * HTML attributes is encoded and normalized. Arrays are traversed recursively, strings are HTML-encoded, BackedEnum
+     * values are converted to their backing value, and callables are executed and their result is used.
      *
-     * @param mixed $value Value to sanitize for JSON encoding.
+     * If a callable is provided, it will be executed and its return value will be sanitized recursively. This allows
+     * for dynamic attribute values that are resolved at render time.
      *
-     * @return mixed Sanitized value, ready for safe HTML attribute embedding.
+     * This prevents XSS vulnerabilities and ensures that complex attribute values are represented safely in the
+     * rendered HTML.
+     *
+     * @param mixed $value Value to sanitize for JSON encoding. Accepts arrays, strings, callables, enums, or scalars.
+     *
+     * @return mixed Sanitized value, ready for safe HTML attribute embedding. May be a scalar, array, or the result of
+     * a callable.
      */
     private static function sanitizeJsonValue(mixed $value): mixed
     {
@@ -416,6 +423,10 @@ abstract class BaseAttributes
 
         if (is_string($value)) {
             return Encode::value($value);
+        }
+
+        if (is_callable($value)) {
+            return self::sanitizeJsonValue($value());
         }
 
         $normalized = Enum::normalizeValue($value);
