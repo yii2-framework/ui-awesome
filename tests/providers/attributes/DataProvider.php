@@ -65,7 +65,7 @@ final class DataProvider
                 'Should return the attribute value after setting it.',
             ],
             'closure with empty string' => [
-                ['value'=> static fn(): string => ''],
+                ['value' => static fn(): string => ''],
                 [],
                 '',
                 'Should return the attribute value after setting it.',
