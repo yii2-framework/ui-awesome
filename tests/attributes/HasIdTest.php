@@ -7,6 +7,8 @@ namespace yii\ui\tests\attributes;
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
 use yii\ui\attributes\HasId;
+use yii\ui\helpers\Attributes;
+use yii\ui\mixin\HasAttributes;
 use yii\ui\tests\providers\attributes\IdProvider;
 
 /**
@@ -17,8 +19,8 @@ use yii\ui\tests\providers\attributes\IdProvider;
  * Ensures correct handling, immutability, and validation of the `id` attribute in widget and tag rendering, supporting
  * both `string` and `null` values for dynamic identifier assignment.
  *
- * Test coverage.
- * - Accurate retrieval of the current `id` attribute value.
+ * Test coverage:
+ * - Accurate rendering of attributes with the `id` attribute.
  * - Data provider-driven validation for edge cases and expected behaviors.
  * - Immutability of the trait's API when setting or overriding the `id` attribute.
  * - Proper assignment and overriding of `id` values.
@@ -31,19 +33,39 @@ use yii\ui\tests\providers\attributes\IdProvider;
 #[Group('attributes')]
 final class HasIdTest extends TestCase
 {
+    /**
+     * @phpstan-param mixed[] $attributes
+     */
+    #[DataProviderExternal(IdProvider::class, 'renderAttribute')]
+    public function testRenderAttributesWithLangAttribute(
+        string|null $id,
+        array $attributes,
+        string $expected,
+        string $message,
+    ): void {
+        $instance = new class {
+            use HasAttributes;
+            use HasId;
+        };
+
+        $instance = $instance->attributes($attributes)->id($id);
+
+        self::assertSame(
+            $expected,
+            Attributes::render($instance->getAttributes()),
+            $message,
+        );
+    }
+
     public function testReturnEmptyStringWhenIdAttributeNotSet(): void
     {
         $instance =  new class {
+            use HasAttributes;
             use HasId;
-
-            /**
-             * @phpstan-var mixed[]
-             */
-            public array $attributes = [];
         };
 
         self::assertEmpty(
-            $instance->attributes,
+            $instance->getAttributes(),
             'Should return an empty string when no attribute is set.',
         );
     }
@@ -51,12 +73,8 @@ final class HasIdTest extends TestCase
     public function testReturnNewInstanceWhenSettingIdAttribute(): void
     {
         $instance = new class {
+            use HasAttributes;
             use HasId;
-
-            /**
-             * @phpstan-var mixed[]
-             */
-            public array $attributes = [];
         };
 
         self::assertNotSame(
@@ -77,21 +95,15 @@ final class HasIdTest extends TestCase
         string $message,
     ): void {
         $instance = new class {
+            use HasAttributes;
             use HasId;
-
-            /**
-             * @phpstan-var mixed[]
-             */
-            public array $attributes = [];
         };
 
-        $instance->attributes = $attributes;
-
-        $instance = $instance->id($id);
+        $instance = $instance->attributes($attributes)->id($id);
 
         self::assertSame(
             $expected,
-            $instance->attributes['id'] ?? '',
+            $instance->getAttributes()['id'] ?? '',
             $message,
         );
     }
