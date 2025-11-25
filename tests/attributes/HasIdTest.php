@@ -37,7 +37,7 @@ final class HasIdTest extends TestCase
      * @phpstan-param mixed[] $attributes
      */
     #[DataProviderExternal(IdProvider::class, 'renderAttribute')]
-    public function testRenderAttributesWithLangAttribute(
+    public function testRenderAttributesWithIdAttribute(
         string|null $id,
         array $attributes,
         string $expected,
