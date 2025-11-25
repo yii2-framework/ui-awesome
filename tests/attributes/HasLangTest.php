@@ -57,7 +57,8 @@ final class HasLangTest extends TestCase
             $message,
         );
     }
-    public function testReturnEmptyStringWhenLangAttributeNotSet(): void
+
+    public function testReturnEmptyWhenLangAttributeNotSet(): void
     {
         $instance =  new class {
             use HasAttributes;
@@ -66,7 +67,7 @@ final class HasLangTest extends TestCase
 
         self::assertEmpty(
             $instance->getAttributes(),
-            'Should return an empty string when no attribute is set.',
+            'Should have no attributes set when no attribute is provided.',
         );
     }
 

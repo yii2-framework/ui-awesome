@@ -67,3 +67,4 @@
 - Bug #63: Ensure `id` attribute is set correctly in `HasId` trait for nullable values (@terabytesoftw)
 - Enh #64: Add `HasLang` trait with `lang()` method and tests (@terabytesoftw)
 - Bug #65: Update documentation in `HasId` and `IdProvider` for clarity and consistency (@terabytesoftw)
+- Bug #66: Refactor test names and messages in `HasLangTest` and `LangProvider` for clarity (@terabytesoftw)
