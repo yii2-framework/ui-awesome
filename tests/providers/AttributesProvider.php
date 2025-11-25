@@ -246,7 +246,13 @@ final class AttributesProvider
                     'class' => static fn(): array => ['dynamic-class'],
                 ],
             ],
-            'closure with boolean' => [
+            'closure with boolean (false)' => [
+                '',
+                [
+                    'disabled' => static fn(): bool => false,
+                ],
+            ],
+            'closure with boolean (true)' => [
                 ' disabled',
                 [
                     'disabled' => static fn(): bool => true,
