@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace yii\ui\tests\providers;
 
 /**
- * Data provider for HTML encoding scenarios.
+ * Data provider for {@see \yii\ui\tests\helpers\EncodeTest} class.
  *
  * Supplies comprehensive test data for validating HTML entity encoding, double encoding behavior, and Unicode/binary
  * sequence handling, ensuring standards-compliant output and security against XSS vulnerabilities.
