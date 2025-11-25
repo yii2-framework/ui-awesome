@@ -63,3 +63,4 @@
 - Enh #59: Introduce `HasAttributes` trait with `attributes()` method and tests (@terabytesoftw)
 - Enh #60: Introduce `HasContent` trait with `content()` method and tests (@terabytesoftw)
 - Bug #61: Improve `HasIdTest` and `IdProvider` for improved `id` attribute handling and validation (@terabytesoftw)
+- Bug #62: Update assertion message in `ClassProvider` for clarity on `null` class attribute handling (@terabytesoftw)
