@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\helpers\base;
 
+use Closure;
 use yii\helpers\Json;
 use yii\ui\helpers\{Encode, Enum};
 
@@ -226,7 +227,8 @@ abstract class BaseAttributes
      * - BackedEnum are normalized to their backing value for safe HTML output.
      * - Boolean values are rendered as boolean attributes (for example, `checked`, `disabled`) with presence indicating
      *   `true`.
-     * - All other types are encoded and rendered as regular HTML attributes.
+     * - Empty strings and `null` values result in no output.
+     * - Other types are encoded and rendered as regular HTML attributes.
      *
      * @param string $name Attribute name to render.
      * @param mixed $values Attribute value(s) to process and render. Accepts arrays, enums, booleans, or scalars.
@@ -235,11 +237,15 @@ abstract class BaseAttributes
      */
     private static function renderAttributes(string $name, mixed $values): string
     {
+        $values = self::sanitizeJsonValue($values);
+
+        if ($values === '' || $values === null) {
+            return '';
+        }
+
         if (is_bool($values)) {
             return self::renderBooleanAttributes($name, $values);
         }
-
-        $values = self::sanitizeJsonValue($values);
 
         return match (gettype($values)) {
             'array' => self::renderArrayAttributes($name, $values),
@@ -399,14 +405,19 @@ abstract class BaseAttributes
      *
      * Recursively prepares values for JSON encoding to ensure safe and standards-compliant HTML attribute output.
      *
-     * This method processes arrays, strings, and BackedEnum values to guarantee that all data embedded in HTML
-     * attributes is encoded and normalized. Arrays are traversed recursively, strings are HTML-encoded, and BackedEnum
-     * are converted to their backing value. This prevents XSS vulnerabilities and ensures that complex attribute values
-     * are represented in the rendered HTML.
+     * This method processes arrays, strings, Closure and BackedEnum values to guarantee that all data embedded in HTML
+     * attributes is encoded and normalized.
      *
-     * @param mixed $value Value to sanitize for JSON encoding.
+     * Arrays are traversed recursively, strings are HTML-encoded, BackedEnum values are converted to their backing
+     * value, and Closures are executed and their result is used.
      *
-     * @return mixed Sanitized value, ready for safe HTML attribute embedding.
+     * This prevents XSS vulnerabilities and ensures that complex attribute values are represented safely in the
+     * rendered HTML.
+     *
+     * @param mixed $value Value to sanitize for JSON encoding. Accepts arrays, strings, enums, scalars or Closure.
+     *
+     * @return mixed Sanitized value, ready for safe HTML attribute embedding. Maybe a scalar, array, or the result of
+     * a Closure.
      */
     private static function sanitizeJsonValue(mixed $value): mixed
     {
@@ -416,6 +427,10 @@ abstract class BaseAttributes
 
         if (is_string($value)) {
             return Encode::value($value);
+        }
+
+        if ($value instanceof Closure) {
+            return self::sanitizeJsonValue($value());
         }
 
         $normalized = Enum::normalizeValue($value);

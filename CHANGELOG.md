@@ -68,3 +68,4 @@
 - Enh #64: Add `HasLang` trait with `lang()` method and tests (@terabytesoftw)
 - Bug #65: Update documentation in `HasId` and `IdProvider` for clarity and consistency (@terabytesoftw)
 - Bug #66: Refactor test names and messages in `HasLangTest` and `LangProvider` for clarity (@terabytesoftw)
+- Bug #67: Improve `sanitizeJsonValue` method in `BaseAttributes` class to support callable values and update documentation for clarity (@terabytesoftw)
