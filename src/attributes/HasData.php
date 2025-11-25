@@ -27,6 +27,7 @@ use function is_string;
  * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*
  * @property array $attributes HTML attributes array used by the implementing class.
  * @phpstan-property mixed[] $attributes
+ * {@see \yii\ui\mixin\HasAttributes} for managing the underlying attributes array.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -56,7 +57,7 @@ trait HasData
      *         'role' => 'admin',
      *         'id' => static fn(): string => uniqid(),
      *     ],
-     * ); // sets data-role and data-id attributes
+     * ); // sets 'data-role' and 'data-id' attributes
      * ```
      *
      * @phpstan-param mixed[] $values
