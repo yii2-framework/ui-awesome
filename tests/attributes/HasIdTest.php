@@ -66,9 +66,16 @@ final class HasIdTest extends TestCase
         );
     }
 
+    /**
+     * @phpstan-param mixed[] $attributes
+     */
     #[DataProviderExternal(IdProvider::class, 'values')]
-    public function testSetIdAttributeValue(string|null $id, string|null $expected, string $message): void
-    {
+    public function testSetIdAttributeValue(
+        string|null $id,
+        array $attributes,
+        string|null $expected,
+        string $message,
+    ): void {
         $instance = new class {
             use HasId;
 
@@ -78,11 +85,13 @@ final class HasIdTest extends TestCase
             public array $attributes = [];
         };
 
+        $instance->attributes = $attributes;
+
         $instance = $instance->id($id);
 
         self::assertSame(
             $expected,
-            $instance->attributes['id'] ?? null,
+            $instance->attributes['id'] ?? '',
             $message,
         );
     }

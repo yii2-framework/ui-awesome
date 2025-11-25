@@ -8,10 +8,10 @@ namespace yii\ui\tests\providers\attributes;
  * Data provider for {@see \yii\ui\tests\attributes\HasIdTest} class.
  *
  * Supplies comprehensive test data for validating the handling of the global HTML `id` attribute in widget and tag
- * rendering, ensuring standards-compliant assignment, nullability, and value propagation according to the HTML
+ * rendering, ensuring standards-compliant assignment, override behavior, and value propagation according to the HTML
  * specification.
  *
- * The test data covers real-world scenarios for setting, unsetting, and propagating the `id` attribute, supporting both
+ * The test data covers real-world scenarios for setting, overriding, and removing the `id` attribute, supporting both
  * explicit `string` values and `null` for attribute removal, to maintain consistent output across different rendering
  * configurations.
  *
@@ -19,7 +19,7 @@ namespace yii\ui\tests\providers\attributes;
  * execution and debugging sessions.
  *
  * Key features.
- * - Ensures correct propagation and removal of the `id` attribute in HTML element rendering.
+ * - Ensures correct propagation, override, and removal of the `id` attribute in HTML element rendering.
  * - Named test data sets for precise failure identification.
  * - Validation of empty `string`, `null`, and standard string values for the `id` attribute.
  *
@@ -31,32 +31,48 @@ final class IdProvider
     /**
      * Provides test cases for HTML `id` attribute scenarios.
      *
-     * Supplies test data for validating assignment and propagation of the global HTML `id` attribute, including empty
-     * `string`, `null`, and standard string values.
+     * Supplies test data for validating assignment, override, and removal of the global HTML `id` attribute, including
+     * empty `string`, `null`, and standard string values.
      *
-     * Each test case includes the input value, the expected output, and an assertion message for clear identification.
+     * Each test case includes the input value, the initial attributes, the expected output, and an assertion message
+     * for clear identification.
      *
      * @return array Test data for `id` attribute scenarios.
      *
-     * @phpstan-return array<string, array{string|null, string|null, string}>
+     * @phpstan-return array<string, array{string|null, array<string, string>, string|null, string}>
      */
     public static function values(): array
     {
         return [
             'empty string' => [
                 '',
+                [],
                 '',
                 'Should return an empty string when setting an empty string.',
             ],
             'null' => [
                 null,
-                null,
-                "Should return 'null' when the attribute is set to 'null'.",
+                [],
+                '',
+                "Should return an empty string when the attribute is set to 'null'.",
+            ],
+            'override existing id' => [
+                'new-id',
+                ['id' => 'old-id'],
+                'new-id',
+                'Should override the existing id attribute with the new value.',
             ],
             'string' => [
                 'id-one',
+                [],
                 'id-one',
                 'Should return the attribute value after setting it.',
+            ],
+            'unset with null' => [
+                null,
+                ['id' => 'id-two'],
+                '',
+                "Should unset the 'id' attribute when 'null' is provided after a value.",
             ],
         ];
     }
