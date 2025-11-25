@@ -9,22 +9,24 @@ use PHPUnit\Framework\TestCase;
 use yii\base\InvalidArgumentException;
 use yii\ui\attributes\HasData;
 use yii\ui\exception\Message;
+use yii\ui\helpers\Attributes;
+use yii\ui\mixin\HasAttributes;
 use yii\ui\tests\providers\attributes\DataProvider;
 
 /**
  * Test suite for {@see HasData} trait functionality and behavior.
  *
- * Validates the management of the global HTML `data-*` attribute according to the HTML Living Standard specification.
+ * Validates the management of the global HTML `data-*` attributes according to the HTML Living Standard specification.
  *
- * Ensures correct handling, immutability, and validation of the `data-*` attribute in widget and tag rendering,
- * supporting both `string` and `Closure(): string` values for dynamic data attribute assignment.
+ * Ensures correct handling, immutability, and validation of `data-*` attributes in widget and tag rendering, supporting
+ * both `string` and `\Closure` values for dynamic data assignment.
  *
- * Test coverage.
- * - Accurate retrieval and assignment of `data-*` attributes.
+ * Test coverage:
+ * - Accurate rendering of attributes with `data-*` attributes.
  * - Data provider-driven validation for edge cases and expected behaviors.
  * - Exception handling for invalid keys and values.
- * - Immutability of the trait's API when setting or overriding data attributes.
- * - Proper assignment and overriding of data attribute values.
+ * - Immutability of the trait's API when setting or overriding `data-*` attributes.
+ * - Proper assignment and overriding of `data-*` values.
  *
  * {@see DataProvider} for test case data providers.
  *
@@ -34,15 +36,36 @@ use yii\ui\tests\providers\attributes\DataProvider;
 #[Group('attributes')]
 final class HasDataTest extends TestCase
 {
+    /**
+     * @param array<string, string|\Closure(): mixed> $data
+     * @phpstan-param mixed[] $attributes
+     */
+    #[DataProviderExternal(DataProvider::class, 'renderAttribute')]
+    public function testRenderAttributesWithDataAttribute(
+        array $data,
+        array $attributes,
+        string $expected,
+        string $message,
+    ): void {
+        $instance = new class {
+            use HasAttributes;
+            use HasData;
+        };
+
+        $instance = $instance->attributes($attributes)->dataAttributes($data);
+
+        self::assertSame(
+            $expected,
+            Attributes::render($instance->getAttributes()),
+            $message,
+        );
+    }
+
     public function testReturnNewInstanceWhenSettingDataAttribute(): void
     {
         $instance = new class {
+            use HasAttributes;
             use HasData;
-
-            /**
-             * @phpstan-var mixed[]
-             */
-            public array $attributes = [];
         };
 
         self::assertNotSame(
@@ -53,26 +76,22 @@ final class HasDataTest extends TestCase
     }
 
     /**
-     * @param array<string, string|\Closure(): string> $input
-     * @param array<string, string|\Closure(): string> $expected
+     * @param array<string, string|\Closure(): mixed> $data
+     * @param array<string, string|\Closure(): mixed> $expected
      */
     #[DataProviderExternal(DataProvider::class, 'values')]
-    public function testSetDataAttributeValue(array $input, array $expected, string $assertion): void
+    public function testSetDataAttributeValue(array $data, array $expected, string $assertion): void
     {
         $instance = new class {
+            use HasAttributes;
             use HasData;
-
-            /**
-             * @phpstan-var mixed[]
-             */
-            public array $attributes = [];
         };
 
-        $instance = $instance->dataAttributes($input);
+        $instance = $instance->dataAttributes($data);
 
         self::assertSame(
             $expected,
-            $instance->attributes,
+            $instance->getAttributes(),
             $assertion,
         );
     }
@@ -85,12 +104,8 @@ final class HasDataTest extends TestCase
         );
 
         $instance = new class {
+            use HasAttributes;
             use HasData;
-
-            /**
-             * @phpstan-var mixed[]
-             */
-            public array $attributes = [];
         };
 
         $instance->dataAttributes(['' => 'value']);
@@ -104,12 +119,8 @@ final class HasDataTest extends TestCase
         );
 
         $instance = new class {
+            use HasAttributes;
             use HasData;
-
-            /**
-             * @phpstan-var mixed[]
-             */
-            public array $attributes = [];
         };
 
         $instance->dataAttributes([1 => '']);
@@ -123,12 +134,8 @@ final class HasDataTest extends TestCase
         );
 
         $instance = new class {
+            use HasAttributes;
             use HasData;
-
-            /**
-             * @phpstan-var mixed[]
-             */
-            public array $attributes = [];
         };
 
         $instance->dataAttributes(['key' => 1]);

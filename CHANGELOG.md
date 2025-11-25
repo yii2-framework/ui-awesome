@@ -71,3 +71,4 @@
 - Bug #67: Improve `sanitizeJsonValue` method in `BaseAttributes` class to support callable values and update documentation for clarity (@terabytesoftw)
 - Bug #68: Update class reference in docblock for `EncodeProvider` to improve clarity and accuracy (@terabytesoftw)
 - Bug #69: Add test case for closure returning `float` value in `AttributesProvider` class (@terabytesoftw)
+- Bug #70: Update documentation and improve clarity in `HasData` and `DataProvider` classes (@terabytesoftw)
