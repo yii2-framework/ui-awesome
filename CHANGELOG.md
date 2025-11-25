@@ -69,3 +69,4 @@
 - Bug #65: Update documentation in `HasId` and `IdProvider` for clarity and consistency (@terabytesoftw)
 - Bug #66: Refactor test names and messages in `HasLangTest` and `LangProvider` for clarity (@terabytesoftw)
 - Bug #67: Improve `sanitizeJsonValue` method in `BaseAttributes` class to support callable values and update documentation for clarity (@terabytesoftw)
+- Bug #68: Update class reference in docblock for `EncodeProvider` to improve clarity and accuracy (@terabytesoftw)
