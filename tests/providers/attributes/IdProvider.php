@@ -39,7 +39,7 @@ final class IdProvider
      *
      * @return array Test data for `id` attribute scenarios.
      *
-     * @phpstan-return array<string, array{string|null, array<string, string>, string|null, string}>
+     * @phpstan-return array<string, array{string|null, mixed[], string|null, string}>
      */
     public static function values(): array
     {
