@@ -7,22 +7,24 @@ namespace yii\ui\tests\providers;
 use yii\ui\tests\support\stub\enum\{ButtonSize, Columns, Theme};
 
 /**
- * Data provider for various attribute rendering scenarios.
+ * Data provider for {@see \yii\ui\tests\helpers\AttributesTest} class.
  *
- * Supplies comprehensive test data for validating the handling of HTML attributes in widget and tag rendering,
- * ensuring standards-compliant assignment, propagation, and override behavior according to the HTML specification.
+ * Supplies comprehensive test data for validating the handling, propagation, and override of HTML attributes according
+ * to the HTML specification, including assignment, ordering, empty and `null` value handling, enum integration, and
+ * security against malicious input.
  *
  * The test data covers real-world scenarios for appending, overriding, and removing attributes, supporting both
- * explicit `string` values and `null` for attribute removal, to maintain consistent output across different rendering
+ * explicit `string` values and `null` for attribute removal, to ensure consistent output across different rendering
  * configurations.
  *
- * The provider organizes test cases with descriptive names for clear identification of failure cases during test
- * execution and debugging sessions.
+ * The provider organizes test cases with descriptive names for precise identification of failure cases during test
+ * execution and debugging.
  *
  * Key features:
  * - Ensures correct propagation, appending, and override of HTML attributes in element rendering.
- * - Named test data sets for precise failure identification.
- * - Validation of empty `string`, `null`, and standard string values for attributes.
+ * - Named test data sets for accurate failure identification.
+ * - Security-focused cases for XSS and invalid input handling.
+ * - Validation of empty `string`, `null`, enum, and standard string values for attributes.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -220,7 +222,7 @@ final class AttributesProvider
     public static function renderTagAttributes(): array
     {
         return [
-            'boolean attributes' => [
+            'boolean' => [
                 ' checked disabled required="yes"',
                 [
                     'checked' => true,
@@ -238,13 +240,37 @@ final class AttributesProvider
                     ],
                 ],
             ],
-            'closure attribute' => [
+            'closure with boolean' => [
+                ' disabled',
+                [
+                    'disabled' => static fn(): bool => true,
+                ],
+            ],
+            'closure with empty string' => [
+                '',
+                [
+                    'title' => static fn(): string => '',
+                ],
+            ],
+            'closure with integer' => [
+                ' tabindex="5"',
+                [
+                    'tabindex' => static fn(): int => 5,
+                ],
+            ],
+            'closure with null' => [
+                '',
+                [
+                    'readonly' => static fn(): bool|null => null,
+                ],
+            ],
+            'closure with string' => [
                 ' data-value="dynamic"',
                 [
                     'data-value' => static fn(): string => 'dynamic',
                 ],
             ],
-            'data attributes with array and scalar' => [
+            'data with array and scalar' => [
                 ' data-a="0" data-b=\'[1,2]\' data-d="99.99" any="42"',
                 [
                     'class' => [],
@@ -261,19 +287,19 @@ final class AttributesProvider
                     'any' => 42,
                 ],
             ],
-            'data attribute with empty array' => [
+            'data with empty array' => [
                 ' data-foo=\'[]\'',
                 ['data' => ['foo' => []]],
             ],
-            'float attribute value' => [
+            'float' => [
                 ' width="99.99"',
                 ['width' => 99.99],
             ],
-            'integer attribute value' => [
+            'integer' => [
                 ' height="100"',
                 ['height' => 100],
             ],
-            'mixed attributes with arrays' => [
+            'mixed with arrays' => [
                 ' class="a b" id="x" data-a="1" data-b="2" style="width: 100px;" any=\'[1,2]\'',
                 [
                     'id' => 'x',
@@ -292,14 +318,14 @@ final class AttributesProvider
                     ],
                 ],
             ],
-            'numeric and string attributes' => [
+            'numeric and string' => [
                 ' name="position" value="42"',
                 [
                     'value' => 42,
                     'name' => 'position',
                 ],
             ],
-            'src and aria attributes' => [
+            'src and aria' => [
                 ' src="xyz" aria-a="1" aria-b="c"',
                 [
                     'src' => 'xyz',
@@ -309,7 +335,7 @@ final class AttributesProvider
                     ],
                 ],
             ],
-            'src and data attributes' => [
+            'src and data' => [
                 ' src="xyz" data-a="1" data-b="c"',
                 [
                     'src' => 'xyz',
@@ -319,7 +345,7 @@ final class AttributesProvider
                     ],
                 ],
             ],
-            'src and data-ng attributes' => [
+            'src and data-ng' => [
                 ' src="xyz" data-ng-a="1" data-ng-b="c"',
                 [
                     'src' => 'xyz',
@@ -329,7 +355,7 @@ final class AttributesProvider
                     ],
                 ],
             ],
-            'src and ng attributes' => [
+            'src and ng' => [
                 ' src="xyz" ng-a="1" ng-b="c"',
                 [
                     'src' => 'xyz',

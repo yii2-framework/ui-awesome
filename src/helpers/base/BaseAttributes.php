@@ -227,7 +227,8 @@ abstract class BaseAttributes
      * - BackedEnum are normalized to their backing value for safe HTML output.
      * - Boolean values are rendered as boolean attributes (for example, `checked`, `disabled`) with presence indicating
      *   `true`.
-     * - All other types are encoded and rendered as regular HTML attributes.
+     * - Empty strings and `null` values result in no output.
+     * - Other types are encoded and rendered as regular HTML attributes.
      *
      * @param string $name Attribute name to render.
      * @param mixed $values Attribute value(s) to process and render. Accepts arrays, enums, booleans, or scalars.
@@ -236,11 +237,15 @@ abstract class BaseAttributes
      */
     private static function renderAttributes(string $name, mixed $values): string
     {
+        $values = self::sanitizeJsonValue($values);
+
+        if ($values === '' || $values === null) {
+            return '';
+        }
+
         if (is_bool($values)) {
             return self::renderBooleanAttributes($name, $values);
         }
-
-        $values = self::sanitizeJsonValue($values);
 
         return match (gettype($values)) {
             'array' => self::renderArrayAttributes($name, $values),
