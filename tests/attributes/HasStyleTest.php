@@ -60,7 +60,7 @@ final class HasStyleTest extends TestCase
 
     public function testReturnEmptyWhenStyleAttributeNotSet(): void
     {
-        $instance =  new class {
+        $instance = new class {
             use HasAttributes;
             use HasStyle;
         };
