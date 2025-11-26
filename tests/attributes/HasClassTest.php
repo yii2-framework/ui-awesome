@@ -62,7 +62,7 @@ final class HasClassTest extends TestCase
         );
     }
 
-    public function testReturnEmptyStringWhenClassAttributeNotSet(): void
+    public function testReturnEmptyWhenClassAttributeNotSet(): void
     {
         $instance =  new class {
             use HasAttributes;
@@ -71,7 +71,7 @@ final class HasClassTest extends TestCase
 
         self::assertEmpty(
             $instance->getAttributes(),
-            'Should return an empty string when no attribute is set.',
+            'Should have no attributes set when no attribute is provided.',
         );
     }
 
