@@ -1,0 +1,149 @@
+<?php
+
+declare(strict_types=1);
+
+namespace yii\ui\tests\providers\attributes;
+
+use UnitEnum;
+use yii\ui\tests\support\stub\enum\AlertType;
+
+/**
+ * Data provider for {@see \yii\ui\tests\attributes\HasStyleTest} class.
+ *
+ * Supplies comprehensive test data for validating the handling of the global HTML `style` attribute in widget and tag
+ * rendering, ensuring standards-compliant assignment, override behavior, and value propagation according to the HTML
+ * specification.
+ *
+ * The test data covers real-world scenarios for setting, overriding, and removing the `style` attribute, supporting
+ * explicit `string` values, `UnitEnum` for enum-based style values, and `null` for attribute removal, to maintain
+ * consistent output across different rendering configurations.
+ *
+ * The provider organizes test cases with descriptive names for clear identification of failure cases during test
+ * execution and debugging sessions.
+ *
+ * Key features:
+ * - Ensures correct propagation, assignment, and override of the `style` attribute in HTML element rendering.
+ * - Named test data sets for precise failure identification.
+ * - Validation of empty `string`, `UnitEnum`, and `null` values for the `style` attribute.
+ *
+ * @copyright Copyright (C) 2025 Terabytesoftw.
+ * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
+ */
+final class StyleProvider
+{
+    /**
+     * Provides test cases for rendered HTML `style` attribute scenarios.
+     *
+     * Supplies test data for validating assignment, override, and removal of the global HTML `style` attribute,
+     * including empty `string`, `UnitEnum`, `null`, and standard string values.
+     *
+     * Each test case includes the input value, the initial attributes, the expected rendered output, and an assertion
+     * message for clear identification.
+     *
+     * @return array Test data for rendered `style` attribute scenarios.
+     *
+     * @phpstan-return array<string, array{string|UnitEnum|null, mixed[], string, string}>
+     */
+    public static function renderAttribute(): array
+    {
+        return [
+            'empty string' => [
+                '',
+                [],
+                '',
+                'Should return an empty string when setting an empty string.',
+            ],
+            'enum' => [
+                AlertType::WARNING,
+                [],
+                ' style="warning"',
+                'Should return the attribute value after setting it with an enum.',
+            ],
+            'enum replace existing' => [
+                AlertType::WARNING,
+                ['style' => 'color: red;'],
+                ' style="warning"',
+                "Should return new style after replacing the existing 'style' attribute with enum value.",
+            ],
+            'null' => [
+                null,
+                [],
+                '',
+                "Should return an empty string when the attribute is set to 'null'.",
+            ],
+            'replace existing style' => [
+                'color: blue;',
+                ['style' => 'color: red;'],
+                ' style="color: blue;"',
+                "Should return new style after replacing the existing 'style' attribute.",
+            ],
+            'string' => [
+                'color: red;',
+                [],
+                ' style="color: red;"',
+                'Should return the attribute value after setting it.',
+            ],
+            'unset with null' => [
+                null,
+                ['style' => 'color: red;'],
+                '',
+                "Should unset the 'style' attribute when 'null' is provided after a value.",
+            ],
+        ];
+    }
+
+    /**
+     * Provides test cases for HTML `style` attribute value scenarios.
+     *
+     * Supplies test data for validating assignment, override, and removal of the global HTML `style` attribute value,
+     * including empty `string`, `UnitEnum`, `null`, and standard string values.
+     *
+     * Each test case includes the input value, the initial attributes, the expected value, and an assertion message for
+     * clear identification.
+     *
+     * @return array Test data for `style` attribute value scenarios.
+     *
+     * @phpstan-return array<string, array{string|UnitEnum|null, mixed[], string|UnitEnum, string}>
+     */
+    public static function values(): array
+    {
+        return [
+            'empty style value' => [
+                '',
+                [],
+                '',
+                'Should return an empty string when setting an empty string.',
+            ],
+            'enum style value' => [
+                AlertType::WARNING,
+                [],
+                AlertType::WARNING,
+                'Should return the enum instance after setting it.',
+            ],
+            'null style value' => [
+                null,
+                [],
+                '',
+                "Should return an empty string when the attribute is set to 'null'.",
+            ],
+            'replace style value' => [
+                'color: blue;',
+                ['style' => 'color: red;'],
+                'color: blue;',
+                'Should return new attribute value after replacing the existing attribute value.',
+            ],
+            'single style value' => [
+                'color: red;',
+                [],
+                'color: red;',
+                'Should return the attribute value after setting it.',
+            ],
+            'unset with null' => [
+                null,
+                ['style' => 'color: red;'],
+                '',
+                "Should unset the 'style' attribute when 'null' is provided after a value.",
+            ],
+        ];
+    }
+}
