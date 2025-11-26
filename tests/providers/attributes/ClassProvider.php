@@ -11,28 +11,102 @@ use yii\ui\tests\support\stub\enum\AlertType;
  * Data provider for {@see \yii\ui\tests\attributes\HasClassTest} class.
  *
  * Supplies comprehensive test data for validating the handling of the global HTML `class` attribute in widget and tag
- * rendering, ensuring standards-compliant assignment, override behavior, and value propagation according to the HTML
- * specification.
+ * rendering, ensuring standards-compliant assignment, appending, override behavior, and value propagation according to
+ * the HTML specification.
  *
- * The test data covers real-world scenarios for appending, overriding, and removing the `class` attribute, supporting
- * both explicit `string` values and `null` for attribute removal, to maintain consistent output across different
- * rendering configurations.
+ * The test data covers real-world scenarios for setting, appending, overriding, and removing the `class` attribute,
+ * supporting both explicit `string` values, `UnitEnum` for enum-based class names, and `null` for attribute removal,
+ * to maintain consistent output across different rendering configurations.
  *
  * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
- * Key features.
- * - Ensures correct propagation, appending, and override of the `class` attribute in HTML element rendering.
+ * Key features:
+ * - Ensures correct propagation, assignment, appending, override, and removal of the `class` attribute in HTML element
+ *   rendering.
  * - Named test data sets for precise failure identification.
- * - Validation of empty `string`, `null`, and standard string values for the `class` attribute.
- *
- * {@see AlertType} for enum test case usage.
+ * - Validation of empty `string`, `null`, and enum values for the `class` attribute.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
 final class ClassProvider
 {
+    /**
+     * Provides test cases for rendered HTML `class` attribute scenarios.
+     *
+     * Supplies test data for validating assignment, appending, override, and removal of the global HTML `class`
+     * attribute, including empty `string`, `null`, `UnitEnum`, and standard string values.
+     *
+     * Each test case includes the input value, the initial attributes, the override flag, the expected rendered output,
+     * and an assertion message for clear identification.
+     *
+     * @return array Test data for rendered `class` attribute scenarios.
+     *
+     * @phpstan-return array<string, array{string|UnitEnum|null, mixed[], bool, string, string}>
+     */
+    public static function renderAttribute(): array
+    {
+        return [
+            'append new class' => [
+                'class-two',
+                ['class' => 'class-one'],
+                false,
+                ' class="class-one class-two"',
+                "Should append new class to existing 'class' attribute.",
+            ],
+            'empty string' => [
+                '',
+                [],
+                false,
+                '',
+                'Should return an empty string when setting an empty string.',
+            ],
+            'enum' => [
+                AlertType::WARNING,
+                [],
+                false,
+                ' class="warning"',
+                'Should return the attribute value after setting it.',
+            ],
+            'enum override' => [
+                AlertType::WARNING,
+                ['class' => 'class-one'],
+                true,
+                ' class="warning"',
+                "Should return new class after overriding the existing 'class' attribute with enum value.",
+            ],
+            'null' => [
+                null,
+                [],
+                false,
+                '',
+                "Should return an empty string when the attribute is set to 'null'.",
+            ],
+            'override existing class' => [
+                'class-override',
+                ['class' => 'class-one'],
+                true,
+                ' class="class-override"',
+                "Should return new class after overriding the existing 'class' attribute.",
+            ],
+            'string' => [
+                'class-two',
+                [],
+                false,
+                ' class="class-two"',
+                'Should return the attribute value after setting it.',
+            ],
+            'unset with null' => [
+                null,
+                ['class' => 'class-two'],
+                false,
+                '',
+                "Should unset the 'class' attribute when 'null' is provided after a value.",
+            ],
+        ];
+    }
+
     /**
      * Provides test cases for HTML `class` attribute scenarios.
      *
@@ -85,7 +159,7 @@ final class ClassProvider
             'null class value' => [
                 [['value' => null]],
                 '',
-                "Should return 'null' when the attribute is set to 'null'.",
+                "Should return an empty string when the attribute is set to 'null'.",
             ],
             'overriding class value' => [
                 [
