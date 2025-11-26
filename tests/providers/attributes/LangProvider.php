@@ -128,11 +128,11 @@ final class LangProvider
                 '',
                 "Should return empty string when the attribute is set to 'null'.",
             ],
-            'override' => [
+            'replace existing' => [
                 Languages::GERMAN,
                 ['lang' => 'it'],
                 Languages::GERMAN,
-                "Should override the existing 'lang' attribute with the new value.",
+                "Should return new 'lang' after replacing the existing 'lang' attribute.",
             ],
             'string' => [
                 'en',
