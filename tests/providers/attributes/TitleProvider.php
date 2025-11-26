@@ -72,7 +72,7 @@ final class TitleProvider
                 "Should return an empty string when the attribute is set to 'null'.",
             ],
             'replace existing' => [
-                Status::INACTIVE,
+                'inactive',
                 ['title' => 'active'],
                 ' title="inactive"',
                 "Should return new 'title' after replacing the existing 'title' attribute.",
@@ -127,9 +127,9 @@ final class TitleProvider
                 "Should return an empty string when the attribute is set to 'null'.",
             ],
             'replace existing' => [
-                Status::INACTIVE,
+                'inactive',
                 ['title' => 'active'],
-                Status::INACTIVE,
+                'inactive',
                 "Should return new 'title' after replacing the existing 'title' attribute.",
             ],
             'string' => [
