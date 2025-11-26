@@ -73,3 +73,4 @@
 - Bug #69: Add test case for closure returning `float` value in `AttributesProvider` class (@terabytesoftw)
 - Bug #70: Update documentation and improve clarity in `HasData` and `DataProvider` classes (@terabytesoftw)
 - Bug #71: Add test cases for closures returning boolean values (`false`, `true`) in `AttributesProvider` class (@terabytesoftw)
+- Bug #72: Update `HasClass` trait docblock to reference `HasAttributes` for attribute management and update related tests (@terabytesoftw)

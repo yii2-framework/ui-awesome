@@ -6,7 +6,10 @@ namespace yii\ui\tests\attributes;
 
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
+use UnitEnum;
 use yii\ui\attributes\HasClass;
+use yii\ui\helpers\Attributes;
+use yii\ui\mixin\HasAttributes;
 use yii\ui\tests\providers\attributes\ClassProvider;
 
 /**
@@ -15,10 +18,10 @@ use yii\ui\tests\providers\attributes\ClassProvider;
  * Validates the management of the global HTML `class` attribute according to the HTML Living Standard specification.
  *
  * Ensures correct handling, immutability, and validation of the `class` attribute in widget and tag rendering,
- * supporting both `string` and `null` values for dynamic CSS class assignment.
+ * supporting both `string`, `UnitEnum`, and `null` values for dynamic class assignment.
  *
- * Test coverage.
- * - Accurate retrieval of the current `class` attribute value.
+ * Test coverage:
+ * - Accurate rendering of attributes with the `class` attribute.
  * - Data provider-driven validation for edge cases and expected behaviors.
  * - Immutability of the trait's API when setting or overriding the `class` attribute.
  * - Proper assignment and overriding of `class` values.
@@ -31,19 +34,43 @@ use yii\ui\tests\providers\attributes\ClassProvider;
 #[Group('attributes')]
 final class HasClassTest extends TestCase
 {
+    /**
+     * @phpstan-param mixed[] $attributes
+     */
+    #[DataProviderExternal(ClassProvider::class, 'renderAttribute')]
+    public function testRenderAttributesWithClassAttribute(
+        string|UnitEnum|null $cssClasses,
+        array $attributes,
+        bool $override,
+        string $expected,
+        string $message,
+    ): void {
+        $instance = new class {
+            use HasAttributes;
+            use HasClass;
+        };
+
+        $instance = match ($override) {
+            true => $instance->attributes($attributes)->class($cssClasses, true),
+            default => $instance->attributes($attributes)->class($cssClasses),
+        };
+
+        self::assertSame(
+            $expected,
+            Attributes::render($instance->getAttributes()),
+            $message,
+        );
+    }
+
     public function testReturnEmptyStringWhenClassAttributeNotSet(): void
     {
         $instance =  new class {
+            use HasAttributes;
             use HasClass;
-
-            /**
-             * @phpstan-var mixed[]
-             */
-            public array $attributes = [];
         };
 
         self::assertEmpty(
-            $instance->attributes,
+            $instance->getAttributes(),
             'Should return an empty string when no attribute is set.',
         );
     }
@@ -51,12 +78,8 @@ final class HasClassTest extends TestCase
     public function testReturnNewInstanceWhenSettingClassAttribute(): void
     {
         $instance = new class {
+            use HasAttributes;
             use HasClass;
-
-            /**
-             * @phpstan-var mixed[]
-             */
-            public array $attributes = [];
         };
 
         self::assertNotSame(
@@ -73,12 +96,8 @@ final class HasClassTest extends TestCase
     public function testSetClassAttributeValue(array $operations, string $expected, string $message): void
     {
         $instance = new class {
+            use HasAttributes;
             use HasClass;
-
-            /**
-             * @phpstan-var mixed[]
-             */
-            public array $attributes = [];
         };
 
         foreach ($operations as $operation) {
@@ -92,7 +111,7 @@ final class HasClassTest extends TestCase
 
         self::assertSame(
             $expected,
-            $instance->attributes['class'] ?? '',
+            $instance->getAttributes()['class'] ?? '',
             $message,
         );
     }
