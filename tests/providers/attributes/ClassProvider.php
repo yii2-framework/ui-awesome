@@ -55,7 +55,7 @@ final class ClassProvider
                 ' class="class-one class-two"',
                 "Should append new class to existing 'class' attribute.",
             ],
-            'empty' => [
+            'empty string' => [
                 '',
                 [],
                 false,
@@ -134,7 +134,7 @@ final class ClassProvider
                 'class-one class-two',
                 "Should append new class to existing 'class' attribute.",
             ],
-            'empty' => [
+            'empty string' => [
                 [['value' => '']],
                 '',
                 'Should return an empty string when setting an empty string.',

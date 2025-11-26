@@ -71,7 +71,7 @@ final class LangProvider
                 null,
                 [],
                 '',
-                "Should return empty string when the attribute is set to 'null'.",
+                "Should return an empty string when the attribute is set to 'null'.",
             ],
             'replace existing' => [
                 Languages::GERMAN,
@@ -110,7 +110,7 @@ final class LangProvider
     public static function values(): array
     {
         return [
-            'empty' => [
+            'empty string' => [
                 '',
                 [],
                 '',
@@ -126,7 +126,7 @@ final class LangProvider
                 null,
                 [],
                 '',
-                "Should return empty string when the attribute is set to 'null'.",
+                "Should return an empty string when the attribute is set to 'null'.",
             ],
             'replace existing' => [
                 Languages::GERMAN,

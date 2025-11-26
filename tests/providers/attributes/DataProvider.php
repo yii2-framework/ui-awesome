@@ -100,7 +100,7 @@ final class DataProvider
                 ' data-value="test-action"',
                 'Should return the attribute value after setting it.',
             ],
-            'empty' => [
+            'empty string' => [
                 ['value' => ''],
                 [],
                 '',
@@ -169,7 +169,7 @@ final class DataProvider
                 ['data-value' => $closure],
                 'Should return the attribute value after setting it.',
             ],
-            'empty' => [
+            'empty string' => [
                 ['value' => ''],
                 ['data-value' => ''],
                 'Should return an empty string when setting an empty string.',

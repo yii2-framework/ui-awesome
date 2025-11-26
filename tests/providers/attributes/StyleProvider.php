@@ -108,7 +108,7 @@ final class StyleProvider
     public static function values(): array
     {
         return [
-            'empty' => [
+            'empty string' => [
                 '',
                 [],
                 '',

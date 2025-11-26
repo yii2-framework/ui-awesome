@@ -44,7 +44,7 @@ final class IdProvider
     public static function renderAttribute(): array
     {
         return [
-            'empty' => [
+            'empty string' => [
                 '',
                 [],
                 '',
@@ -93,7 +93,7 @@ final class IdProvider
     public static function values(): array
     {
         return [
-            'empty' => [
+            'empty string' => [
                 '',
                 [],
                 '',
