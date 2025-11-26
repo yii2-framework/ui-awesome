@@ -44,7 +44,7 @@ final class IdProvider
     public static function renderAttribute(): array
     {
         return [
-            'empty' => [
+            'empty string' => [
                 '',
                 [],
                 '',
@@ -56,11 +56,11 @@ final class IdProvider
                 '',
                 "Should return an empty string when the attribute is set to 'null'.",
             ],
-            'override' => [
+            'replace existing' => [
                 'new-id',
                 ['id' => 'old-id'],
                 ' id="new-id"',
-                "Should override the existing 'id' attribute with the new value.",
+                "Should return new 'id' after replacing the existing 'id' attribute.",
             ],
             'string' => [
                 'id-one',
@@ -93,7 +93,7 @@ final class IdProvider
     public static function values(): array
     {
         return [
-            'empty' => [
+            'empty string' => [
                 '',
                 [],
                 '',
@@ -105,11 +105,11 @@ final class IdProvider
                 '',
                 "Should return an empty string when the attribute is set to 'null'.",
             ],
-            'override' => [
+            'replace existing' => [
                 'new-id',
                 ['id' => 'old-id'],
                 'new-id',
-                "Should override the existing 'id' attribute with the new value.",
+                "Should return new 'id' after replacing the existing 'id' attribute.",
             ],
             'string' => [
                 'id-one',

@@ -48,7 +48,7 @@ final class ClassProvider
     public static function renderAttribute(): array
     {
         return [
-            'append new class' => [
+            'append' => [
                 'class-two',
                 ['class' => 'class-one'],
                 false,
@@ -67,14 +67,14 @@ final class ClassProvider
                 [],
                 false,
                 ' class="warning"',
-                'Should return the attribute value after setting it.',
+                'Should return the attribute value after setting it with an enum.',
             ],
-            'enum override' => [
+            'enum replace existing' => [
                 AlertType::WARNING,
                 ['class' => 'class-one'],
                 true,
                 ' class="warning"',
-                "Should return new class after overriding the existing 'class' attribute with enum value.",
+                "Should return new 'class' after replacing the existing 'class' attribute with enum value.",
             ],
             'null' => [
                 null,
@@ -83,12 +83,12 @@ final class ClassProvider
                 '',
                 "Should return an empty string when the attribute is set to 'null'.",
             ],
-            'override existing class' => [
+            'replace existing' => [
                 'class-override',
                 ['class' => 'class-one'],
                 true,
                 ' class="class-override"',
-                "Should return new class after overriding the existing 'class' attribute.",
+                "Should return new 'class' after replacing the existing 'class' attribute.",
             ],
             'string' => [
                 'class-two',
@@ -126,25 +126,25 @@ final class ClassProvider
     public static function values(): array
     {
         return [
-            'appending class values' => [
+            'append' => [
                 [
                     ['value' => 'class-one'],
                     ['value' => 'class-two'],
                 ],
                 'class-one class-two',
-                'Should append new attribute value to existing attribute value.',
+                "Should append new class to existing 'class' attribute.",
             ],
-            'empty class value' => [
+            'empty string' => [
                 [['value' => '']],
                 '',
                 'Should return an empty string when setting an empty string.',
             ],
-            'enum class value' => [
+            'enum' => [
                 [['value' => AlertType::WARNING]],
                 'warning',
-                'Should return the attribute value after setting it.',
+                'Should return the attribute value after setting it with an enum.',
             ],
-            'multiple appends then override' => [
+            'multiple appends when override (true)' => [
                 [
                     ['value' => 'class-one'],
                     ['value' => 'class-two'],
@@ -156,12 +156,12 @@ final class ClassProvider
                 'class-three',
                 'Should override all previous class values when override flag is true.',
             ],
-            'null class value' => [
+            'null' => [
                 [['value' => null]],
                 '',
                 "Should return an empty string when the attribute is set to 'null'.",
             ],
-            'overriding class value' => [
+            'override' => [
                 [
                     ['value' => 'class-one'],
                     [
@@ -172,7 +172,7 @@ final class ClassProvider
                 'class-override',
                 'Should return new attribute value after overriding the existing attribute value.',
             ],
-            'single class value' => [
+            'string' => [
                 [['value' => 'class-one']],
                 'class-one',
                 'Should return the attribute value after setting it.',

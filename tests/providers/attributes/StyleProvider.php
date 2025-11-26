@@ -63,7 +63,7 @@ final class StyleProvider
                 AlertType::WARNING,
                 ['style' => 'color: red;'],
                 ' style="warning"',
-                "Should return new style after replacing the existing 'style' attribute with enum value.",
+                "Should return new 'style' after replacing the existing 'style' attribute with enum value.",
             ],
             'null' => [
                 null,
@@ -71,11 +71,11 @@ final class StyleProvider
                 '',
                 "Should return an empty string when the attribute is set to 'null'.",
             ],
-            'replace existing style' => [
+            'replace existing' => [
                 'color: blue;',
                 ['style' => 'color: red;'],
                 ' style="color: blue;"',
-                "Should return new style after replacing the existing 'style' attribute.",
+                "Should return new 'style' after replacing the existing 'style' attribute.",
             ],
             'string' => [
                 'color: red;',
@@ -108,31 +108,37 @@ final class StyleProvider
     public static function values(): array
     {
         return [
-            'empty style value' => [
+            'empty string' => [
                 '',
                 [],
                 '',
                 'Should return an empty string when setting an empty string.',
             ],
-            'enum style value' => [
+            'enum' => [
                 AlertType::WARNING,
                 [],
                 AlertType::WARNING,
                 'Should return the enum instance after setting it.',
             ],
-            'null style value' => [
+            'enum replace existing' => [
+                AlertType::WARNING,
+                ['style' => 'color: red;'],
+                AlertType::WARNING,
+                "Should return new 'style' after replacing the existing 'style' attribute with enum value.",
+            ],
+            'null' => [
                 null,
                 [],
                 '',
                 "Should return an empty string when the attribute is set to 'null'.",
             ],
-            'replace style value' => [
+            'replace existing' => [
                 'color: blue;',
                 ['style' => 'color: red;'],
                 'color: blue;',
-                'Should return new attribute value after replacing the existing attribute value.',
+                "Should return new 'style' after replacing the existing 'style' attribute.",
             ],
-            'single style value' => [
+            'string' => [
                 'color: red;',
                 [],
                 'color: red;',

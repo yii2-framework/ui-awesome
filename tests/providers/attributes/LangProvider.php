@@ -49,7 +49,7 @@ final class LangProvider
     public static function renderAttribute(): array
     {
         return [
-            'empty' => [
+            'empty string' => [
                 '',
                 [],
                 '',
@@ -61,17 +61,23 @@ final class LangProvider
                 ' lang="es"',
                 'Should return the attribute value after setting it.',
             ],
+            'enum replace existing' => [
+                Languages::SPANISH,
+                ['lang' => 'it'],
+                ' lang="es"',
+                "Should return new 'lang' after replacing the existing 'lang' attribute with enum value.",
+            ],
             'null' => [
                 null,
                 [],
                 '',
-                "Should return empty string when the attribute is set to 'null'.",
+                "Should return an empty string when the attribute is set to 'null'.",
             ],
-            'override' => [
+            'replace existing' => [
                 Languages::GERMAN,
                 ['lang' => 'it'],
                 ' lang="de"',
-                "Should override the existing 'lang' attribute with the new value.",
+                "Should return new 'lang' after replacing the existing 'lang' attribute.",
             ],
             'string' => [
                 'en',
@@ -104,7 +110,7 @@ final class LangProvider
     public static function values(): array
     {
         return [
-            'empty' => [
+            'empty string' => [
                 '',
                 [],
                 '',
@@ -120,13 +126,13 @@ final class LangProvider
                 null,
                 [],
                 '',
-                "Should return empty string when the attribute is set to 'null'.",
+                "Should return an empty string when the attribute is set to 'null'.",
             ],
-            'override' => [
+            'replace existing' => [
                 Languages::GERMAN,
                 ['lang' => 'it'],
                 Languages::GERMAN,
-                "Should override the existing 'lang' attribute with the new value.",
+                "Should return new 'lang' after replacing the existing 'lang' attribute.",
             ],
             'string' => [
                 'en',

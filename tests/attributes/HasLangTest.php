@@ -18,7 +18,7 @@ use yii\ui\tests\providers\attributes\LangProvider;
  * Validates the management of the global HTML `lang` attribute according to the HTML Living Standard specification.
  *
  * Ensures correct handling, immutability, and validation of the `lang` attribute in widget and tag rendering,
- * supporting both `string`, `UnitEnum`, and `null` values for dynamic language assignment.
+ * supporting `string`, `UnitEnum`, and `null` values for dynamic language assignment.
  *
  * Test coverage:
  * - Accurate rendering of attributes with the `lang` attribute.
