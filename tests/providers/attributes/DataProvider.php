@@ -23,7 +23,7 @@ use yii\ui\tests\support\stub\enum\ButtonSize;
  * Key features:
  * - Ensures correct propagation, assignment, and override of `data-*` attributes in HTML element rendering.
  * - Named test data sets for precise failure identification.
- * - Validation of empty `string`, `null`, closure, and enum values for `data-*` attributes.
+ * - Validation of empty `string`, `null`, `Closure`, `UnitEnum` for `data-*` attributes.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -34,7 +34,7 @@ final class DataProvider
      * Provides test cases for rendered HTML `data-*` attribute scenarios.
      *
      * Supplies test data for validating assignment, override, and removal of the global HTML `data-*` attributes,
-     * including empty `string`, `null`, closures, enum, and standard string values.
+     * including empty `string`, `null`, `Closure`, `UnitEnum` and standard string values.
      *
      * Each test case includes the input value, the initial attributes, the expected rendered output, and an assertion
      * message for clear identification.
@@ -144,7 +144,7 @@ final class DataProvider
      * Provides test cases for HTML `data-*` attribute value scenarios.
      *
      * Supplies test data for validating assignment, override, and removal of the global HTML `data-*` attribute values,
-     * including empty `string`, `null`, closures, and standard string values.
+     * including empty `string`, `null`, `Closure` and standard string values.
      *
      * Each test case includes the input value, the expected output, and an assertion message for clear identification.
      *

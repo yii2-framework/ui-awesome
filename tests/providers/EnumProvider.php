@@ -12,7 +12,7 @@ use yii\ui\tests\support\stub\enum\{Status, Theme};
  * Supplies comprehensive test data for validating enum normalization in widget and tag rendering, ensuring
  * standards-compliant conversion, type safety, and value propagation according to the PHP specification.
  *
- * The test data covers real-world scenarios for normalizing BackedEnum and UnitEnum values, supporting both single
+ * The test data covers real-world scenarios for normalizing `BackedEnum` and `UnitEnum` values, supporting both single
  * enum values and arrays containing mixed types, to maintain consistent scalar representation across different
  * rendering configurations.
  *
@@ -20,7 +20,7 @@ use yii\ui\tests\support\stub\enum\{Status, Theme};
  * execution and debugging sessions.
  *
  * Key features:
- * - Ensures correct normalization of backed and unit enums to their scalar representation.
+ * - Ensures correct normalization of `BackedEnum` and `UnitEnum` to their scalar representation.
  * - Named test data sets for precise failure identification.
  * - Validation of mixed arrays containing enums and scalar values.
  *
@@ -32,8 +32,8 @@ final class EnumProvider
     /**
      * Provides test cases for array normalization scenarios.
      *
-     * Supplies test data for validating the normalization of arrays containing BackedEnum, UnitEnum, and mixed scalar
-     * values, ensuring correct conversion to scalar representation.
+     * Supplies test data for validating the normalization of arrays containing `BackedEnum`, `UnitEnum`, and mixed
+     * scalar values, ensuring correct conversion to scalar representation.
      *
      * Each test case includes the input array, expected normalized output, and an assertion message for clear failure
      * identification.
@@ -66,8 +66,8 @@ final class EnumProvider
     /**
      * Provides test cases for single value normalization scenarios.
      *
-     * Supplies test data for validating the normalization of BackedEnum, UnitEnum, and scalar values, ensuring correct
-     * scalar conversion for enums and pass-through for non-enum values.
+     * Supplies test data for validating the normalization of `BackedEnum`, `UnitEnum`, and scalar values, ensuring
+     * correct scalar conversion for enums and pass-through for non-enum values.
      *
      * Each test case includes the input value, expected normalized output, and an assertion message for clear failure
      * identification.

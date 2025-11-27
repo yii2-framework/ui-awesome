@@ -102,8 +102,8 @@ final class AttributesProvider
     /**
      * Provides test cases for enum attribute scenarios.
      *
-     * Supplies test data for validating HTML attribute rendering with PHP enum values, including integration in class,
-     * data, style, and numeric attributes.
+     * Supplies test data for validating HTML attribute rendering with PHP enum values, including integration in
+     * `class`, `data`, `style`, and numeric attributes.
      *
      * Each test case includes the input attributes and the expected rendered output.
      *

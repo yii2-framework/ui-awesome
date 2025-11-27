@@ -25,7 +25,7 @@ use yii\ui\tests\support\stub\enum\AlertType;
  * - Ensures correct propagation, assignment, appending, override, and removal of the `class` attribute in HTML element
  *   rendering.
  * - Named test data sets for precise failure identification.
- * - Validation of empty `string`, `null`, and enum values for the `class` attribute.
+ * - Validation of empty `string`, `UnitEnum`, `null` values for the `class` attribute.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.

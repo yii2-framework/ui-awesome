@@ -24,7 +24,7 @@ use yii\ui\tests\support\stub\enum\Languages;
  * Key features:
  * - Ensures correct propagation, assignment, and override of the `lang` attribute in HTML element rendering.
  * - Named test data sets for precise failure identification.
- * - Validation of empty `string`, `null`, and enum values for the `lang` attribute.
+ * - Validation of empty `string`, `UnitEnum`, `null` values for the `lang` attribute.
  *
  * {@see Languages} for enum test case usage.
  *
@@ -37,7 +37,7 @@ final class LangProvider
      * Provides test cases for rendered HTML `lang` attribute scenarios.
      *
      * Supplies test data for validating assignment, override, and removal of the global HTML `lang` attribute,
-     * including empty `string`, `null`, `UnitEnum`, and standard string values.
+     * including empty `string`, `UnitEnum`, `null` and standard string values.
      *
      * Each test case includes the input value, the initial attributes, the expected rendered output, and an assertion
      * message for clear identification.
@@ -98,7 +98,7 @@ final class LangProvider
      * Provides test cases for HTML `lang` attribute scenarios.
      *
      * Supplies test data for validating assignment, override, and removal of the global HTML `lang` attribute,
-     * including empty `string`, `null`, `UnitEnum`, and standard string values.
+     * including empty `string`, `UnitEnum`, `null` and standard string values.
      *
      * Each test case includes the input value, the initial attributes, the expected output, and an assertion message
      * for clear identification.
