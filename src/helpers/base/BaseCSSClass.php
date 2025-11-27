@@ -114,7 +114,7 @@ abstract class BaseCSSClass
      * // $attrs = ['id' => 'main', 'class' => 'alert alert-danger']
      * ```
      */
-    public static function add(array &$attributes, array|string|null|UnitEnum $classes, bool $override = false): void
+    public static function add(array &$attributes, array|string|UnitEnum|null $classes, bool $override = false): void
     {
         $normalizedClasses = self::normalizeClasses($classes);
 
@@ -159,7 +159,7 @@ abstract class BaseCSSClass
      * {@see InvalidArgumentException} for invalid argument errors.
      * {@see Enum::normalizeValue()} for enum normalization logic.
      *
-     * @phpstan-param list<scalar|null|UnitEnum> $allowed
+     * @phpstan-param list<scalar|UnitEnum|null> $allowed
      *
      * Usage example:
      * ```php
@@ -280,7 +280,7 @@ abstract class BaseCSSClass
      * @phpstan-param mixed[]|string|UnitEnum|null $classes
      * @phpstan-return list<string>
      */
-    private static function normalizeClasses(array|string|null|UnitEnum $classes): array
+    private static function normalizeClasses(array|string|UnitEnum|null $classes): array
     {
         if ($classes === null || $classes === '') {
             return [];
