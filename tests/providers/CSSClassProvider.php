@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\providers;
 
+use UnitEnum;
 use yii\ui\tests\support\stub\enum\{AlertType, ButtonSize, Priority};
 
 use function array_map;
@@ -49,7 +50,7 @@ final class CSSClassProvider
      *   string,
      *   array{
      *     0: mixed[],
-     *     1: list<array{classes: mixed[]|string|null|\UnitEnum, override?: bool}>,
+     *     1: list<array{classes: mixed[]|string|UnitEnum|null, override?: bool}>,
      *     2: mixed[],
      *     3: string
      *   }
@@ -96,7 +97,7 @@ final class CSSClassProvider
                 'Should add single class from array.',
             ],
 
-            // Complex real-world scenario
+            // complex real-world scenario
             'complex Tailwind alert with enum' => [
                 [
                     'id' => 'alert-box',

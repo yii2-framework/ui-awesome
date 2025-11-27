@@ -21,7 +21,7 @@ use yii\ui\tests\support\stub\enum\{Priority, Status, Theme};
  * Key features:
  * - Ensures correct detection of associative and list arrays.
  * - Named test data sets for precise failure identification.
- * - Validation of empty arrays, mixed types, and enum values in array processing.
+ * - Validation of empty arrays, mixed types, and `UnitEnum` instances values in array processing.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -31,9 +31,9 @@ final class ArraysProvider
     /**
      * Provides test cases for value membership validation in allowed lists.
      *
-     * Supplies comprehensive test data for validating the `inList` method, including basic string values, enum instances,
-     * empty values, empty allowed lists, case sensitivity checks, type strictness validation, and mixed enum type
-     * scenarios.
+     * Supplies comprehensive test data for validating the `inList` method, including basic string values, `UnitEnum`
+     * instances, empty values, empty allowed lists, case sensitivity checks, type strictness validation, and mixed enum
+     * type scenarios.
      *
      * Each test case includes the attribute name, value to check, allowed list, expected boolean result, and an
      * assertion message for clear failure identification.

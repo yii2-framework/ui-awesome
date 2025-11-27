@@ -409,7 +409,7 @@ abstract class BaseAttributes
      * HTML attributes is encoded and normalized.
      *
      * Arrays are traversed recursively, strings are HTML-encoded, `BackedEnum` values are converted to their backing
-     * value, and `Closure`s are executed and their result is used.
+     * value, and `Closure` are executed and their result is used.
      *
      * This prevents XSS vulnerabilities and ensures that complex attribute values are represented safely in the
      * rendered HTML.

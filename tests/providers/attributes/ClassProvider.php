@@ -25,7 +25,8 @@ use yii\ui\tests\support\stub\enum\AlertType;
  * - Ensures correct propagation, assignment, appending, override, and removal of the `class` attribute in HTML element
  *   rendering.
  * - Named test data sets for precise failure identification.
- * - Validation of empty `string`, `null`, and enum values for the `class` attribute.
+ * - Validation of `string` (including empty strings), `UnitEnum` instances and `null` values for the `class`
+ *   attribute.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -36,7 +37,7 @@ final class ClassProvider
      * Provides test cases for rendered HTML `class` attribute scenarios.
      *
      * Supplies test data for validating assignment, appending, override, and removal of the global HTML `class`
-     * attribute, including empty `string`, `null`, `UnitEnum`, and standard string values.
+     * attribute, including empty `string` values, `UnitEnum` instances, `null`, and standard string values.
      *
      * Each test case includes the input value, the initial attributes, the override flag, the expected rendered output,
      * and an assertion message for clear identification.
@@ -111,7 +112,7 @@ final class ClassProvider
      * Provides test cases for HTML `class` attribute scenarios.
      *
      * Supplies test data for validating assignment, appending, and override of the global HTML `class` attribute,
-     * including empty `string`, `null`, and standard string values.
+     * including empty `string` values, `UnitEnum` instances, `null`, and standard string values.
      *
      * Each test case includes the input value(s), the expected output, and an assertion message for clear
      * identification.

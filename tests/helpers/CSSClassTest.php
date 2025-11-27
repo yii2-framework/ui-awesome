@@ -6,6 +6,7 @@ namespace yii\ui\tests\helpers;
 
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
+use UnitEnum;
 use yii\base\InvalidArgumentException;
 use yii\ui\exception\Message;
 use yii\ui\helpers\CSSClass;
@@ -18,7 +19,7 @@ use yii\ui\tests\support\stub\enum\AlertType;
  * Validates the management of the global HTML `class` attribute according to the HTML Living Standard specification.
  *
  * Ensures correct handling, immutability, and validation of the `class` attribute in widget and tag rendering,
- * supporting both `string` and `null` values for dynamic CSS class assignment.
+ * supporting `string`, `UnitEnum`, and `null` for dynamic CSS class assignment.
  *
  * Test coverage.
  * - Accurate retrieval and assignment of `class` attributes.
@@ -39,7 +40,7 @@ final class CSSClassTest extends TestCase
      * @throws InvalidArgumentException for invalid value errors.
      *
      * @phpstan-param mixed[] $attributes
-     * @phpstan-param list<array{classes: mixed[]|string|null|\UnitEnum, override?: bool}> $operations
+     * @phpstan-param list<array{classes: mixed[]|string|UnitEnum|null, override?: bool}> $operations
      * @phpstan-param mixed[] $expected
      */
     #[DataProviderExternal(CSSClassProvider::class, 'values')]
