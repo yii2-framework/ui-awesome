@@ -67,7 +67,11 @@ final class ArraysTest extends TestCase
         bool $expected,
         string $message,
     ): void {
-        self::assertSame($expected, Arrays::inList($attribute, $value, $allowed), $message);
+        self::assertSame(
+            $expected,
+            Arrays::inList($attribute, $value, $allowed),
+            $message,
+        );
     }
 
     /**
