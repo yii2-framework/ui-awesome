@@ -79,3 +79,4 @@
 - Enh #75: Add `HasTitle` trait with `title()` method and tests (@terabytesoftw)
 - Bug #76: Improve usage examples and docblock clarity across multiple traits and helper classes (@terabytesoftw)
 - Bug #77: Update test cases to include `UnitEnum` validation for various attributes and improve docblock clarity (@terabytesoftw)
+- Bug #78: Improve assertion formatting for clarity in `ArraysTest`, `CSSClassTest`, and `EnumTest` classes (@terabytesoftw)

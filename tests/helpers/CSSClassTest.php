@@ -59,7 +59,11 @@ final class CSSClassTest extends TestCase
             };
         }
 
-        self::assertSame($expected, $attributes, $message);
+        self::assertSame(
+            $expected,
+            $attributes,
+            $message,
+        );
     }
 
     public function testThrowExceptionForInvalidClassValue(): void

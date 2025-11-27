@@ -41,13 +41,21 @@ final class EnumTest extends TestCase
     #[DataProviderExternal(EnumProvider::class, 'normalizeArray')]
     public function testNormalizeArrayWithEnums(array $input, array $expected, string $message): void
     {
-        self::assertSame($expected, Enum::normalizeArray($input), $message);
+        self::assertSame(
+            $expected,
+            Enum::normalizeArray($input),
+            $message,
+        );
     }
 
     #[DataProviderExternal(EnumProvider::class, 'normalizeValue')]
     public function testNormalizeValueWithEnums(mixed $input, mixed $expected, string $message): void
     {
-        self::assertSame($expected, Enum::normalizeValue($input), $message);
+        self::assertSame(
+            $expected,
+            Enum::normalizeValue($input),
+            $message,
+        );
     }
 
     public function testThrowInvalidArgumentExceptionOnInvalidValueType(): void
