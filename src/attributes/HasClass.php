@@ -17,7 +17,7 @@ use yii\ui\helpers\CSSClass;
  * correct attribute handling and value merging.
  *
  * Key features.
- * - Designed for use in tag and components.
+ * - Designed for use in tags and components.
  * - Immutable method for setting or overriding the `class` attribute.
  * - Integration with CSS class management utilities for safe and predictable value updates.
  * - Standards-compliant handling of the HTML `class` global attributes.
