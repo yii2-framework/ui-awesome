@@ -17,7 +17,7 @@ use UnitEnum;
  *
  * Key features.
  * - Designed for use in tags and components.
- * - Enforces standards-compliant handling of the HTML `style` global attribute.
+ * - Enforces standards-compliant handling of the HTML `style` global attributes.
  * - Immutable method for setting or overriding the `style` attribute.
  * - Supports `string`, `UnitEnum`, and `null` values for flexible style assignment.
  *

@@ -22,7 +22,7 @@ use function is_string;
  *
  * Key features.
  * - Designed for use in tags and components.
- * - Enforces standards-compliant handling of the HTML `data-*` global attribute.
+ * - Enforces standards-compliant handling of the HTML `data-*` global attributes.
  * - Immutable method for setting or overriding `data-*` attributes.
  * - Supports `string` and `Closure` values for advanced dynamic data scenarios.
  *

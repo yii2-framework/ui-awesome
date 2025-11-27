@@ -11,7 +11,7 @@ use yii\ui\helpers\CSSClass;
  * Trait for managing the global HTML `class` attribute in tag rendering.
  *
  * Provides a standards-compliant, immutable API for setting the `class` attribute on HTML elements, following the HTML
- * specification for global attribute.
+ * specification for global attributes.
  *
  * Intended for use in tags and components that require dynamic or programmatic manipulation of CSS classes, ensuring
  * correct attribute handling and value merging.
@@ -20,7 +20,7 @@ use yii\ui\helpers\CSSClass;
  * - Designed for use in tag and components.
  * - Immutable method for setting or overriding the `class` attribute.
  * - Integration with CSS class management utilities for safe and predictable value updates.
- * - Standards-compliant handling of the HTML `class` global attribute.
+ * - Standards-compliant handling of the HTML `class` global attributes.
  *
  * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
  * @property array $attributes HTML attributes array used by the implementing class.
@@ -37,7 +37,7 @@ trait HasClass
      *
      * Creates a new instance with the specified CSS class value, optionally overriding any existing value.
      *
-     * This method ensures standards-compliant handling of the `class` global attribute, supporting both additive and
+     * This method ensures standards-compliant handling of the `class` global attributes, supporting both additive and
      * override semantics as required by the HTML specification.
      *
      * @param string|UnitEnum|null $value CSS class value to set for the element. Can be `null` to unset the attribute.

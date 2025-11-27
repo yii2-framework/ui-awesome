@@ -15,7 +15,7 @@ namespace yii\ui\attributes;
  *
  * Key features.
  * - Designed for use in tags and components.
- * - Enforces standards-compliant handling of the HTML `id` global attribute.
+ * - Enforces standards-compliant handling of the HTML `id` global attributes.
  * - Immutable method for setting or overriding the `id` attribute.
  * - Supports `string` and `null` values for flexible identifier assignment.
  *

@@ -17,7 +17,7 @@ use UnitEnum;
  *
  * Key features.
  * - Designed for use in tags and components.
- * - Enforces standards-compliant handling of the HTML `title` global attribute.
+ * - Enforces standards-compliant handling of the HTML `title` global attributes.
  * - Immutable method for setting or overriding the `title` attribute.
  * - Supports `string`, `UnitEnum`, and `null` values for flexible title assignment.
  *
