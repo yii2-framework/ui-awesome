@@ -41,8 +41,11 @@ trait HasId
      *
      * Usage example:
      * ```php
-     * $element->id('unique-element-id'); // sets the id attribute to 'unique-element-id'
-     * $element->id(null); // unsets the id attribute
+     * // sets the `id` attribute to 'unique-element-id'
+     * $element->id('unique-element-id');
+     * 
+     * // unsets the `id` attribute
+     * $element->id(null);
      */
     public function id(string|null $value): static
     {

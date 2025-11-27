@@ -19,14 +19,14 @@ use function sprintf;
 /**
  * Base class for safe and flexible CSS class manipulation.
  *
- * Provides a fluent, immutable API for handling CSS class attributes, supporting BackedEnum integration, base class
+ * Provides a fluent, immutable API for handling CSS class attributes, supporting `BackedEnum` integration, base class
  * formatting, class list merging, and robust validation for safe HTML output. Designed for use in HTML helpers, widget
  * systems, and view renderers, this class ensures that CSS class attributes are constructed, merged, and validated
  * according to modern standards and security best practices.
  *
  * Key features.
  * - Attribute array manipulation for class merging and overrides.
- * - BackedEnum and UnitEnum support for type-safe class definitions.
+ * - `BackedEnum` and `UnitEnum` support for type-safe class definitions.
  * - Base class formatting and normalization.
  * - Immutable, static API for safe reuse.
  * - Integration-ready for asset, widget, and view systems.
@@ -99,20 +99,20 @@ abstract class BaseCSSClass
      * @param array|string|UnitEnum|null $classes Classes to add.
      * @param bool $override Whether to override (`true`) or merge (`false`, default) with existing classes.
      *
+     * @phpstan-param mixed[] $attributes
+     * @phpstan-param mixed[]|string|UnitEnum|null $classes
+     *
      * Usage example:
      * ```php
-     * // Default
+     * // default
      * $attrs = ['id' => 'main'];
      * CSSClass::add($attrs, ['btn', 'btn-primary']);
      * // $attrs = ['id' => 'main', 'class' => 'btn btn-primary']
      *
-     * // Override existing classes
+     * // override existing classes
      * CSSClass::add($attrs, 'alert alert-danger', true);
      * // $attrs = ['id' => 'main', 'class' => 'alert alert-danger']
      * ```
-     *
-     * @phpstan-param mixed[] $attributes
-     * @phpstan-param mixed[]|string|UnitEnum|null $classes
      */
     public static function add(array &$attributes, array|string|null|UnitEnum $classes, bool $override = false): void
     {
@@ -159,21 +159,21 @@ abstract class BaseCSSClass
      * {@see InvalidArgumentException} for invalid argument errors.
      * {@see Enum::normalizeValue()} for enum normalization logic.
      *
+     * @phpstan-param list<scalar|null|UnitEnum> $allowed
+     *
      * Usage example:
      * ```php
-     * // Using enum
+     * // using enum
      * $class = CSSClass::render(ButtonType::PRIMARY, 'btn-%s', ButtonType::values());
      * // return 'btn-primary'
      *
-     * // Using string
+     * // using string
      * $class = CSSClass::render('secondary', 'btn-%s', ['primary', 'secondary']);
      * // returns 'btn-secondary'
      *
-     * // Throws exception for invalid value
+     * // throws exception for invalid value
      * CSSClass::render('danger', 'btn-%s', ['primary', 'secondary']);
      * ```
-     *
-     * @phpstan-param list<scalar|null|UnitEnum> $allowed
      */
     public static function render(string|UnitEnum $class, string $baseClass, array $allowed): string
     {
@@ -185,9 +185,9 @@ abstract class BaseCSSClass
     }
 
     /**
-     * Extracts a string value from a UnitEnum or string item.
+     * Extracts a string value from a `UnitEnum` or string item.
      *
-     * @param mixed $item Item to extract string value from (UnitEnum, string, or other).
+     * @param mixed $item Item to extract string value from (`UnitEnum`, string, or other).
      *
      * @return string|null Extracted string value, or `null` if item is invalid or not a string type.
      */
@@ -235,8 +235,8 @@ abstract class BaseCSSClass
     /**
      * Normalizes an array of CSS class items into a flat array of validated string class names.
      *
-     * Processes each array item that is either a UnitEnum or string, extracting their normalized string values and
-     * validating them inline for optimal performance. Non-string values (such as int values from BackedEnums), invalid
+     * Processes each array item that is either a `UnitEnum` or string, extracting their normalized string values and
+     * validating them inline for optimal performance. Non-string values (such as int values from `BackedEnum`), invalid
      * types, and invalid CSS class names are excluded.
      *
      * This method performs single-pass normalization and validation for O(n) complexity.
@@ -270,7 +270,7 @@ abstract class BaseCSSClass
      * names suitable for HTML attribute usage. This method performs single-pass normalization and validation for
      * optimal performance.
      *
-     * Note: While BackedEnum can have int values, CSS class names are always strings. Any int values from enums are
+     * Note: While `BackedEnum` can have int values, CSS class names are always strings. Any int values from enums are
      * excluded during normalization.
      *
      * @param array|string|UnitEnum|null $classes Single or multiple CSS classes to normalize and validate.
@@ -298,11 +298,11 @@ abstract class BaseCSSClass
     }
 
     /**
-     * Normalizes a UnitEnum to an array containing its validated string value.
+     * Normalizes a `UnitEnum` to an array containing its validated string value.
      *
-     * Extracts the scalar value from a BackedEnum or the name from a pure UnitEnum, validates it, and returns it in an
-     * array. If the enum has an int value or the string value is invalid, returns an empty array since CSS class names
-     * must be valid strings.
+     * Extracts the scalar value from a BackedEnum or the name from a pure `UnitEnum`, validates it, and returns it in
+     * an array. If the enum has an int value or the string value is invalid, returns an empty array since CSS class
+     * names must be valid strings.
      *
      * This method performs single-pass normalization and validation for optimal performance.
      *

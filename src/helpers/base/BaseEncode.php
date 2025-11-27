@@ -53,7 +53,7 @@ abstract class BaseEncode
      * Usage example:
      * ```php
      * Encode::content('<script>alert("XSS")</script>');
-     * // return &lt;script&gt;alert("XSS")&lt;/script&gt;
+     * // &lt;script&gt;alert("XSS")&lt;/script&gt;
      * ```
      */
     public static function content(string $content, bool $doubleEncode = true, string $charset = 'UTF-8'): string
@@ -83,7 +83,7 @@ abstract class BaseEncode
      * Usage example:
      * ```php
      * Encode::value('O\'Reilly & <script>');
-     * // return O&#039;Reilly &amp; &lt;script&gt;
+     * // O&#039;Reilly &amp; &lt;script&gt;
      * ```
      */
     public static function value(

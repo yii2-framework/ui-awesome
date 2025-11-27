@@ -65,22 +65,22 @@ abstract class BaseArrays extends BaseArrayHelper
      *
      * @return bool `true` if the value is valid, `false` otherwise (unless exception is thrown).
      *
+     * @phpstan-param mixed[] $allowed
+     *
      * Usage example:
      * ```php
-     * // Validate that a status is allowed
+     * // validate that a status is allowed
      * Arrays::inList('status', $status, ['active', 'inactive'], true);
      *
-     * // Validate a numeric option
+     * // validate a numeric option
      * Arrays::inList('priority', $priority, [1, 2, 3], true);
      *
-     * // Use without exception (returns `bool`)
+     * // use without exception (returns `bool`)
      * $isValid = Arrays::inList('type', $type, ['a', 'b', 'c']);
      *
-     * // Use with enum
+     * // use with enum
      * Arrays::inList('status', Status::ACTIVE, Status::cases(), true);
      * ```
-     *
-     * @phpstan-param mixed[] $allowed
      */
     public static function inList(
         string $attribute,
@@ -136,14 +136,19 @@ abstract class BaseArrays extends BaseArrayHelper
      *
      * {@see isAssociative()} for associative array detection.
      *
+     * @phpstan-param mixed[] $array
+     *
      * Usage example:
      * ```php
-     * Arrays::isList([1, 2, 3]); // return `true`
-     * Arrays::isList(['a' => 1, 'b' => 2]); // return `false`
-     * Arrays::isList([]); // return `true`
-     * ```
+     * Arrays::isList([1, 2, 3]);
+     * // `true`
      *
-     * @phpstan-param mixed[] $array
+     * Arrays::isList(['a' => 1, 'b' => 2]);
+     * // `false`
+     *
+     * Arrays::isList([]);
+     * // `true`
+     * ```
      */
     public static function isList(array $array): bool
     {

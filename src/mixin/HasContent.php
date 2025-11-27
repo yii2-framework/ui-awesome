@@ -40,6 +40,11 @@ trait HasContent
      * @param string|Stringable ...$values Content to be encoded and appended.
      *
      * @return static A new instance with the appended content.
+     *
+     * Usage example:
+     * ```php
+     * $element->content('Hello, <World>!');
+     * ```
      */
     public function content(string|Stringable ...$values): static
     {
@@ -56,6 +61,11 @@ trait HasContent
      * Returns the content assigned to the element.
      *
      * @return string Content value assigned to the element. Never `null`.
+     *
+     * Usage example:
+     * ```php
+     * $content = $element->getContent();
+     * ```
      */
     public function getContent(): string
     {
@@ -70,7 +80,13 @@ trait HasContent
      * The values are appended to the existing content.
      *
      * @param string|Stringable ...$values Raw HTML content to be appended.
+     *
      * @return static A new instance with the appended content.
+     *
+     * Usage example:
+     * ```php
+     * $element->html('<strong>Hello, World!</strong>');
+     * ```
      */
     public function html(string|Stringable ...$values): static
     {

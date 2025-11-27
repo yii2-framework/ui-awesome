@@ -47,6 +47,12 @@ trait HasAttributes
      * @return static New instance with the updated attributes.
      *
      * @phpstan-param mixed[] $values
+     *
+     * Usage example:
+     * ```php
+     * // sets multiple attributes
+     * $element->attributes(['id' => 'my-id', 'data-role' => 'button']);
+     * ```
      */
     public function attributes(array $values): static
     {
@@ -62,6 +68,11 @@ trait HasAttributes
      * @return array Attributes array assigned to the element.
      *
      * @phpstan-return mixed[]
+     *
+     * Usage example:
+     * ```php
+     * $attrs = $element->getAttributes();
+     * ```
      */
     public function getAttributes(): array
     {

@@ -20,8 +20,8 @@ use function is_scalar;
  * and predictable manner. This class abstracts the complexity of extracting scalar values from enums, enabling seamless
  * integration with serialization, comparison, and data transformation logic across the framework.
  *
- * It supports normalization of single enum instances or arrays of enums, returning their scalar value (for BackedEnum)
- * or name (for pure enums), and passes through non-enum values unchanged.
+ * It supports normalization of single enum instances or arrays of enums, returning their scalar value
+ * (for `BackedEnum`) or name (for pure enums), and passes through non-enum values unchanged.
  *
  * This is essential for consistent handling of enums in configuration, storage, and API layers.
  *
@@ -55,16 +55,19 @@ abstract class BaseEnum
      *
      * @return array Array of normalized scalar values, names, or original values for non-enums.
      *
-     * Usage example:
-     * ```php
-     * Enum::normalizeArray([Status::ACTIVE, Status::INACTIVE]); // ['active', 'inactive']
-     * Enum::normalizeArray(['foo', Status::ACTIVE, 42]); // ['foo', 'active', 42]
-     * ```
-     *
      * {@see normalizeValue()} for single value normalization.
      *
      * @phpstan-param mixed[] $values
      * @phpstan-return mixed[]
+     *
+     * Usage example:
+     * ```php
+     * Enum::normalizeArray([Status::ACTIVE, Status::INACTIVE]);
+     * // ['active', 'inactive']
+     *
+     * Enum::normalizeArray(['foo', Status::ACTIVE, 42]);
+     * // ['foo', 'active', 42]
+     * ```
      */
     public static function normalizeArray(array $values): array
     {
@@ -87,18 +90,21 @@ abstract class BaseEnum
      *
      * @throws InvalidArgumentException if the value is not an enum, scalar, array, or `null`.
      *
-     * @return array|bool|float|int|string|null Scalar value for BackedEnum, name for pure enums, or the original value
-     * for non-enums.
-     *
-     * Usage example:
-     * ```php
-     * Enum::normalizeValue(Status::ACTIVE); // 'active'
-     * Enum::normalizeValue('foo'); // 'foo'
-     * ```
+     * @return array|bool|float|int|string|null Scalar value for `BackedEnum`, name for pure enums, or the original
+     * value for non-enums.
      *
      * {@see normalizeArray()} for batch normalization.
      *
      * @phpstan-return ($value is UnitEnum ? int|string : ($value is string ? string : mixed[]|bool|float|int|null))
+     *
+     * Usage example:
+     * ```php
+     * Enum::normalizeValue(Status::ACTIVE);
+     * // 'active'
+     *
+     * Enum::normalizeValue('foo');
+     * // 'foo'
+     * ```
      */
     public static function normalizeValue(mixed $value): array|bool|float|int|string|null
     {

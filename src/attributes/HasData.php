@@ -50,17 +50,18 @@ trait HasData
      *
      * @link https://html.spec.whatwg.org/multipage/dom.html#attr-data-*
      *
+     * @phpstan-param mixed[] $values
+     *
      * Usage example:
      * ```php
+     * // sets `data-role` and `data-id` attributes
      * $element->dataAttributes(
      *     [
      *         'role' => 'admin',
      *         'id' => static fn(): string => uniqid(),
      *     ],
-     * ); // sets 'data-role' and 'data-id' attributes
+     * );
      * ```
-     *
-     * @phpstan-param mixed[] $values
      */
     public function dataAttributes(array $values): static
     {

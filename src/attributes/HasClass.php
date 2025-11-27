@@ -47,10 +47,17 @@ trait HasClass
      *
      * Usage example:
      * ```php
-     * $element->class('my-class'); // sets the class attribute to 'my-class'
-     * $element->class(Theme::PRIMARY); // sets the class attribute to 'primary' if Theme::PRIMARY is a UnitEnum.
-     * $element->class('another-class', true); // overrides the class attribute with 'another-class'
-     * $element->class(null); // unsets the class attribute
+     * // sets the `class` attribute to 'my-class'
+     * $element->class('my-class');
+     *
+     * // sets the `class` attribute to 'primary' if `Theme::PRIMARY` is a `UnitEnum`
+     * $element->class(Theme::PRIMARY);
+     *
+     * // overrides the `class` attribute with 'another-class'
+     * $element->class('another-class', true);
+     *
+     * // unsets the `class` attribute
+     * $element->class(null);
      * ```
      */
     public function class(string|UnitEnum|null $value, bool $override = false): static

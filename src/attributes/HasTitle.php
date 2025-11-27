@@ -47,8 +47,10 @@ trait HasTitle
      * ```php
      * // sets the `title` attribute to 'Tooltip text'
      * $element->title('Tooltip text');
+     *
      * // sets the `title` attribute to 'Tooltip text' if `TitleEnum::TOOLTIP` is a `UnitEnum`.
      * $element->title(TitleEnum::TOOLTIP);
+     * 
      * // unsets the `title` attribute
      * $element->title(null);
      * ```

@@ -7,8 +7,8 @@ namespace yii\ui\tag;
 /**
  * Represents table-related HTML elements according to the HTML standard specification.
  *
- * Provides a type-safe, standards-compliant set of table element tag names for use in element rendering,
- * widget systems, and view helpers.
+ * Provides a type-safe, standards-compliant set of table element tag names for use in element rendering, widget
+ * systems, and view helpers.
  *
  * Each case corresponds to a valid table HTML tag as defined by the W3C and MDN documentation.
  *

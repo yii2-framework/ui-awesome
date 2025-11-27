@@ -45,9 +45,14 @@ trait HasLang
      *
      * Usage example:
      * ```php
-     * $element->lang('en-US'); // sets the lang attribute to 'en-US'
-     * $element->lang(Language::EN_US); // sets the lang attribute to 'en-US' if Language::EN_US is a UnitEnum.
-     * $element->lang(null); // unsets the lang attribute
+     * // sets the `lang` attribute to 'en-US'
+     * $element->lang('en-US');
+     *
+     * // sets the `lang` attribute to 'en-US' if `Language::EN_US` is a `UnitEnum`
+     * $element->lang(Language::EN_US);
+     * 
+     * // unsets the `lang` attribute
+     * $element->lang(null);
      * ```
      */
     public function lang(string|UnitEnum|null $value): static
