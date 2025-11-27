@@ -14,7 +14,7 @@ use yii\ui\tests\support\stub\enum\ButtonSize;
  * specification.
  *
  * The test data covers real-world scenarios for setting, overriding, and removing `data-*` attributes, supporting both
- * explicit `string` values, closures for dynamic values, and `null` for attribute removal, to maintain consistent
+ * explicit `string` values, `Closure` for dynamic values, and `null` for attribute removal, to maintain consistent
  * output across different rendering configurations.
  *
  * The provider organizes test cases with descriptive names for clear identification of failure cases during test
@@ -23,7 +23,7 @@ use yii\ui\tests\support\stub\enum\ButtonSize;
  * Key features:
  * - Ensures correct propagation, assignment, and override of `data-*` attributes in HTML element rendering.
  * - Named test data sets for precise failure identification.
- * - Validation of empty `string`, `null`, `Closure`, `UnitEnum` for `data-*` attributes.
+ * - Validation of empty `string` values, `null`, `Closure` instances and `UnitEnum` instances for `data-*` attributes.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -34,7 +34,7 @@ final class DataProvider
      * Provides test cases for rendered HTML `data-*` attribute scenarios.
      *
      * Supplies test data for validating assignment, override, and removal of the global HTML `data-*` attributes,
-     * including empty `string`, `null`, `Closure`, `UnitEnum` and standard string values.
+     * including empty `string` values, `null`, `Closure` instances, `UnitEnum` instances, and standard string values.
      *
      * Each test case includes the input value, the initial attributes, the expected rendered output, and an assertion
      * message for clear identification.
@@ -144,7 +144,7 @@ final class DataProvider
      * Provides test cases for HTML `data-*` attribute value scenarios.
      *
      * Supplies test data for validating assignment, override, and removal of the global HTML `data-*` attribute values,
-     * including empty `string`, `null`, `Closure` and standard string values.
+     * including empty `string` values, `null`, `Closure` instances, and standard string values.
      *
      * Each test case includes the input value, the expected output, and an assertion message for clear identification.
      *

@@ -24,7 +24,7 @@ use yii\ui\tests\support\stub\enum\Status;
  * Key features:
  * - Ensures correct propagation, assignment, and override of the `title` attribute in HTML element rendering.
  * - Named test data sets for precise failure identification.
- * - Validation of empty `string`, `UnitEnum`, `null` values for the `title` attribute.
+ * - Validation of empty `string` values, `UnitEnum` instances and `null` values for the `title` attribute.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -35,7 +35,7 @@ final class TitleProvider
      * Provides test cases for rendered HTML `title` attribute scenarios.
      *
      * Supplies test data for validating assignment, override, and removal of the global HTML `title` attribute,
-     * including empty `string`, `UnitEnum`, `null` and standard string values.
+     * including empty `string` values, `UnitEnum` instances, `null` and standard string values.
      *
      * Each test case includes the input value, the initial attributes, the expected rendered output, and an assertion
      * message for clear identification.
@@ -96,7 +96,7 @@ final class TitleProvider
      * Provides test cases for HTML `title` attribute value scenarios.
      *
      * Supplies test data for validating assignment, override, and removal of the global HTML `title` attribute value,
-     * including empty `string`, `UnitEnum`, `null` and standard string values.
+     * including empty `string` values, `UnitEnum` instances, `null` and standard string values.
      *
      * Each test case includes the input value, the initial attributes, the expected value, and an assertion message for
      * clear identification.
