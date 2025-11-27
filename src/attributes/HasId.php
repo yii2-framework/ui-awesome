@@ -46,6 +46,7 @@ trait HasId
      *
      * // unsets the `id` attribute
      * $element->id(null);
+     * ```
      */
     public function id(string|null $value): static
     {
