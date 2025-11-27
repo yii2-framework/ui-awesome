@@ -10,8 +10,8 @@ namespace yii\ui\html;
  * Provides a unified, immutable API for generating HTML elements according to the HTML specification, supporting
  * block-level, inline-level, list-level, root-level, table-level and void elements.
  *
- * Designed for use in widget, view, and tag rendering systems, this class ensures correct tag normalization, attribute
- * encoding, and type-safe handling of element categories.
+ * Designed for use in view and tag rendering systems, this class ensures correct tag normalization, attribute encoding,
+ * and type-safe handling of element categories.
  *
  * Key features:
  * - Exception-driven error handling for invalid tag usage.

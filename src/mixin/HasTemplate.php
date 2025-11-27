@@ -10,11 +10,11 @@ namespace yii\ui\mixin;
  * Provides a standards-compliant, immutable API for setting the template property on HTML elements, following the HTML
  * specification for tag structure and rendering.
  *
- * Intended for use in widgets and components that require dynamic or programmatic manipulation of tag templates,
- * ensuring correct handling, type safety, and value assignment.
+ * Intended for use in tags and components that require dynamic or programmatic manipulation of templates, ensuring
+ * correct handling, type safety, and value assignment.
  *
  * Key features.
- * - Designed for use in widget and tag rendering systems.
+ * - Designed for use in tags and components.
  * - Enforces standards-compliant handling of the template property for HTML tag construction.
  * - Immutable method for setting or overriding the template string.
  * - Supports flexible assignment of template values for advanced rendering scenarios.

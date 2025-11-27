@@ -5,14 +5,16 @@ declare(strict_types=1);
 namespace yii\ui\attributes;
 
 /**
- * Trait for managing the global HTML `id` attribute in widget and tag rendering.
+ * Trait for managing the global HTML `id` attribute in tag rendering.
  *
  * Provides a standards-compliant, immutable API for setting the `id` attribute on HTML elements, following the HTML
- * specification for global attributes. Intended for use in widgets and components that require dynamic or programmatic
- * manipulation of element identifiers, ensuring correct attribute handling, type safety, and value validation.
+ * specification for global attributes.
+ *
+ * Intended for use in tags and components that require dynamic or programmatic manipulation of element identifiers,
+ * ensuring correct attribute handling, type safety, and value validation.
  *
  * Key features.
- * - Designed for use in widget and tag rendering systems.
+ * - Designed for use in tags and components.
  * - Enforces standards-compliant handling of the HTML `id` global attribute.
  * - Immutable method for setting or overriding the `id` attribute.
  * - Supports `string` and `null` values for flexible identifier assignment.

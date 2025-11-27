@@ -8,14 +8,16 @@ use UnitEnum;
 use yii\ui\helpers\CSSClass;
 
 /**
- * Trait for managing the global HTML `class` attribute in widget and tag rendering.
+ * Trait for managing the global HTML `class` attribute in tag rendering.
  *
  * Provides a standards-compliant, immutable API for setting the `class` attribute on HTML elements, following the HTML
- * specification for global attributes. This trait is intended for use in widgets and components that require dynamic or
- * programmatic manipulation of CSS classes, ensuring correct attribute handling and value merging.
+ * specification for global attribute.
+ *
+ * Intended for use in tags and components that require dynamic or programmatic manipulation of CSS classes, ensuring
+ * correct attribute handling and value merging.
  *
  * Key features.
- * - Designed for use in widget and tag rendering systems.
+ * - Designed for use in tag and components.
  * - Immutable method for setting or overriding the `class` attribute.
  * - Integration with CSS class management utilities for safe and predictable value updates.
  * - Standards-compliant handling of the HTML `class` global attribute.

@@ -7,16 +7,16 @@ namespace yii\ui\mixin;
 use function array_merge;
 
 /**
- * Trait for managing global HTML attributes in widget and tag rendering.
+ * Trait for managing global HTML attributes in tag rendering.
  *
  * Provides a standards-compliant, immutable API for setting arbitrary HTML attributes on elements, following the HTML
  * specification for global attributes.
  *
- * Intended for use in widgets and components that require dynamic or programmatic manipulation of element attributes,
- * ensuring correct attribute handling, type safety, and value merging.
+ * Intended for use in components that require dynamic or programmatic manipulation of element attributes, ensuring
+ * correct attribute handling, type safety, and value merging.
  *
  * Key features.
- * - Designed for use in widget and tag rendering systems.
+ * - Designed for use in tag rendering systems.
  * - Enforces standards-compliant handling of HTML global attributes.
  * - Immutable method for setting or overriding attributes.
  * - Supports merging of multiple attribute arrays for flexible assignment.

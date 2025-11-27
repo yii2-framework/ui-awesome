@@ -10,7 +10,7 @@ namespace yii\ui\helpers;
  * Provides a concrete implementation for processing, validating, and rendering HTML templates, supporting dynamic
  * content injection and flexible template composition.
  *
- * Designed for integration in view renderers, widget systems, and asset managers, ensuring consistent and secure
+ * Designed for integration in view renderers, tag systems, and asset managers, ensuring consistent and secure
  * handling of template fragments, placeholders, and variable substitution across all supported use cases.
  *
  * Key features.
