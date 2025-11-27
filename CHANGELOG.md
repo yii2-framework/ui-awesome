@@ -77,3 +77,4 @@
 - Enh #73: Add `HasStyle` trait with `style()` method and tests (@terabytesoftw)
 - Bug #74: Refactor test case descriptions for clarity and consistency in attribute providers (@terabytesoftw)
 - Enh #75: Add `HasTitle` trait with `title()` method and tests (@terabytesoftw)
+- Bug #76: Improve usage examples and docblock clarity across multiple traits and helper classes (@terabytesoftw)

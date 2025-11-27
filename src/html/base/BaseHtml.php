@@ -50,15 +50,22 @@ abstract class BaseHtml
      * {@see Root} for valid root-level tags.
      * {@see Table} for valid table-level tags.
      *
+     * @phpstan-param mixed[] $attributes
+     *
      * Usage example:
      * ```php
+     * // block-level tag
      * Html::begin(Block::DIV, ['class' => 'container']);
+     *
+     * // list-level tag
      * Html::begin(Lists::UL, ['class' => 'list']);
+     *
+     * // root-level tag
      * Html::begin(Root::HTML, ['lang' => 'en']);
+     *
+     * // table-level tag
      * Html::begin(Table::TABLE, ['class' => 'table']);
      * ```
-     *
-     * @phpstan-param mixed[] $attributes
      */
     public static function begin(Block|Lists|Root|Table $tag, array $attributes = []): string
     {
@@ -83,9 +90,16 @@ abstract class BaseHtml
      *
      * Usage example:
      * ```php
+     * // block-level tag
      * Html::end(Block::DIV);
+     *
+     * // list-level tag
      * Html::end(Lists::UL);
+     *
+     * // root-level tag
      * Html::end(Root::HTML);
+     *
+     * // table-level tag
      * Html::end(Table::TABLE);
      * ```
      */
@@ -108,12 +122,16 @@ abstract class BaseHtml
      *
      * {@see Inline} for valid inline-level tags.
      *
+     * @phpstan-param mixed[] $attributes
+     *
      * Usage example:
      * ```php
+     * // without content encoding
      * Html::inline(Inline::SPAN, 'Hello, World!', ['class' => 'highlight']);
-     * ```
      *
-     * @phpstan-param mixed[] $attributes
+     * // with content encoding
+     * Html::inline(Inline::A, '<Click Here>', ['href' => '#'], true);
+     * ```
      */
     public static function inline(Inline $tag, string $content, array $attributes = [], bool $encode = false): string
     {
@@ -138,12 +156,12 @@ abstract class BaseHtml
      *
      * {@see Voids} for valid void-level tags.
      *
+     * @phpstan-param mixed[] $attributes
+     *
      * Usage example:
      * ```php
      * Html::void(Voids::IMG, ['src' => 'image.png', 'alt' => 'An image']);
      * ```
-     *
-     * @phpstan-param mixed[] $attributes
      */
     public static function void(Voids $tag, array $attributes = []): string
     {

@@ -45,11 +45,13 @@ trait HasStyle
      *
      * Usage example:
      * ```php
-     * // sets the style attribute to 'color: red;'
+     * // sets the `style` attribute to 'color: red;'
      * $element->style('color: red;');
-     * // sets the style attribute to 'color: red;' if StyleEnum::RED_TEXT is a UnitEnum.
+     *
+     * // sets the `style` attribute to 'color: red;' if `StyleEnum::RED_TEXT` is a `UnitEnum`
      * $element->style(StyleEnum::RED_TEXT);
-     * // unsets the style attribute
+     *
+     * // unsets the `style` attribute
      * $element->style(null);
      * ```
      */

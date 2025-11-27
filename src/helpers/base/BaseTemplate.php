@@ -44,6 +44,15 @@ abstract class BaseTemplate
      * @return string Rendered template string with substituted values.
      *
      * @phpstan-param array<string, string> $tokenValues
+     *
+     * Usage example:
+     * ```php
+     * $template = "Hello, {name}!\nWelcome to {site}.";
+     * $tokens = ['{name}' => 'Alice', '{site}' => 'Example.com'];
+     * $result = Template::render($template, $tokens);
+     * // "Hello, Alice!
+     * // Welcome to Example.com."
+     * ```
      */
     public static function render(string $template, array $tokenValues): string
     {
