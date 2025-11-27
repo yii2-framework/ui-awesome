@@ -8,6 +8,23 @@ use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use yii\ui\mixin\HasTemplate;
 
+/**
+ * Test suite for {@see HasTemplate} trait functionality and behavior.
+ *
+ * Validates the management of the template property for HTML rendering according to the HTML Living Standard
+ * specification.
+ *
+ * Ensures correct handling, immutability, and validation of the template in widget and tag rendering, supporting
+ * `string` values for dynamic template assignment.
+ *
+ * Test coverage:
+ * - Accurate retrieval of the template value.
+ * - Immutability of the trait's API when setting or overriding the template.
+ * - Proper assignment and overriding of template values.
+ *
+ * @copyright Copyright (C) 2025 Terabytesoftw.
+ * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
+ */
 #[Group('mixin')]
 final class HasTemplateTest extends TestCase
 {
@@ -15,11 +32,6 @@ final class HasTemplateTest extends TestCase
     {
         $instance = new class {
             use HasTemplate;
-
-            public function getTemplate(): string
-            {
-                return $this->template;
-            }
         };
 
         self::assertSame(
@@ -33,11 +45,6 @@ final class HasTemplateTest extends TestCase
     {
         $instance = new class {
             use HasTemplate;
-
-            public function getTemplate(): string
-            {
-                return $this->template;
-            }
         };
 
         self::assertNotSame(
@@ -51,11 +58,6 @@ final class HasTemplateTest extends TestCase
     {
         $instance = new class {
             use HasTemplate;
-
-            public function getTemplate(): string
-            {
-                return $this->template;
-            }
         };
 
         $instance = $instance->template('{prefix}\n{tag}\n{suffix}');

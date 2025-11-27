@@ -33,6 +33,21 @@ trait HasTemplate
     protected string $template = '';
 
     /**
+     * Returns the template assigned to the element.
+     *
+     * @return string Template value assigned to the element. Never `null`.
+     *
+     * Usage example:
+     * ```php
+     * $template = $element->getTemplate();
+     * ```
+     */
+    public function getTemplate(): string
+    {
+        return $this->template;
+    }
+
+    /**
      * Sets the template string for the element.
      *
      * Creates a new instance with the specified template value, overriding any existing value.
