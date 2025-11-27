@@ -8,14 +8,14 @@ use Stringable;
 use yii\ui\helpers\Encode;
 
 /**
- * Trait for managing HTML element content in widget and tag rendering.
+ * Trait for managing HTML element content in tag rendering.
  *
  * Provides a standards-compliant, immutable API for setting the textual or raw HTML content of elements, following the
- * HTML specification for content assignment. Intended for use in widgets and components that require dynamic or
- * programmatic manipulation of element content, ensuring correct handling, type safety, and value encoding.
+ * HTML specification for content assignment. Intended for use in components that require dynamic or programmatic
+ * manipulation of element content, ensuring correct handling, type safety, and value encoding.
  *
  * Key features.
- * - Designed for use in widget and tag rendering systems.
+ * - Designed for use in tag rendering systems.
  * - Enforces standards-compliant handling of HTML content assignment.
  * - Immutable methods for setting encoded (safe) or raw (HTML) content.
  * - Supports `string` and `Stringable` values for flexible content assignment.

@@ -32,7 +32,7 @@ abstract class BaseTemplate
     /**
      * Renders a template string by substituting tokens with provided values.
      *
-     * Processes the given template string, replacing tokens according to the provided associative array, and returns
+     * Processes the given template string, replacing tokens according to the provided associative array and returns
      * the rendered result as a string with lines joined by the system line ending.
      *
      * Note: Literal `\n` sequences (backslash followed by 'n') in the template will be converted to actual newline
@@ -43,7 +43,7 @@ abstract class BaseTemplate
      *
      * @return string Rendered template string with substituted values.
      *
-     * @phpstan-param array<string, string> $tokenValues
+     * @phpstan-param mixed[] $tokenValues
      *
      * Usage example:
      * ```php

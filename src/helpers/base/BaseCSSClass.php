@@ -20,16 +20,17 @@ use function sprintf;
  * Base class for safe and flexible CSS class manipulation.
  *
  * Provides a fluent, immutable API for handling CSS class attributes, supporting `BackedEnum` integration, base class
- * formatting, class list merging, and robust validation for safe HTML output. Designed for use in HTML helpers, widget
- * systems, and view renderers, this class ensures that CSS class attributes are constructed, merged, and validated
- * according to modern standards and security best practices.
+ * formatting, class list merging, and robust validation for safe HTML output.
+ *
+ * Designed for use in HTML helpers, tags, and view renderers, this class ensures that CSS class attributes are
+ * constructed, merged and validated according to modern standards and security best practices.
  *
  * Key features.
  * - Attribute array manipulation for class merging and overrides.
  * - `BackedEnum` and `UnitEnum` support for type-safe class definitions.
  * - Base class formatting and normalization.
  * - Immutable, static API for safe reuse.
- * - Integration-ready for asset, widget, and view systems.
+ * - Integration-ready for asset, tag, and view systems.
  * - Strict CSS class name validation using regex.
  *
  * {@see InvalidArgumentException} for invalid value errors.
@@ -237,7 +238,7 @@ abstract class BaseCSSClass
      *
      * Processes each array item that is either a `UnitEnum` or string, extracting their normalized string values and
      * validating them inline for optimal performance. Non-string values (such as int values from `BackedEnum`), invalid
-     * types, and invalid CSS class names are excluded.
+     * types and invalid CSS class names are excluded.
      *
      * This method performs single-pass normalization and validation for O(n) complexity.
      *
@@ -300,9 +301,11 @@ abstract class BaseCSSClass
     /**
      * Normalizes a `UnitEnum` to an array containing its validated string value.
      *
-     * Extracts the scalar value from a BackedEnum or the name from a pure `UnitEnum`, validates it, and returns it in
-     * an array. If the enum has an int value or the string value is invalid, returns an empty array since CSS class
-     * names must be valid strings.
+     * Extracts the scalar value from a `BackedEnum` or the name from a pure `UnitEnum` instance, validates it and
+     * returns it in an array.
+     *
+     * If the enum has an `int` value or the string value is invalid, returns an empty array since CSS class names
+     * must be valid strings.
      *
      * This method performs single-pass normalization and validation for optimal performance.
      *

@@ -13,8 +13,8 @@ use yii\ui\tag\{Block, Inline, Lists, Root, Table, Voids};
  * Provides a unified, immutable API for generating block-level, inline-level, list-level, root-level, table-level, and
  * void HTML elements according to the HTML specification.
  *
- * Designed for use in widget, view, and tag rendering systems, this class ensures correct tag normalization, attribute
- * encoding, and type-safe handling of element categories.
+ * Designed for use in view and tag rendering systems, this class ensures correct tag normalization, attribute encoding,
+ * and type-safe handling of element categories.
  *
  * Key features:
  * - Exception-driven error handling for invalid tag usage.

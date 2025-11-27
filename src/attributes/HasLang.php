@@ -7,17 +7,17 @@ namespace yii\ui\attributes;
 use UnitEnum;
 
 /**
- * Trait for managing the global HTML `lang` attribute in widget and tag rendering.
+ * Trait for managing the global HTML `lang` attribute in tag rendering.
  *
  * Provides a standards-compliant, immutable API for setting the `lang` attribute on HTML elements, following the HTML
  * specification for global attributes.
  *
- * Intended for use in widgets and components that require dynamic or programmatic manipulation of language identifiers,
+ * Intended for use in tags and components that require dynamic or programmatic manipulation of language identifiers,
  * ensuring correct attribute handling, type safety, and value validation.
  *
  * Key features.
- * - Designed for use in widget and tag rendering systems.
- * - Enforces standards-compliant handling of the HTML `lang` global attribute.
+ * - Designed for use in tags and components.
+ * - Enforces standards-compliant handling of the HTML `lang` global attributes.
  * - Immutable method for setting or overriding the `lang` attribute.
  * - Supports `string`, `UnitEnum`, and `null` values for flexible language assignment.
  *

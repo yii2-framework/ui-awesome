@@ -12,15 +12,17 @@ use function gettype;
 use function is_string;
 
 /**
- * Trait for managing the global HTML `data-*` attributes in widget and tag rendering.
+ * Trait for managing the global HTML `data-*` attributes in tag rendering.
  *
  * Provides a standards-compliant, immutable API for setting custom data attributes on HTML elements, following the HTML
- * specification for global attributes. Intended for use in widgets and components that require dynamic or programmatic
- * manipulation of `data-*` attributes, ensuring correct attribute handling, type safety, and value validation.
+ * specification for global attributes.
+ *
+ * Intended for use in tags and components that require dynamic or programmatic manipulation of `data-*` attributes,
+ * ensuring correct attribute handling, type safety, and value validation.
  *
  * Key features.
- * - Designed for use in widget and tag rendering systems.
- * - Enforces standards-compliant handling of the HTML `data-*` global attribute.
+ * - Designed for use in tags and components.
+ * - Enforces standards-compliant handling of the HTML `data-*` global attributes.
  * - Immutable method for setting or overriding `data-*` attributes.
  * - Supports `string` and `Closure` values for advanced dynamic data scenarios.
  *

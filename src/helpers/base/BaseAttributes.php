@@ -23,8 +23,8 @@ use function uksort;
 /**
  * Base class for advanced HTML attribute rendering and encoding.
  *
- * Designed for use in tag and widget rendering systems, this class ensures that all attributes are output in a
- * predictable, standards-compliant order, with correct escaping and type handling for modern HTML5 use cases.
+ * Designed for use in tag rendering, this class ensures that all attributes are output in a predictable,
+ * standards-compliant order, with correct escaping and type handling for modern HTML5 use cases.
  *
  * Key features.
  * - Array handling for `class`, `style`, `data-*`, and `aria-*` attributes.
@@ -177,7 +177,7 @@ abstract class BaseAttributes
      * Converts array values for specific attribute types into their appropriate HTML string representations.
      * - Converts style attribute arrays into CSS declaration strings for the `style` attribute.
      * - Encodes other array attributes as JSON strings for safe embedding in HTML.
-     * - Expands `data-*`, `aria-*`, and similar attributes with proper prefixes and encoding, supporting nested arrays
+     * - Expands `data-*`, `aria-*` and similar attributes with proper prefixes and encoding, supporting nested arrays
      *   via JSON encoding.
      * - Merges class attribute arrays into a space-separated string for the `class` attribute.
      *
@@ -275,7 +275,7 @@ abstract class BaseAttributes
      * Generates the string representation of the `class` HTML attribute for tag output.
      *
      * Joins class names provided as an array into a single space-separated string, encodes the result for safe HTML
-     * output, and returns a formatted `class` attribute suitable for direct inclusion in an HTML tag.
+     * output and returns a formatted `class` attribute suitable for direct inclusion in an HTML tag.
      *
      * Supports `BackedEnum` values within the class array, ensuring all values are normalized and encoded to prevent
      * XSS or malformed output.
@@ -340,7 +340,7 @@ abstract class BaseAttributes
     /**
      * Renders a complete HTML attributes string from an associative array.
      *
-     * Iterates over the provided attributes, sorts them according to the {@see ORDER_MAP} priority, and applies the
+     * Iterates over the provided attributes, sorts them according to the {@see ORDER_MAP} priority and applies the
      * correct rendering strategy for each attribute type (scalar, array, boolean, or enum).
      *
      * Only valid attribute names are included in the output.
@@ -371,7 +371,7 @@ abstract class BaseAttributes
      *
      * Converts an associative array of CSS property-value pairs into a single CSS declaration string, suitable for use
      * as the value of a `style` attribute in HTML tags. Each property and value is concatenated in the format
-     * `property: value;`, and the result is trimmed and encoded for safe HTML output.
+     * `property: value;` and the result is trimmed and encoded for safe HTML output.
      *
      * Supports `BackedEnum` values for CSS properties, ensuring all values are normalized and encoded to prevent XSS or
      * malformed output. Returns an empty string if no style properties are present.
