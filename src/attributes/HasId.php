@@ -43,7 +43,7 @@ trait HasId
      * ```php
      * // sets the `id` attribute to 'unique-element-id'
      * $element->id('unique-element-id');
-     * 
+     *
      * // unsets the `id` attribute
      * $element->id(null);
      */

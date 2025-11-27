@@ -50,7 +50,7 @@ trait HasLang
      *
      * // sets the `lang` attribute to 'en-US' if `Language::EN_US` is a `UnitEnum`
      * $element->lang(Language::EN_US);
-     * 
+     *
      * // unsets the `lang` attribute
      * $element->lang(null);
      * ```

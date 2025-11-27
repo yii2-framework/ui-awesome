@@ -50,7 +50,7 @@ trait HasStyle
      *
      * // sets the `style` attribute to 'color: red;' if `StyleEnum::RED_TEXT` is a `UnitEnum`
      * $element->style(StyleEnum::RED_TEXT);
-     * 
+     *
      * // unsets the `style` attribute
      * $element->style(null);
      * ```
