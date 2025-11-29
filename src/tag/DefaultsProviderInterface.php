@@ -40,8 +40,8 @@ interface DefaultsProviderInterface
      * public function getDefaults(BaseTag $tag): array
      * {
      *     return [
-     *         'class' => 'default-class',
-     *         'data-value' => 'value',
+     *         'class()' => 'default-class',
+     *         'data()' => ['value' => 'default-value'],
      *     ];
      * }
      * ```

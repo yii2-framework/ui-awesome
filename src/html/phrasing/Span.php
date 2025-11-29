@@ -15,7 +15,7 @@ use yii\ui\tag\Inline;
  * and attribute management for advanced rendering scenarios.
  *
  * Designed for integration in view renderers, tag systems, and component libraries, ensuring consistent and
- * standards-compliant handling of inline container elements according to the HTML specifi`cation.
+ * standards-compliant handling of inline container elements according to the HTML specification.
  *
  * Key features.
  * - Immutable, stateless design for safe reuse in rendering engines.

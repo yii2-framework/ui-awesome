@@ -114,16 +114,16 @@ abstract class BaseHtml
         array $attributes = [],
         bool $encode = false,
     ): string {
-        if ($encode) {
-            $content = Encode::content($content);
-        }
-
         if ($tag instanceof Voids) {
             return self::void($tag, $attributes);
         }
 
         if ($tag instanceof Inline) {
             return self::inline($tag, $content, $attributes, $encode);
+        }
+
+        if ($encode) {
+            $content = Encode::content($content);
         }
 
         $renderAttributes = Attributes::render($attributes);

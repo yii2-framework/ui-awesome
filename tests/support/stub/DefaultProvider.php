@@ -28,17 +28,6 @@ final class DefaultProvider implements DefaultsProviderInterface
      * @return array Cookbook-style configuration array.
      *
      * @phpstan-return mixed[]
-     *
-     * Usage example:
-     * ```php
-     * public function getDefaults(BaseTag $tag): array
-     * {
-     *     return [
-     *         'class' => 'default-class',
-     *         'data-value' => 'value',
-     *     ];
-     * }
-     * ```
      */
     public function getDefaults(BaseTag $tag): array
     {

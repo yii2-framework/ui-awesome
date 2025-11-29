@@ -106,7 +106,7 @@ final class HtmlTest extends TestCase
             </div>
             HTML,
             Html::element(Block::DIV, $content, $attributes, true),
-            "Html element '<div>' with empty content and attributes should match expected output.",
+            "Html element '<div>' with encoded content and attributes should match expected output.",
         );
     }
 

@@ -30,22 +30,6 @@ final class DefaultThemeProvider implements ThemeProviderInterface
      * @return array Associative array of theme configuration values.
      *
      * @phpstan-return mixed[]
-     *
-     * Usage example:
-     * ```php
-     * public function apply(BaseTag $tag, string $theme): array
-     * {
-     *     if ($tag instanceof ButtonTag === false) {
-     *        return [];
-     *     }
-     *
-     *     return match ($theme) {
-     *         'dark' => ['class()' => 'btn-dark'],
-     *         'light' => ['class()' => 'btn-light'],
-     *         default => [],
-     *     };
-     * }
-     * ```
      */
     public function apply(BaseTag $tag, string $theme): array
     {
