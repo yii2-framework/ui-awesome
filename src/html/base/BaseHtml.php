@@ -4,30 +4,32 @@ declare(strict_types=1);
 
 namespace yii\ui\html\base;
 
+use BackedEnum;
 use yii\ui\helpers\{Attributes, Encode};
 use yii\ui\tag\{Block, Inline, Lists, Root, Table, Voids};
 
 /**
- * Base class for standards-compliant HTML rendering.
+ * Base class for standards-compliant HTML tag rendering and element generation.
  *
- * Provides a unified, immutable API for generating block-level, inline-level, list-level, root-level, table-level, and
- * void HTML elements according to the HTML specification.
+ * Provides a unified, immutable API for creating, rendering, and managing HTML tags, supporting advanced attribute
+ * handling, encoding, and tag type abstraction for modern web applications.
  *
- * Designed for use in view and tag rendering systems, this class ensures correct tag normalization, attribute encoding,
- * and type-safe handling of element categories.
+ * Designed for use in HTML helpers, tag builders, and view renderers, this class ensures predictable, secure, and
+ * extensible HTML output, integrating with attribute and encoding systems for robust UI component development.
  *
  * Key features:
- * - Exception-driven error handling for invalid tag usage.
- * - Integration with attribute and encoding helpers for safe output.
- * - Standards-compliant rendering of block, inline, list, root, table and void elements.
+ * - Attribute array processing and encoding for safe HTML output.
+ * - Immutable, stateless design for safe reuse.
+ * - Integration-ready for tag, attribute, and encoding helpers.
  * - Support `UnitEnum` tag types for flexible API design.
+ * - Type-safe, static methods for tag and content rendering.
+ * - Unified rendering for block, inline, void, and list HTML tags.
  *
  * @link https://developer.mozilla.org/en-US/docs/Glossary/Block-level_content
  * @link https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content
  * @link https://developer.mozilla.org/en-US/docs/Glossary/Void_element
  * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements#main_root
  * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements#table_content
- * {@see InvalidArgumentException} for invalid value errors.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -35,15 +37,14 @@ use yii\ui\tag\{Block, Inline, Lists, Root, Table, Voids};
 abstract class BaseHtml
 {
     /**
-     * Renders the opening tag for a block-level, list-level, root-level, or table-level.
+     * Begins a block, list, root, or table HTML tag with rendered attributes.
      *
-     * Validates the tag as block-level, list-level, root-level, or table-level and generates the opening tag with
-     * encoded attributes.
+     * Generates the opening tag string for the specified tag type, including rendered attributes.
      *
-     * @param Block|Lists|Root|Table $tag Enum representing the block, list, root or table tag.
+     * @param Block|Lists|Root|Table $tag Tag enumeration instance.
      * @param array $attributes Associative array of HTML attributes.
      *
-     * @return string Rendered opening tag for the block, list, root or table tag.
+     * @return string Rendered opening tag string with attributes.
      *
      * {@see Block} for valid block-level tags.
      * {@see Lists} for valid list-level tags.
@@ -71,17 +72,77 @@ abstract class BaseHtml
     {
         $renderAttributes = Attributes::render($attributes);
 
-        return "<{$tag->value}{$renderAttributes}>";
+        return "<{$tag->value}{$renderAttributes}>\n";
     }
 
     /**
-     * Renders the closing tag for a block-level, list-level, root-level, or table-level.
+     * Renders a complete HTML element with content and attributes.
      *
-     * Validates the tag as block-level, list-level, root-level, or table-level and generates the closing tag.
+     * Handles block, inline, and void tag types, encoding content if specified, and rendering attributes as needed.
      *
-     * @param Block|Lists|Root|Table $tag Enum representing the block, list, root, or table tag.
+     * @param BackedEnum $tag Tag enumeration instance.
+     * @param string $content Content to be rendered inside the tag.
+     * @param array $attributes Associative array of HTML attributes.
+     * @param bool $encode Whether to encode the content for HTML output.
      *
-     * @return string Rendered closing tag for the block, list, root, or table tag.
+     * @return string Rendered HTML element string.
+     *
+     * {@see Block} for valid block-level tags.
+     * {@see Inline} for valid inline-level tags.
+     * {@see Lists} for valid list-level tags.
+     * {@see Root} for valid root-level tags.
+     * {@see Table} for valid table-level tags.
+     * {@see Voids} for valid void-level tags.
+     *
+     * @phpstan-param mixed[] $attributes
+     *
+     * Usage example:
+     * ```php
+     * // block-level tag
+     * Html::element(Block::DIV, 'Hello, World!', ['class' => 'container'], true);
+     *
+     * // inline-level tag
+     * Html::element(Inline::SPAN, 'Hello, World!', ['class' => 'highlight'], false);
+     *
+     * // void-level tag
+     * Html::element(Voids::IMG, '', ['src' => 'image.png', 'alt' => 'An image']);
+     * ```
+     */
+    public static function element(
+        BackedEnum $tag,
+        string $content,
+        array $attributes = [],
+        bool $encode = false,
+    ): string {
+        if ($encode) {
+            $content = Encode::content($content);
+        }
+
+        if ($tag instanceof Voids) {
+            return self::void($tag, $attributes);
+        }
+
+        if ($tag instanceof Inline) {
+            return self::inline($tag, $content, $attributes, $encode);
+        }
+
+        $renderAttributes = Attributes::render($attributes);
+
+        if ($content === '') {
+            return "<{$tag->value}{$renderAttributes}>\n</{$tag->value}>";
+        }
+
+        return "<{$tag->value}{$renderAttributes}>\n{$content}\n</{$tag->value}>";
+    }
+
+    /**
+     * Ends a block, list, root, or table HTML tag.
+     *
+     * Generates the closing tag string for the specified tag type.
+     *
+     * @param Block|Lists|Root|Table $tag Tag enumeration instance.
+     *
+     * @return string Rendered closing tag string.
      *
      * {@see Block} for valid block-level tags.
      * {@see Lists} for valid list-level tags.
@@ -105,20 +166,20 @@ abstract class BaseHtml
      */
     public static function end(Block|Lists|Root|Table $tag): string
     {
-        return "</{$tag->value}>";
+        return "\n</{$tag->value}>";
     }
 
     /**
-     * Renders an inline-level HTML tag with content.
+     * Renders an inline HTML element with content and attributes.
      *
-     * Validates the tag as inline-level and generates the tag with encoded attributes and optional content encoding.
+     * Encodes content if specified and renders attributes for the inline tag.
      *
-     * @param Inline $tag Enum representing the inline tag.
-     * @param string $content Content to render inside the tag.
+     * @param Inline $tag Inline tag enumeration instance.
+     * @param string $content Content to be rendered inside the tag.
      * @param array $attributes Associative array of HTML attributes.
-     * @param bool $encode Whether to encode the content for safe HTML output.
+     * @param bool $encode Whether to encode the content for HTML output.
      *
-     * @return string Rendered inline tag with content.
+     * @return string Rendered inline HTML element string.
      *
      * {@see Inline} for valid inline-level tags.
      *
@@ -145,14 +206,14 @@ abstract class BaseHtml
     }
 
     /**
-     * Renders a void tag.
+     * Renders a void (self-closing) HTML element with attributes.
      *
-     * Validates the tag as a void tag and generates the self-closing tag with encoded attributes.
+     * Generates the tag string for void elements, including rendered attributes.
      *
-     * @param Voids $tag Enum representing the void tag.
+     * @param Voids $tag Void tag enumeration instance.
      * @param array $attributes Associative array of HTML attributes.
      *
-     * @return string Rendered void tag.
+     * @return string Rendered void HTML element string.
      *
      * {@see Voids} for valid void-level tags.
      *

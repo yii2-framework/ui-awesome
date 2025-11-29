@@ -82,3 +82,4 @@
 - Bug #78: Improve assertion formatting for clarity in `ArraysTest`, `CSSClassTest`, and `EnumTest` classes (@terabytesoftw)
 - Enh #79: Add `HasTemplate` trait with `template()` method and tests (@terabytesoftw)
 - Bug #80: Update trait documentation to clarify usage in tag rendering and improve consistency across multiple files (@terabytesoftw)
+- Enh #81: Introduce `Div` and `Span` elements with prefix and suffix management and related tests (@terabytesoftw)

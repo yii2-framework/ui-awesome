@@ -48,7 +48,7 @@ final class HtmlTest extends TestCase
     public function testRenderBeginWithBlockTag(Block $tag, string $expectedTagName): void
     {
         self::equalsWithoutLE(
-            "<{$expectedTagName}>",
+            "<{$expectedTagName}>\n",
             Html::begin($tag),
             "Html begin '<{$expectedTagName}>' block tag should match expected output.",
         );
@@ -58,7 +58,7 @@ final class HtmlTest extends TestCase
     public function testRenderBeginWithListTag(Lists $tag, string $expectedTagName): void
     {
         self::equalsWithoutLE(
-            "<{$expectedTagName}>",
+            "<{$expectedTagName}>\n",
             Html::begin($tag),
             "Html begin '<{$expectedTagName}>' list tag should match expected output.",
         );
@@ -68,7 +68,7 @@ final class HtmlTest extends TestCase
     public function testRenderBeginWithRootTag(Root $tag, string $expectedTagName): void
     {
         self::equalsWithoutLE(
-            "<{$expectedTagName}>",
+            "<{$expectedTagName}>\n",
             Html::begin($tag),
             "Html begin '<{$expectedTagName}>' root tag should match expected output.",
         );
@@ -78,9 +78,49 @@ final class HtmlTest extends TestCase
     public function testRenderBeginWithTableTag(Table $tag, string $expectedTagName): void
     {
         self::equalsWithoutLE(
-            "<{$expectedTagName}>",
+            "<{$expectedTagName}>\n",
             Html::begin($tag),
             "Html begin '<{$expectedTagName}>' table tag should match expected output.",
+        );
+    }
+
+    public function testRenderElementTag(): void
+    {
+        $content = '<span>Test Content</span>';
+        $attributes = ['class' => 'test-class'];
+
+        self::equalsWithoutLE(
+            <<<HTML
+            <div class="test-class">
+            <span>Test Content</span>
+            </div>
+            HTML,
+            Html::element(Block::DIV, $content, $attributes),
+            "Html element '<div>' with content and attributes should match expected output.",
+        );
+
+        self::equalsWithoutLE(
+            <<<HTML
+            <div class="test-class">
+            &lt;span&gt;Test Content&lt;/span&gt;
+            </div>
+            HTML,
+            Html::element(Block::DIV, $content, $attributes, true),
+            "Html element '<div>' with empty content and attributes should match expected output.",
+        );
+    }
+
+    public function testRenderElementTagWithEmptyContent(): void
+    {
+        $attributes = ['class' => 'empty-content'];
+
+        self::equalsWithoutLE(
+            <<<HTML
+            <div class="empty-content">
+            </div>
+            HTML,
+            Html::element(Block::DIV, '', $attributes),
+            "Html element '<div>' with empty content and attributes should match expected output.",
         );
     }
 
@@ -88,7 +128,7 @@ final class HtmlTest extends TestCase
     public function testRenderEndWithBlockTag(Block $tag, string $expectedTagName): void
     {
         self::equalsWithoutLE(
-            "</{$expectedTagName}>",
+            "\n</{$expectedTagName}>",
             Html::end($tag),
             "Html end '</{$expectedTagName}>' block tag should match expected output.",
         );
@@ -98,7 +138,7 @@ final class HtmlTest extends TestCase
     public function testRenderEndWithListTag(Lists $tag, string $expectedTagName): void
     {
         self::equalsWithoutLE(
-            "</{$expectedTagName}>",
+            "\n</{$expectedTagName}>",
             Html::end($tag),
             "Html end '</{$expectedTagName}>' list tag should match expected output.",
         );
@@ -108,7 +148,7 @@ final class HtmlTest extends TestCase
     public function testRenderEndWithRootTag(Root $tag, string $expectedTagName): void
     {
         self::equalsWithoutLE(
-            "</{$expectedTagName}>",
+            "\n</{$expectedTagName}>",
             Html::end($tag),
             "Html end '</{$expectedTagName}>' root tag should match expected output.",
         );
@@ -118,7 +158,7 @@ final class HtmlTest extends TestCase
     public function testRenderEndWithTableTag(Table $tag, string $expectedTagName): void
     {
         self::equalsWithoutLE(
-            "</{$expectedTagName}>",
+            "\n</{$expectedTagName}>",
             Html::end($tag),
             "Html end '</{$expectedTagName}>' table tag should match expected output.",
         );
