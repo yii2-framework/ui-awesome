@@ -2,38 +2,34 @@
 
 declare(strict_types=1);
 
-namespace yii\ui\tests\html\flow;
+namespace yii\ui\tests\html\phrasing;
 
-use LogicException;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use yii\ui\factory\SimpleFactory;
-use yii\ui\html\flow\Div;
 use yii\ui\html\phrasing\Span;
 use yii\ui\tests\support\stub\{DefaultProvider, DefaultThemeProvider};
 use yii\ui\tests\support\TestSupport;
 
 /**
- * Test suite for {@see Div} element functionality and behavior.
+ * Test suite for {@see Span} element functionality and behavior.
  *
- * Validates the management and rendering of the HTML `<div>` element according to the HTML Living Standard
+ * Validates the management and rendering of the HTML `<span>` element according to the HTML Living Standard
  * specification.
  *
- * Ensures correct handling, immutability, and validation of the `Div` tag rendering, supporting all global HTML
+ * Ensures correct handling, immutability, and validation of the `Span` tag rendering, supporting all global HTML
  * attributes, content, and provider-based configuration.
  *
  * Test coverage:
- * - Accurate rendering of attributes and content for the `<div>` element.
+ * - Accurate rendering of attributes and content for the `<span>` element.
  * - Application of default and theme providers.
  * - Data provider-driven validation for edge cases and expected behaviors.
  * - Immutability of the API when setting or overriding attributes.
- * - Nested rendering using `begin()` and `end()` methods.
  * - Precedence of user-defined attributes over global defaults.
  * - Proper assignment and overriding of attribute values, including `class`, `id`, `lang`, `style`, `title`, and
  *   `data-*`.
- * - Stack integrity during nested `begin()` and `end()` calls.
  *
- * {@see Div} for element implementation details.
+ * {@see Span} for element implementation details.
  * {@see SimpleFactory} for default configuration management.
  * {@see TestSupport} for assertion utilities.
  *
@@ -41,8 +37,8 @@ use yii\ui\tests\support\TestSupport;
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
 #[Group('html')]
-#[Group('flow')]
-final class DivTest extends TestCase
+#[Group('phrasing')]
+final class SpanTest extends TestCase
 {
     use TestSupport;
 
@@ -50,24 +46,10 @@ final class DivTest extends TestCase
     {
         self::equalsWithoutLE(
             <<<HTML
-            <div class="test-class">
-            </div>
+            <span class="test-class"></span>
             HTML,
-            Div::tag()->attributes(['class' => 'test-class'])->render(),
+            Span::tag()->attributes(['class' => 'test-class'])->render(),
             "Failed asserting that element renders correctly with 'attributes()' method.",
-        );
-    }
-
-    public function testRenderWithBeginEnd(): void
-    {
-        self::equalsWithoutLE(
-            <<<HTML
-            <div>
-            Content
-            </div>
-            HTML,
-            Div::tag()->begin() . 'Content' . Div::end(),
-            "Failed asserting that element renders correctly with 'begin()' and 'end()' methods.",
         );
     }
 
@@ -75,10 +57,9 @@ final class DivTest extends TestCase
     {
         self::equalsWithoutLE(
             <<<HTML
-            <div class="test-class">
-            </div>
+            <span class="test-class"></span>
             HTML,
-            Div::tag()->class('test-class')->render(),
+            Span::tag()->class('test-class')->render(),
             "Failed asserting that element renders correctly with 'class' attribute.",
         );
     }
@@ -87,11 +68,9 @@ final class DivTest extends TestCase
     {
         self::equalsWithoutLE(
             <<<HTML
-            <div>
-            Content
-            </div>
+            <span>Content</span>
             HTML,
-            Div::tag()->content('Content')->render(),
+            Span::tag()->content('Content')->render(),
             "Failed asserting that element renders correctly with 'content()' method.",
         );
     }
@@ -100,10 +79,9 @@ final class DivTest extends TestCase
     {
         self::equalsWithoutLE(
             <<<HTML
-            <div data-value="test-value">
-            </div>
+            <span data-value="test-value"></span>
             HTML,
-            Div::tag()->dataAttributes(['value' => 'test-value'])->render(),
+            Span::tag()->dataAttributes(['value' => 'test-value'])->render(),
             "Failed asserting that element renders correctly with 'dataAttributes()' method.",
         );
     }
@@ -112,22 +90,20 @@ final class DivTest extends TestCase
     {
         self::equalsWithoutLE(
             <<<HTML
-            <div class="default-provider">
-            </div>
+            <span class="default-provider"></span>
             HTML,
-            Div::tag()->addDefaultProvider(DefaultProvider::class)->render(),
+            Span::tag()->addDefaultProvider(DefaultProvider::class)->render(),
             'Failed asserting that default provider is applied correctly.',
         );
     }
 
     public function testRenderWithDefaultValues(): void
     {
-        $instance = Div::tag();
+        $instance = Span::tag();
 
         self::equalsWithoutLE(
             <<<HTML
-            <div>
-            </div>
+            <span></span>
             HTML,
             $instance->render(),
             'Failed asserting that element renders correctly with default values.',
@@ -136,28 +112,26 @@ final class DivTest extends TestCase
 
     public function testRenderWithGlobalDefaultsAreApplied(): void
     {
-        SimpleFactory::setDefaults(Div::class, ['class()' => 'from-global']);
+        SimpleFactory::setDefaults(Span::class, ['class()' => 'from-global']);
 
         self::equalsWithoutLE(
             <<<HTML
-            <div class="from-global">
-            </div>
+            <span class="from-global"></span>
             HTML,
-            Div::tag()->render(),
+            Span::tag()->render(),
             'Failed asserting that global defaults are applied correctly.',
         );
 
-        SimpleFactory::setDefaults(Div::class, []);
+        SimpleFactory::setDefaults(Span::class, []);
     }
 
     public function testRenderWithId(): void
     {
         self::equalsWithoutLE(
             <<<HTML
-            <div id="test-id">
-            </div>
+            <span id="test-id"></span>
             HTML,
-            Div::tag()->id('test-id')->render(),
+            Span::tag()->id('test-id')->render(),
             "Failed asserting that element renders correctly with 'id' attribute.",
         );
     }
@@ -166,41 +140,10 @@ final class DivTest extends TestCase
     {
         self::equalsWithoutLE(
             <<<HTML
-            <div lang="es">
-            </div>
+            <span lang="es"></span>
             HTML,
-            Div::tag()->lang('es')->render(),
+            Span::tag()->lang('es')->render(),
             "Failed asserting that element renders correctly with 'lang' attribute.",
-        );
-    }
-
-    public function testRenderWithNestedBeginEnd(): void
-    {
-        self::equalsWithoutLE(
-            <<<HTML
-            <div>
-            <div>
-            Nested Content
-            </div>
-            </div>
-            HTML,
-            Div::tag()->begin() . Div::tag()->begin() . 'Nested Content' . Div::end() . Div::end(),
-            "Failed asserting that nested elements render correctly with 'begin()' and 'end()' methods.",
-        );
-    }
-
-    public function testRenderWithNestedDifferentTagsEnsuresStackUpdate(): void
-    {
-        $html = Div::tag()->begin() . Span::tag()->content('Content')->render() . Div::end();
-
-        self::equalsWithoutLE(
-            <<<HTML
-            <div>
-            <span>Content</span>
-            </div>
-            HTML,
-            $html,
-            'Failed asserting that nested different tags render correctly and stack is updated.',
         );
     }
 
@@ -208,10 +151,9 @@ final class DivTest extends TestCase
     {
         self::equalsWithoutLE(
             <<<HTML
-            <div style="test-value">
-            </div>
+            <span style="test-value"></span>
             HTML,
-            Div::tag()->style('test-value')->render(),
+            Span::tag()->style('test-value')->render(),
             "Failed asserting that element renders correctly with 'style' attribute.",
         );
     }
@@ -220,10 +162,9 @@ final class DivTest extends TestCase
     {
         self::equalsWithoutLE(
             <<<HTML
-            <div class="tag-primary">
-            </div>
+            <span class="text-muted"></span>
             HTML,
-            Div::tag()->addThemeProvider('primary', DefaultThemeProvider::class)->render(),
+            Span::tag()->addThemeProvider('muted', DefaultThemeProvider::class)->render(),
             'Failed asserting that theme provider is applied correctly.',
         );
     }
@@ -232,40 +173,25 @@ final class DivTest extends TestCase
     {
         self::equalsWithoutLE(
             <<<HTML
-            <div title="test-value">
-            </div>
+            <span title="test-value"></span>
             HTML,
-            Div::tag()->title('test-value')->render(),
+            Span::tag()->title('test-value')->render(),
             "Failed asserting that element renders correctly with 'title' attribute.",
         );
     }
 
     public function testRenderWithUserOverridesGlobalDefaults(): void
     {
-        SimpleFactory::setDefaults(Div::class, ['class()' => 'from-global', 'id()' => 'id-global']);
+        SimpleFactory::setDefaults(Span::class, ['class()' => 'from-global', 'id()' => 'id-global']);
 
         self::equalsWithoutLE(
             <<<HTML
-            <div class="from-global" id="id-user">
-            </div>
+            <span class="from-global" id="id-user"></span>
             HTML,
-            Div::tag(['id()' => 'id-user'])->render(),
+            Span::tag(['id()' => 'id-user'])->render(),
             'Failed asserting that user-defined attributes override global defaults correctly.',
         );
 
-        SimpleFactory::setDefaults(Div::class, []);
-    }
-
-    public function testThrowExceptionWhenEndWithoutBegin(): void
-    {
-        Div::tag()->begin();
-        Div::end();
-
-        $this->expectException(LogicException::class);
-        $this->expectExceptionMessage(
-            'Unexpected yii\ui\html\flow\Div::end() call. A matching begin() is not found.',
-        );
-
-        Div::end();
+        SimpleFactory::setDefaults(Span::class, []);
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace yii\ui\tests\support\stub;
 
 use yii\ui\html\flow\Div;
+use yii\ui\html\phrasing\Span;
 use yii\ui\tag\{BaseTag, ThemeProviderInterface};
 
 /**
@@ -33,15 +34,23 @@ final class DefaultThemeProvider implements ThemeProviderInterface
      */
     public function apply(BaseTag $tag, string $theme): array
     {
-        if ($tag instanceof Div === false) {
-            return [];
+        if ($tag instanceof Div) {
+            return match ($theme) {
+                'default' => ['class()' => 'tag-default'],
+                'primary' => ['class()' => 'tag-primary'],
+                'secondary' => ['class()' => 'tag-secondary'],
+                default => [],
+            };
         }
 
-        return match ($theme) {
-            'default' => ['class()' => 'tag-default'],
-            'primary' => ['class()' => 'tag-primary'],
-            'secondary' => ['class()' => 'tag-secondary'],
-            default => [],
-        };
+        if ($tag instanceof Span) {
+            return match ($theme) {
+                'highlight' => ['style()' => 'background-color: yellow;'],
+                'muted' => ['class()' => 'text-muted'],
+                default => [],
+            };
+        }
+
+        return [];
     }
 }

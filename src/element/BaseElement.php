@@ -110,7 +110,7 @@ abstract class BaseElement extends BaseTag
      */
     private function renderTag(bool|Inline|Voids $inlineTag, string $content, array $attributes = []): string
     {
-        if ($content === '' || $inlineTag === false || $inlineTag === true) {
+        if ($inlineTag === false || $inlineTag === true) {
             return $content;
         }
 
