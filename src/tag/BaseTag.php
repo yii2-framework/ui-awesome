@@ -7,7 +7,9 @@ namespace yii\ui\tag;
 use Fiber;
 use LogicException;
 use RuntimeException;
+use stdClass;
 use Stringable;
+use WeakMap;
 use yii\ui\event\{HasAfterRun, HasBeforeRun};
 use yii\ui\factory\SimpleFactory;
 use yii\ui\mixin\HasAttributes;
@@ -22,11 +24,12 @@ use yii\ui\mixin\HasAttributes;
  * across complex UI systems, supporting event hooks, theming, and stack-based rendering for nested structures.
  *
  * Key features:
- * - Fiber-aware stack management ensures isolation in async environments (Swoole, RoadRunner, FrankenPHP).
  * - Immutable configuration and theme support for flexible tag customization.
  * - Integration-ready with before/after run event hooks for extensible rendering.
  * - Stack-based begin/end rendering for managing nested tag structures.
  * - Strict type safety and PHPStan compatibility for modern PHP development.
+ * - Uses `WeakMap` and `Fiber` detection to manage rendering stacks in async environments (FrankenPHP, RoadRunner or
+ *   Swoole).
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -38,11 +41,6 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
     use HasBeforeRun;
 
     /**
-     * Main thread context identifier for stack management.
-     */
-    private const MAIN_THREAD_CONTEXT = 0;
-
-    /**
      * Indicates whether the `begin()` method has been executed for this tag instance.
      *
      * Used internally to manage the tag rendering lifecycle and stack integrity.
@@ -50,11 +48,18 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
     private bool $beginExecuted = false;
 
     /**
-     * Stack of tag instances for managing nested begin/end rendering.
+     * Sentinel object representing the Main Thread in the WeakMap.
      *
-     * @phpstan-var static[][]
+     * Used when the code is running outside any Fiber.
      */
-    private static array $stack = [];
+    private static stdClass|null $mainThread = null;
+
+    /**
+     * Fiber-specific stacks using weak references for automatic cleanup.
+     *
+     * @phpstan-var WeakMap<object, static[]>|null
+     */
+    private static WeakMap|null $stack = null;
 
     /**
      * Initializes a new tag instance.
@@ -168,27 +173,27 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
     /**
      * Begins a tag rendering block and pushes the instance onto the context-specific stack.
      *
-     * Identifies the current execution context (Fiber or Main Thread) and stores the tag instance in the corresponding
-     * stack, ensuring safe nesting even in concurrent environments.
-     *
-     * Marks the tag as begun and prepares it for the paired `end()` call.
+     * Identifies the current execution context (`Fiber` or `self::$mainThread`) and stores the tag instance in the
+     * corresponding stack, ensuring safe nesting even in concurrent environments.
      *
      * @return string Empty string for output buffering compatibility.
      *
      * Usage example:
      * ```php
-     * <?= Element::tag()->begin() ?>
+     * <?= Div::tag()->begin() ?>
      * Content inside the tag.
-     * <?= Element::end() ?>
+     * <?= Div::end() ?>
      * ```
      */
     public function begin(): string
     {
         $this->beginExecuted = true;
 
-        $contextId = self::getContextId();
+        $stack = self::getContextStack();
 
-        self::$stack[$contextId][] = $this;
+        $stack[] = $this;
+
+        self::$stack?->offsetSet(self::getContextId(), $stack);
 
         return '';
     }
@@ -196,7 +201,9 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
     /**
      * Ends the most recently begun tag rendering block.
      *
-     * Pops the tag instance from the stack and renders its HTML output.
+     * Pops the tag instance from the current context's stack and render its HTML output.
+     *
+     * Automatically cleans up the stack entry if it becomes empty.
      *
      * @throws LogicException if no matching `begin()` call is found.
      * @throws RuntimeException if the tag class does not match the expected type.
@@ -210,19 +217,21 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
      */
     final public static function end(): string
     {
-        $id = self::getContextId();
+        $key = self::getContextId();
+        $stack = self::getContextStack();
 
-        if (isset(self::$stack[$id]) === false || self::$stack[$id] === []) {
-
+        if ($stack === []) {
             throw new LogicException(
                 sprintf('Unexpected %s::end() call. A matching begin() is not found.', static::class),
             );
         }
 
-        $tag = array_pop(self::$stack[$id]);
+        $tag = array_pop($stack);
 
-        if (self::$stack[$id] === []) {
-            unset(self::$stack[$id]);
+        if ($stack === []) {
+            self::$stack?->offsetUnset($key);
+        } else {
+            self::$stack?->offsetSet($key, $stack);
         }
 
         $tagClass = $tag::class;
@@ -244,6 +253,11 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
      * @return array<string, mixed> Cookbook-style configuration array.
      *
      * @phpstan-return mixed[]
+     *
+     * Usage example:
+     * ```php
+     * <?= $tag->getDefaults($tag) ?>
+     * ```
      */
     public function getDefaults(BaseTag $tag): array
     {
@@ -287,6 +301,11 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
      * @return static Fully configured tag instance.
      *
      * @phpstan-param mixed[] ...$defaults
+     *
+     * Usage example:
+     * ```php
+     * $element = Div::tag(['class()' => 'container', 'id()' => 'main-div']);
+     * ```
      */
     public static function tag(array ...$defaults): static
     {
@@ -323,19 +342,33 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
     /**
      * Retrieves the unique identifier for the current execution context.
      *
-     * Determines whether the code is running inside a Fiber (asynchronous context) or the Main Thread (synchronous
-     * context).
+     * Returns the current `Fiber` instance if running in an async context or the `stdClass` sentinel object if running
+     * in the {@see self::$mainThread}.
      *
-     * - In a Fiber: Returns the unique object ID of the current Fiber.
-     * - In Main Thread: Returns the constant `MAIN_THREAD_CONTEXT`.
-     *
-     * This ensures that the tag stack is correctly scoped per request in environments like Swoole, RoadRunner or
-     * FrankenPHP.
-     *
-     * @return int Unique context identifier.
+     * @phpstan-return Fiber<mixed, mixed, mixed, mixed>|stdClass
      */
-    private static function getContextId(): int
+    private static function getContextId(): Fiber|stdClass
     {
-        return ($fiber = Fiber::getCurrent()) !== null ? spl_object_id($fiber) : self::MAIN_THREAD_CONTEXT;
+        return Fiber::getCurrent() ?? self::$mainThread ??= new stdClass();
+    }
+
+    /**
+     * Retrieves the stack for the current execution context.
+     *
+     * Initializes the WeakMap if necessary and ensures an array exists for the current key.
+     *
+     * @phpstan-return array<array-key, static>
+     */
+    private static function getContextStack(): array
+    {
+        self::$stack ??= new WeakMap();
+
+        $key = self::getContextId();
+
+        if (self::$stack->offsetExists($key) === false) {
+            self::$stack->offsetSet($key, []);
+        }
+
+        return self::$stack->offsetGet($key);
     }
 }

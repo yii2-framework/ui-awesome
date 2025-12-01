@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\html\flow;
 
+use LogicException;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use yii\ui\factory\SimpleFactory;
 use yii\ui\html\flow\Div;
+use yii\ui\html\phrasing\Span;
 use yii\ui\tests\support\stub\{DefaultProvider, DefaultThemeProvider};
 use yii\ui\tests\support\TestSupport;
 
@@ -29,6 +31,7 @@ use yii\ui\tests\support\TestSupport;
  * - Precedence of user-defined attributes over global defaults.
  * - Proper assignment and overriding of attribute values, including `class`, `id`, `lang`, `style`, `title`, and
  *   `data-*`.
+ * - Stack integrity during nested `begin()` and `end()` calls.
  *
  * {@see Div} for element implementation details.
  * {@see SimpleFactory} for default configuration management.
@@ -186,6 +189,21 @@ final class DivTest extends TestCase
         );
     }
 
+    public function testRenderWithNestedDifferentTagsEnsuresStackUpdate(): void
+    {
+        $html = Div::tag()->begin() . Span::tag()->content('Content')->render() . Div::end();
+
+        self::equalsWithoutLE(
+            <<<HTML
+            <div>
+            <span>Content</span>
+            </div>
+            HTML,
+            $html,
+            'Failed asserting that nested different tags render correctly and stack is updated.',
+        );
+    }
+
     public function testRenderWithStyle(): void
     {
         self::equalsWithoutLE(
@@ -236,5 +254,18 @@ final class DivTest extends TestCase
         );
 
         SimpleFactory::setDefaults(Div::class, []);
+    }
+
+    public function testThrowExceptionWhenEndWithoutBegin(): void
+    {
+        Div::tag()->begin();
+        Div::end();
+
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage(
+            'Unexpected yii\ui\html\flow\Div::end() call. A matching begin() is not found.',
+        );
+
+        Div::end();
     }
 }
