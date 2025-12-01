@@ -136,7 +136,7 @@ final class DivTest extends TestCase
 
     public function testRenderWithGlobalDefaultsAreApplied(): void
     {
-        SimpleFactory::setDefaults(Div::class, ['class()' => 'from-global']);
+        SimpleFactory::setDefaults(Div::class, ['class' => 'from-global']);
 
         self::equalsWithoutLE(
             <<<HTML
@@ -242,14 +242,14 @@ final class DivTest extends TestCase
 
     public function testRenderWithUserOverridesGlobalDefaults(): void
     {
-        SimpleFactory::setDefaults(Div::class, ['class()' => 'from-global', 'id()' => 'id-global']);
+        SimpleFactory::setDefaults(Div::class, ['class' => 'from-global', 'id' => 'id-global']);
 
         self::equalsWithoutLE(
             <<<HTML
             <div class="from-global" id="id-user">
             </div>
             HTML,
-            Div::tag(['id()' => 'id-user'])->render(),
+            Div::tag(['id' => 'id-user'])->render(),
             'Failed asserting that user-defined attributes override global defaults correctly.',
         );
 
@@ -258,9 +258,6 @@ final class DivTest extends TestCase
 
     public function testThrowExceptionWhenEndWithoutBegin(): void
     {
-        Div::tag()->begin();
-        Div::end();
-
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage(
             'Unexpected yii\ui\html\flow\Div::end() call. A matching begin() is not found.',

@@ -112,7 +112,7 @@ final class SpanTest extends TestCase
 
     public function testRenderWithGlobalDefaultsAreApplied(): void
     {
-        SimpleFactory::setDefaults(Span::class, ['class()' => 'from-global']);
+        SimpleFactory::setDefaults(Span::class, ['class' => 'from-global']);
 
         self::equalsWithoutLE(
             <<<HTML
@@ -182,13 +182,13 @@ final class SpanTest extends TestCase
 
     public function testRenderWithUserOverridesGlobalDefaults(): void
     {
-        SimpleFactory::setDefaults(Span::class, ['class()' => 'from-global', 'id()' => 'id-global']);
+        SimpleFactory::setDefaults(Span::class, ['class' => 'from-global', 'id' => 'id-global']);
 
         self::equalsWithoutLE(
             <<<HTML
             <span class="from-global" id="id-user"></span>
             HTML,
-            Span::tag(['id()' => 'id-user'])->render(),
+            Span::tag(['id' => 'id-user'])->render(),
             'Failed asserting that user-defined attributes override global defaults correctly.',
         );
 

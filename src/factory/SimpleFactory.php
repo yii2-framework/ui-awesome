@@ -9,10 +9,7 @@ use ReflectionClass;
 use yii\ui\tag\BaseTag;
 
 use function is_array;
-use function is_callable;
 use function sprintf;
-use function str_ends_with;
-use function substr;
 
 /**
  * Factory class for instantiating and configuring HTML tag objects.
@@ -69,27 +66,28 @@ final class SimpleFactory
      * $element = SimpleFactory::configure(
      *     Div::tag(),
      *     [
-     *        'id()' => 'my-div',
-     *        'class()' => ['container', 'highlight'],
+     *        'id' => 'my-div',
+     *        'class' => ['container', 'highlight'],
      *     ],
      * );
      */
     public static function configure(BaseTag $tag, array $defaults): BaseTag
     {
-        foreach ($defaults as $action => $arguments) {
+        foreach ($defaults as $action => $value) {
             $action = (string) $action;
 
-            if (str_ends_with($action, '()')) {
-                $callback = [$tag, substr($action, 0, -2)];
-
-                if (is_callable($callback)) {
-                    $result = $callback(...(is_array($arguments) ? $arguments : [$arguments]));
-
-                    if ($result instanceof BaseTag) {
-                        /** @phpstan-var T $tag */
-                        $tag = $result;
-                    }
-                }
+            if (method_exists($tag, $action)) {
+                /**
+                 * @phpstan-var T $tag
+                 * @phpstan-ignore method.dynamicName
+                 */
+                $tag = $tag->$action(...(is_array($value) ? $value : [$value]));
+            } elseif (property_exists($tag, $action)) {
+                /**
+                 * @phpstan-var T $tag
+                 * @phpstan-ignore property.dynamicName
+                 */
+                $tag->$action = $value;
             }
         }
 
@@ -115,7 +113,7 @@ final class SimpleFactory
      *
      * Usage example:
      * ```php
-     * $element = SimpleFactory::create(Div::class, ['id()' => 'my-div']);
+     * $element = SimpleFactory::create(Div::class, ['id' => 'my-div']);
      * ```
      */
     public static function create(string $class, mixed ...$defaults): BaseTag
@@ -176,7 +174,7 @@ final class SimpleFactory
      *
      * Usage example:
      * ```php
-     * SimpleFactory::setDefaults(SomeTag::class, ['class()' => 'default-class']);
+     * SimpleFactory::setDefaults(SomeTag::class, ['class' => 'default-class']);
      * ```
      */
     public static function setDefaults(string $class, array $defaults): void

@@ -31,6 +31,6 @@ final class DefaultProvider implements DefaultsProviderInterface
      */
     public function getDefaults(BaseTag $tag): array
     {
-        return ['class()' => 'default-provider'];
+        return ['class' => 'default-provider'];
     }
 }

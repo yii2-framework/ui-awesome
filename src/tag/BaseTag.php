@@ -292,10 +292,10 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
      * - Global defaults defined via {@see SimpleFactory::setDefaults()}.
      * - Defaults passed directly by the user to {@see tag()}.
      *
-     * After construction, additional user modifications (via setter methods like `class()`, `id()`, `data()`, etc.) and
+     * After construction, additional user modifications (via setter methods like `class`, `id`, `data`, etc.) and
      * theme overrides will always have the highest priority.
      *
-     * @param array ...$defaults Configuration cookbook arrays. Each array maps "methodName()" → arguments, and will be
+     * @param array ...$defaults Configuration cookbook arrays. Each array maps "methodName" → arguments, and will be
      * applied in order.
      *
      * @return static Fully configured tag instance.
@@ -304,7 +304,12 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
      *
      * Usage example:
      * ```php
-     * $element = Div::tag(['class()' => 'container', 'id()' => 'main-div']);
+     * $element = Div::tag(
+     *     [
+     *         'class' => 'container',
+     *         'id' => 'main-div',
+     *     ],
+     * );
      * ```
      */
     public static function tag(array ...$defaults): static

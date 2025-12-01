@@ -45,8 +45,8 @@ interface ThemeProviderInterface
      *     }
      *
      *     return match ($theme) {
-     *         'dark' => ['class()' => 'btn-dark'],
-     *         'light' => ['class()' => 'btn-light'],
+     *         'dark' => ['class' => 'btn-dark'],
+     *         'light' => ['class' => 'btn-light'],
      *         default => [],
      *     };
      * }

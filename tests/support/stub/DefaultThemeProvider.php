@@ -36,17 +36,17 @@ final class DefaultThemeProvider implements ThemeProviderInterface
     {
         if ($tag instanceof Div) {
             return match ($theme) {
-                'default' => ['class()' => 'tag-default'],
-                'primary' => ['class()' => 'tag-primary'],
-                'secondary' => ['class()' => 'tag-secondary'],
+                'default' => ['class' => 'tag-default'],
+                'primary' => ['class' => 'tag-primary'],
+                'secondary' => ['class' => 'tag-secondary'],
                 default => [],
             };
         }
 
         if ($tag instanceof Span) {
             return match ($theme) {
-                'highlight' => ['style()' => 'background-color: yellow;'],
-                'muted' => ['class()' => 'text-muted'],
+                'highlight' => ['style' => 'background-color: yellow;'],
+                'muted' => ['class' => 'text-muted'],
                 default => [],
             };
         }
