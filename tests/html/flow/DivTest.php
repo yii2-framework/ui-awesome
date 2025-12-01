@@ -25,6 +25,7 @@ use yii\ui\tests\support\TestSupport;
  * - Application of default and theme providers.
  * - Data provider-driven validation for edge cases and expected behaviors.
  * - Immutability of the API when setting or overriding attributes.
+ * - Nested rendering using `begin()` and `end()` methods.
  * - Precedence of user-defined attributes over global defaults.
  * - Proper assignment and overriding of attribute values, including `class`, `id`, `lang`, `style`, `title`, and
  *   `data-*`.
@@ -167,6 +168,21 @@ final class DivTest extends TestCase
             HTML,
             Div::tag()->lang('es')->render(),
             "Failed asserting that element renders correctly with 'lang' attribute.",
+        );
+    }
+
+    public function testRenderWithNestedBeginEnd(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <div>
+            <div>
+            Nested Content
+            </div>
+            </div>
+            HTML,
+            Div::tag()->begin() . Div::tag()->begin() . 'Nested Content' . Div::end() . Div::end(),
+            "Failed asserting that nested elements render correctly with 'begin()' and 'end()' methods.",
         );
     }
 

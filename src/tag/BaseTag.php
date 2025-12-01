@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\tag;
 
+use Fiber;
 use LogicException;
 use RuntimeException;
 use Stringable;
@@ -21,6 +22,7 @@ use yii\ui\mixin\HasAttributes;
  * across complex UI systems, supporting event hooks, theming, and stack-based rendering for nested structures.
  *
  * Key features:
+ * - Fiber-aware stack management ensures isolation in async environments (Swoole, RoadRunner, FrankenPHP).
  * - Immutable configuration and theme support for flexible tag customization.
  * - Integration-ready with before/after run event hooks for extensible rendering.
  * - Stack-based begin/end rendering for managing nested tag structures.
@@ -36,6 +38,11 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
     use HasBeforeRun;
 
     /**
+     * Main thread context identifier for stack management.
+     */
+    private const MAIN_THREAD_CONTEXT = 0;
+
+    /**
      * Indicates whether the `begin()` method has been executed for this tag instance.
      *
      * Used internally to manage the tag rendering lifecycle and stack integrity.
@@ -45,7 +52,7 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
     /**
      * Stack of tag instances for managing nested begin/end rendering.
      *
-     * @phpstan-var list<static>
+     * @phpstan-var static[][]
      */
     private static array $stack = [];
 
@@ -159,9 +166,12 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
     }
 
     /**
-     * Begins a tag rendering block and pushes the instance onto the stack.
+     * Begins a tag rendering block and pushes the instance onto the context-specific stack.
      *
-     * Marks the tag as begun and prepares it for paired end rendering.
+     * Identifies the current execution context (Fiber or Main Thread) and stores the tag instance in the corresponding
+     * stack, ensuring safe nesting even in concurrent environments.
+     *
+     * Marks the tag as begun and prepares it for the paired `end()` call.
      *
      * @return string Empty string for output buffering compatibility.
      *
@@ -175,7 +185,10 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
     public function begin(): string
     {
         $this->beginExecuted = true;
-        self::$stack[] = $this;
+
+        $contextId = self::getContextId();
+
+        self::$stack[$contextId][] = $this;
 
         return '';
     }
@@ -197,13 +210,20 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
      */
     final public static function end(): string
     {
-        if (self::$stack === []) {
+        $id = self::getContextId();
+
+        if (isset(self::$stack[$id]) === false || self::$stack[$id] === []) {
+
             throw new LogicException(
                 sprintf('Unexpected %s::end() call. A matching begin() is not found.', static::class),
             );
         }
 
-        $tag = array_pop(self::$stack);
+        $tag = array_pop(self::$stack[$id]);
+
+        if (self::$stack[$id] === []) {
+            unset(self::$stack[$id]);
+        }
 
         $tagClass = $tag::class;
 
@@ -298,5 +318,24 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
     protected function isBeginExecuted(): bool
     {
         return $this->beginExecuted;
+    }
+
+    /**
+     * Retrieves the unique identifier for the current execution context.
+     *
+     * Determines whether the code is running inside a Fiber (asynchronous context) or the Main Thread (synchronous
+     * context).
+     *
+     * - In a Fiber: Returns the unique object ID of the current Fiber.
+     * - In Main Thread: Returns the constant `MAIN_THREAD_CONTEXT`.
+     *
+     * This ensures that the tag stack is correctly scoped per request in environments like Swoole, RoadRunner or
+     * FrankenPHP.
+     *
+     * @return int Unique context identifier.
+     */
+    private static function getContextId(): int
+    {
+        return ($fiber = Fiber::getCurrent()) !== null ? spl_object_id($fiber) : self::MAIN_THREAD_CONTEXT;
     }
 }
