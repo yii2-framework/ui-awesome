@@ -110,14 +110,14 @@ abstract class BaseElement extends BaseTag
      */
     private function renderTag(bool|Inline|Voids $inlineTag, string $content, array $attributes = []): string
     {
-        if ($inlineTag === false || $inlineTag === true) {
-            return $content;
-        }
-
         if ($inlineTag instanceof Voids) {
             return Html::void($inlineTag, $attributes);
         }
 
-        return Html::inline($inlineTag, $content, $attributes);
+        if ($inlineTag instanceof Inline) {
+            return Html::inline($inlineTag, $content, $attributes);
+        }
+
+        return $content;
     }
 }

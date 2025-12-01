@@ -63,26 +63,6 @@ abstract class BaseBlockElement extends BaseTag
     abstract protected function getTag(): Block|Lists|Root|Table;
 
     /**
-     * Begins rendering the block element.
-     *
-     * Calls the parent begin method and returns the opening tag for the block element with the current attributes.
-     *
-     * @return string Opening HTML tag for the block element.
-     *
-     * Usage example:
-     * ```php
-     * <?= $block->begin() ?>
-     * // Output: <div class="example-class" id="example-id">
-     * ```
-     */
-    public function begin(): string
-    {
-        parent::begin();
-
-        return Html::begin($this->getTag(), $this->attributes);
-    }
-
-    /**
      * Cleans up the output after rendering the block element.
      *
      * Removes excessive consecutive newlines from the rendered output to ensure clean HTML structure.
@@ -111,5 +91,23 @@ abstract class BaseBlockElement extends BaseTag
         }
 
         return Html::end($this->getTag());
+    }
+
+    /**
+     * Begins rendering the block element.
+     *
+     * Calls the parent begin method and returns the opening tag for the block element with the current attributes.
+     *
+     * @return string Opening HTML tag for the block element.
+     *
+     * Usage example:
+     * ```php
+     * <?= $block->begin() ?>
+     * // Output: <div class="example-class" id="example-id">
+     * ```
+     */
+    protected function runBegin(): string
+    {
+        return Html::begin($this->getTag(), $this->attributes);
     }
 }

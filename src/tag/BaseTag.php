@@ -195,7 +195,7 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
 
         self::$stack?->offsetSet(self::getContextId(), $stack);
 
-        return '';
+        return $this->runBegin();
     }
 
     /**
@@ -337,6 +337,19 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
     protected function isBeginExecuted(): bool
     {
         return $this->beginExecuted;
+    }
+
+    /**
+     * Generates the opening HTML tag logic.
+     *
+     * Subclasses can override this method to return the actual HTML opening tag (for example, `<div ...>`). By default,
+     * it returns an empty string.
+     *
+     * @return string Opening HTML tag.
+     */
+    protected function runBegin(): string
+    {
+        return '';
     }
 
     /**
