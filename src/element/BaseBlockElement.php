@@ -6,7 +6,7 @@ namespace yii\ui\element;
 
 use yii\ui\attributes\{HasClass, HasData, HasId, HasLang, HasStyle, HasTitle};
 use yii\ui\html\Html;
-use yii\ui\mixin\{HasAttributes, HasContent};
+use yii\ui\mixin\HasContent;
 use yii\ui\tag\{BaseTag, Block, Lists, Root, Table};
 
 /**
@@ -36,7 +36,6 @@ use yii\ui\tag\{BaseTag, Block, Lists, Root, Table};
  */
 abstract class BaseBlockElement extends BaseTag
 {
-    use HasAttributes;
     use HasClass;
     use HasContent;
     use HasData;
@@ -73,7 +72,9 @@ abstract class BaseBlockElement extends BaseTag
      */
     protected function afterRun(string $output): string
     {
-        return preg_replace("/\n{2,}/", "\n", $output) ?? '';
+        $normalizeOutput = preg_replace("/\n{2,}/", "\n", $output) ?? '';
+
+        return parent::afterRun($normalizeOutput);
     }
 
     /**
