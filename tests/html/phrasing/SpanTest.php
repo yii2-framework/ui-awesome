@@ -8,6 +8,7 @@ use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use yii\ui\factory\SimpleFactory;
 use yii\ui\html\phrasing\Span;
+use yii\ui\tag\Inline;
 use yii\ui\tests\support\stub\{DefaultProvider, DefaultThemeProvider};
 use yii\ui\tests\support\TestSupport;
 
@@ -18,7 +19,7 @@ use yii\ui\tests\support\TestSupport;
  * specification.
  *
  * Ensures correct handling, immutability, and validation of the `Span` tag rendering, supporting all global HTML
- * attributes, content, and provider-based configuration.
+ * attributes, content, prefix, suffix, and provider-based configuration.
  *
  * Test coverage.
  * - Accurate rendering of attributes and content for the `<span>` element.
@@ -28,9 +29,10 @@ use yii\ui\tests\support\TestSupport;
  * - Precedence of user-defined attributes over global defaults.
  * - Proper assignment and overriding of attribute values, including `class`, `id`, `lang`, `style`, `title`, and
  *   `data-*`.
+ * - Rendering with prefix and suffix content, with and without tag wrappers.
  *
- * {@see Span} for element implementation details.
  * {@see SimpleFactory} for default configuration management.
+ * {@see Span} for element implementation details.
  * {@see TestSupport} for assertion utilities.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
@@ -162,7 +164,7 @@ final class SpanTest extends TestCase
         );
     }
 
-    public function testRenderWithPrefixContent(): void
+    public function testRenderWithPrefixSetWithoutPrefixTag(): void
     {
         self::equalsWithoutLE(
             <<<HTML
@@ -171,6 +173,21 @@ final class SpanTest extends TestCase
             HTML,
             Span::tag()->prefix('Prefix content')->class('test')->render(),
             "Failed asserting that element renders correctly with 'prefix()' method.",
+        );
+    }
+
+    public function testRenderWithPrefixTagWhenPrefixSet(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <strong class="prefix-class">Prefix content</strong>
+            <span></span>
+            HTML,
+            Span::tag()->prefix('Prefix content')
+                ->prefixAttributes(['class' => 'prefix-class'])
+                ->prefixTag(Inline::STRONG)
+                ->render(),
+            "Failed asserting that element renders correctly with 'prefixTag()' method.",
         );
     }
 
@@ -185,7 +202,7 @@ final class SpanTest extends TestCase
         );
     }
 
-    public function testRenderWithSuffixContent(): void
+    public function testRenderWithSuffixSetWithoutSuffixTag(): void
     {
         self::equalsWithoutLE(
             <<<HTML
@@ -194,6 +211,22 @@ final class SpanTest extends TestCase
             HTML,
             Span::tag()->class('test')->suffix('Suffix content')->render(),
             "Failed asserting that element renders correctly with 'suffix()' method.",
+        );
+    }
+
+    public function testRenderWithSuffixTagWhenSuffixSet(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <span></span>
+            <strong class="suffix-class">Suffix content</strong>
+            HTML,
+            Span::tag()
+                ->suffix('Suffix content')
+                ->suffixAttributes(['class' => 'suffix-class'])
+                ->suffixTag(Inline::STRONG)
+                ->render(),
+            "Failed asserting that element renders correctly with 'suffixTag()' method.",
         );
     }
 
