@@ -108,6 +108,18 @@ final class DivTest extends TestCase
         );
     }
 
+    public function testRenderWithDefaultConfigurationValues(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <div class="default-class" title="default-title">
+            </div>
+            HTML,
+            Div::tag(['class' => 'default-class', 'title' => 'default-title'])->render(),
+            'Failed asserting that default configuration values are applied correctly.',
+        );
+    }
+
     public function testRenderWithDefaultProvider(): void
     {
         self::equalsWithoutLE(

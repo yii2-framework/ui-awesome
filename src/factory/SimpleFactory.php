@@ -15,7 +15,7 @@ use function sprintf;
  * Factory class for instantiating and configuring HTML tag objects.
  *
  * Provides a type-safe, extensible API for creating and configuring instances of {@see BaseTag} and its subclasses,
- * supporting default configuration arrays, method-based initialization, and global defaults for tag classes.
+ * supporting method-based initialization and global defaults for tag classes.
  *
  * Designed for use in tag rendering systems, this class enables consistent, predictable instantiation and configuration
  * of tag objects for advanced HTML generation scenarios.
@@ -95,28 +95,19 @@ final class SimpleFactory
     }
 
     /**
-     * Instantiates a tag class and applies default configuration arrays.
+     * Instantiates a tag class by name, enforcing non-abstractness.
      *
-     * Creates a new instance of the specified tag class, applying global and per-instance defaults using the
-     * {@see configure()} method.
+     * @param string $class Tag class name.
      *
-     * @param string $class Tag class name to instantiate.
-     * @param mixed ...$defaults Optional default configuration arrays.
+     * @return BaseTag Instantiated tag object.
      *
      * @throws LogicException if the class is abstract and cannot be instantiated.
-     *
-     * @return BaseTag Instantiated and configured tag object.
      *
      * @phpstan-param class-string<T> $class
      *
      * @phpstan-return T
-     *
-     * Usage example:
-     * ```php
-     * $element = SimpleFactory::create(Div::class, ['id' => 'my-div']);
-     * ```
      */
-    public static function create(string $class, mixed ...$defaults): BaseTag
+    public static function create(string $class): BaseTag
     {
         $reflection = new ReflectionClass($class);
 
@@ -128,13 +119,6 @@ final class SimpleFactory
 
         /** @phpstan-var T $tag */
         $tag = $reflection->newInstance();
-
-        foreach ($defaults as $default) {
-            if ($default !== []) {
-                /** @phpstan-var mixed[] $default */
-                $tag = self::configure($tag, $default);
-            }
-        }
 
         return $tag;
     }

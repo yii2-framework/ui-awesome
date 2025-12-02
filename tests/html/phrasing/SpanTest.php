@@ -86,6 +86,17 @@ final class SpanTest extends TestCase
         );
     }
 
+    public function testRenderWithDefaultConfigurationValues(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <span class="default-class" title="default-title"></span>
+            HTML,
+            Span::tag(['class' => 'default-class', 'title' => 'default-title'])->render(),
+            'Failed asserting that default configuration values are applied correctly.',
+        );
+    }
+
     public function testRenderWithDefaultProvider(): void
     {
         self::equalsWithoutLE(
@@ -147,6 +158,18 @@ final class SpanTest extends TestCase
         );
     }
 
+    public function testRenderWithPrefixContent(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            Prefix content
+            <span class="test"></span>
+            HTML,
+            Span::tag()->prefix('Prefix content')->class('test')->render(),
+            "Failed asserting that element renders correctly with 'prefix()' method.",
+        );
+    }
+
     public function testRenderWithStyle(): void
     {
         self::equalsWithoutLE(
@@ -155,6 +178,18 @@ final class SpanTest extends TestCase
             HTML,
             Span::tag()->style('test-value')->render(),
             "Failed asserting that element renders correctly with 'style' attribute.",
+        );
+    }
+
+    public function testRenderWithSuffixContent(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <span class="test"></span>
+            Suffix content
+            HTML,
+            Span::tag()->class('test')->suffix('Suffix content')->render(),
+            "Failed asserting that element renders correctly with 'suffix()' method.",
         );
     }
 
