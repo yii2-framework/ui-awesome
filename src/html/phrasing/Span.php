@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace yii\ui\html\phrasing;
 
 use yii\ui\element\BaseElement;
-use yii\ui\mixin\HasContent;
 use yii\ui\tag\Inline;
 
 /**
@@ -25,7 +24,6 @@ use yii\ui\tag\Inline;
  *
  * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span
  * {@see BaseElement} for base element behavior.
- * {@see HasContent} for content management capabilities.
  * {@see Inline} for a list of inline-level HTML elements.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
@@ -33,8 +31,6 @@ use yii\ui\tag\Inline;
  */
 final class Span extends BaseElement
 {
-    use HasContent;
-
     /**
      * Returns the tag enumeration for the `<span>` element.
      *

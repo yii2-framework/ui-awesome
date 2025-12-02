@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use yii\ui\attributes\HasId;
 use yii\ui\helpers\Attributes;
 use yii\ui\mixin\HasAttributes;
-use yii\ui\tests\providers\attributes\IdProvider;
+use yii\ui\tests\providers\tag\attributes\IdProvider;
 
 /**
  * Test suite for {@see HasId} trait functionality and behavior.
@@ -19,7 +19,7 @@ use yii\ui\tests\providers\attributes\IdProvider;
  * Ensures correct handling, immutability, and validation of the `id` attribute in widget and tag rendering, supporting
  * both `string` and `null` values for dynamic identifier assignment.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate rendering of attributes with the `id` attribute.
  * - Data provider-driven validation for edge cases and expected behaviors.
  * - Immutability of the trait's API when setting or overriding the `id` attribute.

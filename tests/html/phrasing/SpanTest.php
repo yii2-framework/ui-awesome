@@ -20,7 +20,7 @@ use yii\ui\tests\support\TestSupport;
  * Ensures correct handling, immutability, and validation of the `Span` tag rendering, supporting all global HTML
  * attributes, content, and provider-based configuration.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate rendering of attributes and content for the `<span>` element.
  * - Application of default and theme providers.
  * - Data provider-driven validation for edge cases and expected behaviors.
@@ -86,7 +86,7 @@ final class SpanTest extends TestCase
         );
     }
 
-    public function testRenderWithDefaultConfigurationValues(): void
+    public function testRenderWithDefaultConfigurationMethodValues(): void
     {
         self::equalsWithoutLE(
             <<<HTML
@@ -123,17 +123,21 @@ final class SpanTest extends TestCase
 
     public function testRenderWithGlobalDefaultsAreApplied(): void
     {
-        SimpleFactory::setDefaults(Span::class, ['class' => 'from-global']);
+        $previous = SimpleFactory::getDefaults(Span::class);
 
-        self::equalsWithoutLE(
-            <<<HTML
-            <span class="from-global"></span>
-            HTML,
-            Span::tag()->render(),
-            'Failed asserting that global defaults are applied correctly.',
-        );
+        try {
+            SimpleFactory::setDefaults(Span::class, ['class' => 'from-global']);
 
-        SimpleFactory::setDefaults(Span::class, []);
+            self::equalsWithoutLE(
+                <<<HTML
+                <span class="from-global"></span>
+                HTML,
+                Span::tag()->render(),
+                'Failed asserting that global defaults are applied correctly.',
+            );
+        } finally {
+            SimpleFactory::setDefaults(Span::class, $previous);
+        }
     }
 
     public function testRenderWithId(): void
@@ -217,16 +221,20 @@ final class SpanTest extends TestCase
 
     public function testRenderWithUserOverridesGlobalDefaults(): void
     {
-        SimpleFactory::setDefaults(Span::class, ['class' => 'from-global', 'id' => 'id-global']);
+        $previous = SimpleFactory::getDefaults(Span::class);
 
-        self::equalsWithoutLE(
-            <<<HTML
-            <span class="from-global" id="id-user"></span>
-            HTML,
-            Span::tag(['id' => 'id-user'])->render(),
-            'Failed asserting that user-defined attributes override global defaults correctly.',
-        );
+        try {
+            SimpleFactory::setDefaults(Span::class, ['class' => 'from-global', 'id' => 'id-global']);
 
-        SimpleFactory::setDefaults(Span::class, []);
+            self::equalsWithoutLE(
+                <<<HTML
+                <span class="from-global" id="id-user"></span>
+                HTML,
+                Span::tag(['id' => 'id-user'])->render(),
+                'Failed asserting that user-defined attributes override global defaults correctly.',
+            );
+        } finally {
+            SimpleFactory::setDefaults(Span::class, $previous);
+        }
     }
 }

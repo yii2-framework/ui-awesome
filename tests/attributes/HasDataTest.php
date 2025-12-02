@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\attributes;
 
+use Closure;
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
 use yii\base\InvalidArgumentException;
@@ -11,7 +12,7 @@ use yii\ui\attributes\HasData;
 use yii\ui\exception\Message;
 use yii\ui\helpers\Attributes;
 use yii\ui\mixin\HasAttributes;
-use yii\ui\tests\providers\attributes\DataProvider;
+use yii\ui\tests\providers\tag\attributes\DataProvider;
 
 /**
  * Test suite for {@see HasData} trait functionality and behavior.
@@ -21,7 +22,7 @@ use yii\ui\tests\providers\attributes\DataProvider;
  * Ensures correct handling, immutability, and validation of `data-*` attributes in widget and tag rendering, supporting
  * both `string` and `\Closure` values for dynamic data assignment.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate rendering of attributes with `data-*` attributes.
  * - Data provider-driven validation for edge cases and expected behaviors.
  * - Exception handling for invalid keys and values.
@@ -37,7 +38,7 @@ use yii\ui\tests\providers\attributes\DataProvider;
 final class HasDataTest extends TestCase
 {
     /**
-     * @param array<string, string|\Closure(): mixed> $data
+     * @param array<string, string|Closure(): mixed> $data
      * @phpstan-param mixed[] $attributes
      */
     #[DataProviderExternal(DataProvider::class, 'renderAttribute')]
@@ -76,8 +77,8 @@ final class HasDataTest extends TestCase
     }
 
     /**
-     * @param array<string, string|\Closure(): mixed> $data
-     * @param array<string, string|\Closure(): mixed> $expected
+     * @param array<string, string|Closure(): mixed> $data
+     * @param array<string, string|Closure(): mixed> $expected
      */
     #[DataProviderExternal(DataProvider::class, 'values')]
     public function testSetDataAttributeValue(array $data, array $expected, string $assertion): void

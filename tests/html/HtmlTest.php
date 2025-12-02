@@ -26,7 +26,7 @@ use yii\ui\tests\support\TestSupport;
  * Ensures proper rendering, immutability, and validation of block, inline, list, root, table and void elements,
  * supporting `UnitEnum` tag names.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate rendering of block, inline, list, root, table and void HTML tags.
  * - Data provider-driven validation for edge cases and expected behaviors.
  * - Exception handling for invalid tag names and element types.

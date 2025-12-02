@@ -8,7 +8,7 @@ use Stringable;
 use yii\ui\attributes\{HasClass, HasData, HasId, HasLang, HasStyle, HasTitle};
 use yii\ui\helpers\Template;
 use yii\ui\html\Html;
-use yii\ui\mixin\{HasAttributes, HasPrefixCollection, HasSuffixCollection, HasTemplate};
+use yii\ui\mixin\{HasAttributes, HasContent, HasPrefixCollection, HasSuffixCollection, HasTemplate};
 use yii\ui\tag\{BaseTag, Inline, Voids};
 
 /**
@@ -39,6 +39,7 @@ abstract class BaseElement extends BaseTag
 {
     use HasAttributes;
     use HasClass;
+    use HasContent;
     use HasData;
     use HasId;
     use HasLang;

@@ -22,7 +22,7 @@ use yii\ui\tests\support\TestSupport;
  * Ensures correct handling, immutability, and validation of the `Div` tag rendering, supporting all global HTML
  * attributes, content, and provider-based configuration.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate rendering of attributes and content for the `<div>` element.
  * - Application of default and theme providers.
  * - Data provider-driven validation for edge cases and expected behaviors.

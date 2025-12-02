@@ -10,7 +10,7 @@ use UnitEnum;
 use yii\ui\attributes\HasClass;
 use yii\ui\helpers\Attributes;
 use yii\ui\mixin\HasAttributes;
-use yii\ui\tests\providers\attributes\ClassProvider;
+use yii\ui\tests\providers\tag\attributes\ClassProvider;
 
 /**
  * Test suite for {@see HasClass} trait functionality and behavior.
@@ -20,7 +20,7 @@ use yii\ui\tests\providers\attributes\ClassProvider;
  * Ensures correct handling, immutability, and validation of the `class` attribute in widget and tag rendering,
  * supporting `string`, `UnitEnum`, and `null` values for dynamic class assignment.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate rendering of attributes with the `class` attribute.
  * - Data provider-driven validation for edge cases and expected behaviors.
  * - Immutability of the trait's API when setting or overriding the `class` attribute.

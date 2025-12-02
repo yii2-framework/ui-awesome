@@ -17,7 +17,7 @@ use yii\ui\mixin\HasTemplate;
  * Ensures correct handling, immutability, and validation of the template in widget and tag rendering, supporting
  * `string` values for dynamic template assignment.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate retrieval of the template value.
  * - Immutability of the trait's API when setting or overriding the template.
  * - Proper assignment and overriding of template values.

@@ -24,7 +24,7 @@ use function json_encode;
  * Ensures correct handling, immutability, and validation of array operations, supporting both associative and
  * sequential arrays, as well as enum-based comparisons.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate detection of associative arrays.
  * - Compatibility with PHP enums and scalar types.
  * - Detection of sequential arrays.

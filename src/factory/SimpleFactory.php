@@ -6,10 +6,10 @@ namespace yii\ui\factory;
 
 use LogicException;
 use ReflectionClass;
+use yii\ui\exception\Message;
 use yii\ui\tag\BaseTag;
 
 use function is_array;
-use function sprintf;
 
 /**
  * Factory class for instantiating and configuring HTML tag objects.
@@ -113,7 +113,7 @@ final class SimpleFactory
 
         if ($reflection->isAbstract()) {
             throw new LogicException(
-                sprintf('Cannot instantiate abstract class %s via tag().', $class),
+                Message::CANNOT_INSTANTIATE_ABSTRACT_CLASS->getMessage($class),
             );
         }
 

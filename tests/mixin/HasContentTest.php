@@ -17,7 +17,7 @@ use yii\ui\mixin\HasContent;
  * Ensures correct initialization, assignment, and retrieval of content, supporting both encoded and raw HTML content,
  * enforcing immutability when setting new content, and preventing XSS vulnerabilities through proper encoding.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate accumulation and retrieval of mixed content.
  * - Correct handling of empty and unset content.
  * - Immutability of the mixin when setting content or HTML.

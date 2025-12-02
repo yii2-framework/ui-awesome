@@ -32,6 +32,13 @@ use function sprintf;
 enum Message: string
 {
     /**
+     * Error when attempting to instantiate an abstract class.
+     *
+     * Format: "Cannot instantiate abstract class %s via tag()."
+     */
+    case CANNOT_INSTANTIATE_ABSTRACT_CLASS = "Cannot instantiate abstract class '%s' via 'tag()' method.";
+
+    /**
      * Error when a data attribute key is not a string.
      *
      * Format: "Data attribute key must be of type 'string', '%s' given."

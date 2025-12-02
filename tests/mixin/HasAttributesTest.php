@@ -17,7 +17,7 @@ use yii\ui\mixin\HasAttributes;
  * Ensures correct initialization, assignment, and retrieval of attributes, supporting array-based attribute storage and
  * enforcing immutability when setting new attributes.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate retrieval of attributes when not set.
  * - Correct assignment and retrieval of attribute values.
  * - Immutability of the mixin when setting attributes.
