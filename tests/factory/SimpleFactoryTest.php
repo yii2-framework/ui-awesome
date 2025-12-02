@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\factory;
 
+use Error;
 use LogicException;
 use PHPUnit\Framework\TestCase;
 use yii\ui\exception\Message;
@@ -18,11 +19,11 @@ use yii\ui\tests\support\stub\Tag;
  * the HTML Living Standard specification.
  *
  * Ensures correct handling, immutability, and validation of tag creation, supporting default configuration properties
- * and exception handling for abstract class instantiation.
+ * and exception handling for abstract class instantiation and non-public property assignments.
  *
  * Test coverage.
  * - Accurate creation of tag instances with default configuration property values.
- * - Exception handling when attempting to instantiate abstract classes.
+ * - Exception handling when attempting to instantiate abstract classes and setting non-public properties.
  * - Validation of property assignment and immutability of the factory API.
  *
  * {@see BaseTag} for abstract tag base class.
@@ -38,11 +39,23 @@ final class SimpleFactoryTest extends TestCase
     {
         $tag = Tag::tag(['flag' => true]);
 
-        self::assertNotEquals(
-            false,
+        self::assertTrue(
             $tag->flag,
             'Failed asserting that factory creates instance with default configuration properties values.',
         );
+    }
+
+    public function testsThrowExceptionWhenSetNotPublicProperty(): void
+    {
+        try {
+            Tag::tag(['flagDisabled' => true]);
+        } catch (Error $e) {
+            self::assertSame(
+                'Cannot access private property yii\ui\tests\support\stub\Tag::$flagDisabled',
+                $e->getMessage(),
+                'Failed asserting that exception is thrown when setting not public property via factory.',
+            );
+        }
     }
 
     public function testThrowExceptionWhenInstantiateAbstractClass(): void

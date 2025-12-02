@@ -29,6 +29,13 @@ final class Tag extends BaseElement
     public bool $flag = false;
 
     /**
+     * Internal flag to track if the element is disabled.
+     *
+     * @phpstan-ignore-next-line
+     */
+    private bool|null $flagDisabled = null;
+
+    /**
      * Returns the tag enumeration for the `<span>` element.
      *
      * @return Inline Tag enumeration instance for `<span>`.
