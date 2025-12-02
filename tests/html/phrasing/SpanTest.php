@@ -180,11 +180,12 @@ final class SpanTest extends TestCase
     {
         self::equalsWithoutLE(
             <<<HTML
-            <strong class="prefix-class">Prefix content</strong>
+            <strong class="prefix-class" id="prefix-id">Prefix content</strong>
             <span></span>
             HTML,
             Span::tag()->prefix('Prefix content')
-                ->prefixAttributes(['class' => 'prefix-class'])
+                ->prefixAttributes(['id' => 'prefix-id'])
+                ->prefixClass('prefix-class')
                 ->prefixTag(Inline::STRONG)
                 ->render(),
             "Failed asserting that element renders correctly with 'prefixTag()' method.",
@@ -219,11 +220,12 @@ final class SpanTest extends TestCase
         self::equalsWithoutLE(
             <<<HTML
             <span></span>
-            <strong class="suffix-class">Suffix content</strong>
+            <strong class="suffix-class" id="suffix-id">Suffix content</strong>
             HTML,
             Span::tag()
                 ->suffix('Suffix content')
-                ->suffixAttributes(['class' => 'suffix-class'])
+                ->suffixAttributes(['id' => 'suffix-id'])
+                ->suffixClass('suffix-class')
                 ->suffixTag(Inline::STRONG)
                 ->render(),
             "Failed asserting that element renders correctly with 'suffixTag()' method.",
