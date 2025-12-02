@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\providers;
 
+use UnitEnum;
 use yii\ui\tests\support\stub\enum\{AlertType, ButtonSize, Priority};
 
 use function array_map;
