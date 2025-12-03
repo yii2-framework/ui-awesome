@@ -141,7 +141,7 @@ final class HasSuffixCollectionTest extends TestCase
 
         self::assertEmpty(
             $instance->getSuffix(),
-            'Should return an empty array when no suffix are set.',
+            'Should return an empty string when no suffix are set.',
         );
 
         $instance = $instance->suffix('Suffix content');
