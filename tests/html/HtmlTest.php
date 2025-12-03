@@ -26,7 +26,7 @@ use yii\ui\tests\support\TestSupport;
  * Ensures proper rendering, immutability, and validation of block, inline, list, root, table and void elements,
  * supporting `UnitEnum` tag names.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate rendering of block, inline, list, root, table and void HTML tags.
  * - Data provider-driven validation for edge cases and expected behaviors.
  * - Exception handling for invalid tag names and element types.
@@ -48,7 +48,7 @@ final class HtmlTest extends TestCase
     public function testRenderBeginWithBlockTag(Block $tag, string $expectedTagName): void
     {
         self::equalsWithoutLE(
-            "<{$expectedTagName}>",
+            "<{$expectedTagName}>\n",
             Html::begin($tag),
             "Html begin '<{$expectedTagName}>' block tag should match expected output.",
         );
@@ -58,7 +58,7 @@ final class HtmlTest extends TestCase
     public function testRenderBeginWithListTag(Lists $tag, string $expectedTagName): void
     {
         self::equalsWithoutLE(
-            "<{$expectedTagName}>",
+            "<{$expectedTagName}>\n",
             Html::begin($tag),
             "Html begin '<{$expectedTagName}>' list tag should match expected output.",
         );
@@ -68,7 +68,7 @@ final class HtmlTest extends TestCase
     public function testRenderBeginWithRootTag(Root $tag, string $expectedTagName): void
     {
         self::equalsWithoutLE(
-            "<{$expectedTagName}>",
+            "<{$expectedTagName}>\n",
             Html::begin($tag),
             "Html begin '<{$expectedTagName}>' root tag should match expected output.",
         );
@@ -78,9 +78,79 @@ final class HtmlTest extends TestCase
     public function testRenderBeginWithTableTag(Table $tag, string $expectedTagName): void
     {
         self::equalsWithoutLE(
-            "<{$expectedTagName}>",
+            "<{$expectedTagName}>\n",
             Html::begin($tag),
             "Html begin '<{$expectedTagName}>' table tag should match expected output.",
+        );
+    }
+
+    public function testRenderElementWithBlockTag(): void
+    {
+        $content = '<span>Test Content</span>';
+        $attributes = ['class' => 'test-class'];
+
+        self::equalsWithoutLE(
+            <<<HTML
+            <div class="test-class">
+            <span>Test Content</span>
+            </div>
+            HTML,
+            Html::element(Block::DIV, $content, $attributes),
+            "Html element '<div>' with content and attributes should match expected output.",
+        );
+
+        self::equalsWithoutLE(
+            <<<HTML
+            <div class="test-class">
+            &lt;span&gt;Test Content&lt;/span&gt;
+            </div>
+            HTML,
+            Html::element(Block::DIV, $content, $attributes, true),
+            "Html element '<div>' with encoded content and attributes should match expected output.",
+        );
+    }
+
+    public function testRenderElementWithBlockTagEmptyContent(): void
+    {
+        $attributes = ['class' => 'empty-content'];
+
+        self::equalsWithoutLE(
+            <<<HTML
+            <div class="empty-content">
+            </div>
+            HTML,
+            Html::element(Block::DIV, '', $attributes),
+            "Html element '<div>' with empty content and attributes should match expected output.",
+        );
+    }
+
+    public function testRenderElementWithInlineTag(): void
+    {
+        $content = '<mark>inline</mark>';
+        $attributes = ['id' => 'inline'];
+
+        self::equalsWithoutLE(
+            <<<HTML
+            <span id="inline"><mark>inline</mark></span>
+            HTML,
+            Html::element(Inline::SPAN, $content, $attributes),
+            "Html element '<span>' with content and attributes should match expected output.",
+        );
+    }
+
+    public function testRenderElementWithVoidTag(): void
+    {
+        $attributes = [
+            'class' => ['void'],
+            'data' => ['role' => 'presentation'],
+        ];
+
+        self::equalsWithoutLE(
+            <<<HTML
+            <img class="void" data-role="presentation">
+            HTML,
+            Html::element(Voids::IMG, '', $attributes),
+            "Html element '<img>' void tag with attributes should match expected output.",
         );
     }
 
@@ -88,7 +158,7 @@ final class HtmlTest extends TestCase
     public function testRenderEndWithBlockTag(Block $tag, string $expectedTagName): void
     {
         self::equalsWithoutLE(
-            "</{$expectedTagName}>",
+            "\n</{$expectedTagName}>",
             Html::end($tag),
             "Html end '</{$expectedTagName}>' block tag should match expected output.",
         );
@@ -98,7 +168,7 @@ final class HtmlTest extends TestCase
     public function testRenderEndWithListTag(Lists $tag, string $expectedTagName): void
     {
         self::equalsWithoutLE(
-            "</{$expectedTagName}>",
+            "\n</{$expectedTagName}>",
             Html::end($tag),
             "Html end '</{$expectedTagName}>' list tag should match expected output.",
         );
@@ -108,7 +178,7 @@ final class HtmlTest extends TestCase
     public function testRenderEndWithRootTag(Root $tag, string $expectedTagName): void
     {
         self::equalsWithoutLE(
-            "</{$expectedTagName}>",
+            "\n</{$expectedTagName}>",
             Html::end($tag),
             "Html end '</{$expectedTagName}>' root tag should match expected output.",
         );
@@ -118,7 +188,7 @@ final class HtmlTest extends TestCase
     public function testRenderEndWithTableTag(Table $tag, string $expectedTagName): void
     {
         self::equalsWithoutLE(
-            "</{$expectedTagName}>",
+            "\n</{$expectedTagName}>",
             Html::end($tag),
             "Html end '</{$expectedTagName}>' table tag should match expected output.",
         );

@@ -10,7 +10,7 @@ use UnitEnum;
 use yii\ui\attributes\HasStyle;
 use yii\ui\helpers\Attributes;
 use yii\ui\mixin\HasAttributes;
-use yii\ui\tests\providers\attributes\StyleProvider;
+use yii\ui\tests\providers\tag\attributes\StyleProvider;
 
 /**
  * Test suite for {@see HasStyle} trait functionality and behavior.
@@ -20,7 +20,7 @@ use yii\ui\tests\providers\attributes\StyleProvider;
  * Ensures correct handling, immutability, and validation of the `style` attribute in widget and tag rendering,
  * supporting `string`, `UnitEnum`, and `null` values for dynamic style assignment.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate rendering of attributes with the `style` attribute.
  * - Data provider-driven validation for edge cases and expected behaviors.
  * - Immutability of the trait's API when setting or overriding the `style` attribute.

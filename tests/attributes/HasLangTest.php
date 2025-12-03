@@ -10,7 +10,7 @@ use UnitEnum;
 use yii\ui\attributes\HasLang;
 use yii\ui\helpers\Attributes;
 use yii\ui\mixin\HasAttributes;
-use yii\ui\tests\providers\attributes\LangProvider;
+use yii\ui\tests\providers\tag\attributes\LangProvider;
 
 /**
  * Test suite for {@see HasLang} trait functionality and behavior.
@@ -20,7 +20,7 @@ use yii\ui\tests\providers\attributes\LangProvider;
  * Ensures correct handling, immutability, and validation of the `lang` attribute in widget and tag rendering,
  * supporting `string`, `UnitEnum`, and `null` values for dynamic language assignment.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate rendering of attributes with the `lang` attribute.
  * - Data provider-driven validation for edge cases and expected behaviors.
  * - Immutability of the trait's API when setting or overriding the `lang` attribute.

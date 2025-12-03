@@ -17,7 +17,7 @@ use yii\ui\tests\providers\EncodeProvider;
  * Ensures correct handling, immutability, and validation of encoding operations, supporting both scalar and mixed
  * types, as well as double encoding scenarios.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate encoding of content and values.
  * - Compatibility with scalar and mixed types.
  * - Data provider-driven validation for edge cases and expected behaviors.

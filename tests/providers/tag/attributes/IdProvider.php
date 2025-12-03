@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace yii\ui\tests\providers\attributes;
+namespace yii\ui\tests\providers\tag\attributes;
 
 /**
  * Data provider for {@see \yii\ui\tests\attributes\HasIdTest} class.

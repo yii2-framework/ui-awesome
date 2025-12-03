@@ -15,26 +15,72 @@ use function str_repeat;
 /**
  * Data provider for {@see \yii\ui\tests\helpers\CSSClassTest} class.
  *
- * Supplies comprehensive test data for validating the handling of CSS class attributes in widget and tag rendering,
- * ensuring standards-compliant assignment override behavior and value propagation according to the HTML specification.
+ * Supplies comprehensive test data for validating CSS class assignment, normalization, duplication handling, override
+ * behavior, and support for PHP enums and mixed types, ensuring standards-compliant output and robust attribute
+ * management in HTML rendering scenarios.
  *
- * The test data covers real-world scenarios for appending, overriding, and removing CSS classes, supporting both
- * explicit `string` values and `null` for attribute removal, to maintain consistent output across different rendering
+ * The test data covers real-world scenarios for class attribute manipulation, including assignment, appending,
+ * override, duplicate filtering, and edge cases such as empty values, Unicode, and invalid tokens. It supports both
+ * string and `UnitEnum` values, maintaining consistent and type-safe representation across different rendering
  * configurations.
  *
  * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
  * Key features:
- * - Ensures correct propagation, appending, and override of CSS class attributes in HTML element rendering.
+ * - Ensures correct normalization and assignment of CSS class attributes for string and enum values.
  * - Named test data sets for precise failure identification.
- * - Validation of empty `string`, `null`, and standard string values for CSS class attributes.
+ * - Support for mixed arrays, Unicode, and invalid token filtering.
+ * - Validation of duplicate handling, override logic, and edge cases in class attribute processing.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
 final class CSSClassProvider
 {
+    /**
+     * Provides test cases for CSS class rendering scenarios.
+     *
+     * Supplies test data for validating the normalization and rendering of CSS class values, including string and
+     * `UnitEnum` inputs, ensuring correct conversion and output formatting for HTML attributes.
+     *
+     * Each test case includes the input value, expected normalized output, allowed whitelist, formatted output, and an
+     * assertion message for clear failure identification.
+     *
+     * @return array Test data for CSS class rendering scenarios.
+     *
+     * @phpstan-return array<
+     *   string,
+     *   array{0: string|UnitEnum, 1: string, 2: list<string|UnitEnum>, 3: string, 4: string},
+     * >
+     */
+    public static function renderValues(): array
+    {
+        return [
+            'single enum' => [
+                ButtonSize::LARGE,
+                'btn-%s',
+                ['sm', 'lg'],
+                'btn-lg',
+                'Should match Enum value against string whitelist and render.',
+            ],
+            'valid enum' => [
+                AlertType::WARNING,
+                'alert-%s',
+                [AlertType::INFO, AlertType::WARNING],
+                'alert-warning',
+                'Should render formatted class string for valid Enum input.',
+            ],
+            'valid string' => [
+                'info',
+                'alert-%s',
+                ['info', 'warning', 'danger'],
+                'alert-info',
+                'Should render formatted class string for valid string input.',
+            ],
+        ];
+    }
+
     /**
      * Provides test cases for CSS class attribute scenarios.
      *
@@ -52,7 +98,7 @@ final class CSSClassProvider
      *     0: mixed[],
      *     1: list<array{classes: mixed[]|string|UnitEnum|null, override?: bool}>,
      *     2: mixed[],
-     *     3: string
+     *     3: string,
      *   }
      * >
      */

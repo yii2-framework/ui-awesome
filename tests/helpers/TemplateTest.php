@@ -16,7 +16,7 @@ use yii\ui\tests\support\TestSupport;
  * Ensures correct handling, normalization, and validation of template operations, supporting both scalar and array
  * types, as well as empty and missing token values for predictable output.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate rendering of template strings with proper token substitution.
  * - Compatibility with empty and missing token values.
  * - Data-driven validation for edge cases and expected behaviors.

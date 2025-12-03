@@ -10,7 +10,7 @@ use UnitEnum;
 use yii\ui\attributes\HasTitle;
 use yii\ui\helpers\Attributes;
 use yii\ui\mixin\HasAttributes;
-use yii\ui\tests\providers\attributes\TitleProvider;
+use yii\ui\tests\providers\tag\attributes\TitleProvider;
 
 /**
  * Test suite for {@see HasTitle} trait functionality and behavior.
@@ -20,7 +20,7 @@ use yii\ui\tests\providers\attributes\TitleProvider;
  * Ensures correct handling, immutability, and validation of the `title` attribute in widget and tag rendering,
  * supporting `string`, `UnitEnum`, and `null` values for dynamic title assignment.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate rendering of attributes with the `title` attribute.
  * - Data provider-driven validation for edge cases and expected behaviors.
  * - Immutability of the trait's API when setting or overriding the `title` attribute.

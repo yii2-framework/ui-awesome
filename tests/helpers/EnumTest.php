@@ -20,7 +20,7 @@ use yii\ui\tests\providers\EnumProvider;
  * Ensures correct handling, immutability, and validation of enum operations, supporting both scalar and array types,
  * as well as exception handling for invalid value types.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate normalization of arrays containing enums and scalars.
  * - Compatibility with PHP enums and scalar types.
  * - Exception handling for invalid value types.

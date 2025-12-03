@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace yii\ui\tests\providers\attributes;
+namespace yii\ui\tests\providers\tag\attributes;
 
+use Closure;
 use yii\ui\tests\support\stub\enum\ButtonSize;
 
 /**
@@ -41,7 +42,7 @@ final class DataProvider
      *
      * @return array Test data for rendered `data-*` attribute scenarios.
      *
-     * @phpstan-return array<string, array{array<string, string|\Closure(): mixed>, mixed[], string, string}>
+     * @phpstan-return array<string, array{array<string, string|Closure(): mixed>, mixed[], string, string}>
      */
     public static function renderAttribute(): array
     {
