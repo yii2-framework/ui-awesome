@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\mixin;
 
+use BackedEnum;
 use Stringable;
 use yii\ui\helpers\CSSClass;
 use yii\ui\tag\Inline;
@@ -45,7 +46,7 @@ trait HasSuffixCollection
     /**
      * Tag type for the suffix segment.
      */
-    protected false|Inline $suffixTag = false;
+    protected false|BackedEnum $suffixTag = false;
 
     /**
      * Sets the suffix content string for the element.
@@ -121,7 +122,7 @@ trait HasSuffixCollection
      *
      * Creates a new instance with the specified tag type for the suffix.
      *
-     * @param false|Inline $value Tag type to set for the suffix segment.
+     * @param false|BackedEnum $value Tag type to set for the suffix segment.
      *
      * @return static New instance with the updated suffixTag property.
      *
@@ -134,7 +135,7 @@ trait HasSuffixCollection
      * $element->suffixTag(false);
      * ```
      */
-    public function suffixTag(false|Inline $value = false): static
+    public function suffixTag(false|BackedEnum $value = false): static
     {
         $new = clone $this;
         $new->suffixTag = $value;

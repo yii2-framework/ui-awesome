@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\mixin;
 
+use BackedEnum;
 use Stringable;
 use yii\ui\helpers\CSSClass;
 use yii\ui\tag\Inline;
@@ -45,7 +46,7 @@ trait HasPrefixCollection
     /**
      * Tag type for the prefix segment.
      */
-    protected false|Inline $prefixTag = false;
+    protected false|BackedEnum $prefixTag = false;
 
     /**
      * Sets the prefix content string for the element.
@@ -121,7 +122,7 @@ trait HasPrefixCollection
      *
      * Creates a new instance with the specified tag type for the prefix.
      *
-     * @param false|Inline $value Tag type to set for the prefix segment.
+     * @param false|BackedEnum $value Tag type to set for the prefix segment.
      *
      * @return static New instance with the updated prefixTag property.
      *
@@ -134,7 +135,7 @@ trait HasPrefixCollection
      * $element->prefixTag(false);
      * ```
      */
-    public function prefixTag(false|Inline $value = false): static
+    public function prefixTag(false|BackedEnum $value = false): static
     {
         $new = clone $this;
         $new->prefixTag = $value;

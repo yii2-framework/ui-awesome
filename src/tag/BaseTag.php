@@ -192,20 +192,18 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
     {
         $this->beginExecuted = true;
 
-        $stack = self::getContextStack();
-
-        $stack[] = $this;
-
-        self::$stack?->offsetSet(self::getContextId(), $stack);
-
         try {
-            return $this->runBegin();
-        } catch (LogicException $e) {
-            array_pop($stack);
-            self::$stack?->offsetSet(self::getContextId(), $stack);
+            $renderBegin = $this->runBegin();
+            $stack = self::getContextStack();
 
+            $stack[] = $this;
+
+            self::$stack?->offsetSet(self::getContextId(), $stack);
+        } catch (LogicException $e) {
             throw $e;
         }
+
+        return $renderBegin;
     }
 
     /**
