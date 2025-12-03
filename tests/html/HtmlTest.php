@@ -84,7 +84,7 @@ final class HtmlTest extends TestCase
         );
     }
 
-    public function testRenderElementTag(): void
+    public function testRenderElementWithBlockTag(): void
     {
         $content = '<span>Test Content</span>';
         $attributes = ['class' => 'test-class'];
@@ -110,7 +110,7 @@ final class HtmlTest extends TestCase
         );
     }
 
-    public function testRenderElementTagWithEmptyContent(): void
+    public function testRenderElementWithBlockTagEmptyContent(): void
     {
         $attributes = ['class' => 'empty-content'];
 
@@ -121,6 +121,36 @@ final class HtmlTest extends TestCase
             HTML,
             Html::element(Block::DIV, '', $attributes),
             "Html element '<div>' with empty content and attributes should match expected output.",
+        );
+    }
+
+    public function testRenderElementWithInlineTag(): void
+    {
+        $content = '<mark>inline</mark>';
+        $attributes = ['id' => 'inline'];
+
+        self::equalsWithoutLE(
+            <<<HTML
+            <span id="inline"><mark>inline</mark></span>
+            HTML,
+            Html::element(Inline::SPAN, $content, $attributes),
+            "Html element '<span>' with content and attributes should match expected output.",
+        );
+    }
+
+    public function testRenderElementWithVoidTag(): void
+    {
+        $attributes = [
+            'class' => ['void'],
+            'data' => ['role' => 'presentation'],
+        ];
+
+        self::equalsWithoutLE(
+            <<<HTML
+            <img class="void" data-role="presentation">
+            HTML,
+            Html::element(Voids::IMG, '', $attributes),
+            "Html element '<img>' void tag with attributes should match expected output.",
         );
     }
 

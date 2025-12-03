@@ -11,8 +11,11 @@ use stdClass;
 use Stringable;
 use WeakMap;
 use yii\ui\event\{HasAfterRun, HasBeforeRun};
+use yii\ui\exception\Message;
 use yii\ui\factory\SimpleFactory;
 use yii\ui\mixin\HasAttributes;
+
+use function array_pop;
 
 /**
  * Base class for advanced HTML tag rendering and management.
@@ -195,7 +198,14 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
 
         self::$stack?->offsetSet(self::getContextId(), $stack);
 
-        return $this->runBegin();
+        try {
+            return $this->runBegin();
+        } catch (LogicException $e) {
+            array_pop($stack);
+            self::$stack?->offsetSet(self::getContextId(), $stack);
+
+            throw $e;
+        }
     }
 
     /**
@@ -222,7 +232,7 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
 
         if ($stack === []) {
             throw new LogicException(
-                sprintf('Unexpected %s::end() call. A matching begin() is not found.', static::class),
+                Message::UNEXPECTED_END_CALL_NO_BEGIN->getMessage(static::class),
             );
         }
 
@@ -238,7 +248,7 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
 
         if ($tagClass !== static::class) {
             throw new RuntimeException(
-                sprintf('Expecting end() of %s found %s.', $tagClass, static::class),
+                Message::TAG_CLASS_MISMATCH_ON_END->getMessage($tagClass, $tagClass, static::class),
             );
         }
 
@@ -345,16 +355,22 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
     }
 
     /**
-     * Generates the opening HTML tag logic.
+     * Handles the logic for the `begin()` method.
      *
-     * Subclasses can override this method to return the actual HTML opening tag (for example, `<div ...>`). By default,
-     * it returns an empty string.
+     * By default, this method throws a `LogicException`, indicating that the tag does not support block rendering.
+     *
+     * Subclasses that support `begin()`/`end()` rendering should override this method to provide the appropriate
+     * behavior.
+     *
+     * @throws LogicException if the tag does not support `begin()`/`end()` rendering.
      *
      * @return string Opening HTML tag.
      */
     protected function runBegin(): string
     {
-        return '';
+        throw new LogicException(
+            Message::TAG_DOES_NOT_SUPPORT_BEGIN->getMessage(static::class),
+        );
     }
 
     /**

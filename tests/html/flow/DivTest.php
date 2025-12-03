@@ -7,11 +7,17 @@ namespace yii\ui\tests\html\flow;
 use LogicException;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
+use yii\ui\element\BaseBlockElement;
+use yii\ui\exception\Message;
 use yii\ui\factory\SimpleFactory;
 use yii\ui\html\flow\Div;
 use yii\ui\html\phrasing\Span;
+use yii\ui\tag\Block;
 use yii\ui\tests\support\stub\{DefaultProvider, DefaultThemeProvider};
 use yii\ui\tests\support\TestSupport;
+
+use function get_class;
 
 /**
  * Test suite for {@see Div} element functionality and behavior.
@@ -252,6 +258,18 @@ final class DivTest extends TestCase
         );
     }
 
+    public function testRenderWithToString(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <div>
+            </div>
+            HTML,
+            (string) Div::tag(),
+            "Failed asserting that '__toString()' method renders correctly.",
+        );
+    }
+
     public function testRenderWithUserOverridesGlobalDefaults(): void
     {
         SimpleFactory::setDefaults(Div::class, ['class' => 'from-global', 'id' => 'id-global']);
@@ -268,11 +286,56 @@ final class DivTest extends TestCase
         SimpleFactory::setDefaults(Div::class, []);
     }
 
+    public function testReturnEmptyArrayWhenApplyThemeAndUndefinedTheme(): void
+    {
+        $tag = Div::tag();
+
+        self::assertEmpty(
+            $tag->apply($tag, ''),
+            'Failed asserting that applying an undefined theme returns an empty array.',
+        );
+    }
+
+    public function testReturnEmptyArrayWhenGetDefaultsAndNoDefaultsSet(): void
+    {
+        $tag = Div::tag();
+
+        self::assertEmpty(
+            $tag->getDefaults($tag),
+            'Failed asserting that getting defaults returns an empty array when no defaults are set.',
+        );
+    }
+
+    public function testThrowExceptionWhenEndWithMismatchedTag(): void
+    {
+        $tag = new class extends BaseBlockElement {
+            /**
+             * Returns the tag enumeration for the `<article>` element.
+             *
+             * @return Block Tag enumeration instance for `<article>`.
+             */
+            protected function getTag(): Block
+            {
+                return Block::ARTICLE;
+            }
+        };
+
+        $tagClass = get_class($tag);
+        Div::tag()->begin();
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage(
+            Message::TAG_CLASS_MISMATCH_ON_END->getMessage(Div::class, Div::class, $tagClass),
+        );
+
+        $tag::end();
+    }
+
     public function testThrowExceptionWhenEndWithoutBegin(): void
     {
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage(
-            'Unexpected yii\ui\html\flow\Div::end() call. A matching begin() is not found.',
+            Message::UNEXPECTED_END_CALL_NO_BEGIN->getMessage(Div::class),
         );
 
         Div::end();

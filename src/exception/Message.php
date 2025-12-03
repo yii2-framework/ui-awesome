@@ -34,31 +34,52 @@ enum Message: string
     /**
      * Error when attempting to instantiate an abstract class.
      *
-     * Format: "Cannot instantiate abstract class %s via tag()."
+     * Format: "Cannot instantiate abstract class '%s' via 'tag()' method."
      */
     case CANNOT_INSTANTIATE_ABSTRACT_CLASS = "Cannot instantiate abstract class '%s' via 'tag()' method.";
 
     /**
-     * Error when a data attribute key is not a string.
+     * Error when a data attribute key is not a `string`.
      *
      * Format: "Data attribute key must be of type 'string', '%s' given."
      */
     case DATA_ATTRIBUTE_KEY_MUST_BE_STRING = "Data attribute key must be of type 'string', '%s' given.";
 
     /**
-     * Error when a data attribute key is an empty string.
+     * Error when a data attribute key is an empty `string`.
      *
-     * Format: "Data attribute key must not be an empty string."
+     * Format: "Data attribute key must not be an empty 'string'."
      */
-    case DATA_ATTRIBUTE_KEY_NOT_EMPTY = 'Data attribute key must not be an empty string.';
+    case DATA_ATTRIBUTE_KEY_NOT_EMPTY = "Data attribute key must not be an empty 'string'.";
 
     /**
-     * Error when a data attribute value is not a string or Closure.
+     * Error when a data attribute value is not a `string` or `Closure`.
      *
      * Format: "Data attribute value must be of type 'string' or 'Closure', '%s' given."
      */
-    case DATA_ATTRIBUTE_VALUE_MUST_BE_STRING_OR_CLOSURE = "Data attribute value must be of type 'string' or 'Closure', " .
-    "'%s' given.";
+    case DATA_ATTRIBUTE_VALUE_MUST_BE_STRING_OR_CLOSURE = "Data attribute value must be of type 'string' or 'Closure'" .
+    ", '%s' given.";
+
+    /**
+     * Error when there is a class mismatch on `end()` call.
+     *
+     * Format: "Mismatched '%s::end()' call, expected '%s', got '%s'."
+     */
+    case TAG_CLASS_MISMATCH_ON_END = "Mismatched '%s::end()' call, expected '%s', got '%s'.";
+
+    /**
+     * Error when a tag does not support `begin()` method.
+     *
+     * Format: "Tag '%s' does not support 'begin()' method."
+     */
+    case TAG_DOES_NOT_SUPPORT_BEGIN = "Tag '%s' does not support 'begin()' method.";
+
+    /**
+     * Error when an unexpected `end()` call is made without a matching `begin()`.
+     *
+     * Format: "Unexpected '%s::end()' call, a matching 'begin()' is not found."
+     */
+    case UNEXPECTED_END_CALL_NO_BEGIN = "Unexpected '%s::end()' call, a matching 'begin()' is not found.";
 
     /**
      * Error when a value can't be empty.

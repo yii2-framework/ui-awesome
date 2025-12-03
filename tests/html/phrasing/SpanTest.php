@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\html\phrasing;
 
+use LogicException;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
+use yii\ui\exception\Message;
 use yii\ui\factory\SimpleFactory;
 use yii\ui\html\phrasing\Span;
 use yii\ui\tag\Inline;
@@ -273,6 +275,17 @@ final class SpanTest extends TestCase
         );
     }
 
+    public function testRenderWithToString(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <span></span>
+            HTML,
+            (string) Span::tag(),
+            "Failed asserting that '__toString()' method renders correctly.",
+        );
+    }
+
     public function testRenderWithUserOverridesGlobalDefaults(): void
     {
         $previous = SimpleFactory::getDefaults(Span::class);
@@ -290,5 +303,45 @@ final class SpanTest extends TestCase
         } finally {
             SimpleFactory::setDefaults(Span::class, $previous);
         }
+    }
+
+    public function testReturnEmptyArrayWhenApplyThemeAndUndefinedTheme(): void
+    {
+        $tag = Span::tag();
+
+        self::assertEmpty(
+            $tag->apply($tag, ''),
+            'Failed asserting that applying an undefined theme returns an empty array.',
+        );
+    }
+
+    public function testReturnEmptyArrayWhenGetDefaultsAndNoDefaultsSet(): void
+    {
+        $tag = Span::tag();
+
+        self::assertEmpty(
+            $tag->getDefaults($tag),
+            'Failed asserting that getting defaults returns an empty array when no defaults are set.',
+        );
+    }
+
+    public function testThrowExceptionWhenBeginCalled(): void
+    {
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage(
+            Message::TAG_DOES_NOT_SUPPORT_BEGIN->getMessage(Span::class),
+        );
+
+        Span::tag()->begin();
+    }
+
+    public function testThrowExceptionWhenEndCalled(): void
+    {
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage(
+            Message::UNEXPECTED_END_CALL_NO_BEGIN->getMessage(Span::class),
+        );
+
+        Span::end();
     }
 }
