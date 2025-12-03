@@ -16,17 +16,19 @@ use yii\ui\tests\support\stub\enum\AlertType;
 /**
  * Test suite for {@see CSSClass} helper functionality and behavior.
  *
- * Validates the management of the global HTML `class` attribute according to the HTML Living Standard specification.
+ * Validates the management and rendering of the global HTML `class` attribute according to the HTML Living Standard
+ * specification.
  *
- * Ensures correct handling, immutability, and validation of the `class` attribute in widget and tag rendering,
- * supporting `string`, `UnitEnum`, and `null` for dynamic CSS class assignment.
+ * Ensures correct handling, immutability, and validation of CSS class attributes in widget and tag rendering,
+ * supporting `string`, `UnitEnum`, and `null` values for dynamic class assignment and manipulation.
  *
- * Test coverage.
- * - Accurate retrieval and assignment of `class` attributes.
+ * Test coverage:
+ * - Accurate addition and rendering of CSS class attributes.
  * - Data provider-driven validation for edge cases and expected behaviors.
- * - Exception handling for invalid values.
- * - Immutability of the helper's API when setting or overriding `class` attributes.
- * - Proper assignment and overriding of `class` values.
+ * - Exception handling for invalid class values and enums.
+ * - Immutability of the helper's API when setting or overriding class attributes.
+ * - Proper assignment, overriding, and validation of class values.
+ * - Rendering with base classes and allowed class lists.
  *
  * {@see CSSClassProvider} for test case data providers.
  *
@@ -62,6 +64,24 @@ final class CSSClassTest extends TestCase
         self::assertSame(
             $expected,
             $attributes,
+            $message,
+        );
+    }
+
+    /**
+     * @phpstan-param list<string|UnitEnum> $allowed
+     */
+    #[DataProviderExternal(CSSClassProvider::class, 'renderValues')]
+    public function testRenderClassValue(
+        string|UnitEnum $class,
+        string $baseClass,
+        array $allowed,
+        string $expected,
+        string $message,
+    ): void {
+        self::assertSame(
+            $expected,
+            CSSClass::render($class, $baseClass, $allowed),
             $message,
         );
     }

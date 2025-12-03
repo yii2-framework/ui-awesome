@@ -164,6 +164,25 @@ final class SpanTest extends TestCase
         );
     }
 
+    public function testRenderWithPrefixAndSuffix(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <strong>Prefix</strong>
+            <span>Content</span>
+            <em>Suffix</em>
+            HTML,
+            Span::tag()
+                ->content('Content')
+                ->prefix('Prefix')
+                ->prefixTag(Inline::STRONG)
+                ->suffix('Suffix')
+                ->suffixTag(Inline::EM)
+                ->render(),
+            'Failed asserting that element renders correctly with both prefix and suffix.',
+        );
+    }
+
     public function testRenderWithPrefixSetWithoutPrefixTag(): void
     {
         self::equalsWithoutLE(
