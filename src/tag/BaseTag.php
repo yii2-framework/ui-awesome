@@ -188,7 +188,7 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
      * <?= Div::end() ?>
      * ```
      */
-    public function begin(): string
+    final public function begin(): string
     {
         $this->beginExecuted = true;
 
@@ -359,6 +359,8 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
      * @throws LogicException if the tag does not support `begin()`/`end()` rendering.
      *
      * @return string Opening HTML tag.
+     *
+     * @infection-ignore-all
      */
     protected function runBegin(): string
     {

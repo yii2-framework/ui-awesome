@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\tag;
 
-use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\{Group, RequiresPhp};
 use PHPUnit\Framework\TestCase;
 use yii\ui\html\Html;
-use yii\ui\tag\{BaseTag, Inline};
+use yii\ui\mixin\{HasAttributes, HasContent};
+use yii\ui\tag\{BaseTag, Block, Inline};
+use yii\ui\tests\support\TestSupport;
 
 /**
  * Test suite for {@see BaseTag} element functionality and behavior.
@@ -25,6 +27,8 @@ use yii\ui\tag\{BaseTag, Inline};
 #[Group('tag')]
 final class BaseTagTest extends TestCase
 {
+    use TestSupport;
+
     public function testBeforeRunReturnFalse(): void
     {
         $tag = new class extends BaseTag {
@@ -47,6 +51,45 @@ final class BaseTagTest extends TestCase
         self::assertEmpty(
             $tag->render(),
             "Expected empty output when 'beforeRun()' method returns 'false'.",
+        );
+    }
+
+    #[RequiresPhp('8.4')]
+    public function testRenderBegin(): void
+    {
+        $tag = new class extends BaseTag {
+            use HasAttributes;
+            use HasContent;
+
+            protected function getTag(): Block
+            {
+                return Block::DIV;
+            }
+
+            protected function run(): string
+            {
+                if ($this->isBeginExecuted() === false) {
+                    return Html::element($this->getTag(), $this->getContent(), $this->attributes);
+                }
+
+                return Html::end($this->getTag());
+            }
+
+            #[\Override]
+            protected function runBegin(): string
+            {
+                return Html::begin($this->getTag(), $this->attributes);
+            }
+        };
+
+        self::equalsWithoutLE(
+            <<<HTML
+            <div>
+            Content
+            </div>
+            HTML,
+            $tag->begin() . 'Content' . $tag::end(),
+            'Expected correct rendering of begin and end tags.',
         );
     }
 }
