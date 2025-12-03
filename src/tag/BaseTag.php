@@ -242,7 +242,7 @@ abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterf
 
         if ($tagClass !== static::class) {
             throw new RuntimeException(
-                Message::TAG_CLASS_MISMATCH_ON_END->getMessage($tagClass, $tagClass, static::class),
+                Message::TAG_CLASS_MISMATCH_ON_END->getMessage($tagClass, static::class),
             );
         }
 

@@ -63,9 +63,9 @@ enum Message: string
     /**
      * Error when there is a class mismatch on `end()` call.
      *
-     * Format: "Mismatched '%s::end()' call, expected '%s', got '%s'."
+     * Format: "Mismatched '%s::end()' call, got '%s'."
      */
-    case TAG_CLASS_MISMATCH_ON_END = "Mismatched '%s::end()' call, expected '%s', got '%s'.";
+    case TAG_CLASS_MISMATCH_ON_END = "Mismatched '%s::end()' call, got '%s'.";
 
     /**
      * Error when a tag does not support `begin()` method.

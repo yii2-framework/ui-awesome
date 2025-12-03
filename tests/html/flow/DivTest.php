@@ -325,7 +325,7 @@ final class DivTest extends TestCase
 
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage(
-            Message::TAG_CLASS_MISMATCH_ON_END->getMessage(Div::class, Div::class, $tagClass),
+            Message::TAG_CLASS_MISMATCH_ON_END->getMessage(Div::class, $tagClass),
         );
 
         $tag::end();
