@@ -27,7 +27,7 @@ final class BaseTagTest extends TestCase
 {
     public function testBeforeRunReturnFalse(): void
     {
-        $tag = new class() extends BaseTag {
+        $tag = new class extends BaseTag {
             protected function getTag(): Inline
             {
                 return Inline::SPAN;
