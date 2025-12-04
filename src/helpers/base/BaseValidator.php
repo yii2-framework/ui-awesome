@@ -34,15 +34,15 @@ abstract class BaseValidator
      * type and range checks for numeric values.
      *
      * @param int|string $value Value to validate as integer-like.
-     * @param int $min Minimum allowed value (inclusive).
+     * @param int|null $min Minimum allowed value (inclusive). If `null`, minimum is equal to zero.
      * @param int|null $max Optional maximum allowed value (inclusive). If `null`, no upper bound is enforced.
      *
      * @return bool Returns `true` if the value is integer-like and within bounds, `false` otherwise.
      */
-    public static function intLike(int|string $value, int $min, int|null $max = null): bool
+    public static function intLike(int|string $value, int|null $min = null, int|null $max = null): bool
     {
         if (is_int($value)) {
-            return $value >= $min && ($max === null || $value <= $max);
+            return $value >= ($min ?? 0) && ($max === null || $value <= $max);
         }
 
         if ($value[0] === '-' || $value[0] === '+' || ctype_digit($value) === false) {

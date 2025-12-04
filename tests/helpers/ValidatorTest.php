@@ -32,7 +32,7 @@ use yii\ui\tests\providers\helpers\ValidatorProvider;
 final class ValidatorTest extends TestCase
 {
     #[DataProviderExternal(ValidatorProvider::class, 'intLike')]
-    public function testIntegerLike(int|string $value, int $min, int|null $max, bool $expected, string $message): void
+    public function testIntegerLike(int|string $value, int|null $min, int|null $max, bool $expected, string $message): void
     {
         self::assertSame(
             $expected,
