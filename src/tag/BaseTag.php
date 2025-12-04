@@ -13,7 +13,6 @@ use WeakMap;
 use yii\ui\event\{HasAfterRun, HasBeforeRun};
 use yii\ui\exception\Message;
 use yii\ui\factory\SimpleFactory;
-use yii\ui\mixin\HasAttributes;
 
 use function array_pop;
 
@@ -40,7 +39,6 @@ use function array_pop;
 abstract class BaseTag implements DefaultsProviderInterface, ThemeProviderInterface, Stringable
 {
     use HasAfterRun;
-    use HasAttributes;
     use HasBeforeRun;
 
     /**
