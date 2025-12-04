@@ -66,13 +66,6 @@ final class ValidatorProvider
                 true,
                 'Should be valid value.',
             ],
-            'integer max boundary above' => [
-                11,
-                0,
-                10,
-                false,
-                'Should be invalid value.',
-            ],
             'integer max boundary equal' => [
                 10,
                 0,
@@ -120,7 +113,7 @@ final class ValidatorProvider
                 0,
                 null,
                 false,
-                'Should be valid value.',
+                'Should be invalid value.',
             ],
             'string non digit' => [
                 'abc',

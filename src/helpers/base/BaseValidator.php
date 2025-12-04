@@ -49,7 +49,7 @@ abstract class BaseValidator
             return true;
         }
 
-        if ($value[0] === '-' || $value === '+') {
+        if ($value[0] === '-' || $value[0] === '+') {
             return false;
         }
 
