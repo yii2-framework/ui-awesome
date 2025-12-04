@@ -49,16 +49,10 @@ abstract class BaseValidator
             return true;
         }
 
-        if ($value[0] === '-' || $value[0] === '+') {
+        if ($value[0] === '-' || $value[0] === '+' || ctype_digit($value) === false) {
             return false;
         }
 
-        if (ctype_digit($value) === false) {
-            return false;
-        }
-
-        $int = (int) $value;
-
-        return $int >= $min && ($max === null || $int <= $max);
+        return $value >= $min && ($max === null || $value <= $max);
     }
 }
