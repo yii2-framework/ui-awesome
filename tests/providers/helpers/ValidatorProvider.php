@@ -158,7 +158,7 @@ final class ValidatorProvider
                 'Should be valid value.',
             ],
             'string min equal null' => [
-                '0',
+                '5',
                 null,
                 null,
                 true,
@@ -226,6 +226,13 @@ final class ValidatorProvider
                 null,
                 false,
                 'Should be invalid value.',
+            ],
+            'string zero min equal null' => [
+                '0',
+                null,
+                null,
+                true,
+                'Should be valid value.',
             ],
         ];
     }
