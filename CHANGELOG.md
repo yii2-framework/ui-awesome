@@ -85,4 +85,4 @@
 - Enh #81: Introduce `Div` and `Span` elements with prefix and suffix management and related tests (@terabytesoftw)
 - Bug #82: Move `HasAttributes` trait to `BaseBlockElement` for enhanced attribute management (@terabytesoftw)
 - Enh #83: Introduce `Validator` helper class with tests (@terabytesoftw)
-- Bug #84: Update `intLike()` method to accept nullable `min` and `max` parameters with corresponding tests (@terabytesoftw)
+- Bug #84: Update `intLike()` method to accept nullable `min` and `max` parameters (`null` defaults to `0`) with corresponding tests (@terabytesoftw)
