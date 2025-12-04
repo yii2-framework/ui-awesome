@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace yii\ui\helpers\base;
 
-use function is_int;
 use function ctype_digit;
+use function is_int;
 
 /**
  * Base class for type-safe validation of HTML helper values.
