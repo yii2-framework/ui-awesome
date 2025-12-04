@@ -45,10 +45,6 @@ abstract class BaseValidator
             return $value >= $min && ($max === null || $value <= $max);
         }
 
-        if ($value === (string) $min) {
-            return true;
-        }
-
         if ($value[0] === '-' || $value[0] === '+' || ctype_digit($value) === false) {
             return false;
         }

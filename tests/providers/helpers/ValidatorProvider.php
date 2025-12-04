@@ -73,13 +73,6 @@ final class ValidatorProvider
                 true,
                 'Should be valid value.',
             ],
-            'integer negative valid for tabindex' => [
-                -1,
-                -1,
-                null,
-                true,
-                'Should be valid value.',
-            ],
             'integer valid above min' => [
                 5,
                 0,
@@ -146,13 +139,6 @@ final class ValidatorProvider
             'string leading zero equal min' => [
                 '05',
                 5,
-                null,
-                true,
-                'Should be valid value.',
-            ],
-            'string negative allowed' => [
-                '-1',
-                -1,
                 null,
                 true,
                 'Should be valid value.',
