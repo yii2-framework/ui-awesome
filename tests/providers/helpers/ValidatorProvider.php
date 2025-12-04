@@ -40,7 +40,7 @@ final class ValidatorProvider
      *
      * @return array Test data for integer-like value validation scenarios.
      *
-     * @phpstan-return array<string, array{int|string, int, int|null, bool, string}>
+     * @phpstan-return array<string, array{int|string, int|null, int|null, bool, string}>
      */
     public static function intLike(): array
     {
@@ -72,6 +72,20 @@ final class ValidatorProvider
                 10,
                 true,
                 'Should be valid value.',
+            ],
+            'integer min equal null' => [
+                0,
+                null,
+                null,
+                true,
+                'Should be valid value.',
+            ],
+            'integer negative min equal null' => [
+                -1,
+                null,
+                null,
+                false,
+                'Should be invalid value.',
             ],
             'integer valid above min' => [
                 5,
@@ -142,6 +156,20 @@ final class ValidatorProvider
                 null,
                 true,
                 'Should be valid value.',
+            ],
+            'string min equal null' => [
+                '0',
+                null,
+                null,
+                true,
+                'Should be valid value.',
+            ],
+            'string negative min equal null' => [
+                '-1',
+                null,
+                null,
+                false,
+                'Should be invalid value.',
             ],
             'string negative not allowed when min >= 0' => [
                 '-1',
