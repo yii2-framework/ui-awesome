@@ -84,3 +84,4 @@
 - Bug #80: Update trait documentation to clarify usage in tag rendering and improve consistency across multiple files (@terabytesoftw)
 - Enh #81: Introduce `Div` and `Span` elements with prefix and suffix management and related tests (@terabytesoftw)
 - Bug #82: Move `HasAttributes` trait to `BaseBlockElement` for enhanced attribute management (@terabytesoftw)
+- Enh #83: Introduce `Validator` helper class with tests (@terabytesoftw)
