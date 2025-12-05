@@ -21,7 +21,7 @@ use yii\ui\tests\support\stub\enum\ButtonSize;
  * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
- * Key features:
+ * Key features.
  * - Ensures correct propagation, assignment, and override of `data-*` attributes in HTML element rendering.
  * - Named test data sets for precise failure identification.
  * - Validation of empty `string` values, `null`, `Closure` instances and `UnitEnum` instances for `data-*` attributes.

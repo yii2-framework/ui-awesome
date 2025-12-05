@@ -21,7 +21,7 @@ use yii\ui\tests\support\stub\enum\AlertType;
  * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
- * Key features:
+ * Key features.
  * - Ensures correct propagation, assignment, appending, override, and removal of the `class` attribute in HTML element
  *   rendering.
  * - Named test data sets for precise failure identification.

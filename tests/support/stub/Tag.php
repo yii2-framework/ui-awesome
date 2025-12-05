@@ -13,7 +13,7 @@ use yii\ui\tag\Inline;
  * This class serves as a test double for rendering and manipulating `<span>` tags, supporting scenarios involving
  * attribute handling, content rendering, and element lifecycle management.
  *
- * Key features:
+ * Key features.
  * - Delegates content and attribute rendering to the base element logic.
  * - Implements a flag property to track render state.
  * - Supplies a fixed tag type (`Inline::SPAN`) for consistent test behavior.

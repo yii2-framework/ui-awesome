@@ -19,7 +19,7 @@ use yii\ui\tests\support\stub\enum\{Status, Theme};
  * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
- * Key features:
+ * Key features.
  * - Ensures correct normalization of `BackedEnum` instances and `UnitEnum` instances to their scalar representation.
  * - Named test data sets for precise failure identification.
  * - Validation of mixed arrays containing enums and scalar values.

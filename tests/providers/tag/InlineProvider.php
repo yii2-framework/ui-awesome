@@ -20,7 +20,7 @@ use function sprintf;
  * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
- * Key features:
+ * Key features.
  * - Ensures correct normalization and propagation of inline-level HTML tags.
  * - Named test data sets for precise failure identification.
  * - Validation of all enum cases for inline tag rendering.

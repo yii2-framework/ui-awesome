@@ -18,7 +18,7 @@ use yii\ui\tests\support\stub\enum\{Priority, Status, Theme};
  * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
- * Key features:
+ * Key features.
  * - Ensures correct detection of associative and list arrays.
  * - Named test data sets for precise failure identification.
  * - Validation of empty arrays, mixed types, and `UnitEnum` instances values in array processing.

@@ -27,7 +27,7 @@ use function str_repeat;
  * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
- * Key features:
+ * Key features.
  * - Ensures correct normalization and assignment of CSS class attributes for string and enum values.
  * - Named test data sets for precise failure identification.
  * - Support for mixed arrays, Unicode, and invalid token filtering.

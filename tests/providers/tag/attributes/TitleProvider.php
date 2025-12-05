@@ -21,7 +21,7 @@ use yii\ui\tests\support\stub\enum\Status;
  * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
- * Key features:
+ * Key features.
  * - Ensures correct propagation, assignment, and override of the `title` attribute in HTML element rendering.
  * - Named test data sets for precise failure identification.
  * - Validation of empty `string` values, `UnitEnum` instances and `null` values for the `title` attribute.
