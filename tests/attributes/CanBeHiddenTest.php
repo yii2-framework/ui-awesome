@@ -60,8 +60,8 @@ final class CanBeHiddenTest extends TestCase
     public function testReturnEmptyWhenHiddenAttributeNotSet(): void
     {
         $instance =  new class {
-            use HasAttributes;
             use CanBeHidden;
+            use HasAttributes;
         };
 
         self::assertEmpty(
@@ -73,8 +73,8 @@ final class CanBeHiddenTest extends TestCase
     public function testReturnNewInstanceWhenSettingHiddenAttribute(): void
     {
         $instance = new class {
-            use HasAttributes;
             use CanBeHidden;
+            use HasAttributes;
         };
 
         self::assertNotSame(
@@ -95,8 +95,8 @@ final class CanBeHiddenTest extends TestCase
         string $message,
     ): void {
         $instance = new class {
-            use HasAttributes;
             use CanBeHidden;
+            use HasAttributes;
         };
 
         $instance = $instance->attributes($attributes)->hidden($value);
