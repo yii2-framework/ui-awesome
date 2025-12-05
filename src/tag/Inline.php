@@ -12,7 +12,7 @@ namespace yii\ui\tag;
  *
  * Each case corresponds to a valid inline-level HTML tag as defined by the W3C and MDN documentation.
  *
- * Key features:
+ * Key features.
  * - Designed for use in view, tags and components requiring inline-level content structure.
  * - Ensures technical consistency with the HTML specification and modern web standards.
  * - Integration-ready for tag rendering and element generation APIs.

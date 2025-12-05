@@ -10,8 +10,8 @@ use yii\ui\tests\support\stub\enum\Languages;
 /**
  * Data provider for {@see \yii\ui\tests\attributes\HasLangTest} class.
  *
- * Supplies comprehensive test data for validating the handling of the global HTML `lang` attribute in widget and tag
- * rendering, ensuring standards-compliant assignment, override behavior, and value propagation according to the HTML
+ * Supplies comprehensive test data for validating the handling of the global HTML `lang` attribute in tag rendering,
+ * ensuring standards-compliant assignment, override behavior, and value propagation according to the HTML
  * specification.
  *
  * The test data covers real-world scenarios for setting, overriding, and removing the `lang` attribute, supporting both
@@ -21,7 +21,7 @@ use yii\ui\tests\support\stub\enum\Languages;
  * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
- * Key features:
+ * Key features.
  * - Ensures correct propagation, assignment, and override of the `lang` attribute in HTML element rendering.
  * - Named test data sets for precise failure identification.
  * - Validation of `string` (including empty strings), `UnitEnum` instances and `null` values for the `lang` attribute.

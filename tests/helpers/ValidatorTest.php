@@ -17,7 +17,7 @@ use yii\ui\tests\providers\helpers\ValidatorProvider;
  * Ensures correct handling, normalization, and validation of scalar and string values as integers, supporting minimum
  * and optional maximum boundaries for predictable validation output.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate detection of integer-like values within specified bounds.
  * - Compatibility with both `int` and `string` representations.
  * - Data provider-driven validation for edge cases and expected behaviors.

@@ -14,8 +14,8 @@ use yii\ui\tests\providers\AttributesProvider;
  *
  * Validates the rendering and manipulation of HTML attributes according to the HTML Living Standard specification.
  *
- * Ensures correct handling, ordering, encoding, and validation of HTML attributes in widget and tag rendering,
- * supporting array values, boolean attributes, data/ARIA expansion, and XSS prevention for secure attribute output.
+ * Ensures correct handling, ordering, encoding, and validation of HTML attributes in tag rendering, supporting array
+ * values, boolean attributes, data/ARIA expansion, and XSS prevention for secure attribute output.
  *
  * Test coverage.
  * - Accurate rendering of HTML attributes with proper ordering.

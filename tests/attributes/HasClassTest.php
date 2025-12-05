@@ -17,8 +17,8 @@ use yii\ui\tests\providers\tag\attributes\ClassProvider;
  *
  * Validates the management of the global HTML `class` attribute according to the HTML Living Standard specification.
  *
- * Ensures correct handling, immutability, and validation of the `class` attribute in widget and tag rendering,
- * supporting `string`, `UnitEnum`, and `null` values for dynamic class assignment.
+ * Ensures correct handling, immutability, and validation of the `class` attribute in tag rendering, supporting
+ * `string`, `UnitEnum`, and `null` values for dynamic class assignment.
  *
  * Test coverage.
  * - Accurate rendering of attributes with the `class` attribute.

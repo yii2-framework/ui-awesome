@@ -17,8 +17,8 @@ use yii\ui\tests\providers\tag\attributes\TitleProvider;
  *
  * Validates the management of the global HTML `title` attribute according to the HTML Living Standard specification.
  *
- * Ensures correct handling, immutability, and validation of the `title` attribute in widget and tag rendering,
- * supporting `string`, `UnitEnum`, and `null` values for dynamic title assignment.
+ * Ensures correct handling, immutability, and validation of the `title` attribute in tag rendering, supporting
+ * `string`, `UnitEnum`, and `null` values for dynamic title assignment.
  *
  * Test coverage.
  * - Accurate rendering of attributes with the `title` attribute.

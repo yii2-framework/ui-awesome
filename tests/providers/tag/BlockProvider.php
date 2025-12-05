@@ -12,7 +12,7 @@ use function sprintf;
  * Data provider for {@see \yii\ui\tests\html\HtmlTest} class.
  *
  * Supplies comprehensive test data for validating block-level HTML tag normalization and enum integration, ensuring
- * standards-compliant output and robust type safety for tag rendering in widget and element contexts.
+ * standards-compliant output and robust type safety for tag rendering in element contexts.
  *
  * The test data covers real-world scenarios for block tag value propagation, supporting all enum cases and ensuring
  * consistent behavior across different rendering configurations.
@@ -20,7 +20,7 @@ use function sprintf;
  * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
- * Key features:
+ * Key features.
  * - Ensures correct normalization and propagation of block-level HTML tags.
  * - Named test data sets for precise failure identification.
  * - Validation of all enum cases for block tag rendering.

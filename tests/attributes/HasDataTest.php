@@ -19,8 +19,8 @@ use yii\ui\tests\providers\tag\attributes\DataProvider;
  *
  * Validates the management of the global HTML `data-*` attributes according to the HTML Living Standard specification.
  *
- * Ensures correct handling, immutability, and validation of `data-*` attributes in widget and tag rendering, supporting
- * both `string` and `\Closure` values for dynamic data assignment.
+ * Ensures correct handling, immutability, and validation of `data-*` attributes in tag rendering, supporting both
+ * `string` and `\Closure` values for dynamic data assignment.
  *
  * Test coverage.
  * - Accurate rendering of attributes with `data-*` attributes.

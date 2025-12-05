@@ -10,8 +10,8 @@ use yii\ui\tests\support\stub\enum\AlertType;
 /**
  * Data provider for {@see \yii\ui\tests\attributes\HasStyleTest} class.
  *
- * Supplies comprehensive test data for validating the handling of the global HTML `style` attribute in widget and tag
- * rendering, ensuring standards-compliant assignment, override behavior, and value propagation according to the HTML
+ * Supplies comprehensive test data for validating the handling of the global HTML `style` attribute in tag rendering,
+ * ensuring standards-compliant assignment, override behavior, and value propagation according to the HTML
  * specification.
  *
  * The test data covers real-world scenarios for setting, overriding, and removing the `style` attribute, supporting
@@ -21,7 +21,7 @@ use yii\ui\tests\support\stub\enum\AlertType;
  * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
- * Key features:
+ * Key features.
  * - Ensures correct propagation, assignment, and override of the `style` attribute in HTML element rendering.
  * - Named test data sets for precise failure identification.
  * - Validation of `string` (including empty strings), `UnitEnum` instances and `null` values for the `style` attribute.

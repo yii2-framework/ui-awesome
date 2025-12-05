@@ -13,7 +13,7 @@ use function is_int;
  * Provides a unified, immutable API for validating integer-like values in HTML attributes, tag rendering, and view
  * systems, ensuring standards-compliant and predictable output for modern web applications.
  *
- * Key features:
+ * Key features.
  * - Efficient validation of integer-like values for attribute rendering.
  * - Immutable, stateless design for safe reuse in helpers and components.
  * - Integration-ready for tag, attribute, and view rendering systems.

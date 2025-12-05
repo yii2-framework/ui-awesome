@@ -13,7 +13,7 @@ namespace yii\ui\html;
  * Designed for use in HTML helpers, tag builders, and view renderers, this class ensures secure and flexible HTML
  * output, integrating with attribute and encoding helpers for safe and predictable results.
  *
- * Key features:
+ * Key features.
  * - Exception-driven error handling for invalid tag usage.
  * - Integration with attribute and encoding helpers for secure output.
  * - Standards-compliant rendering of block, inline, list, root, table, and void elements.

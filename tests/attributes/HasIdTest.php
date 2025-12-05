@@ -16,8 +16,8 @@ use yii\ui\tests\providers\tag\attributes\IdProvider;
  *
  * Validates the management of the global HTML `id` attribute according to the HTML Living Standard specification.
  *
- * Ensures correct handling, immutability, and validation of the `id` attribute in widget and tag rendering, supporting
- * both `string` and `null` values for dynamic identifier assignment.
+ * Ensures correct handling, immutability, and validation of the `id` attribute in tag rendering, supporting both
+ * `string` and `null` values for dynamic identifier assignment.
  *
  * Test coverage.
  * - Accurate rendering of attributes with the `id` attribute.

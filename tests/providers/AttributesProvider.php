@@ -20,7 +20,7 @@ use yii\ui\tests\support\stub\enum\{ButtonSize, Columns, Theme};
  * The provider organizes test cases with descriptive names for precise identification of failure cases during test
  * execution and debugging.
  *
- * Key features:
+ * Key features.
  * - Ensures correct propagation, appending, and override of HTML attributes in element rendering.
  * - Named test data sets for accurate failure identification.
  * - Security-focused cases for XSS and invalid input handling.

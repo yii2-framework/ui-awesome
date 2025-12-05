@@ -17,7 +17,7 @@ namespace yii\ui\tests\providers;
  * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
- * Key features:
+ * Key features.
  * - Covers HTML entity encoding, including special characters and Unicode sequences.
  * - Named test data sets for precise failure identification.
  * - Validation of double encoding behavior and handling of mixed input types.
