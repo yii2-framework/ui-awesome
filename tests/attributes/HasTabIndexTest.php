@@ -124,7 +124,7 @@ final class HasTabIndexTest extends TestCase
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            Message::INVALID_ATTRIBUTE_VALUE->getMessage($tabIndex, 'tabindex', 'integer >= -1'),
+            Message::INVALID_ATTRIBUTE_VALUE->getMessage($tabIndex, 'tabindex', 'value >= -1'),
         );
 
         $instance->tabIndex($tabIndex);
