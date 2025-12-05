@@ -86,3 +86,4 @@
 - Bug #82: Move `HasAttributes` trait to `BaseBlockElement` for enhanced attribute management (@terabytesoftw)
 - Enh #83: Introduce `Validator` helper class with tests (@terabytesoftw)
 - Bug #84: Update `intLike()` method in `BaseValidator` class to accept nullable `min` and `max` parameters (`null` defaults to `0`) with corresponding tests (@terabytesoftw)
+- Enh #85: Add `HasTabIndex` trait with `tabIndex()` method and tests (@terabytesoftw)

@@ -61,6 +61,13 @@ enum Message: string
     ", '%s' given.";
 
     /**
+     * Error when an attribute value is invalid.
+     *
+     * Format: 'Invalid value "%s" for attribute "%s". Expected: %s.'
+     */
+    case INVALID_ATTRIBUTE_VALUE = 'Invalid value "%s" for attribute "%s". Expected: %s.';
+
+    /**
      * Error when there is a class mismatch on `end()` call.
      *
      * Format: "Mismatched '%s::end()' call, got '%s'."
