@@ -17,8 +17,8 @@ use yii\ui\tests\providers\tag\attributes\StyleProvider;
  *
  * Validates the management of the global HTML `style` attribute according to the HTML Living Standard specification.
  *
- * Ensures correct handling, immutability, and validation of the `style` attribute in widget and tag rendering,
- * supporting `string`, `UnitEnum`, and `null` values for dynamic style assignment.
+ * Ensures correct handling, immutability, and validation of the `style` attribute in tag rendering, supporting
+ * `string`, `UnitEnum`, and `null` values for dynamic style assignment.
  *
  * Test coverage.
  * - Accurate rendering of attributes with the `style` attribute.

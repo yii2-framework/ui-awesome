@@ -18,7 +18,7 @@ use function strtr;
  * This class is designed for use in HTML helpers, tag builders, and view renderers, enabling flexible and secure
  * template string processing for modern web applications.
  *
- * Key features:
+ * Key features.
  * - Efficient token substitution for template-based rendering.
  * - Immutable, stateless design for safe reuse.
  * - Integration-ready for tag, attribute, and view rendering systems.

@@ -25,7 +25,7 @@ use function array_pop;
  * Designed as a foundation for concrete tag implementations, this class enables consistent and secure HTML output
  * across complex UI systems, supporting event hooks, theming, and stack-based rendering for nested structures.
  *
- * Key features:
+ * Key features.
  * - Immutable configuration and theme support for flexible tag customization.
  * - Integration-ready with before/after run event hooks for extensible rendering.
  * - Stack-based begin/end rendering for managing nested tag structures.

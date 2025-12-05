@@ -11,8 +11,8 @@ use yii\ui\mixin\HasContent;
 /**
  * Test suite for {@see HasContent} mixin functionality and behavior.
  *
- * Validates the management and immutability of HTML content handling in widget and tag rendering, according to the
- * HTML Living Standard specification.
+ * Validates the management and immutability of HTML content handling in tag rendering, according to the HTML Living
+ * Standard specification.
  *
  * Ensures correct initialization, assignment, and retrieval of content, supporting both encoded and raw HTML content,
  * enforcing immutability when setting new content, and preventing XSS vulnerabilities through proper encoding.

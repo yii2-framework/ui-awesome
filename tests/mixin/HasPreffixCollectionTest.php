@@ -16,10 +16,10 @@ use yii\ui\tag\Inline;
  * Validates the management of prefix content, attributes, class, and tag for HTML elements according to the HTML Living
  * Standard specification.
  *
- * Ensures correct handling, immutability, and validation of prefix-related API in widget and tag rendering, supporting
- * dynamic assignment and override of prefix values.
+ * Ensures correct handling, immutability, and validation of prefix-related API in tag rendering, supporting dynamic
+ * assignment and override of prefix values.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate assignment and overriding of prefix content, attributes, class, and tag.
  * - Immutability of the trait's API when setting or overriding prefix values.
  * - Proper handling of default and override scenarios for prefix class and tag.

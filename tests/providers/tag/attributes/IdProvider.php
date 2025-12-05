@@ -7,8 +7,8 @@ namespace yii\ui\tests\providers\tag\attributes;
 /**
  * Data provider for {@see \yii\ui\tests\attributes\HasIdTest} class.
  *
- * Supplies comprehensive test data for validating the handling of the global HTML `id` attribute in widget and tag
- * rendering, ensuring standards-compliant assignment, override behavior, and value propagation according to the HTML
+ * Supplies comprehensive test data for validating the handling of the global HTML `id` attribute in tag rendering,
+ * ensuring standards-compliant assignment, override behavior, and value propagation according to the HTML
  * specification.
  *
  * The test data covers real-world scenarios for setting, overriding, and unsetting the `id` attribute, supporting both

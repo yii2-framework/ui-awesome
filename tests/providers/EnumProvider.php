@@ -9,8 +9,8 @@ use yii\ui\tests\support\stub\enum\{Status, Theme};
 /**
  * Data provider for {@see \yii\ui\tests\helpers\EnumTest} class.
  *
- * Supplies comprehensive test data for validating enum normalization in widget and tag rendering, ensuring
- * standards-compliant conversion, type safety, and value propagation according to the PHP specification.
+ * Supplies comprehensive test data for validating enum normalization in tag rendering, ensuring standards-compliant
+ * conversion, type safety, and value propagation according to the PHP specification.
  *
  * The test data covers real-world scenarios for normalizing `BackedEnum` instances and `UnitEnum` instances, supporting
  * both single enum values and arrays containing mixed types, to maintain consistent scalar representation across

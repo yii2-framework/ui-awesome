@@ -11,8 +11,8 @@ use yii\ui\mixin\HasAttributes;
 /**
  * Test suite for {@see HasAttributes} mixin functionality and behavior.
  *
- * Validates the management and immutability of HTML attribute handling in widget and tag rendering, according to the
- * HTML Living Standard specification.
+ * Validates the management and immutability of HTML attribute handling in tag rendering, according to the HTML Living
+ * Standard specification.
  *
  * Ensures correct initialization, assignment, and retrieval of attributes, supporting array-based attribute storage and
  * enforcing immutability when setting new attributes.

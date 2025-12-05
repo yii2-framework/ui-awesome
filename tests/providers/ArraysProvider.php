@@ -9,8 +9,8 @@ use yii\ui\tests\support\stub\enum\{Priority, Status, Theme};
 /**
  * Data provider for {@see \yii\ui\tests\helpers\ArraysTest} class.
  *
- * Supplies comprehensive test data for validating array handling in widget and tag rendering, ensuring
- * standards-compliant processing, type safety, and value propagation according to the PHP specification.
+ * Supplies comprehensive test data for validating array handling in tag rendering, ensuring standards-compliant
+ * processing, type safety, and value propagation according to the PHP specification.
  *
  * The test data covers real-world scenarios for associative and list array detection, value membership validation, and
  * mixed type handling, supporting both explicit `string` values and PHP enums for robust validation.

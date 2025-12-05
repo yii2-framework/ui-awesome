@@ -10,8 +10,8 @@ use yii\ui\tests\support\stub\enum\Status;
 /**
  * Data provider for {@see \yii\ui\tests\attributes\HasTitleTest} class.
  *
- * Supplies comprehensive test data for validating the handling of the global HTML `title` attribute in widget and tag
- * rendering, ensuring standards-compliant assignment, override behavior, and value propagation according to the HTML
+ * Supplies comprehensive test data for validating the handling of the global HTML `title` attribute in tag rendering,
+ * ensuring standards-compliant assignment, override behavior, and value propagation according to the HTML
  * specification.
  *
  * The test data covers real-world scenarios for setting, overriding, and removing the `title` attribute, supporting

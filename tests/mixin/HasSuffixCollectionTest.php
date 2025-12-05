@@ -16,10 +16,10 @@ use yii\ui\tag\{Block, Inline};
  * Validates the management of suffix content, attributes, class, and tag for HTML elements according to the HTML Living
  * Standard specification.
  *
- * Ensures correct handling, immutability, and validation of suffix-related API in widget and tag rendering, supporting
- * dynamic assignment and override of suffix values.
+ * Ensures correct handling, immutability, and validation of suffix-related API in tag rendering, supporting dynamic
+ * assignment and override of suffix values.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate assignment and overriding of suffix content, attributes, class, and tag.
  * - Immutability of the trait's API when setting or overriding suffix values.
  * - Proper handling of default and override scenarios for suffix class and tag.

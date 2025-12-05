@@ -14,8 +14,8 @@ use yii\ui\mixin\HasTemplate;
  * Validates the management of the template property for HTML rendering according to the HTML Living Standard
  * specification.
  *
- * Ensures correct handling, immutability, and validation of the template in widget and tag rendering, supporting
- * `string` values for dynamic template assignment.
+ * Ensures correct handling, immutability, and validation of the template in tag rendering, supporting `string` values
+ * for dynamic template assignment.
  *
  * Test coverage.
  * - Accurate retrieval of the template value.

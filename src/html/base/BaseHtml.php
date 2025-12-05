@@ -17,7 +17,7 @@ use yii\ui\tag\{Block, Inline, Lists, Root, Table, Voids};
  * Designed for use in HTML helpers, tag builders, and view renderers, this class ensures predictable, secure, and
  * extensible HTML output, integrating with attribute and encoding systems for robust UI component development.
  *
- * Key features:
+ * Key features.
  * - Attribute array processing and encoding for safe HTML output.
  * - Immutable, stateless design for safe reuse.
  * - Integration-ready for tag, attribute, and encoding helpers.

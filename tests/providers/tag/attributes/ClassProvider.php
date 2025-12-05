@@ -10,9 +10,9 @@ use yii\ui\tests\support\stub\enum\AlertType;
 /**
  * Data provider for {@see \yii\ui\tests\attributes\HasClassTest} class.
  *
- * Supplies comprehensive test data for validating the handling of the global HTML `class` attribute in widget and tag
- * rendering, ensuring standards-compliant assignment, appending, override behavior, and value propagation according to
- * the HTML specification.
+ * Supplies comprehensive test data for validating the handling of the global HTML `class` attribute in tag rendering,
+ * ensuring standards-compliant assignment, appending, override behavior, and value propagation according to the HTML
+ * specification.
  *
  * The test data covers real-world scenarios for setting, appending, overriding, and removing the `class` attribute,
  * supporting both explicit `string` values, `UnitEnum` for enum-based class names, and `null` for attribute removal,

@@ -19,10 +19,10 @@ use yii\ui\tests\support\stub\enum\AlertType;
  * Validates the management and rendering of the global HTML `class` attribute according to the HTML Living Standard
  * specification.
  *
- * Ensures correct handling, immutability, and validation of CSS class attributes in widget and tag rendering,
- * supporting `string`, `UnitEnum`, and `null` values for dynamic class assignment and manipulation.
+ * Ensures correct handling, immutability, and validation of CSS class attributes in tag rendering, supporting `string`,
+ * `UnitEnum`, and `null` values for dynamic class assignment and manipulation.
  *
- * Test coverage:
+ * Test coverage.
  * - Accurate addition and rendering of CSS class attributes.
  * - Data provider-driven validation for edge cases and expected behaviors.
  * - Exception handling for invalid class values and enums.

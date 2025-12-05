@@ -10,8 +10,8 @@ use yii\ui\tests\support\stub\enum\ButtonSize;
 /**
  * Data provider for {@see \yii\ui\tests\attributes\HasDataTest} class.
  *
- * Supplies comprehensive test data for validating the handling of the global HTML `data-*` attributes in widget and tag
- * rendering, ensuring standards-compliant assignment, override behavior, and value propagation according to the HTML
+ * Supplies comprehensive test data for validating the handling of the global HTML `data-*` attributes in tag rendering,
+ * ensuring standards-compliant assignment, override behavior, and value propagation according to the HTML
  * specification.
  *
  * The test data covers real-world scenarios for setting, overriding, and removing `data-*` attributes, supporting both

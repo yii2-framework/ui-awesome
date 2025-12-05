@@ -28,7 +28,7 @@ use function is_string;
  * Exception-driven error handling is provided for invalid values, supporting defensive programming and early error
  * detection.
  *
- * Key features:
+ * Key features.
  * - Consistent handling of empty arrays for both list and associative checks.
  * - Detection of list arrays (`integer` keys) and associative arrays (`string` keys).
  * - Exception-driven error handling for invalid or empty values.

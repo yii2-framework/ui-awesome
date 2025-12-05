@@ -25,7 +25,7 @@ use function is_scalar;
  *
  * This is essential for consistent handling of enums in configuration, storage, and API layers.
  *
- * Key features:
+ * Key features.
  * - Batch normalization of arrays of enums or mixed values with support for `null` handling.
  * - Pass-through behavior for non-enum values to support mixed-type arrays.
  * - Type-safe normalization of backed and pure enums to scalar values or names.

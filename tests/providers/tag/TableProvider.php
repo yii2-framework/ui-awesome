@@ -12,7 +12,7 @@ use function sprintf;
  * Data provider for {@see \yii\ui\tests\html\HtmlTest} class.
  *
  * Supplies comprehensive test data for validating table-level HTML tag normalization and enum integration, ensuring
- * standards-compliant output and robust type safety for tag rendering in widget and element contexts.
+ * standards-compliant output and robust type safety for tag rendering in element contexts.
  *
  * The test data covers real-world scenarios for table tag value propagation, supporting all enum cases and ensuring
  * consistent behavior across different rendering configurations.

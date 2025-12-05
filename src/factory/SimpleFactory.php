@@ -20,7 +20,7 @@ use function is_array;
  * Designed for use in tag rendering systems, this class enables consistent, predictable instantiation and configuration
  * of tag objects for advanced HTML generation scenarios.
  *
- * Key features:
+ * Key features.
  * - Global and per-instance default configuration management.
  * - Integration-ready for tag, view, and UI component factories.
  * - Method-based configuration using callable actions and argument arrays.
