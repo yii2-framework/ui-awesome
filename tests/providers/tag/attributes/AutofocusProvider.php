@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace yii\ui\tests\providers\tag\attributes;
 
 /**
- * Data provider for {@see \yii\ui\tests\attributes\CanBeAutofocusedTest} class.
+ * Data provider for {@see \yii\ui\tests\attributes\CanBeAutofocusTest} class.
  *
  * Supplies comprehensive test data for validating the handling of the global HTML `autofocus` attribute in tag
  * rendering, ensuring standards-compliant assignment, override behavior, and value propagation according to the HTML
