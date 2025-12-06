@@ -89,3 +89,4 @@
 - Enh #85: Add `HasTabIndex` trait with `tabIndex()` method and tests (@terabytesoftw)
 - Bug #86: Correct key features section punctuation in multiple files for consistency (@terabytesoftw)
 - Enh #87: Add `CanBeHidden` trait with `hidden()` method and tests (@terabytesoftw)
+- Enh #88: Add `CanBeAutofocus` trait with `autofocus()` method and tests (@terabytesoftw)
