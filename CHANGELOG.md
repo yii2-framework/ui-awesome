@@ -91,3 +91,4 @@
 - Enh #87: Add `CanBeHidden` trait with `hidden()` method and tests (@terabytesoftw)
 - Enh #88: Add `CanBeAutofocus` trait with `autofocus()` method and tests (@terabytesoftw)
 - Bug #89: Remove unused `Arrays` class helper and update `Validator`class for attribute validation (@terabytesoftw)
+- Bug #90: Simplify `normalizeArray` method in `BaseEnum` class by using spread syntax (@terabytesoftw)

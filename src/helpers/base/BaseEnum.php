@@ -11,6 +11,7 @@ use yii\ui\exception\Message;
 
 use function array_map;
 use function gettype;
+use function is_array;
 use function is_scalar;
 
 /**
@@ -71,10 +72,7 @@ abstract class BaseEnum
      */
     public static function normalizeArray(array $values): array
     {
-        return array_map(
-            static fn(mixed $value): mixed => self::normalizeValue($value),
-            $values,
-        );
+        return array_map(self::normalizeValue(...), $values);
     }
 
     /**
