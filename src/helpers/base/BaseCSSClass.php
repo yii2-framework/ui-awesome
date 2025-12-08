@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace yii\ui\helpers\base;
 
+use InvalidArgumentException;
 use UnitEnum;
-use yii\base\InvalidArgumentException;
-use yii\ui\helpers\{Arrays, Enum};
+use yii\ui\helpers\{Enum, Validator};
 
 use function array_unique;
 use function implode;
@@ -180,7 +180,7 @@ abstract class BaseCSSClass
     {
         $value = Enum::normalizeValue($class);
 
-        Arrays::inList('class', $value, $allowed, true);
+        Validator::oneOf($value, $allowed, 'class');
 
         return sprintf($baseClass, $value);
     }

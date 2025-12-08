@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace yii\ui\helpers;
 
 /**
- * Validation helper for robust, type-safe input and attribute validation in HTML rendering contexts.
+ * Validation utility helper for robust, type-safe validation of HTML attributes and values.
  *
- * Provides a static API for validating HTML attributes, tag values, and user input, supporting strict type checks,
- * value normalization, and custom validation logic for secure and predictable output.
+ * Provides a concrete, ready-to-use implementation for validating and processing attribute values, supporting advanced
+ * validation scenarios, strict type safety, and standardized error handling for invalid input.
  *
- * Designed for integration in HTML helpers, view renderers, tags, and components, ensuring consistent enforcement of
- * attribute correctness, value constraints, and input integrity across all supported use cases.
+ * Designed for integration in view renderers, tag systems, and component engines, ensuring consistent and secure
+ * validation of attribute sets, values, and custom rules across all supported use cases.
  *
  * Key features.
- * - Customizable validation logic for advanced scenarios.
- * - Ensures secure, standards-compliant output for HTML generation.
- * - Stateless, reusable static methods for validation workflows.
- * - Type-safe validation for HTML attributes and tag values.
+ * - Centralized error handling and reporting for invalid input.
+ * - Standardized output for predictable validation results.
+ * - Stateless, reusable helpers for validation workflows.
+ * - Type-safe validation for HTML attributes and values.
  *
  * {@see base\BaseValidator} for the base implementation.
  *

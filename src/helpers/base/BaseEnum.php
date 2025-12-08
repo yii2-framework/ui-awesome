@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace yii\ui\helpers\base;
 
 use BackedEnum;
+use InvalidArgumentException;
 use UnitEnum;
-use yii\base\InvalidArgumentException;
 use yii\ui\exception\Message;
 
 use function array_map;

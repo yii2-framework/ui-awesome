@@ -15,6 +15,7 @@ use function is_array;
 use function is_bool;
 use function is_numeric;
 use function is_string;
+use function json_encode;
 use function preg_match;
 use function rtrim;
 use function strtolower;
@@ -194,7 +195,7 @@ abstract class BaseAttributes
             'class' => self::renderClassAttributes($values),
             'aria', 'data', 'data-ng', 'ng' => self::renderDataAttributes($name, $values),
             'style' => self::renderStyleAttributes($values),
-            default => self::renderAttribute($name, Json::encode($values, self::JSON_FLAGS), self::QUOTE_SINGLE),
+            default => self::renderAttribute($name, json_encode($values, self::JSON_FLAGS), self::QUOTE_SINGLE),
         };
     }
 
@@ -250,7 +251,7 @@ abstract class BaseAttributes
         return match (gettype($values)) {
             'array' => self::renderArrayAttributes($name, $values),
             'string' => self::renderAttribute($name, $values),
-            default => self::renderAttribute($name, Json::encode($values, self::JSON_FLAGS)),
+            default => self::renderAttribute($name, json_encode($values, self::JSON_FLAGS)),
         };
     }
 
@@ -322,7 +323,7 @@ abstract class BaseAttributes
                 $result .= match (gettype($v)) {
                     'array' => self::renderAttribute(
                         "{$name}-{$n}",
-                        Json::encode($v, self::JSON_FLAGS),
+                        json_encode($v, self::JSON_FLAGS),
                         self::QUOTE_SINGLE,
                     ),
                     'double', 'integer', 'string' => self::renderAttribute(
@@ -389,7 +390,7 @@ abstract class BaseAttributes
         foreach ($values as $n => $v) {
             if ($v !== null) {
                 $prop = Encode::value((string) $n);
-                $stringValue = is_string($v) || is_numeric($v) ? $v : Json::encode($v, self::JSON_FLAGS);
+                $stringValue = is_string($v) || is_numeric($v) ? $v : json_encode($v, self::JSON_FLAGS);
 
                 if ($stringValue !== '') {
                     $result .= "{$prop}: {$stringValue}; ";

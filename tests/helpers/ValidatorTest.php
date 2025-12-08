@@ -4,24 +4,28 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\helpers;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
+use UnitEnum;
 use yii\ui\helpers\Validator;
 use yii\ui\tests\providers\helpers\ValidatorProvider;
 
 /**
  * Test suite for {@see Validator} helper functionality and behavior.
  *
- * Validates the normalization and validation of integer-like values according to PHP type and range constraints.
+ * Validates the normalization and verification of values for HTML attribute rendering and tag manipulation according to
+ * the HTML Living Standard specification.
  *
- * Ensures correct handling, normalization, and validation of scalar and string values as integers, supporting minimum
- * and optional maximum boundaries for predictable validation output.
+ * Ensures correct type checking, value validation, and exception handling for scalar, enum, and array types in
+ * attribute operations, supporting robust and predictable output for HTML components.
  *
- * Test coverage.
- * - Accurate detection of integer-like values within specified bounds.
- * - Compatibility with both `int` and `string` representations.
+ * Test coverage:
+ * - Accurate validation of integer-like values and range constraints.
  * - Data provider-driven validation for edge cases and expected behaviors.
+ * - Exception handling for invalid or out-of-range values.
  * - Immutability of the helper's API when validating values.
+ * - Verification of allowed values for attributes and enums.
  *
  * {@see ValidatorProvider} for test case data providers.
  *
@@ -39,5 +43,28 @@ final class ValidatorTest extends TestCase
             Validator::intLike($value, $min, $max),
             $message,
         );
+    }
+
+    /**
+     * @throws InvalidArgumentException if one or more arguments are invalid, of incorrect type or format.
+     *
+     * @phpstan-param list<UnitEnum|scalar|null> $allowed
+     */
+    #[DataProviderExternal(ValidatorProvider::class, 'oneOf')]
+    public function testOneOfWithValidValues(
+        string $attribute,
+        UnitEnum|int|string $value,
+        array $allowed,
+        bool $exception,
+        string $exceptionMessage,
+    ): void {
+        if ($exception) {
+            $this->expectException(InvalidArgumentException::class);
+            $this->expectExceptionMessage($exceptionMessage);
+        } else {
+            $this->expectNotToPerformAssertions();
+        }
+
+        Validator::oneOf($value, $allowed, $attribute);
     }
 }
