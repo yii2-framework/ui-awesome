@@ -12,7 +12,6 @@ use yii\ui\helpers\Enum;
 use function ctype_digit;
 use function in_array;
 use function is_int;
-use function is_string;
 
 /**
  * Base class for advanced, type-safe validation of values in HTML helper systems.
@@ -107,6 +106,7 @@ abstract class BaseValidator
         string $argumentName = 'value',
     ): void {
         $normalizedAllowedValues = Enum::normalizeArray($allowed);
+        /** @phpstan-var int|string|null $normalizedValue */
         $normalizedValue = Enum::normalizeValue($value);
 
         if ($normalizedValue === '' || $normalizedValue === null) {
@@ -115,10 +115,6 @@ abstract class BaseValidator
 
         if (in_array($normalizedValue, $normalizedAllowedValues, true)) {
             return;
-        }
-
-        if (is_int($normalizedValue) === false && is_string($normalizedValue) === false) {
-            $normalizedValue = gettype($normalizedValue);
         }
 
         throw new InvalidArgumentException(
