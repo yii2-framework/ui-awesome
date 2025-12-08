@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace yii\ui\attributes;
 
 use Closure;
-use yii\base\InvalidArgumentException;
+use InvalidArgumentException;
 use yii\ui\exception\Message;
 
 use function gettype;

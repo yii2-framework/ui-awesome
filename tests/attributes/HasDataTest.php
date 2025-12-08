@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace yii\ui\tests\attributes;
 
 use Closure;
+use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
-use yii\base\InvalidArgumentException;
 use yii\ui\attributes\HasData;
 use yii\ui\exception\Message;
 use yii\ui\helpers\Attributes;

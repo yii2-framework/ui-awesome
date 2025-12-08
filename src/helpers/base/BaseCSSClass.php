@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace yii\ui\helpers\base;
 
+use InvalidArgumentException;
 use UnitEnum;
-use yii\base\InvalidArgumentException;
 use yii\ui\helpers\{Enum, Validator};
 
 use function array_unique;
