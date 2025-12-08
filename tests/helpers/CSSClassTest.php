@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\helpers;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
 use UnitEnum;
-use yii\base\InvalidArgumentException;
 use yii\ui\exception\Message;
 use yii\ui\helpers\CSSClass;
 use yii\ui\tests\providers\CSSClassProvider;

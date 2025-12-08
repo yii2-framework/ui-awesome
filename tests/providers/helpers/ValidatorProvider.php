@@ -4,24 +4,28 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\providers\helpers;
 
+use yii\ui\exception\Message;
+use yii\ui\helpers\Enum;
+use yii\ui\tests\support\stub\enum\{Priority, Status, Theme};
+
 /**
  * Data provider for {@see \yii\ui\tests\helpers\ValidatorTest} class.
  *
- * Supplies comprehensive test data for validating integer-like value normalization and range validation in HTML
- * attribute scenarios, ensuring standards-compliant conversion, type safety, and correct boundary enforcement according
- * to the PHP specification.
+ * Supplies comprehensive test data for validating integer-like value normalization, boundary checks, and list
+ * membership for HTML attribute scenarios. Ensures standards-compliant conversion, type safety, and robust validation
+ * logic for attribute assignment in HTML rendering contexts.
  *
  * The test data covers real-world scenarios for integer and string input validation, including boundary conditions,
- * negative and positive values, string representations, and invalid formats, supporting robust validation logic for
- * tag rendering.
+ * negative and positive values, string representations, invalid formats, and enum comparisons. It supports both scalar
+ * and enum values, maintaining consistent and type-safe representation across different rendering configurations.
  *
  * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
- * Key features.
- * - Ensures correct validation of integer-like values, including string and numeric types.
+ * Key features:
+ * - Ensures correct normalization and validation of integer-like and string values for HTML attributes.
  * - Named test data sets for precise failure identification.
- * - Validation of boundary conditions, negative values, and invalid input formats.
+ * - Validation of boundary checks, type strictness, and mixed enum/scalar list membership.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
@@ -233,6 +237,157 @@ final class ValidatorProvider
                 null,
                 true,
                 'Should be valid value.',
+            ],
+        ];
+    }
+
+    /**
+     * Provides test cases for list membership validation scenarios.
+     *
+     * Supplies test data for validating whether a value is present in a list of allowed values, supporting mixed types
+     * including enums and scalars. Ensures correct comparison logic, type strictness, and error messaging for HTML
+     * attribute assignment.
+     *
+     * Each test case includes the attribute name, input value, allowed list, expected boolean result, and an assertion
+     * message for clear identification.
+     *
+     * @return array Test data for list membership validation scenarios.
+     *
+     * @phpstan-return array<array{string, mixed, list<mixed>, bool, string}>
+     */
+    public static function oneOf(): array
+    {
+        return [
+            'backed-enum-value-in-list' => [
+                'attribute',
+                Status::ACTIVE,
+                Status::cases(),
+                false,
+                '',
+            ],
+            'empty-allowed-list' => [
+                'attribute',
+                'a',
+                [],
+                true,
+                Message::VALUE_NOT_IN_LIST->getMessage('a', 'attribute', ''),
+            ],
+            'empty-value-not-in-list' => [
+                'attribute',
+                '',
+                [
+                    'a',
+                    'b',
+                    'c',
+                ],
+                false,
+                '',
+            ],
+            'invalid-enum-comparison' => [
+                'attribute',
+                Status::ACTIVE,
+                Theme::cases(),
+                true,
+                Message::VALUE_NOT_IN_LIST->getMessage(
+                    Status::ACTIVE->value,
+                    'attribute',
+                    implode('\', \'', Enum::normalizeArray(Theme::cases())),
+                ),
+            ],
+            'mixed-enum-types-backed-enum-value-found' => [
+                'attribute',
+                'DARK',
+                [
+                    Status::ACTIVE,
+                    Theme::DARK,
+                    Priority::LOW,
+                ],
+                false,
+                '',
+            ],
+            'mixed-enum-types-enum-instance-found' => [
+                'attribute',
+                Status::ACTIVE,
+                [
+                    Status::ACTIVE,
+                    Theme::DARK,
+                    Priority::LOW,
+                ],
+                false,
+                '',
+            ],
+            'mixed-enum-types-int-value-found' => [
+                'attribute',
+                1,
+                [
+                    Status::ACTIVE,
+                    Theme::DARK,
+                    Priority::LOW,
+                ],
+                false,
+                '',
+            ],
+            'mixed-enum-types-string-not-found-type-strictness' => [
+                'attribute',
+                '1',
+                [
+                    Status::ACTIVE,
+                    Theme::DARK,
+                    Priority::LOW,
+                ],
+                true,
+                Message::VALUE_NOT_IN_LIST->getMessage(
+                    '1',
+                    'attribute',
+                    implode('\', \'', Enum::normalizeArray([Status::ACTIVE, Theme::DARK, Priority::LOW])),
+                ),
+            ],
+            'string-case-sensitive-enum-value' => [
+                'attribute',
+                'ACTIVE',
+                [
+                    Status::ACTIVE,
+                    Status::INACTIVE,
+                ],
+                true,
+                Message::VALUE_NOT_IN_LIST->getMessage(
+                    'ACTIVE',
+                    'attribute',
+                    implode('\', \'', Enum::normalizeArray([Status::ACTIVE, Status::INACTIVE])),
+                ),
+            ],
+            'string-value-in-list' => [
+                'attribute',
+                'a',
+                [
+                    'a',
+                    'b',
+                    'c',
+                ],
+                false,
+                '',
+            ],
+            'string-value-not-in-list' => [
+                'attribute',
+                '1',
+                [
+                    'a',
+                    'b',
+                    'c',
+                ],
+                true,
+                Message::VALUE_NOT_IN_LIST->getMessage(
+                    '1',
+                    'attribute',
+                    implode('\', \'', Enum::normalizeArray(['a', 'b', 'c'])),
+                ),
+            ],
+            'unit-enum-value-in-list' => [
+                'attribute',
+                Theme::DARK,
+                Theme::cases(),
+                false,
+                '',
             ],
         ];
     }
