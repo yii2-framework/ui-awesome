@@ -27,7 +27,7 @@ use yii\ui\values\Language;
  * - Named test data sets for precise failure identification.
  * - Validation of `string` (including empty strings), `UnitEnum` instances and `null` values for the `lang` attribute.
  *
- * {@see Languages} for enum test case usage.
+ * {@see Language} for enum test case usage.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
