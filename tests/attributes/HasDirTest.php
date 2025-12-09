@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\attributes;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
 use UnitEnum;
@@ -11,7 +12,7 @@ use yii\ui\attributes\HasDir;
 use yii\ui\exception\Message;
 use yii\ui\helpers\{Attributes, Enum};
 use yii\ui\mixin\HasAttributes;
-use yii\ui\tests\providers\tag\attributes\DirectionProvider;
+use yii\ui\tests\providers\tag\attributes\DirProvider;
 use yii\ui\values\Direction;
 
 /**
@@ -39,7 +40,7 @@ final class HasDirTest extends TestCase
     /**
      * @phpstan-param mixed[] $attributes
      */
-    #[DataProviderExternal(DirectionProvider::class, 'renderAttribute')]
+    #[DataProviderExternal(DirProvider::class, 'renderAttribute')]
     public function testRenderAttributesWithDirectionAttribute(
         string|UnitEnum|null $dir,
         array $attributes,
@@ -90,7 +91,7 @@ final class HasDirTest extends TestCase
     /**
      * @phpstan-param mixed[] $attributes
      */
-    #[DataProviderExternal(DirectionProvider::class, 'values')]
+    #[DataProviderExternal(DirProvider::class, 'values')]
     public function testSetDirAttributeValue(
         string|UnitEnum|null $dir,
         array $attributes,
@@ -118,7 +119,7 @@ final class HasDirTest extends TestCase
             use HasDir;
         };
 
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
             Message::VALUE_NOT_IN_LIST->getMessage(
                 'invalid-value',

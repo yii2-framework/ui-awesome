@@ -9,7 +9,7 @@ use yii\ui\tests\support\EnumDataGenerator;
 use yii\ui\values\Direction;
 
 /**
- * Data provider for {@see \yii\ui\tests\attributes\HasDirectionTest} class.
+ * Data provider for {@see \yii\ui\tests\attributes\HasDirTest} class.
  *
  * Supplies comprehensive test data for validating the handling of the global HTML `dir` attribute in tag rendering,
  * ensuring standards-compliant assignment, override behavior, and value propagation according to the HTML
@@ -30,7 +30,7 @@ use yii\ui\values\Direction;
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
-final class DirectionProvider
+final class DirProvider
 {
     /**
      * Provides test cases for rendered HTML `dir` attribute scenarios.
