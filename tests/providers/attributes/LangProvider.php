@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace yii\ui\tests\providers\tag\attributes;
+namespace yii\ui\tests\providers\attributes;
 
 use UnitEnum;
 use yii\ui\tests\support\EnumDataGenerator;

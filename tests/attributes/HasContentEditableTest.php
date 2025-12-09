@@ -12,7 +12,7 @@ use yii\ui\attributes\HasContentEditable;
 use yii\ui\exception\Message;
 use yii\ui\helpers\{Attributes, Enum};
 use yii\ui\mixin\HasAttributes;
-use yii\ui\tests\providers\tag\attributes\ContentEditableProvider;
+use yii\ui\tests\providers\attributes\ContentEditableProvider;
 use yii\ui\values\ContentEditable;
 
 /**

@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use yii\ui\attributes\CanBeHidden;
 use yii\ui\helpers\Attributes;
 use yii\ui\mixin\HasAttributes;
-use yii\ui\tests\providers\tag\attributes\HiddenProvider;
+use yii\ui\tests\providers\attributes\HiddenProvider;
 
 /**
  * Test suite for {@see CanBeHidden} trait functionality and behavior.

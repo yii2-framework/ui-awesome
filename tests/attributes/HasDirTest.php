@@ -12,7 +12,7 @@ use yii\ui\attributes\HasDir;
 use yii\ui\exception\Message;
 use yii\ui\helpers\{Attributes, Enum};
 use yii\ui\mixin\HasAttributes;
-use yii\ui\tests\providers\tag\attributes\DirProvider;
+use yii\ui\tests\providers\attributes\DirProvider;
 use yii\ui\values\Direction;
 
 /**

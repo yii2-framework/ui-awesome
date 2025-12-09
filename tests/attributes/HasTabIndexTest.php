@@ -11,7 +11,7 @@ use yii\ui\attributes\HasTabindex;
 use yii\ui\exception\Message;
 use yii\ui\helpers\Attributes;
 use yii\ui\mixin\HasAttributes;
-use yii\ui\tests\providers\tag\attributes\TabIndexProvider;
+use yii\ui\tests\providers\attributes\TabIndexProvider;
 
 /**
  * Test suite for {@see HasTabindex} trait functionality and behavior.

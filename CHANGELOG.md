@@ -100,3 +100,4 @@
 - Enh #96: Add `HasContentEditable` trait with `contentEditable()` method and tests (@terabytesoftw)
 - Enh #97: Add `HasDraggable` trait with `draggable()` method and tests (@terabytesoftw)
 - Bug #98: Add usage examples to various traits for better documentation and clarity (@terabytesoftw)
+- Bug #99: Move `DataProvider` class from `tests\providers\tag\attributes` to `tests\providers\attributes` (@terabytesoftw)

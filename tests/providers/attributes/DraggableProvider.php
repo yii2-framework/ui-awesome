@@ -2,66 +2,66 @@
 
 declare(strict_types=1);
 
-namespace yii\ui\tests\providers\tag\attributes;
+namespace yii\ui\tests\providers\attributes;
 
 use UnitEnum;
 use yii\ui\tests\support\EnumDataGenerator;
-use yii\ui\values\ContentEditable;
+use yii\ui\values\Draggable;
 
 /**
- * Data provider for {@see \yii\ui\tests\attributes\HasContentEditableTest} class.
+ * Data provider for {@see \yii\ui\tests\attributes\HasDraggableTest} class.
  *
- * Supplies comprehensive test data for validating the handling of the global HTML `contenteditable` attribute in tag
+ * Supplies comprehensive test data for validating the handling of the global HTML `draggable` attribute in tag
  * rendering, ensuring standards-compliant assignment, override behavior, and value propagation according to the HTML
  * specification.
  *
- * The test data covers real-world scenarios for setting, overriding, and removing the `contenteditable` attribute,
- * supporting `bool`, `string`, `UnitEnum`, and `null` values for attribute assignment and replacement, to maintain
- * consistent output across different rendering configurations.
+ * The test data covers real-world scenarios for setting, overriding, and removing the `draggable` attribute, supporting
+ * explicit `bool`, `string`, `UnitEnum` values, and attribute replacement, to maintain consistent output across
+ * different rendering configurations.
  *
  * The provider organizes test cases with descriptive names for clear identification of failure cases during test
  * execution and debugging sessions.
  *
  * Key features:
- * - Ensures correct propagation, assignment, override, and removal of the `contenteditable` attribute in HTML element
+ * - Ensures correct propagation, assignment, override, and removal of the `draggable` attribute in HTML element
  *   rendering.
  * - Named test data sets for precise failure identification.
- * - Validation of `bool`, `string`, `UnitEnum`, and `null` values for the `contenteditable` attribute, including
- *   replacement and unset scenarios.
+ * - Validation of `bool`, `string`, `UnitEnum`, and `null` values for the `draggable` attribute, including replacement
+ *   and unset scenarios.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
-final class ContentEditableProvider
+final class DraggableProvider
 {
     /**
-     * Provides test cases for rendered HTML `contenteditable` attribute scenarios.
+     * Provides test cases for rendered HTML `draggable` attribute scenarios.
      *
-     * Supplies test data for validating assignment, override, and removal of the global HTML `contenteditable`
-     * attribute, including `bool`, `string`, `UnitEnum`, and replacement scenarios.
+     * Supplies test data for validating assignment, override, and removal of the global HTML `draggable` attribute,
+     * including `bool`, `string`, `UnitEnum`, and replacement scenarios.
      *
      * Each test case includes the input value, the initial attributes, the expected rendered output, and an assertion
      * message for clear identification.
      *
-     * @return array Test data for rendered `contenteditable` attribute scenarios.
+     * @return array Test data for rendered `draggable` attribute scenarios.
      *
      * @phpstan-return array<string, array{bool|string|UnitEnum|null, mixed[], bool|string|UnitEnum, string}>
      */
     public static function renderAttribute(): array
     {
-        $enumCases = EnumDataGenerator::cases(ContentEditable::class, 'contenteditable', true);
+        $enumCases = EnumDataGenerator::cases(Draggable::class, 'draggable', true);
 
         $staticCase = [
             'boolean false' => [
                 false,
                 [],
-                ' contenteditable="false"',
+                ' draggable="false"',
                 'Should return the attribute value after setting it.',
             ],
             'boolean true' => [
                 true,
                 [],
-                ' contenteditable="true"',
+                ' draggable="true"',
                 'Should return the attribute value after setting it.',
             ],
             'empty string' => [
@@ -71,11 +71,10 @@ final class ContentEditableProvider
                 'Should return an empty string when setting an empty string.',
             ],
             'enum replace existing' => [
-                ContentEditable::TRUE,
-                ['contenteditable' => 'false'],
-                ' contenteditable="true"',
-                "Should return new 'contenteditable' after replacing the existing 'contenteditable' attribute with " .
-                'enum value.',
+                Draggable::TRUE,
+                ['draggable' => 'false'],
+                ' draggable="true"',
+                "Should return new 'draggable' after replacing the existing 'draggable' attribute with enum value.",
             ],
             'null' => [
                 null,
@@ -84,34 +83,34 @@ final class ContentEditableProvider
                 "Should return an empty string when the attribute is set to 'null'.",
             ],
             'replace existing' => [
-                'plaintext-only',
-                ['contenteditable' => 'false'],
-                ' contenteditable="plaintext-only"',
-                "Should return new 'contenteditable' after replacing the existing 'contenteditable' attribute.",
+                'true',
+                ['draggable' => 'false'],
+                ' draggable="true"',
+                "Should return new 'draggable' after replacing the existing 'draggable' attribute.",
             ],
             'string' => [
                 'true',
                 [],
-                ' contenteditable="true"',
+                ' draggable="true"',
                 'Should return the attribute value after setting it.',
             ],
             'string boolean false' => [
                 'false',
                 [],
-                ' contenteditable="false"',
+                ' draggable="false"',
                 'Should return the attribute value after setting it.',
             ],
             'string boolean true' => [
                 'true',
                 [],
-                ' contenteditable="true"',
+                ' draggable="true"',
                 'Should return the attribute value after setting it.',
             ],
             'unset with null' => [
                 null,
-                ['contenteditable' => 'true'],
+                ['draggable' => 'true'],
                 '',
-                "Should unset the 'contenteditable' attribute when 'null' is provided after a value.",
+                "Should unset the 'draggable' attribute when 'null' is provided after a value.",
             ],
         ];
 
@@ -119,21 +118,21 @@ final class ContentEditableProvider
     }
 
     /**
-     * Provides test cases for HTML `contenteditable` attribute value scenarios.
+     * Provides test cases for HTML `draggable` attribute value scenarios.
      *
-     * Supplies test data for validating assignment, override, and removal of the global HTML `contenteditable`
-     * attribute value, including `bool`, `string`, `UnitEnum`, and replacement scenarios.
+     * Supplies test data for validating assignment, override, and removal of the global HTML `draggable` attribute
+     * value, including `bool`, `string`, `UnitEnum`, and replacement scenarios.
      *
      * Each test case includes the input value, the initial attributes, the expected value, and an assertion message for
      * clear identification.
      *
-     * @return array Test data for `contenteditable` attribute value scenarios.
+     * @return array Test data for `draggable` attribute value scenarios.
      *
      * @phpstan-return array<string, array{bool|string|UnitEnum|null, mixed[], bool|string|UnitEnum, string}>
      */
     public static function values(): array
     {
-        $enumCases = EnumDataGenerator::cases(ContentEditable::class, 'contenteditable', false);
+        $enumCases = EnumDataGenerator::cases(Draggable::class, 'draggable', false);
 
         $staticCase = [
             'boolean false' => [
@@ -161,10 +160,10 @@ final class ContentEditableProvider
                 "Should return an empty string when the attribute is set to 'null'.",
             ],
             'replace existing' => [
-                'plaintext-only',
-                ['contenteditable' => 'false'],
-                'plaintext-only',
-                "Should return new 'contenteditable' after replacing the existing 'contenteditable' attribute.",
+                'true',
+                ['draggable' => 'false'],
+                'true',
+                "Should return new 'draggable' after replacing the existing 'draggable' attribute.",
             ],
             'string' => [
                 'true',
@@ -186,9 +185,9 @@ final class ContentEditableProvider
             ],
             'unset with null' => [
                 null,
-                ['contenteditable' => 'true'],
+                ['draggable' => 'true'],
                 '',
-                "Should unset the 'contenteditable' attribute when 'null' is provided after a value.",
+                "Should unset the 'draggable' attribute when 'null' is provided after a value.",
             ],
         ];
 

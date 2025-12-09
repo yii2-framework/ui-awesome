@@ -10,7 +10,7 @@ use UnitEnum;
 use yii\ui\attributes\HasLang;
 use yii\ui\helpers\Attributes;
 use yii\ui\mixin\HasAttributes;
-use yii\ui\tests\providers\tag\attributes\LangProvider;
+use yii\ui\tests\providers\attributes\LangProvider;
 
 /**
  * Test suite for {@see HasLang} trait functionality and behavior.
