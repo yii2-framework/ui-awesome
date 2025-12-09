@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\attributes;
 
+use InvalidArgumentException;
 use yii\ui\helpers\Validator;
 use yii\ui\values\Draggable;
 
@@ -42,6 +43,8 @@ trait HasDraggable
      *
      * @param bool|string|Draggable|null $value Draggable value to set for the element. Can be `null` to unset
      * the attribute.
+     *
+     * @throws InvalidArgumentException if the provided value is not valid.
      *
      * @return static New instance with the updated `draggable` attribute.
      *
