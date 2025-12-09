@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace yii\ui\tests\providers\tag\attributes;
 
 use UnitEnum;
-use yii\ui\tests\support\stub\enum\Languages;
+use yii\ui\tests\support\EnumDataGenerator;
+use yii\ui\values\Language;
 
 /**
  * Data provider for {@see \yii\ui\tests\attributes\HasLangTest} class.
@@ -48,21 +49,17 @@ final class LangProvider
      */
     public static function renderAttribute(): array
     {
-        return [
+        $enumCases = EnumDataGenerator::cases(Language::class, 'lang', true);
+
+        $staticCase = [
             'empty string' => [
                 '',
                 [],
                 '',
                 'Should return an empty string when setting an empty string.',
             ],
-            'enum' => [
-                Languages::SPANISH,
-                [],
-                ' lang="es"',
-                'Should return the attribute value after setting it.',
-            ],
             'enum replace existing' => [
-                Languages::SPANISH,
+                Language::SPANISH,
                 ['lang' => 'it'],
                 ' lang="es"',
                 "Should return new 'lang' after replacing the existing 'lang' attribute with enum value.",
@@ -74,7 +71,7 @@ final class LangProvider
                 "Should return an empty string when the attribute is set to 'null'.",
             ],
             'replace existing' => [
-                Languages::GERMAN,
+                Language::GERMAN,
                 ['lang' => 'it'],
                 ' lang="de"',
                 "Should return new 'lang' after replacing the existing 'lang' attribute.",
@@ -92,6 +89,8 @@ final class LangProvider
                 "Should unset the 'lang' attribute when 'null' is provided after a value.",
             ],
         ];
+
+        return [...$staticCase, ...$enumCases];
     }
 
     /**
@@ -109,18 +108,14 @@ final class LangProvider
      */
     public static function values(): array
     {
-        return [
+        $enumCases = EnumDataGenerator::cases(Language::class, 'lang', false);
+
+        $staticCase = [
             'empty string' => [
                 '',
                 [],
                 '',
                 'Should return an empty string when setting an empty string.',
-            ],
-            'enum' => [
-                Languages::SPANISH,
-                [],
-                Languages::SPANISH,
-                'Should return the attribute value after setting it.',
             ],
             'null' => [
                 null,
@@ -129,9 +124,9 @@ final class LangProvider
                 "Should return an empty string when the attribute is set to 'null'.",
             ],
             'replace existing' => [
-                Languages::GERMAN,
+                Language::GERMAN,
                 ['lang' => 'it'],
-                Languages::GERMAN,
+                Language::GERMAN,
                 "Should return new 'lang' after replacing the existing 'lang' attribute.",
             ],
             'string' => [
@@ -147,5 +142,7 @@ final class LangProvider
                 "Should unset the 'lang' attribute when 'null' is provided after a value.",
             ],
         ];
+
+        return [...$staticCase, ...$enumCases];
     }
 }
