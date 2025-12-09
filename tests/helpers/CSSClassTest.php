@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 use UnitEnum;
 use yii\ui\exception\Message;
 use yii\ui\helpers\CSSClass;
-use yii\ui\tests\providers\CSSClassProvider;
+use yii\ui\tests\providers\helpers\CSSClassProvider;
 use yii\ui\tests\support\stub\enum\AlertType;
 
 /**

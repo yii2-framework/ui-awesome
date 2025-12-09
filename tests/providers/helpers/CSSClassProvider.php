@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace yii\ui\tests\providers;
+namespace yii\ui\tests\providers\helpers;
 
 use UnitEnum;
 use yii\ui\tests\support\stub\enum\{AlertType, ButtonSize, Priority};

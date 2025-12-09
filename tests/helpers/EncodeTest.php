@@ -7,7 +7,7 @@ namespace yii\ui\tests\helpers;
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
 use yii\ui\helpers\Encode;
-use yii\ui\tests\providers\EncodeProvider;
+use yii\ui\tests\providers\helpers\EncodeProvider;
 
 /**
  * Test suite for {@see Encode} helper functionality and behavior.
