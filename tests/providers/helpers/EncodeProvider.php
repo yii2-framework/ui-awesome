@@ -43,37 +43,37 @@ final class EncodeProvider
     public static function content(): array
     {
         return [
-            'ampersand-double' => [
+            'ampersand double' => [
                 'Sam &amp; Dark',
                 'Sam &amp;amp; Dark',
                 true,
             ],
-            'ampersand-no-double' => [
+            'ampersand no double' => [
                 'Sam & Dark',
                 'Sam &amp; Dark',
                 false,
             ],
-            'basic-entities-double' => [
+            'basic entities double' => [
                 "a<>&amp;\"'\x80",
                 'a&lt;&gt;&amp;amp;"\'�',
                 true,
             ],
-            'basic-entities-no-double' => [
+            'basic entities no double' => [
                 "a<>&\"'\x80",
                 'a&lt;&gt;&amp;"\'�',
                 false,
             ],
-            'quotes-not-encoded-in-content' => [
+            'quotes not encoded in content' => [
                 'He said "Hello" and she said \'Hi\'',
                 'He said "Hello" and she said \'Hi\'',
                 true,
             ],
-            'unicode-null-double' => [
+            'unicode null double' => [
                 '\u{0000}',
                 '\u{0000}',
                 true,
             ],
-            'unicode-null-no-double' => [
+            'unicode null no double' => [
                 '\u{0000}',
                 '\u{0000}',
                 false,
@@ -97,67 +97,67 @@ final class EncodeProvider
     public static function value(): array
     {
         return [
-            'all-special-chars' => [
+            'all special chars' => [
                 '<a href="test" data-name=\'value\'>A&B</a>',
                 '&lt;a href=&quot;test&quot; data-name=&apos;value&apos;&gt;A&amp;B&lt;/a&gt;',
                 true,
             ],
-            'ampersand-double' => [
+            'ampersand double' => [
                 'Sam &amp; Dark',
                 'Sam &amp;amp; Dark',
                 true,
             ],
-            'ampersand-no-double' => [
+            'ampersand no double' => [
                 'Sam & Dark',
                 'Sam &amp; Dark',
                 false,
             ],
-            'double-quote-encoding' => [
+            'double quote encoding' => [
                 'Say "Hello"',
                 'Say &quot;Hello&quot;',
                 true,
             ],
-            'float-value' => [
+            'float' => [
                 1.5,
                 '1.5',
                 false,
             ],
-            'int-value' => [
+            'int' => [
                 42,
                 '42',
                 false,
             ],
-            'mixed-quotes' => [
+            'mixed quotes' => [
                 'It\'s a "test"',
                 'It&apos;s a &quot;test&quot;',
                 true,
             ],
-            'null-byte-double' => [
+            'null byte double' => [
                 "\0",
                 "\0",
                 true,
             ],
-            'null-byte-no-double' => [
+            'null byte no double' => [
                 "\0",
                 "\0",
                 false,
             ],
-            'null-value' => [
+            'null' => [
                 null,
                 '',
                 false,
             ],
-            'single-quote-encoding' => [
+            'single quote encoding' => [
                 "O'Reilly",
                 'O&apos;Reilly',
                 true,
             ],
-            'unicode-null-double' => [
+            'unicode null double' => [
                 "\u{0000}",
                 "\u{0000}",
                 true,
             ],
-            'unicode-null-no-double' => [
+            'unicode null no double' => [
                 "\u{0000}",
                 "\u{0000}",
                 false,

@@ -258,21 +258,21 @@ final class ValidatorProvider
     public static function oneOf(): array
     {
         return [
-            'backed-enum-value-in-list' => [
+            'backed enum value in list' => [
                 'attribute',
                 Status::ACTIVE,
                 Status::cases(),
                 false,
                 '',
             ],
-            'empty-allowed-list' => [
+            'empty allowed list' => [
                 'attribute',
                 'a',
                 [],
                 true,
                 Message::VALUE_NOT_IN_LIST->getMessage('a', 'attribute', ''),
             ],
-            'empty-value-not-in-list' => [
+            'empty value-not-in-list' => [
                 'attribute',
                 '',
                 [
@@ -283,7 +283,7 @@ final class ValidatorProvider
                 false,
                 '',
             ],
-            'invalid-enum-comparison' => [
+            'invalid enum comparison' => [
                 'attribute',
                 Status::ACTIVE,
                 Theme::cases(),
@@ -294,7 +294,7 @@ final class ValidatorProvider
                     implode('\', \'', Enum::normalizeArray(Theme::cases())),
                 ),
             ],
-            'mixed-enum-types-backed-enum-value-found' => [
+            'mixed enum types backed enum value found' => [
                 'attribute',
                 'DARK',
                 [
@@ -305,7 +305,7 @@ final class ValidatorProvider
                 false,
                 '',
             ],
-            'mixed-enum-types-enum-instance-found' => [
+            'mixed enum types enum instance found' => [
                 'attribute',
                 Status::ACTIVE,
                 [
@@ -316,7 +316,7 @@ final class ValidatorProvider
                 false,
                 '',
             ],
-            'mixed-enum-types-int-value-found' => [
+            'mixed enum types int value found' => [
                 'attribute',
                 1,
                 [
@@ -327,7 +327,7 @@ final class ValidatorProvider
                 false,
                 '',
             ],
-            'mixed-enum-types-string-not-found-type-strictness' => [
+            'mixed enum types string not found type strictness' => [
                 'attribute',
                 '1',
                 [
@@ -342,7 +342,7 @@ final class ValidatorProvider
                     implode('\', \'', Enum::normalizeArray([Status::ACTIVE, Theme::DARK, Priority::LOW])),
                 ),
             ],
-            'string-case-sensitive-enum-value' => [
+            'string case sensitive enum value' => [
                 'attribute',
                 'ACTIVE',
                 [
@@ -356,7 +356,7 @@ final class ValidatorProvider
                     implode('\', \'', Enum::normalizeArray([Status::ACTIVE, Status::INACTIVE])),
                 ),
             ],
-            'string-value-in-list' => [
+            'string value in list' => [
                 'attribute',
                 'a',
                 [
@@ -367,7 +367,7 @@ final class ValidatorProvider
                 false,
                 '',
             ],
-            'string-value-not-in-list' => [
+            'string value not in list' => [
                 'attribute',
                 '1',
                 [
@@ -382,7 +382,7 @@ final class ValidatorProvider
                     implode('\', \'', Enum::normalizeArray(['a', 'b', 'c'])),
                 ),
             ],
-            'unit-enum-value-in-list' => [
+            'unit enum value in list' => [
                 'attribute',
                 Theme::DARK,
                 Theme::cases(),
