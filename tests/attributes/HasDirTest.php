@@ -8,9 +8,11 @@ use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
 use UnitEnum;
 use yii\ui\attributes\HasDir;
-use yii\ui\helpers\Attributes;
+use yii\ui\exception\Message;
+use yii\ui\helpers\{Attributes, Enum};
 use yii\ui\mixin\HasAttributes;
 use yii\ui\tests\providers\tag\attributes\DirectionProvider;
+use yii\ui\values\Direction;
 
 /**
  * Test suite for {@see HasDir} trait functionality and behavior.
@@ -32,7 +34,7 @@ use yii\ui\tests\providers\tag\attributes\DirectionProvider;
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
 #[Group('attributes')]
-final class HasDirectionTest extends TestCase
+final class HasDirTest extends TestCase
 {
     /**
      * @phpstan-param mixed[] $attributes
@@ -107,5 +109,24 @@ final class HasDirectionTest extends TestCase
             $instance->getAttributes()['dir'] ?? '',
             $message,
         );
+    }
+
+    public function testThrowExceptionWhenSettingInvalidDirValue(): void
+    {
+        $instance = new class {
+            use HasAttributes;
+            use HasDir;
+        };
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            Message::VALUE_NOT_IN_LIST->getMessage(
+                'invalid-value',
+                'dir',
+                implode('\', \'', Enum::normalizeArray(Direction::cases())),
+            ),
+        );
+
+        $instance->dir('invalid-value');
     }
 }

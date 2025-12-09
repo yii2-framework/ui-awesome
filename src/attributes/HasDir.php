@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace yii\ui\attributes;
 
 use UnitEnum;
+use yii\ui\helpers\Validator;
+use yii\ui\values\Direction;
 
 /**
  * Trait for managing the global HTML `dir` attribute in tag rendering.
@@ -51,6 +53,8 @@ trait HasDir
         if ($value === null) {
             unset($new->attributes['dir']);
         } else {
+            Validator::oneOf($value, Direction::cases(), 'dir');
+
             $new->attributes['dir'] = $value;
         }
 
