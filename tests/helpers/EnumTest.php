@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 use stdClass;
 use yii\ui\exception\Message;
 use yii\ui\helpers\Enum;
-use yii\ui\tests\providers\EnumProvider;
+use yii\ui\tests\providers\helpers\EnumProvider;
 
 /**
  * Test suite for {@see Enum} helper functionality and behavior.

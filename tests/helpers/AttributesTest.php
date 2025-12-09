@@ -7,7 +7,7 @@ namespace yii\ui\tests\helpers;
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
 use yii\ui\helpers\Attributes;
-use yii\ui\tests\providers\AttributesProvider;
+use yii\ui\tests\providers\helpers\AttributesProvider;
 
 /**
  * Test suite for {@see Attributes} helper functionality and behavior.

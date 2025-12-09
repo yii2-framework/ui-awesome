@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace yii\ui\tests\providers;
+namespace yii\ui\tests\providers\helpers;
 
 /**
  * Data provider for {@see \yii\ui\tests\helpers\EncodeTest} class.
