@@ -42,14 +42,15 @@ trait HasLang
      * @return static New instance with the updated `lang` attribute.
      *
      * @link https://html.spec.whatwg.org/multipage/dom.html#attr-lang
+     * {@see \yii\ui\values\Language} for predefined enum values.
      *
      * Usage example:
      * ```php
      * // sets the `lang` attribute to 'en-US'
      * $element->lang('en-US');
      *
-     * // sets the `lang` attribute to 'en-US' if `Language::EN_US` is a `UnitEnum`
-     * $element->lang(Language::EN_US);
+     * // sets the `lang` attribute to 'en-US' if `Language::ENGLISH_US` is a `UnitEnum`
+     * $element->lang(Language::ENGLISH_US);
      *
      * // unsets the `lang` attribute
      * $element->lang(null);

@@ -47,6 +47,16 @@ trait HasContentEditable
      * @return static New instance with the updated `contenteditable` attribute.
      *
      * @link https://html.spec.whatwg.org/multipage/dom.html#attr-contenteditable
+     * {@see ContentEditable} for predefined enum values.
+     *
+     * Usage example:
+     * ```php
+     * // sets the `contenteditable` attribute to `false`
+     * $element->contentEditable('false');
+     *
+     * // sets the `contenteditable` attribute to `true`
+     * $element->contentEditable(ContentEditable::TRUE);
+     * ```
      */
     public function contentEditable(bool|string|UnitEnum|null $value): static
     {

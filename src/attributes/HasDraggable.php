@@ -46,6 +46,7 @@ trait HasDraggable
      * @return static New instance with the updated `draggable` attribute.
      *
      * @link https://html.spec.whatwg.org/multipage/interaction.html#attr-draggable
+     * {@see Draggable} for predefined enum values.
      *
      * Usage example:
      * ```php

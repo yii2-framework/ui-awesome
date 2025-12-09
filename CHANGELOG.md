@@ -99,3 +99,4 @@
 - Bug #95: Refactor exception handling in `HasDataTest` for improved clarity and consistency (@terabytesoftw)
 - Enh #96: Add `HasContentEditable` trait with `contentEditable()` method and tests (@terabytesoftw)
 - Enh #97: Add `HasDraggable` trait with `draggable()` method and tests (@terabytesoftw)
+- Bug #98: Add usage examples to various traits for better documentation and clarity (@terabytesoftw)

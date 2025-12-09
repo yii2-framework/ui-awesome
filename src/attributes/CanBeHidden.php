@@ -40,6 +40,15 @@ trait CanBeHidden
      * @return static New instance with the updated `hidden` attribute.
      *
      * @link https://html.spec.whatwg.org/multipage/semantics.html#the-hidden-attribute
+     *
+     * Usage example:
+     * ```php
+     * // sets the `hidden` attribute to `false`
+     * $element->hidden(false);
+     *
+     * // sets the `hidden` attribute to `true`
+     * $element->hidden(true);
+     * ```
      */
     public function hidden(bool $value): static
     {

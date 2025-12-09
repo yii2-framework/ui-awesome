@@ -45,6 +45,16 @@ trait HasDir
      * @return static New instance with the updated `dir` attribute.
      *
      * @link https://html.spec.whatwg.org/multipage/dom.html#the-dir-attribute
+     * {@see Direction} for predefined enum values.
+     *
+     * Usage example:
+     * ```php
+     * // sets the `dir` attribute to 'ltr'
+     * $element->dir('ltr');
+     *
+     * // sets the `dir` attribute to 'rtl'
+     * $element->dir(Direction::RTL);
+     * ```
      */
     public function dir(string|UnitEnum|null $value): static
     {
