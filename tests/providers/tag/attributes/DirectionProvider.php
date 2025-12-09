@@ -69,7 +69,7 @@ final class DirectionProvider
                 "Should return an empty string when the attribute is set to 'null'.",
             ],
             'replace existing' => [
-                Direction::AUTO,
+                'auto',
                 ['dir' => 'ltr'],
                 ' dir="auto"',
                 "Should return new 'dir' after replacing the existing 'dir' attribute.",
@@ -122,9 +122,9 @@ final class DirectionProvider
                 "Should return an empty string when the attribute is set to 'null'.",
             ],
             'replace existing' => [
-                Direction::AUTO,
+                'auto',
                 ['dir' => 'ltr'],
-                Direction::AUTO,
+                'auto',
                 "Should return new 'dir' after replacing the existing 'dir' attribute.",
             ],
             'string' => [
