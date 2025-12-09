@@ -99,45 +99,45 @@ final class HasDataTest extends TestCase
 
     public function testThrowInvalidArgumentExceptionWhenKeyIsEmpty(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(
-            Message::DATA_ATTRIBUTE_KEY_NOT_EMPTY->getMessage(),
-        );
-
         $instance = new class {
             use HasAttributes;
             use HasData;
         };
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            Message::DATA_ATTRIBUTE_KEY_NOT_EMPTY->getMessage(),
+        );
 
         $instance->dataAttributes(['' => 'value']);
     }
 
     public function testThrowInvalidArgumentExceptionWhenKeyIsInvalid(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(
-            Message::DATA_ATTRIBUTE_KEY_MUST_BE_STRING->getMessage('integer'),
-        );
-
         $instance = new class {
             use HasAttributes;
             use HasData;
         };
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            Message::DATA_ATTRIBUTE_KEY_MUST_BE_STRING->getMessage('integer'),
+        );
 
         $instance->dataAttributes([1 => '']);
     }
 
     public function testThrowInvalidArgumentExceptionWhenValueIsInvalid(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(
-            Message::DATA_ATTRIBUTE_VALUE_MUST_BE_STRING_OR_CLOSURE->getMessage('integer'),
-        );
-
         $instance = new class {
             use HasAttributes;
             use HasData;
         };
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            Message::DATA_ATTRIBUTE_VALUE_MUST_BE_STRING_OR_CLOSURE->getMessage('integer'),
+        );
 
         $instance->dataAttributes(['key' => 1]);
     }
