@@ -63,7 +63,7 @@ final class HasDirTest extends TestCase
 
     public function testReturnEmptyWhenDirAttributeNotSet(): void
     {
-        $instance =  new class {
+        $instance = new class {
             use HasAttributes;
             use HasDir;
         };
