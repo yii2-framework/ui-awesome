@@ -103,4 +103,4 @@
 - Bug #99: Move `DataProvider` class from `tests\providers\tag\attributes` to `tests\providers\attributes` (@terabytesoftw)
 - Bug #100: Fix code style issues in `HasContentEditable` and `HasDraggable` classes (@terabytesoftw)
 - Bug #101: Improve `HasLang` trait by adding validation for `lang` attribute and updating documentation and tests accordingly (@terabytesoftw)
-- Bug #102: Update test case names in `EncodeProvider` and `ValidatorProvider` classes  for improved clarity and consistency (@terabytesoftw)
+- Bug #102: Update test case names in `EncodeProvider` and `ValidatorProvider` classes for improved clarity and consistency (@terabytesoftw)
