@@ -40,6 +40,15 @@ trait CanBeAutofocus
      * @return static New instance with the updated `autofocus` attribute.
      *
      * @link https://html.spec.whatwg.org/multipage/semantics.html#attr-autofocus
+     *
+     * Usage example:
+     * ```php
+     * // sets the `autofocus` attribute to `false`
+     * $element->autofocus(false);
+     *
+     * // sets the `autofocus` attribute to `true`
+     * $element->autofocus(true);
+     * ```
      */
     public function autofocus(bool $value): static
     {

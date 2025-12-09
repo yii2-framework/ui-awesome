@@ -55,6 +55,11 @@ trait HasTemplate
      * @param string $value Template string to set for the element.
      *
      * @return static New instance with the updated template property.
+     *
+     * Usage example:
+     * ```php
+     * $element->template('<div>{content}</div>');
+     * ```
      */
     public function template(string $value): static
     {

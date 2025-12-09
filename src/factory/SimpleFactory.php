@@ -6,10 +6,13 @@ namespace yii\ui\factory;
 
 use LogicException;
 use ReflectionClass;
+use ReflectionException;
 use yii\ui\exception\Message;
 use yii\ui\tag\BaseTag;
 
 use function is_array;
+use function method_exists;
+use function property_exists;
 
 /**
  * Factory class for instantiating and configuring HTML tag objects.
@@ -102,10 +105,16 @@ final class SimpleFactory
      * @return BaseTag Instantiated tag object.
      *
      * @throws LogicException if the class is abstract and cannot be instantiated.
+     * @throws ReflectionException
      *
      * @phpstan-param class-string<T> $class
      *
      * @phpstan-return T
+     *
+     * Usage example:
+     * ```php
+     * $tag = SimpleFactory::create(Div::class);
+     * ```
      */
     public static function create(string $class): BaseTag
     {

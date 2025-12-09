@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace yii\ui\helpers\base;
 
 use Closure;
-use yii\helpers\Json;
 use yii\ui\helpers\{Encode, Enum};
 
 use function array_map;

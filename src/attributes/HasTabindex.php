@@ -47,6 +47,12 @@ trait HasTabindex
      * `value >= -1`.
      *
      * @link https://html.spec.whatwg.org/multipage/interaction.html#attr-tabindex
+     *
+     * Usage example:
+     * ```php
+     * // sets the `tabindex` attribute to `3`
+     * $element->tabIndex(3);
+     * ```
      */
     public function tabIndex(int|string|null $value): static
     {
