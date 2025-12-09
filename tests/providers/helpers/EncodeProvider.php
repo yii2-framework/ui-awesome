@@ -68,7 +68,7 @@ final class EncodeProvider
                 'He said "Hello" and she said \'Hi\'',
                 true,
             ],
-            'unicode-null double' => [
+            'unicode null double' => [
                 '\u{0000}',
                 '\u{0000}',
                 true,
