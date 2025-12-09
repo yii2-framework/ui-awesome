@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\attributes;
 
+use InvalidArgumentException;
 use UnitEnum;
 use yii\ui\helpers\Validator;
 use yii\ui\values\Language;
@@ -40,6 +41,8 @@ trait HasLang
      * according to the HTML specification for global attributes.
      *
      * @param string|UnitEnum|null $value Language value to set for the element. Can be `null` to unset the attribute.
+     *
+     * @throws InvalidArgumentException if the provided value is not valid.
      *
      * @return static New instance with the updated `lang` attribute.
      *
