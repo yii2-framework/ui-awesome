@@ -10,7 +10,7 @@ use UnitEnum;
 use yii\ui\attributes\HasTitle;
 use yii\ui\helpers\Attributes;
 use yii\ui\mixin\HasAttributes;
-use yii\ui\tests\providers\tag\attributes\TitleProvider;
+use yii\ui\tests\providers\attributes\TitleProvider;
 
 /**
  * Test suite for {@see HasTitle} trait functionality and behavior.

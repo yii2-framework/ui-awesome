@@ -10,7 +10,7 @@ use UnitEnum;
 use yii\ui\attributes\HasClass;
 use yii\ui\helpers\Attributes;
 use yii\ui\mixin\HasAttributes;
-use yii\ui\tests\providers\tag\attributes\ClassProvider;
+use yii\ui\tests\providers\attributes\ClassProvider;
 
 /**
  * Test suite for {@see HasClass} trait functionality and behavior.

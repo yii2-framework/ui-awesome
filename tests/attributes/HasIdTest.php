@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use yii\ui\attributes\HasId;
 use yii\ui\helpers\Attributes;
 use yii\ui\mixin\HasAttributes;
-use yii\ui\tests\providers\tag\attributes\IdProvider;
+use yii\ui\tests\providers\attributes\IdProvider;
 
 /**
  * Test suite for {@see HasId} trait functionality and behavior.

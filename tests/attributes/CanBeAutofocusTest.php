@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use yii\ui\attributes\CanBeAutofocus;
 use yii\ui\helpers\Attributes;
 use yii\ui\mixin\HasAttributes;
-use yii\ui\tests\providers\tag\attributes\AutofocusProvider;
+use yii\ui\tests\providers\attributes\AutofocusProvider;
 
 /**
  * Test suite for {@see CanBeAutofocus} trait functionality and behavior.

@@ -12,7 +12,7 @@ use yii\ui\attributes\HasDraggable;
 use yii\ui\exception\Message;
 use yii\ui\helpers\{Attributes, Enum};
 use yii\ui\mixin\HasAttributes;
-use yii\ui\tests\providers\tag\attributes\DraggableProvider;
+use yii\ui\tests\providers\attributes\DraggableProvider;
 use yii\ui\values\Draggable;
 
 /**

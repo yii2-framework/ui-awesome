@@ -10,7 +10,7 @@ use UnitEnum;
 use yii\ui\attributes\HasStyle;
 use yii\ui\helpers\Attributes;
 use yii\ui\mixin\HasAttributes;
-use yii\ui\tests\providers\tag\attributes\StyleProvider;
+use yii\ui\tests\providers\attributes\StyleProvider;
 
 /**
  * Test suite for {@see HasStyle} trait functionality and behavior.
