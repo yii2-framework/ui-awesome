@@ -29,7 +29,7 @@ use yii\ui\values\Direction;
  * - Immutability of the trait's API when setting or overriding the `dir` attribute.
  * - Proper assignment and overriding of `dir` values.
  *
- * {@see DirectionProvider} for test case data providers.
+ * {@see DirProvider} for test case data providers.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
