@@ -95,3 +95,4 @@
 - Bug #91: Refactor test providers and update namespaces for better organization and clarity (@terabytesoftw)
 - Bug #92: Add missing GitHub agents directory to ignore list `.gitignore` (@terabytesoftw)
 - Enh #93: Introduce `Language` enum for standardized HTML lang codes and enhance `LangProvider` for testing (@terabytesoftw)
+- Enh #94: Add `HasDir` trait with `dir()` method and tests (@terabytesoftw)
