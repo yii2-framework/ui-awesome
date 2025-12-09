@@ -102,3 +102,4 @@
 - Bug #98: Add usage examples to various traits for better documentation and clarity (@terabytesoftw)
 - Bug #99: Move `DataProvider` class from `tests\providers\tag\attributes` to `tests\providers\attributes` (@terabytesoftw)
 - Bug #100: Fix code style issues in `HasContentEditable` and `HasDraggable` classes (@terabytesoftw)
+- Bug #101: Improve `HasLang` trait by adding validation for `lang` attribute and updating documentation and tests accordingly (@terabytesoftw)

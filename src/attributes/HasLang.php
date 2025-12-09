@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace yii\ui\attributes;
 
 use UnitEnum;
+use yii\ui\helpers\Validator;
+use yii\ui\values\Language;
 
 /**
  * Trait for managing the global HTML `lang` attribute in tag rendering.
@@ -42,7 +44,7 @@ trait HasLang
      * @return static New instance with the updated `lang` attribute.
      *
      * @link https://html.spec.whatwg.org/multipage/dom.html#attr-lang
-     * {@see \yii\ui\values\Language} for predefined enum values.
+     * {@see Language} for predefined enum values.
      *
      * Usage example:
      * ```php
@@ -63,6 +65,8 @@ trait HasLang
         if ($value === null) {
             unset($new->attributes['lang']);
         } else {
+            Validator::oneOf($value, Language::cases(), 'lang');
+
             $new->attributes['lang'] = $value;
         }
 

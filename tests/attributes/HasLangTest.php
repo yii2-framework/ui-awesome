@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\attributes;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
 use UnitEnum;
 use yii\ui\attributes\HasLang;
-use yii\ui\helpers\Attributes;
+use yii\ui\exception\Message;
+use yii\ui\helpers\{Attributes, Enum};
 use yii\ui\mixin\HasAttributes;
 use yii\ui\tests\providers\attributes\LangProvider;
+use yii\ui\values\Language;
 
 /**
  * Test suite for {@see HasLang} trait functionality and behavior.
@@ -107,5 +110,24 @@ final class HasLangTest extends TestCase
             $instance->getAttributes()['lang'] ?? '',
             $message,
         );
+    }
+
+    public function testThrowExceptionWhenSettingInvalidLangValue(): void
+    {
+        $instance = new class {
+            use HasAttributes;
+            use HasLang;
+        };
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            Message::VALUE_NOT_IN_LIST->getMessage(
+                'invalid-value',
+                'lang',
+                implode('\', \'', Enum::normalizeArray(Language::cases())),
+            ),
+        );
+
+        $instance->lang('invalid-value');
     }
 }
