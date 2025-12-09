@@ -64,6 +64,7 @@ trait HasContentEditable
 
         if ($value === null) {
             unset($new->attributes['contenteditable']);
+
             return $new;
         }
 
