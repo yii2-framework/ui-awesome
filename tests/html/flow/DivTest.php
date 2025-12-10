@@ -135,7 +135,7 @@ final class DivTest extends TestCase
             </div>
             HTML,
             Div::tag()->dataAttributes(['value' => 'test-value'])->render(),
-            "Failed asserting that element renders correctly with 'dataAttributes' attribute.",
+            "Failed asserting that element renders correctly with 'dataAttributes()' method.",
         );
     }
 
