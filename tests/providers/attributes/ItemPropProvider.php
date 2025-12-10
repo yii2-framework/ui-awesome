@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\providers\attributes;
 
-
 /**
  * Data provider for {@see \yii\ui\tests\attributes\HasMicroDataTest} class.
  *
