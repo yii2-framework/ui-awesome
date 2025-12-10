@@ -189,7 +189,7 @@ final class SpanTest extends TestCase
         }
     }
 
-    public function testRenderwithHidden(): void
+    public function testRenderWithHidden(): void
     {
         self::equalsWithoutLE(
             <<<HTML
