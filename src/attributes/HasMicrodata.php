@@ -11,13 +11,13 @@ namespace yii\ui\attributes;
  * `itemscope`, `itemtype`) on HTML elements, following the HTML specification for global attributes.
  *
  * Intended for use in tags and components that require dynamic or programmatic manipulation of microdata, ensuring
- * correct attribute handling, type safety, and value validation.
+ * correct attribute handling, type safety and value validation.
  *
  * Key features:
  * - Designed for use in tags and components.
  * - Enforces standards-compliant handling of the HTML microdata global attributes.
  * - Immutable methods for setting or overriding microdata attributes.
- * - Supports `bool`, `string`, and `null` values for flexible microdata assignment.
+ * - Supports `bool`, `string` and `null` values for flexible microdata assignment.
  *
  * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemid
  * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop
@@ -158,14 +158,14 @@ trait HasMicrodata
      * $element->itemScope(null);
      * ```
      */
-    public function itemScope(bool|null $value = true): static
+    public function itemScope(bool|null $value): static
     {
         $new = clone $this;
 
         if ($value === null) {
             unset($new->attributes['itemscope']);
         } else {
-            $new->attributes['itemscope'] = true;
+            $new->attributes['itemscope'] = $value;
         }
 
         return $new;

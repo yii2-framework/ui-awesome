@@ -9,13 +9,13 @@ use PHPUnit\Framework\TestCase;
 use yii\ui\attributes\HasMicrodata;
 use yii\ui\helpers\Attributes;
 use yii\ui\mixin\HasAttributes;
-use yii\ui\tests\providers\attributes\{ItemIdProvider, ItemPropProvider, ItemRefProvider, ItemTypeProvider};
+use yii\ui\tests\providers\attributes\{ItemIdProvider, ItemPropProvider, ItemRefProvider, ItemScopeProvider, ItemTypeProvider};
 
 /**
  * Test suite for {@see HasMicrodata} trait functionality and behavior.
  *
- * Validates the management of the global HTML microdata attributes (`itemid`, `itemprop`, `itemref`, `itemtype`)
- * according to the HTML Living Standard specification.
+ * Validates the management of the global HTML microdata attributes (`itemid`, `itemprop`, `itemref`, ìtemScope`,
+ * `itemtype`) according to the HTML Living Standard specification.
  *
  * Ensures correct handling, immutability, and validation of the microdata attributes in tag rendering, supporting
  * `bool`, `string` and `null` values for dynamic assignment.
@@ -110,6 +110,30 @@ final class HasMicroDataTest extends TestCase
     /**
      * @phpstan-param mixed[] $attributes
      */
+    #[DataProviderExternal(ItemScopeProvider::class, 'renderAttribute')]
+    public function testRenderAttributesWithItemScopeAttribute(
+        bool|null $itemScope,
+        array $attributes,
+        string $expected,
+        string $message,
+    ): void {
+        $instance = new class {
+            use HasAttributes;
+            use HasMicrodata;
+        };
+
+        $instance = $instance->attributes($attributes)->itemScope($itemScope);
+
+        self::assertSame(
+            $expected,
+            Attributes::render($instance->getAttributes()),
+            $message,
+        );
+    }
+
+    /**
+     * @phpstan-param mixed[] $attributes
+     */
     #[DataProviderExternal(ItemTypeProvider::class, 'renderAttribute')]
     public function testRenderAttributesWithItemTypeAttribute(
         string|null $itemType,
@@ -186,6 +210,20 @@ final class HasMicroDataTest extends TestCase
         );
     }
 
+    public function testReturnNewInstanceWhenSettingItemScopeAttribute(): void
+    {
+        $instance = new class {
+            use HasAttributes;
+            use HasMicrodata;
+        };
+
+        self::assertNotSame(
+            $instance,
+            $instance->itemScope(false),
+            'Should return a new instance when setting the attribute, ensuring immutability.',
+        );
+    }
+
     public function testReturnNewInstanceWhenSettingItemTypeAttribute(): void
     {
         $instance = new class {
@@ -207,7 +245,7 @@ final class HasMicroDataTest extends TestCase
     public function testSetItemIdAttributeValue(
         string|null $itemId,
         array $attributes,
-        string|null $expected,
+        string $expected,
         string $message,
     ): void {
         $instance = new class {
@@ -231,7 +269,7 @@ final class HasMicroDataTest extends TestCase
     public function testSetItemPropAttributeValue(
         string|null $itemProp,
         array $attributes,
-        string|null $expected,
+        string $expected,
         string $message,
     ): void {
         $instance = new class {
@@ -255,7 +293,7 @@ final class HasMicroDataTest extends TestCase
     public function testSetItemRefAttributeValue(
         string|null $itemRef,
         array $attributes,
-        string|null $expected,
+        string $expected,
         string $message,
     ): void {
         $instance = new class {
@@ -275,11 +313,35 @@ final class HasMicroDataTest extends TestCase
     /**
      * @phpstan-param mixed[] $attributes
      */
+    #[DataProviderExternal(ItemScopeProvider::class, 'values')]
+    public function testSetItemScopeAttributeValue(
+        bool|null $itemScope,
+        array $attributes,
+        bool|string $expected,
+        string $message,
+    ): void {
+        $instance = new class {
+            use HasAttributes;
+            use HasMicrodata;
+        };
+
+        $instance = $instance->attributes($attributes)->itemScope($itemScope);
+
+        self::assertSame(
+            $expected,
+            $instance->getAttributes()['itemscope'] ?? '',
+            $message,
+        );
+    }
+
+    /**
+     * @phpstan-param mixed[] $attributes
+     */
     #[DataProviderExternal(ItemTypeProvider::class, 'values')]
     public function testSetItemTypeAttributeValue(
         string|null $itemType,
         array $attributes,
-        string|null $expected,
+        string $expected,
         string $message,
     ): void {
         $instance = new class {
