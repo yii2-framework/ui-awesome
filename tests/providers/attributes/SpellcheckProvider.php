@@ -109,7 +109,6 @@ final class SpellcheckProvider
      * @return array Test data for `spellcheck` attribute value scenarios.
      *
      * @phpstan-return array<string, array{bool|string|null, mixed[], string, string}>
-     * @phpstan-return array<string, array{bool|string|null, mixed[], string, string}>
      */
     public static function values(): array
     {
