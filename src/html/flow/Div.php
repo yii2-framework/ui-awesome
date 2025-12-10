@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\html\flow;
 
-use yii\ui\element\BaseBlockElement;
+use yii\ui\element\BaseBlock;
 use yii\ui\tag\Block;
 
 /**
@@ -23,13 +23,13 @@ use yii\ui\tag\Block;
  * - Type-safe methods for content and attribute management.
  *
  * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div
- * {@see BaseBlockElement} for base element behavior.
+ * {@see BaseBlock} for the base implementation.
  * {@see Block} for a list of block-level HTML elements.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
-final class Div extends BaseBlockElement
+final class Div extends BaseBlock
 {
     /**
      * Returns the tag enumeration for the `<div>` element.
