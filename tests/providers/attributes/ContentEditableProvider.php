@@ -45,7 +45,7 @@ final class ContentEditableProvider
      *
      * @return array Test data for rendered `contenteditable` attribute scenarios.
      *
-     * @phpstan-return array<string, array{bool|string|UnitEnum|null, mixed[], bool|string|UnitEnum, string}>
+     * @phpstan-return array<string, array{bool|string|UnitEnum|null, mixed[], string|UnitEnum, string}>
      */
     public static function renderAttribute(): array
     {
@@ -129,7 +129,7 @@ final class ContentEditableProvider
      *
      * @return array Test data for `contenteditable` attribute value scenarios.
      *
-     * @phpstan-return array<string, array{bool|string|UnitEnum|null, mixed[], bool|string|UnitEnum, string}>
+     * @phpstan-return array<string, array{bool|string|UnitEnum|null, mixed[], string|UnitEnum, string}>
      */
     public static function values(): array
     {
