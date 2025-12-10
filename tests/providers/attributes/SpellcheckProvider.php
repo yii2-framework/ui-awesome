@@ -76,12 +76,6 @@ final class SpellcheckProvider
                 ' spellcheck="true"',
                 "Should return new 'spellcheck' after replacing the existing 'spellcheck' attribute.",
             ],
-            'string' => [
-                'true',
-                [],
-                ' spellcheck="true"',
-                'Should return the attribute value after setting it.',
-            ],
             'string boolean false' => [
                 'false',
                 [],
@@ -148,12 +142,6 @@ final class SpellcheckProvider
                 ['spellcheck' => 'false'],
                 'true',
                 "Should return new 'spellcheck' after replacing the existing 'spellcheck' attribute.",
-            ],
-            'string' => [
-                'true',
-                [],
-                'true',
-                'Should return the attribute value after setting it.',
             ],
             'string boolean false' => [
                 'false',
