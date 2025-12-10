@@ -6,13 +6,13 @@ namespace yii\ui\tests\attributes;
 
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
-use yii\ui\attributes\HasMicrodata;
+use yii\ui\attributes\HasMicroData;
 use yii\ui\helpers\Attributes;
 use yii\ui\mixin\HasAttributes;
 use yii\ui\tests\providers\attributes\{ItemIdProvider, ItemPropProvider, ItemRefProvider, ItemScopeProvider, ItemTypeProvider};
 
 /**
- * Test suite for {@see HasMicrodata} trait functionality and behavior.
+ * Test suite for {@see HasMicroData} trait functionality and behavior.
  *
  * Validates the management of the global HTML microdata attributes (`itemid`, `itemprop`, `itemref`, `itemscope`,
  * `itemtype`) according to the HTML Living Standard specification.
@@ -47,7 +47,7 @@ final class HasMicroDataTest extends TestCase
     ): void {
         $instance = new class {
             use HasAttributes;
-            use HasMicrodata;
+            use HasMicroData;
         };
 
         $instance = $instance->attributes($attributes)->itemId($itemId);
@@ -71,7 +71,7 @@ final class HasMicroDataTest extends TestCase
     ): void {
         $instance = new class {
             use HasAttributes;
-            use HasMicrodata;
+            use HasMicroData;
         };
 
         $instance = $instance->attributes($attributes)->itemProp($itemProp);
@@ -95,7 +95,7 @@ final class HasMicroDataTest extends TestCase
     ): void {
         $instance = new class {
             use HasAttributes;
-            use HasMicrodata;
+            use HasMicroData;
         };
 
         $instance = $instance->attributes($attributes)->itemRef($itemRef);
@@ -119,7 +119,7 @@ final class HasMicroDataTest extends TestCase
     ): void {
         $instance = new class {
             use HasAttributes;
-            use HasMicrodata;
+            use HasMicroData;
         };
 
         $instance = $instance->attributes($attributes)->itemScope($itemScope);
@@ -143,7 +143,7 @@ final class HasMicroDataTest extends TestCase
     ): void {
         $instance = new class {
             use HasAttributes;
-            use HasMicrodata;
+            use HasMicroData;
         };
 
         $instance = $instance->attributes($attributes)->itemType($itemType);
@@ -159,7 +159,7 @@ final class HasMicroDataTest extends TestCase
     {
         $instance =  new class {
             use HasAttributes;
-            use HasMicrodata;
+            use HasMicroData;
         };
 
         self::assertEmpty(
@@ -172,7 +172,7 @@ final class HasMicroDataTest extends TestCase
     {
         $instance = new class {
             use HasAttributes;
-            use HasMicrodata;
+            use HasMicroData;
         };
 
         self::assertNotSame(
@@ -186,7 +186,7 @@ final class HasMicroDataTest extends TestCase
     {
         $instance = new class {
             use HasAttributes;
-            use HasMicrodata;
+            use HasMicroData;
         };
 
         self::assertNotSame(
@@ -200,7 +200,7 @@ final class HasMicroDataTest extends TestCase
     {
         $instance = new class {
             use HasAttributes;
-            use HasMicrodata;
+            use HasMicroData;
         };
 
         self::assertNotSame(
@@ -214,7 +214,7 @@ final class HasMicroDataTest extends TestCase
     {
         $instance = new class {
             use HasAttributes;
-            use HasMicrodata;
+            use HasMicroData;
         };
 
         self::assertNotSame(
@@ -228,7 +228,7 @@ final class HasMicroDataTest extends TestCase
     {
         $instance = new class {
             use HasAttributes;
-            use HasMicrodata;
+            use HasMicroData;
         };
 
         self::assertNotSame(
@@ -250,7 +250,7 @@ final class HasMicroDataTest extends TestCase
     ): void {
         $instance = new class {
             use HasAttributes;
-            use HasMicrodata;
+            use HasMicroData;
         };
 
         $instance = $instance->attributes($attributes)->itemId($itemId);
@@ -274,7 +274,7 @@ final class HasMicroDataTest extends TestCase
     ): void {
         $instance = new class {
             use HasAttributes;
-            use HasMicrodata;
+            use HasMicroData;
         };
 
         $instance = $instance->attributes($attributes)->itemProp($itemProp);
@@ -298,7 +298,7 @@ final class HasMicroDataTest extends TestCase
     ): void {
         $instance = new class {
             use HasAttributes;
-            use HasMicrodata;
+            use HasMicroData;
         };
 
         $instance = $instance->attributes($attributes)->itemRef($itemRef);
@@ -322,7 +322,7 @@ final class HasMicroDataTest extends TestCase
     ): void {
         $instance = new class {
             use HasAttributes;
-            use HasMicrodata;
+            use HasMicroData;
         };
 
         $instance = $instance->attributes($attributes)->itemScope($itemScope);
@@ -346,7 +346,7 @@ final class HasMicroDataTest extends TestCase
     ): void {
         $instance = new class {
             use HasAttributes;
-            use HasMicrodata;
+            use HasMicroData;
         };
 
         $instance = $instance->attributes($attributes)->itemType($itemType);

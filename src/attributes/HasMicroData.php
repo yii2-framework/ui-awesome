@@ -31,7 +31,7 @@ namespace yii\ui\attributes;
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
-trait HasMicrodata
+trait HasMicroData
 {
     /**
      * Sets the HTML `itemid` attribute for the element.
