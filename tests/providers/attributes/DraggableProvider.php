@@ -45,7 +45,7 @@ final class DraggableProvider
      *
      * @return array Test data for rendered `draggable` attribute scenarios.
      *
-     * @phpstan-return array<string, array{bool|string|UnitEnum|null, mixed[], bool|string|UnitEnum, string}>
+     * @phpstan-return array<string, array{bool|string|UnitEnum|null, mixed[], string|UnitEnum, string}>
      */
     public static function renderAttribute(): array
     {
@@ -128,7 +128,7 @@ final class DraggableProvider
      *
      * @return array Test data for `draggable` attribute value scenarios.
      *
-     * @phpstan-return array<string, array{bool|string|UnitEnum|null, mixed[], bool|string|UnitEnum, string}>
+     * @phpstan-return array<string, array{bool|string|UnitEnum|null, mixed[], string|UnitEnum, string}>
      */
     public static function values(): array
     {
