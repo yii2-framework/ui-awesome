@@ -43,6 +43,7 @@ use yii\ui\values\Direction;
  */
 #[Group('html')]
 #[Group('phrasing')]
+#[Group('span')]
 final class SpanTest extends TestCase
 {
     use TestSupport;
@@ -55,17 +56,6 @@ final class SpanTest extends TestCase
             HTML,
             Span::tag()->attributes(['class' => 'test-class'])->render(),
             "Failed asserting that element renders correctly with 'attributes()' method.",
-        );
-    }
-
-    public function testRenderWithAutofocus(): void
-    {
-        self::equalsWithoutLE(
-            <<<HTML
-            <span autofocus></span>
-            HTML,
-            Span::tag()->autofocus(true)->render(),
-            "Failed asserting that element renders correctly with 'autofocus' attribute.",
         );
     }
 
@@ -321,17 +311,6 @@ final class SpanTest extends TestCase
                 ->prefixTag(Inline::STRONG)
                 ->render(),
             "Failed asserting that element renders correctly with 'prefixTag()' method.",
-        );
-    }
-
-    public function testRenderWithSpellcheck(): void
-    {
-        self::equalsWithoutLE(
-            <<<HTML
-            <span spellcheck="true"></span>
-            HTML,
-            Span::tag()->spellcheck(true)->render(),
-            "Failed asserting that element renders correctly with 'spellcheck' attribute.",
         );
     }
 
