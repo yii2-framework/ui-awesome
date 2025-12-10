@@ -4,10 +4,27 @@ declare(strict_types=1);
 
 namespace yii\ui\element;
 
-use yii\ui\attributes\{HasClass, HasData, HasId, HasLang, HasStyle, HasTitle};
+use yii\ui\attributes\{
+    CanBeAutofocus,
+    CanBeHidden,
+    HasClass,
+    HasContentEditable,
+    HasData,
+    HasDir,
+    HasDraggable,
+    HasId,
+    HasLang,
+    HasMicroData,
+    HasSpellcheck,
+    HasStyle,
+    HasTabindex,
+    HasTitle,
+};
 use yii\ui\html\Html;
 use yii\ui\mixin\{HasAttributes, HasContent};
 use yii\ui\tag\{BaseTag, Block, Lists, Root, Table};
+
+use function preg_replace;
 
 /**
  * Base class for constructing HTML block-level elements according to the HTML specification.
@@ -36,13 +53,21 @@ use yii\ui\tag\{BaseTag, Block, Lists, Root, Table};
  */
 abstract class BaseBlockElement extends BaseTag
 {
+    use CanBeAutofocus;
+    use CanBeHidden;
     use HasAttributes;
     use HasClass;
     use HasContent;
+    use HasContentEditable;
     use HasData;
+    use HasDir;
+    use HasDraggable;
     use HasId;
     use HasLang;
+    use HasMicroData;
+    use HasSpellcheck;
     use HasStyle;
+    use HasTabindex;
     use HasTitle;
 
     /**
@@ -67,13 +92,13 @@ abstract class BaseBlockElement extends BaseTag
      *
      * Removes excessive consecutive newlines from the rendered output to ensure clean HTML structure.
      *
-     * @param string $output Rendered HTML output.
+     * @param string $result Rendered HTML output.
      *
      * @return string Cleaned HTML output with excessive newlines removed.
      */
-    protected function afterRun(string $output): string
+    protected function afterRun(string $result): string
     {
-        $normalizeOutput = preg_replace("/\n{2,}/", "\n", $output) ?? '';
+        $normalizeOutput = preg_replace("/\n{2,}/", "\n", $result) ?? '';
 
         return parent::afterRun($normalizeOutput);
     }

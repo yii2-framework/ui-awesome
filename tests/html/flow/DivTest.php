@@ -16,6 +16,7 @@ use yii\ui\html\phrasing\Span;
 use yii\ui\tag\Block;
 use yii\ui\tests\support\stub\{DefaultProvider, DefaultThemeProvider};
 use yii\ui\tests\support\TestSupport;
+use yii\ui\values\{ContentEditable, Direction, Draggable};
 
 use function get_class;
 
@@ -64,6 +65,18 @@ final class DivTest extends TestCase
         );
     }
 
+    public function testRenderWithAutofocus(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <div autofocus>
+            </div>
+            HTML,
+            Div::tag()->autofocus(true)->render(),
+            "Failed asserting that element renders correctly with 'autofocus' attribute.",
+        );
+    }
+
     public function testRenderWithBeginEnd(): void
     {
         self::equalsWithoutLE(
@@ -102,6 +115,18 @@ final class DivTest extends TestCase
         );
     }
 
+    public function testRenderWithContentEditable(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <div contenteditable="true">
+            </div>
+            HTML,
+            Div::tag()->contentEditable(ContentEditable::TRUE)->render(),
+            "Failed asserting that element renders correctly with 'contentEditable' attribute.",
+        );
+    }
+
     public function testRenderWithDataAttributes(): void
     {
         self::equalsWithoutLE(
@@ -110,7 +135,7 @@ final class DivTest extends TestCase
             </div>
             HTML,
             Div::tag()->dataAttributes(['value' => 'test-value'])->render(),
-            "Failed asserting that element renders correctly with 'dataAttributes()' method.",
+            "Failed asserting that element renders correctly with 'dataAttributes' attribute.",
         );
     }
 
@@ -152,6 +177,30 @@ final class DivTest extends TestCase
         );
     }
 
+    public function testRenderWithDir(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <div dir="rtl">
+            </div>
+            HTML,
+            Div::tag()->dir(Direction::RTL)->render(),
+            "Failed asserting that element renders correctly with 'dir' attribute.",
+        );
+    }
+
+    public function testRenderWithDraggable(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <div draggable="true">
+            </div>
+            HTML,
+            Div::tag()->draggable(Draggable::TRUE)->render(),
+            "Failed asserting that element renders correctly with 'draggable' attribute.",
+        );
+    }
+
     public function testRenderWithGlobalDefaultsAreApplied(): void
     {
         SimpleFactory::setDefaults(Div::class, ['class' => 'from-global']);
@@ -168,6 +217,18 @@ final class DivTest extends TestCase
         SimpleFactory::setDefaults(Div::class, []);
     }
 
+    public function testRenderWithHidden(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <div hidden>
+            </div>
+            HTML,
+            Div::tag()->hidden(true)->render(),
+            "Failed asserting that element renders correctly with 'hidden' attribute.",
+        );
+    }
+
     public function testRenderWithId(): void
     {
         self::equalsWithoutLE(
@@ -177,6 +238,66 @@ final class DivTest extends TestCase
             HTML,
             Div::tag()->id('test-id')->render(),
             "Failed asserting that element renders correctly with 'id' attribute.",
+        );
+    }
+
+    public function testRenderWithItemId(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <div itemid="http://example.com/item">
+            </div>
+            HTML,
+            Div::tag()->itemId('http://example.com/item')->render(),
+            "Failed asserting that element renders correctly with 'itemId' attribute.",
+        );
+    }
+
+    public function testRenderWithItemProp(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <div itemprop="name">
+            </div>
+            HTML,
+            Div::tag()->itemProp('name')->render(),
+            "Failed asserting that element renders correctly with 'itemProp' attribute.",
+        );
+    }
+
+    public function testRenderWithItemRef(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <div itemref="additional-info">
+            </div>
+            HTML,
+            Div::tag()->itemRef('additional-info')->render(),
+            "Failed asserting that element renders correctly with 'itemRef' attribute.",
+        );
+    }
+
+    public function testRenderWithItemScope(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <div itemscope>
+            </div>
+            HTML,
+            Div::tag()->itemScope(true)->render(),
+            "Failed asserting that element renders correctly with 'itemScope' attribute.",
+        );
+    }
+
+    public function testRenderWithItemType(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <div itemtype="http://schema.org/Person">
+            </div>
+            HTML,
+            Div::tag()->itemType('http://schema.org/Person')->render(),
+            "Failed asserting that element renders correctly with 'itemType' attribute.",
         );
     }
 
@@ -222,6 +343,18 @@ final class DivTest extends TestCase
         );
     }
 
+    public function testRenderWithSpellcheck(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <div spellcheck="true">
+            </div>
+            HTML,
+            Div::tag()->spellcheck(true)->render(),
+            "Failed asserting that element renders correctly with 'spellcheck' attribute.",
+        );
+    }
+
     public function testRenderWithStyle(): void
     {
         self::equalsWithoutLE(
@@ -231,6 +364,18 @@ final class DivTest extends TestCase
             HTML,
             Div::tag()->style('test-value')->render(),
             "Failed asserting that element renders correctly with 'style' attribute.",
+        );
+    }
+
+    public function testRenderWithTabindex(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <div tabindex="3">
+            </div>
+            HTML,
+            Div::tag()->tabIndex(3)->render(),
+            "Failed asserting that element renders correctly with 'tabindex' attribute.",
         );
     }
 
