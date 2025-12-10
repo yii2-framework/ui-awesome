@@ -48,10 +48,10 @@ trait HasMicroData
      * Usage example:
      * ```php
      * // sets the `itemid` attribute to 'http://example.com/item'
-     * $element->itemId('http://example.com/item');
+     * $element = $element->itemId('http://example.com/item');
      *
      * // unsets the `itemid` attribute
-     * $element->itemId(null);
+     * $element = $element->itemId(null);
      * ```
      */
     public function itemId(string|null $value): static
@@ -83,10 +83,10 @@ trait HasMicroData
      * Usage example:
      * ```php
      * // sets the `itemprop` attribute to 'name'
-     * $element->itemProp('name');
+     * $element = $element->itemProp('name');
      *
      * // unsets the `itemprop` attribute
-     * $element->itemProp(null);
+     * $element = $element->itemProp(null);
      * ```
      */
     public function itemProp(string|null $value): static
@@ -118,10 +118,10 @@ trait HasMicroData
      * Usage example:
      * ```php
      * // sets the `itemref` attribute to 'additional-info'
-     * $element->itemRef('additional-info');
+     * $element = $element->itemRef('additional-info');
      *
      * // unsets the `itemref` attribute
-     * $element->itemRef(null);
+     * $element = $element->itemRef(null);
      * ```
      */
     public function itemRef(string|null $value): static
@@ -152,10 +152,10 @@ trait HasMicroData
      * Usage example:
      * ```php
      * // sets the `itemscope` attribute
-     * $element->itemScope(true);
+     * $element = $element->itemScope(true);
      *
      * // unsets the `itemscope` attribute
-     * $element->itemScope(null);
+     * $element = $element->itemScope(null);
      * ```
      */
     public function itemScope(bool|null $value): static
@@ -182,6 +182,15 @@ trait HasMicroData
      * @return static New instance with the updated `itemtype` attribute.
      *
      * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemtype
+     *
+     * Usage example:
+     * ```php
+     * // sets the `itemtype` attribute to 'http://schema.org/Person'
+     * $element = $element->itemType('http://schema.org/Person');
+     *
+     * // unsets the `itemtype` attribute
+     * $element = $element->itemType(null);
+     * ```
      */
     public function itemType(string|null $value): static
     {
