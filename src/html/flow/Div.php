@@ -24,7 +24,7 @@ use yii\ui\tag\Block;
  *
  * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div
  * {@see BaseBlock} for the base implementation.
- * {@see Block} for a list of block-level HTML elements.
+ * {@see Block} for valid block-level tags.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
