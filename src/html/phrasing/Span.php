@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\html\phrasing;
 
-use yii\ui\element\BaseInlineElement;
+use yii\ui\element\BaseInline;
 use yii\ui\tag\Inline;
 
 /**
@@ -23,13 +23,13 @@ use yii\ui\tag\Inline;
  * - Type-safe methods for content and attribute management.
  *
  * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span
- * {@see BaseElement} for base element behavior.
+ * {@see BaseInline} for the base implementation.
  * {@see Inline} for a list of inline-level HTML elements.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
-final class Span extends BaseInlineElement
+final class Span extends BaseInline
 {
     /**
      * Returns the tag enumeration for the `<span>` element.

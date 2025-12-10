@@ -8,7 +8,7 @@ use LogicException;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
-use yii\ui\element\BaseBlockElement;
+use yii\ui\element\BaseBlock;
 use yii\ui\exception\Message;
 use yii\ui\factory\SimpleFactory;
 use yii\ui\html\flow\Div;
@@ -453,7 +453,7 @@ final class DivTest extends TestCase
 
     public function testThrowExceptionWhenEndWithMismatchedTag(): void
     {
-        $tag = new class extends BaseBlockElement {
+        $tag = new class extends BaseBlock {
             /**
              * Returns the tag enumeration for the `<article>` element.
              *

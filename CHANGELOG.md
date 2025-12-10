@@ -111,3 +111,4 @@
 - Fix #107: Improve `BaseBlockElement` with additional traits and update related tests (@terabytesoftw)
 - Fix #108: Improve `BaseInlineElement` with additional traits and update related tests (@terabytesoftw)
 - Fix #109: Update error message in `DivTest` for `dataAttributes()` method assertion (@terabytesoftw)
+- Fix #110: Remove suffix `Element` in classes names for consistency across the codebase (@terabytesoftw)

@@ -51,7 +51,7 @@ use function preg_replace;
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
-abstract class BaseBlockElement extends BaseTag
+abstract class BaseBlock extends BaseTag
 {
     use CanBeAutofocus;
     use CanBeHidden;

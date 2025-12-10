@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\support\stub;
 
-use yii\ui\element\BaseInlineElement;
+use yii\ui\element\BaseInline;
 use yii\ui\tag\Inline;
 
 /**
@@ -21,7 +21,7 @@ use yii\ui\tag\Inline;
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
-final class Tag extends BaseInlineElement
+final class Tag extends BaseInline
 {
     /**
      * Flag to indicate if the element has been rendered.

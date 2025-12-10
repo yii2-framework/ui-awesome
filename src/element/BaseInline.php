@@ -48,7 +48,7 @@ use yii\ui\tag\{BaseTag, Inline};
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
  */
-abstract class BaseInlineElement extends BaseTag
+abstract class BaseInline extends BaseTag
 {
     use CanBeAutofocus;
     use CanBeHidden;
