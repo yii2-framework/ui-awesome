@@ -5,7 +5,22 @@ declare(strict_types=1);
 namespace yii\ui\element;
 
 use Stringable;
-use yii\ui\attributes\{HasClass, HasData, HasId, HasLang, HasStyle, HasTitle};
+use yii\ui\attributes\{
+    CanBeAutofocus,
+    CanBeHidden,
+    HasClass,
+    HasContentEditable,
+    HasData,
+    HasDir,
+    HasDraggable,
+    HasId,
+    HasLang,
+    HasMicroData,
+    HasSpellcheck,
+    HasStyle,
+    HasTabindex,
+    HasTitle,
+};
 use yii\ui\helpers\Template;
 use yii\ui\html\Html;
 use yii\ui\mixin\{HasAttributes, HasContent, HasPrefixCollection, HasSuffixCollection, HasTemplate};
@@ -35,15 +50,23 @@ use yii\ui\tag\{BaseTag, Inline};
  */
 abstract class BaseInlineElement extends BaseTag
 {
+    use CanBeAutofocus;
+    use CanBeHidden;
     use HasAttributes;
     use HasClass;
     use HasContent;
+    use HasContentEditable;
     use HasData;
+    use HasDir;
+    use HasDraggable;
     use HasId;
     use HasLang;
+    use HasMicroData;
     use HasPrefixCollection;
+    use HasSpellcheck;
     use HasStyle;
     use HasSuffixCollection;
+    use HasTabindex;
     use HasTemplate;
     use HasTitle;
 
