@@ -13,6 +13,7 @@ use yii\ui\html\phrasing\Span;
 use yii\ui\tag\Inline;
 use yii\ui\tests\support\stub\{DefaultProvider, DefaultThemeProvider};
 use yii\ui\tests\support\TestSupport;
+use yii\ui\values\Direction;
 
 /**
  * Test suite for {@see Span} element functionality and behavior.
@@ -57,6 +58,17 @@ final class SpanTest extends TestCase
         );
     }
 
+    public function testRenderWithAutofocus(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <span autofocus></span>
+            HTML,
+            Span::tag()->autofocus(true)->render(),
+            "Failed asserting that element renders correctly with 'autofocus' attribute.",
+        );
+    }
+
     public function testRenderWithClass(): void
     {
         self::equalsWithoutLE(
@@ -76,6 +88,17 @@ final class SpanTest extends TestCase
             HTML,
             Span::tag()->content('Content')->render(),
             "Failed asserting that element renders correctly with 'content()' method.",
+        );
+    }
+
+    public function testRenderWithContentEditable(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <span contenteditable="true"></span>
+            HTML,
+            Span::tag()->contentEditable(true)->render(),
+            "Failed asserting that element renders correctly with 'contentEditable' attribute.",
         );
     }
 
@@ -125,6 +148,28 @@ final class SpanTest extends TestCase
         );
     }
 
+    public function testRenderWithDir(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <span dir="ltr"></span>
+            HTML,
+            Span::tag()->dir(Direction::LTR)->render(),
+            "Failed asserting that element renders correctly with 'dir' attribute.",
+        );
+    }
+
+    public function testRenderWithDraggable(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <span draggable="true"></span>
+            HTML,
+            Span::tag()->draggable(true)->render(),
+            "Failed asserting that element renders correctly with 'draggable' attribute.",
+        );
+    }
+
     public function testRenderWithGlobalDefaultsAreApplied(): void
     {
         $previous = SimpleFactory::getDefaults(Span::class);
@@ -144,6 +189,17 @@ final class SpanTest extends TestCase
         }
     }
 
+    public function testRenderWithHidden(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <span hidden></span>
+            HTML,
+            Span::tag()->hidden(true)->render(),
+            "Failed asserting that element renders correctly with 'hidden' attribute.",
+        );
+    }
+
     public function testRenderWithId(): void
     {
         self::equalsWithoutLE(
@@ -152,6 +208,61 @@ final class SpanTest extends TestCase
             HTML,
             Span::tag()->id('test-id')->render(),
             "Failed asserting that element renders correctly with 'id' attribute.",
+        );
+    }
+
+    public function testRenderWithItemId(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <span itemid="http://example.com/item"></span>
+            HTML,
+            Span::tag()->itemId('http://example.com/item')->render(),
+            "Failed asserting that element renders correctly with 'itemId' attribute.",
+        );
+    }
+
+    public function testRenderWithItemProp(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <span itemprop="name"></span>
+            HTML,
+            Span::tag()->itemProp('name')->render(),
+            "Failed asserting that element renders correctly with 'itemProp' attribute.",
+        );
+    }
+
+    public function testRenderWithItemRef(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <span itemref="additional-info"></span>
+            HTML,
+            Span::tag()->itemRef('additional-info')->render(),
+            "Failed asserting that element renders correctly with 'itemRef' attribute.",
+        );
+    }
+
+    public function testRenderWithItemScope(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <span itemscope></span>
+            HTML,
+            Span::tag()->itemScope(true)->render(),
+            "Failed asserting that element renders correctly with 'itemScope' attribute.",
+        );
+    }
+
+    public function testRenderWithItemType(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <span itemtype="http://schema.org/Person"></span>
+            HTML,
+            Span::tag()->itemType('http://schema.org/Person')->render(),
+            "Failed asserting that element renders correctly with 'itemType' attribute.",
         );
     }
 
@@ -181,7 +292,7 @@ final class SpanTest extends TestCase
                 ->suffix('Suffix')
                 ->suffixTag(Inline::EM)
                 ->render(),
-            'Failed asserting that element renders correctly with both prefix and suffix.',
+            "Failed asserting that element renders correctly with both 'prefix()' and 'suffix()' methods.",
         );
     }
 
@@ -210,6 +321,17 @@ final class SpanTest extends TestCase
                 ->prefixTag(Inline::STRONG)
                 ->render(),
             "Failed asserting that element renders correctly with 'prefixTag()' method.",
+        );
+    }
+
+    public function testRenderWithSpellcheck(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <span spellcheck="true"></span>
+            HTML,
+            Span::tag()->spellcheck(true)->render(),
+            "Failed asserting that element renders correctly with 'spellcheck' attribute.",
         );
     }
 
@@ -250,6 +372,17 @@ final class SpanTest extends TestCase
                 ->suffixTag(Inline::STRONG)
                 ->render(),
             "Failed asserting that element renders correctly with 'suffixTag()' method.",
+        );
+    }
+
+    public function testRenderWithTabindex(): void
+    {
+        self::equalsWithoutLE(
+            <<<HTML
+            <span tabindex="3"></span>
+            HTML,
+            Span::tag()->tabIndex(3)->render(),
+            "Failed asserting that element renders correctly with 'tabindex' attribute.",
         );
     }
 
