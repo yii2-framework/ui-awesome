@@ -41,7 +41,7 @@ final class SpellcheckProvider
      *
      * @return array Test data for rendered `spellcheck` attribute scenarios.
      *
-     * @phpstan-return array<string, array{bool|string|null, mixed[], string, string}>
+     * @phpstan-return array<string, array{bool|string|null, mixed[], bool|string, string}>
      */
     public static function renderAttribute(): array
     {
@@ -109,6 +109,7 @@ final class SpellcheckProvider
      * @return array Test data for `spellcheck` attribute value scenarios.
      *
      * @phpstan-return array<string, array{bool|string|null, mixed[], string, string}>
+     * @phpstan-return array<string, array{bool|string|null, mixed[], bool|string, string}>
      */
     public static function values(): array
     {
