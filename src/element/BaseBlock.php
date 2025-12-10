@@ -43,10 +43,10 @@ use function preg_replace;
  * - Supports extensibility for custom block element implementations.
  *
  * @link https://developer.mozilla.org/en-US/docs/Glossary/Block-level_content
- * {@see Block} for a list of block-level HTML elements.
- * {@see Lists} for a list of HTML list elements.
- * {@see Root} for a list of root-level HTML elements.
- * {@see Table} for a list of HTML table elements.
+ * {@see Block} for valid block-level tags.
+ * {@see Lists} for valid list-level tags.
+ * {@see Root} for valid root-level tags.
+ * {@see Table} for valid table-level tags.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.

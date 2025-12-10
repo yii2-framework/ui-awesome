@@ -24,7 +24,7 @@ use yii\ui\tag\Inline;
  *
  * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span
  * {@see BaseInline} for the base implementation.
- * {@see Inline} for a list of inline-level HTML elements.
+ * {@see Inline} for valid inline-level tags.
  *
  * @copyright Copyright (C) 2025 Terabytesoftw.
  * @license https://opensource.org/license/bsd-3-clause BSD 3-Clause License.
