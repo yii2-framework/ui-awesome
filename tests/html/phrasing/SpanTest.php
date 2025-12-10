@@ -109,7 +109,7 @@ final class SpanTest extends TestCase
             <span data-value="test-value"></span>
             HTML,
             Span::tag()->dataAttributes(['value' => 'test-value'])->render(),
-            "Failed asserting that element renders correctly with 'dataAttributes' attribute.",
+            "Failed asserting that element renders correctly with 'dataAttributes()' method.",
         );
     }
 
