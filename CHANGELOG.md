@@ -108,3 +108,4 @@
 - Enh #104: Add `HasSpellCheck` trait with `spellCheck()` method and tests (@terabytesoftw)
 - Bug #105: Update PHPStan return types in `ContentEditableProvider`, `DraggableProvider`, `IdProvider` and `SpellcheckProvider` classes for improved type safety (@terabytesoftw)
 - Enh #106: Add `HasMicroData` trait with `itemId()`, `itemProp()`, `itemRef()`, `itemScope()` and `itemType()` methods and tests (@terabytesoftw)
+- Fix #107: Improve `BaseBlockElement` with additional traits and update related tests (@terabytesoftw)
