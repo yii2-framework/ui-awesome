@@ -105,3 +105,4 @@
 - Bug #101: Improve `HasLang` trait by adding validation for `lang` attribute and updating documentation and tests accordingly (@terabytesoftw)
 - Bug #102: Update test case names in `EncodeProvider` and `ValidatorProvider` classes for improved clarity and consistency (@terabytesoftw)
 - Bug #103: Add exception handling for invalid values in `HasContentEditable`, `HasDir`, `HasDraggable`, and `HasLang` traits (@terabytesoftw)
+- Enh #104: Add `HasSpellCheck` trait with `spellCheck()` method and tests (@terabytesoftw)
