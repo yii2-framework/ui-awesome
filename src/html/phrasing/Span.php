@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace yii\ui\html\phrasing;
 
+use yii\ui\attributes\{HasContentEditable, HasDraggable, HasMicroData, HasTabindex};
 use yii\ui\element\BaseInline;
 use yii\ui\tag\Inline;
 
@@ -31,6 +32,11 @@ use yii\ui\tag\Inline;
  */
 final class Span extends BaseInline
 {
+    use HasContentEditable;
+    use HasDraggable;
+    use HasMicroData;
+    use HasTabindex;
+
     /**
      * Returns the tag enumeration for the `<span>` element.
      *
