@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace yii\ui\attributes;
 
 use InvalidArgumentException;
-use yii\ui\helpers\Validator;
+use UIAwesome\Html\Helper\Validator;
 use yii\ui\values\Draggable;
 
 use function is_bool;

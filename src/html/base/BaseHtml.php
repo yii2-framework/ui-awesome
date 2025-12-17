@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace yii\ui\html\base;
 
 use BackedEnum;
-use yii\ui\helpers\{Attributes, Encode};
+use UIAwesome\Html\Helper\{Attributes, Encode};
 use yii\ui\tag\{Block, Inline, Lists, Root, Table, Voids};
 
 /**

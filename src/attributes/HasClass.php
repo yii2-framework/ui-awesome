@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace yii\ui\attributes;
 
+use UIAwesome\Html\Helper\CSSClass;
 use UnitEnum;
-use yii\ui\helpers\CSSClass;
 
 /**
  * Trait for managing the global HTML `class` attribute in tag rendering.

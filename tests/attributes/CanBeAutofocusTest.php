@@ -6,8 +6,8 @@ namespace yii\ui\tests\attributes;
 
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
+use UIAwesome\Html\Helper\Attributes;
 use yii\ui\attributes\CanBeAutofocus;
-use yii\ui\helpers\Attributes;
 use yii\ui\mixin\HasAttributes;
 use yii\ui\tests\providers\attributes\AutofocusProvider;
 

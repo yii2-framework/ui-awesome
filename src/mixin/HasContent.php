@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace yii\ui\mixin;
 
 use Stringable;
-use yii\ui\helpers\Encode;
+use UIAwesome\Html\Helper\Encode;
 
 /**
  * Trait for managing HTML element content in tag rendering.

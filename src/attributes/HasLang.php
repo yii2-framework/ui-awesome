@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace yii\ui\attributes;
 
 use InvalidArgumentException;
+use UIAwesome\Html\Helper\Validator;
 use UnitEnum;
-use yii\ui\helpers\Validator;
 use yii\ui\values\Language;
 
 /**
