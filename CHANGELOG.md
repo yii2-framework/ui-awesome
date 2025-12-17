@@ -115,3 +115,4 @@
 - Fix #111: Update documentation to specify valid tags for `Block` and `Inline` enum class references (@terabytesoftw)
 - Fix #112: Simplify attributes in `BaseInline` class and improve `Span` element with specific traits and update related tests (@terabytesoftw)
 - Fix #113: Use `UIAwesome/Helper` package, remove related classes, and update tests accordingly (@terabytesoftw)
+- Enh #114: Add `BaseVoid` class for HTML void elements and implement `Hr` element with comprehensive tests (@terabytesoftw)
