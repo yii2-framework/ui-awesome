@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace yii\ui\tests\support;
 
+use UIAwesome\Html\Helper\Enum;
 use UnitEnum;
-use yii\ui\helpers\Enum;
 
 use function strtolower;
 

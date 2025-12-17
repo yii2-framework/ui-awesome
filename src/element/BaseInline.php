@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace yii\ui\element;
 
 use Stringable;
+use UIAwesome\Html\Helper\Template;
 use yii\ui\attributes\{CanBeHidden, HasClass, HasData, HasDir, HasId, HasLang, HasStyle, HasTitle};
-use yii\ui\helpers\Template;
 use yii\ui\html\Html;
 use yii\ui\mixin\{HasAttributes, HasContent, HasPrefixCollection, HasSuffixCollection, HasTemplate};
 use yii\ui\tag\{BaseTag, Inline};

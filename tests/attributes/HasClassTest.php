@@ -6,9 +6,9 @@ namespace yii\ui\tests\attributes;
 
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
+use UIAwesome\Html\Helper\Attributes;
 use UnitEnum;
 use yii\ui\attributes\HasClass;
-use yii\ui\helpers\Attributes;
 use yii\ui\mixin\HasAttributes;
 use yii\ui\tests\providers\attributes\ClassProvider;
 

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace yii\ui\attributes;
 
 use InvalidArgumentException;
+use UIAwesome\Html\Helper\Validator;
 use yii\ui\exception\Message;
-use yii\ui\helpers\Validator;
 
 /**
  * Trait for managing the global HTML `tabindex` attribute in tag rendering.

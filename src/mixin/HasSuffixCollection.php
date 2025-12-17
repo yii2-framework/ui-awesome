@@ -6,7 +6,7 @@ namespace yii\ui\mixin;
 
 use BackedEnum;
 use Stringable;
-use yii\ui\helpers\CSSClass;
+use UIAwesome\Html\Helper\CSSClass;
 use yii\ui\tag\Inline;
 
 use function implode;

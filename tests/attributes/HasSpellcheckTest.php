@@ -7,9 +7,9 @@ namespace yii\ui\tests\attributes;
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\{DataProviderExternal, Group};
 use PHPUnit\Framework\TestCase;
+use UIAwesome\Html\Helper\Attributes;
 use yii\ui\attributes\HasSpellcheck;
 use yii\ui\exception\Message;
-use yii\ui\helpers\Attributes;
 use yii\ui\mixin\HasAttributes;
 use yii\ui\tests\providers\attributes\SpellcheckProvider;
 
