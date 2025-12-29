@@ -13,7 +13,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.1",
-        "ui-awesome/html-helper": "^0.4"
+        "ui-awesome/html-helper": "^0.6"
     },
     "require-dev": {
         "infection/infection": "^0.27|^0.31",
